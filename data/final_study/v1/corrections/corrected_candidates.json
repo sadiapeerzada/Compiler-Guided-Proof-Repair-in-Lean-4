@@ -1,0 +1,186 @@
+[
+  {
+    "id": "mod_001",
+    "nl_statement": "For any integers a and b and positive integer m, if a is congruent to b modulo m, then a + 1 is congruent to b + 1 modulo m.",
+    "category": "modular_arithmetic",
+    "difficulty": 2,
+    "expected_lean_statement": "theorem cong_add_one (a b m : ℤ) (_hm : 0 < m) (h : a ≡ b [ZMOD m]) : a + 1 ≡ b + 1 [ZMOD m]",
+    "curation": {
+      "source_url": null,
+      "source_citation": null,
+      "source_status": "pending",
+      "source_license": null,
+      "source_license_verification_status": "pending",
+      "problem_family": "integer_congruence_translation",
+      "family_review_status": "needs_review",
+      "family_review_note": "Congruence preserved by translation; singleton family proposal.",
+      "split": "test",
+      "split_status": "pending",
+      "semantic_fidelity": {
+        "label": null,
+        "review_status": "pending",
+        "reviewer_provenance": null,
+        "evidence": null
+      },
+      "theorem_statement_review": {
+        "status": "pending",
+        "reviewer_provenance": null,
+        "review_notes": "English explicitly says m is positive, but the Lean statement has no positivity hypothesis. The congruence claim may be stronger; fidelity is unresolved."
+      },
+      "assumption_mismatch_review": {
+        "status": "pending",
+        "reviewer_provenance": null,
+        "review_notes": "English explicitly says m is positive, but the Lean statement has no positivity hypothesis. The congruence claim may be stronger; fidelity is unresolved."
+      },
+      "self_containment_review": {
+        "status": "pending",
+        "reviewer_provenance": null,
+        "review_notes": "English explicitly says m is positive, but the Lean statement has no positivity hypothesis. The congruence claim may be stronger; fidelity is unresolved."
+      },
+      "duplicate_review": {
+        "candidate_group": null,
+        "related_ids": [],
+        "status": "pending",
+        "notes": null
+      },
+      "recommended_curator_action": "Decide whether positivity is essential to the intended English statement; amend only after human approval and record the decision.",
+      "theorem_verification": {
+        "status": "verified",
+        "success": true,
+        "verification_scope": "strict_proof",
+        "lean_toolchain": "leanprover/lean4:v4.32.0",
+        "mathlib_revision": "81a5d257c8e410db227a6665ed08f64fea08e997",
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "--json",
+          "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/data/reference_verification/v0.1.0/references_checked.lean"
+        ],
+        "theorem_sha256": "fb24e795f43840cfec3cd5caabce7ab58976500b85f00142f33822d47a75eebc",
+        "verification_source_sha256": "49f07b252d75fda1e573c8a2738118c095ecd2efba04b1dfaf5579a37fbaf139",
+        "axiom_dependencies": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "evidence": "data/reference_verification/v0.1.0/proof_overlay.json; candidate source has no placeholders; exact-type comparison and target axiom inspection passed. ReferenceExpected placeholders check types only."
+      }
+    },
+    "required_imports": [
+      "Mathlib"
+    ],
+    "correction_history": [
+      {
+        "record_kind": "authoring_ai_correction_not_human_approval",
+        "on": "2026-10-28",
+        "reason": "Restore the positive integer modulus restriction explicitly required by the English.",
+        "before": {
+          "id": "mod_001",
+          "nl_statement": "For any integers a and b and positive integer m, if a is congruent to b modulo m, then a + 1 is congruent to b + 1 modulo m.",
+          "expected_lean_statement": "theorem cong_add_one (a b m : ℤ) (h : a ≡ b [ZMOD m]) : a + 1 ≡ b + 1 [ZMOD m]",
+          "required_imports": [
+            "Mathlib"
+          ],
+          "required_definitions": null
+        },
+        "before_binding": "ff235d691a0cac21c04752a866e42373e8ba0aef13743abe99b4bf9215470e7f",
+        "after_binding": "10c9416bc55e65aa9fc4f7eb9449ef73f522e23b5fe7b0bb345e360b1d5bcd82",
+        "verification_file": "data/final_study/v1/corrections/mod_001.verification.json"
+      }
+    ],
+    "reference_lean_code": "import Mathlib\ntheorem cong_add_one (a b m : ℤ) (_hm : 0 < m) (h : a ≡ b [ZMOD m]) : a + 1 ≡ b + 1 [ZMOD m] := by\n  exact h.add (Int.ModEq.refl 1)\n"
+  },
+  {
+    "id": "ind_001",
+    "nl_statement": "For every natural number n, the sum of the integers from 1 through n (the empty sum when n=0) equals n(n+1)/2.",
+    "category": "induction",
+    "difficulty": 3,
+    "expected_lean_statement": "theorem gauss_sum (n : ℕ) : 2 * (Finset.range (n + 1)).sum id = n * (n + 1)",
+    "curation": {
+      "source_url": null,
+      "source_citation": null,
+      "source_status": "pending",
+      "source_license": null,
+      "source_license_verification_status": "pending",
+      "problem_family": "nat_finite_sum_identities",
+      "family_review_status": "needs_review",
+      "family_review_note": "Finite sum identity over a natural-number range.",
+      "split": "development",
+      "split_status": "pending",
+      "semantic_fidelity": {
+        "label": null,
+        "review_status": "pending",
+        "reviewer_provenance": null,
+        "evidence": null
+      },
+      "theorem_statement_review": {
+        "status": "pending",
+        "reviewer_provenance": null,
+        "review_notes": "English says the sum equals a quotient, while Lean states a doubled-sum identity over range (n + 1); indexing and natural division are implicit."
+      },
+      "assumption_mismatch_review": {
+        "status": "pending",
+        "reviewer_provenance": null,
+        "review_notes": "English says the sum equals a quotient, while Lean states a doubled-sum identity over range (n + 1); indexing and natural division are implicit."
+      },
+      "self_containment_review": {
+        "status": "pending",
+        "reviewer_provenance": null,
+        "review_notes": "English says the sum equals a quotient, while Lean states a doubled-sum identity over range (n + 1); indexing and natural division are implicit."
+      },
+      "duplicate_review": {
+        "candidate_group": null,
+        "related_ids": [],
+        "status": "pending",
+        "notes": null
+      },
+      "recommended_curator_action": "Review the range endpoints and algebraic equivalence, then rewrite the English wording or Lean statement if needed.",
+      "theorem_verification": {
+        "status": "verified",
+        "success": true,
+        "verification_scope": "strict_proof",
+        "lean_toolchain": "leanprover/lean4:v4.32.0",
+        "mathlib_revision": "81a5d257c8e410db227a6665ed08f64fea08e997",
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "--json",
+          "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/data/reference_verification/v0.1.0/references_checked.lean"
+        ],
+        "theorem_sha256": "e4cb250b19802868466e306428f55fd9319a6ac3e7df3fcba5b1dc5c1524d0c7",
+        "verification_source_sha256": "49f07b252d75fda1e573c8a2738118c095ecd2efba04b1dfaf5579a37fbaf139",
+        "axiom_dependencies": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "evidence": "data/reference_verification/v0.1.0/proof_overlay.json; candidate source has no placeholders; exact-type comparison and target axiom inspection passed. ReferenceExpected placeholders check types only."
+      }
+    },
+    "required_imports": [
+      "Mathlib"
+    ],
+    "correction_history": [
+      {
+        "record_kind": "authoring_ai_correction_not_human_approval",
+        "on": "2026-10-28",
+        "reason": "Specify inclusive endpoints 1..n, eliminating the zero-based first-n ambiguity.",
+        "before": {
+          "id": "ind_001",
+          "nl_statement": "For any natural number n, the sum of the first n natural numbers equals n times (n + 1) divided by 2.",
+          "expected_lean_statement": "theorem gauss_sum (n : ℕ) : 2 * (Finset.range (n + 1)).sum id = n * (n + 1)",
+          "required_imports": [
+            "Mathlib"
+          ],
+          "required_definitions": null
+        },
+        "before_binding": "c65933d0201289840420c82df4ad8378f96d5fb9b3177be74ccb762c2e60a1e3",
+        "after_binding": "092993f817e841eff549e785a134f3eafc2e1022bc5b6880a9b49699f73332c5",
+        "verification_file": "data/final_study/v1/corrections/ind_001.verification.json"
+      }
+    ],
+    "reference_lean_code": "import Mathlib\ntheorem gauss_sum (n : ℕ) : 2 * (Finset.range (n + 1)).sum id = n * (n + 1) := by\n  simpa [Nat.mul_comm] using Finset.sum_range_id_mul_two (n + 1)\n"
+  }
+]

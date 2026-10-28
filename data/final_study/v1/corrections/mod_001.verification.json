@@ -1,0 +1,57 @@
+{
+  "success": true,
+  "errors": [],
+  "exit_code": 0,
+  "elapsed_seconds": 36.915,
+  "diagnostics_parsed": 2,
+  "axiom_dependencies": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "failure_kind": null,
+  "diagnostic_text": null,
+  "candidate_sha256": "29495fed84baa473f3b2b2ddf618ec0a7a96d80716504be979983b5a1738bae5",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\ntheorem cong_add_one (a b m : ℤ) (_hm : 0 < m) (h : a ≡ b [ZMOD m]) : a + 1 ≡ b + 1 [ZMOD m] := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\n\ntheorem cong_add_one (a b m : ℤ) (_hm : 0 < m) (h : a ≡ b [ZMOD m]) : a + 1 ≡ b + 1 [ZMOD m] := by\n  exact h.add (Int.ModEq.refl 1)\n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.cong_add_one = Nl2LeanCandidate.cong_add_one := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.cong_add_one\n",
+  "verification_source_sha256": "be8d2469ce19a032598e8ecb03e35b557adf2e463fe0c224ab5e886bcc02764e",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 20,
+        "line": 4
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/final_correction_mod_001.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 4
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.cong_add_one' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/final_correction_mod_001.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 16
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":4},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/final_correction_mod_001.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":4},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.cong_add_one' depends on axioms: [propext, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/final_correction_mod_001.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":16},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

@@ -1,0 +1,57 @@
+{
+  "success": true,
+  "errors": [],
+  "exit_code": 0,
+  "elapsed_seconds": 3.798,
+  "diagnostics_parsed": 2,
+  "axiom_dependencies": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "failure_kind": null,
+  "diagnostic_text": null,
+  "candidate_sha256": "550c99ff166f7c0f4a00349dfbc5e2be55249b3a09354fa5e1f4704703704984",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\ntheorem gauss_sum (n : ℕ) : 2 * (Finset.range (n + 1)).sum id = n * (n + 1) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\n\ntheorem gauss_sum (n : ℕ) : 2 * (Finset.range (n + 1)).sum id = n * (n + 1) := by\n  simpa [Nat.mul_comm] using Finset.sum_range_id_mul_two (n + 1)\n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.gauss_sum = Nl2LeanCandidate.gauss_sum := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.gauss_sum\n",
+  "verification_source_sha256": "9f4a9337bd5da32f9a4489320da03f57c7e82ab792be7246f05f819be7de7a59",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 17,
+        "line": 4
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/final_correction_ind_001.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 4
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.gauss_sum' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/final_correction_ind_001.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 16
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":17,\"line\":4},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/final_correction_ind_001.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":4},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.gauss_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/final_correction_ind_001.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":16},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

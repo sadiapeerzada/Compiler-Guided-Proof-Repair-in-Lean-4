@@ -1,0 +1,161 @@
+{
+  "schema_version": 4,
+  "version": "0.4.2-final-ai-approved-local",
+  "frozen_on": "2026-10-28",
+  "frozen_before_heldout_results": true,
+  "approval_provenance": "student_reported_not_independently_verified",
+  "configuration_authority": "User explicitly authorized automatic protocol finalization and execution; exact settings are implementation choices, not fabricated supervisor-config approval.",
+  "study_question": "For fixed AI-reviewed English/theorem pairs and identical initial proof, compare one shot with blind and compiler-guided proof repair. This is fixed-theorem proof synthesis, not unrestricted NL statement generation.",
+  "model": {
+    "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+    "snapshot_revision": "c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed",
+    "snapshot_home_relative": ".cache/huggingface/hub/models--mlx-community--Qwen2.5-7B-Instruct-4bit/snapshots/c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed",
+    "inventory_path": "data/local_model/20261027/model_inventory.json",
+    "inventory_sha256": "24d68abbe5e1434e5263ad123cca517c2c1799c7465e104e83f6cb02baeac4f9",
+    "quantization": {
+      "group_size": 64,
+      "bits": 4
+    },
+    "tokenizer_revision": "c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed",
+    "chat_template_sha256": "2e2d2512cfe46af53dc1eed45368ecaab26ac4461c480e6b69fe571cf0ceaa75",
+    "fallback": null
+  },
+  "seeds": [
+    2027
+  ],
+  "seed_limitation": "One pre-specified primary seed, retaining the earlier proposed problem-level binary protocol. Three-seed replication is not claimed; local compute/generalization limitation is disclosed.",
+  "decoding": {
+    "temperature": 0.2,
+    "max_tokens": 2000,
+    "max_context_tokens": 8192,
+    "top_p": 1.0
+  },
+  "seed_policy": "sha256(base_seed:phase/seed/problem/step:prompt_sha256)_first_uint32; independent calls/KV and durable no-replay intents.",
+  "maximum_repairs": 3,
+  "maximum_model_calls_per_problem": 7,
+  "paid_inference_allowed": false,
+  "concurrency": 1,
+  "condition_order": [
+    "B",
+    "C"
+  ],
+  "conditions": {
+    "A": "One shared initial generated candidate; strict Lean verification.",
+    "B": "Same initial candidate; at most three repairs with fixed blind feedback only.",
+    "C": "Same initial candidate; at most three repairs with only genuine structured diagnostics from the immediately previous failed candidate. Stop if diagnostics unavailable."
+  },
+  "stopping": "Verified success, exhausted three-repair budget, missing genuine C diagnostics, generation failure/context overflow/interruption, verifier infrastructure failure/timeout. No automatic generation retry. Resume completed outputs; an incomplete intent consumes its call.",
+  "verifier_timeout_seconds": 180,
+  "proof_safety": {
+    "forbidden_source_tokens": [
+      "sorry",
+      "sorryAx",
+      "admit"
+    ],
+    "forbidden_declarations": [
+      "axiom",
+      "constant",
+      "opaque"
+    ],
+    "allowed_axiom_dependencies": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "lean_compilation_establishes_semantic_fidelity": false
+  },
+  "lean_toolchain": "leanprover/lean4:v4.32.0",
+  "mathlib_revision": "81a5d257c8e410db227a6665ed08f64fea08e997",
+  "prompts": {
+    "initial": "prompts/final_study_initial_v0.4.2.txt",
+    "blind": "prompts/final_study_blind_v0.4.2.txt",
+    "guided": "prompts/final_study_guided_v0.4.2.txt"
+  },
+  "freeze_sha256": "de0850197b821ca4c519737c4cffb16d78e2a329d15be6c7f3c6a7f5487db67f",
+  "dataset_sha256": {
+    "development_pilot": "41e47f74ac50a30dbf34b1473c7b01b7727de05e7698480ed9db6255c710b56d",
+    "heldout": "47e1b9acc1efc5c6be1113c0b4e103b29f6cb7aeed77a5ffe98bae97fdda9a5b"
+  },
+  "pilot_ids": [
+    "ineq_004",
+    "lib_d_bezout",
+    "ind_008"
+  ],
+  "pilot_requirement": "Genuine development-only outputs and strict verification, complete common-initial/B-no-feedback/C-latest-feedback provenance audit; no tuning on test outcomes.",
+  "analysis": {
+    "primary_comparison": "C_vs_B",
+    "secondary": [
+      "C_vs_A",
+      "B_vs_A"
+    ],
+    "wilson_confidence": 0.95,
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20271021,
+    "paired_test": "two-sided exact McNemar; Holm across three comparisons",
+    "family_sensitivity": "Family-cluster bootstrap because 60 distinct test statements occupy 54 conservatively curated families; do not assert 60 independent families. Report problem-level inference assumptions and cluster robustness.",
+    "incomplete": "Report complete matched pairs and full-denominator missing-as-failure sensitivity.",
+    "resources": "Condition costs include initial once each; actual physical total counts shared initial only once."
+  },
+  "runtime_packages": {
+    "mlx": "0.32.4",
+    "mlx-lm": "0.32.2",
+    "transformers": "5.21.0",
+    "numpy": "2.5.4"
+  },
+  "output_root": "data/final_study/v1/final_runs",
+  "pinned_files": {
+    "src/final_study.py": "a8ed07d86ac271b8954301156711d13ac0af734066096a0d76b8801387875bf2",
+    "scripts/run_final_study.py": "e617f9e2262c723ee3d068ca1ed6cc208e295517d6038d1b2ece965d13934091",
+    "eval/final_study_analysis.py": "344539f377fdea218ecdedb28e7ded26109709aee73f08b8468aa81a5da17c6a",
+    "eval/paired_analysis.py": "c75d92f19bb0490099cf5258f559b62620a0917516d0013b40b49510b58a660c",
+    "src/local_llm_client.py": "a3d3a68fea4d59184538fa518da2755cb756a6129d41d1332472db1bf2f8941e",
+    "src/model_client.py": "1db8406961c6abd746bea384fb0ff0eb94fd08674debbc870d3f847baaa9fe51",
+    "src/verify.py": "d486db8f8b9fb749854af2d68ebbf93d4125eec57847f1a130af802fe0d3243a",
+    "src/local_protocol.py": "188832a628c665868438be991974f81bcb5a3a653818200fcd7fe8f5d2626b5d",
+    "lean_project/lean-toolchain": "cc346fd7850a83fb7af3902dfc378f74d8eb8c59c6d34322488269ebfe7615b1",
+    "lean_project/lake-manifest.json": "358f47cde2c850b720178b3f1d8ad076bbafa276e05f4096ac6e4ba8b196cf3a",
+    "lean_project/lakefile.toml": "a1a504e5c0f71e5c1b59df52c83b53764b46e98b309dd0bb06580d6e74573348",
+    "data/local_model/20261027/model_inventory.json": "24d68abbe5e1434e5263ad123cca517c2c1799c7465e104e83f6cb02baeac4f9",
+    "prompts/repair_experiment_local_initial.txt": "394303364c26af8472de0d5483754e01c9f401b7761dd2cddd8b84dde9e4973c",
+    "prompts/repair_experiment_blind.txt": "98f5f2ca17094874da1b89f5b4cfc4f7eff00753dc56ac8d8cb7161fdaa57745",
+    "prompts/repair_experiment_compiler_guided.txt": "98f5f2ca17094874da1b89f5b4cfc4f7eff00753dc56ac8d8cb7161fdaa57745",
+    "data/final_study/v1/freeze.json": "de0850197b821ca4c519737c4cffb16d78e2a329d15be6c7f3c6a7f5487db67f",
+    "data/final_study/v1/ai_eligibility_policy.json": "1fc0a828582d43a21b1a62cf909ff5a0f95840b6d93d9e40bac53642453bae28",
+    "data/final_study/v1/adjudications.json": "e6bf9334340a2487509e4c7c4630c0c937b55cefcf5d3ed114c8e9c8d59955b1",
+    "data/final_study/v1/approvals/student_reported.json": "7a388ae9da69e3fc9ad03c59fb1db6908e42fa75a64c9c7145a8376500fc5e49",
+    "data/final_study/v1/development.json": "41e47f74ac50a30dbf34b1473c7b01b7727de05e7698480ed9db6255c710b56d",
+    "data/final_study/v1/test.json": "47e1b9acc1efc5c6be1113c0b4e103b29f6cb7aeed77a5ffe98bae97fdda9a5b",
+    "prompts/final_study_initial_v0.4.2.txt": "4c733b6c437cd5139b9ba2a0f0b3455981063a18674f707c06265aa1e402dbaa",
+    "prompts/final_study_blind_v0.4.2.txt": "c71a140bc3710f2c70e920989ee4f4c53521d4301b19250414c2afe4182caadb",
+    "prompts/final_study_guided_v0.4.2.txt": "c71a140bc3710f2c70e920989ee4f4c53521d4301b19250414c2afe4182caadb"
+  },
+  "original_groq_protocol_preserved": "configs/repair_experiment_protocol_v0.2.0.json",
+  "parent_local_protocol_sha256": "198466d7396606391547c29f0e7d9b70b011d93abc1236c60d9e1f1ee0fb0b92",
+  "parent_execution_protocol_sha256": "f3713707b941ee1edf8802bdf4237f737f1e6861df7fb9f1644ee074817bfa98",
+  "memory_schedule": "Release model/tokenizer references and Metal allocator cache after each completion and before Lean; next call rehashes/reloads the identical model. Per-context seed and independent KV policy unchanged.",
+  "preheldout_amendment": {
+    "reason": "Development pilot observed 58-79 second full-Mathlib checks with weights resident. Add memory scheduling and distinguish genuine compiler errors from precompiler proof-safety rejections. No held-out generation or result was accessed.",
+    "unchanged": [
+      "dataset",
+      "model",
+      "tokenizer",
+      "prompts",
+      "seed",
+      "decoding",
+      "A/B/C budgets",
+      "compiler",
+      "analysis comparisons/intervals/tests"
+    ],
+    "previous_development_outputs_preserved": "data/final_study/v1/runs/development_pilot/"
+  },
+  "development_prompt_amendment": {
+    "source": "Development-only ineq_004 format diagnostic and exploratory pilots, never held-out outcomes.",
+    "selection_criterion": "Reject Lean 3 syntax, not require a successful proof. Diagnostic output changed to Lean 4 syntax but remained mathematically unverified.",
+    "change": "Same explicit := by / finite-sum syntax instruction appended to all conditions; no worked proof, theorem-specific hint or reference proof provided.",
+    "prototypes_not_pooled": [
+      "data/final_study/v1/runs/",
+      "data/final_study/v1/runs_memory_released/"
+    ],
+    "heldout_generations_before_amendment": 0
+  }
+}
