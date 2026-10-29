@@ -14,3 +14,5 @@ Remaining external publication decisions are:
 No paid inference is authorized or required. Actual completion, statistical findings and remaining technical failures must be read from the generated FINAL reports and raw logs, not inferred from this list.
 
 The frozen study has two unavailable C outcomes (context cap and interrupted generation), one seed and a three-case final development pilot. These cannot be silently filled or retuned after inspecting held-out results. Further inference requires a separately versioned follow-up study; the existing negative results remain intact.
+
+Public branch delivery is BLOCKED by automatic approval review. Read-only verification confirmed the destination `sadiapeerzada/NLP-to-Formal-Language-Proof` is PUBLIC and the user has ADMIN access. Two push attempts were rejected because public disclosure of raw study outputs, logs and author metadata requires explicit approval covering that payload. No push occurred. The local research commit is preserved pending that approval.

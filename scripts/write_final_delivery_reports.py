@@ -43,7 +43,7 @@ The frozen single-seed study reached terminal records for all 60 cases, with 58 
 | M3 A/B/C | PARTIAL | One shared initial, matched model/environment/output budgets, at most three B/C repairs, no B diagnostics, latest genuine C diagnostics | 58 complete pairs; two unavailable C outcomes retained without replay; final pilot covers 3 of 15 development items |
 | M4 semantics | COMPLETE | 75 source-eligible AI-adjudicated references, corrected/reviewed original pairs preserved, zero invented human reviews | AI adjudication is not measured human semantic accuracy |
 | M5 analysis | COMPLETE | Actual rates, intervals, exact McNemar/Holm, family sensitivity, calls/tokens/timing, error outcomes and authentic examples | No unsupported significance or equivalence claim |
-| M6 verification | COMPLETE | {testmatch[1]} Python tests and {testmatch[2]} subtests; Lean build; dataset/result validators; source/evidence hashes | Reproduction remains backend/hardware scoped |
+| M6 verification | PARTIAL | {testmatch[1]} Python tests and {testmatch[2]} subtests; Lean build; dataset/result validators; source/evidence hashes | Full diff whitespace check flags preserved raw evidence; scientific validators, tests and Lean pass. Reproduction remains backend/hardware scoped |
 | M7 paper | PARTIAL | Actual empirical methods/results, four required numbered tables, two figures, qualitative examples, compiled PDF | No institutional affiliation supplied; venue-specific final submission checks remain; separate submission authorization needed |
 
 {table}
