@@ -1,18 +1,15 @@
-# Remaining human actions
+# Remaining publication decisions
 
-The student reported supervisor approval of AI-assisted semantic review and free local MLX on 28 October 2026. The approval source is [recorded truthfully](../data/final_study/v1/approvals/student_reported.json); no original decision date, document, signature or independent verification was supplied. Those substitutions no longer block the authorized dataset finalization and automatic experiment execution.
+The supervisor’s AI-semantic-review and free-local-MLX substitutions are student-reported approvals, not independently authenticated correspondence. The supplied professor checklist is recorded with that provenance. The current actual outcomes and compliance matrix are in the FINAL reports.
 
-The final dataset/protocol and actual pilot were frozen and audited before held-out execution. The pilot audit is an AI engineering/control check, not a fabricated supervisor signature. The user's explicit final-execution instruction authorizes automatic experiments, analysis, manuscript preparation, verification and branch push. The older approval requests are historical proposals.
+The earlier exact redacted payload was explicitly approved, pushed and merged into public main under `publication/`. This revision is a new payload and remains local. Do not push the private research/audit branch or reuse the earlier approval as approval for revised files.
 
-Remaining external publication decisions are:
+Remaining decisions:
 
-- Supply an institutional affiliation if one should appear. The supplied author is Sadia Peerzada, correspondence `sadiapeerzada2006@gmail.com`; an institution will not be invented.
-- The [current TAIMMA call](https://easychair.org/cfp/taimma2027), checked 29 October 2026, recommends 12–15 pages for full papers and at least six for short papers; the compiled manuscript is 12 pages. Confirm the final submission category and portal requirements before submission.
-- Review the final manuscript, attribution and disclosed limitations before submission. Source-license assessments and AI semantics are not independent legal or human mathematical certification.
-- Authorize any actual submission or merge separately. Neither automatic conference submission nor merge into `main` is part of the authorized branch delivery.
+- Supervisor/editorial acceptance of a reduced fixed-theorem pilot and the internal-only pretest freeze deviation. Full end-to-end statement-generation accuracy is unmeasured; two C outcomes cannot be backfilled under the frozen protocol.
+- Final independent manuscript review and a submission-category decision. The current anonymous Springer PDF has 14 pages, within the current 12–15-page full-paper recommendation; page count does not authorize submission or guarantee acceptance.
+- Final author/contact/affiliation choices. The public proposal withholds personal contact details; no institution is invented.
+- Explicit approval of the newly enumerated public-release files. Any project-wide reuse license would be a separate owner decision; existing per-item CC BY-SA / Apache terms remain applicable.
+- Separate authorization for actual submission. No new push, merge, paid inference or conference submission occurred in this revision.
 
-No paid inference is authorized or required. Actual completion, statistical findings and remaining technical failures must be read from the generated FINAL reports and raw logs, not inferred from this list.
-
-The frozen study has two unavailable C outcomes (context cap and interrupted generation), one seed and a three-case final development pilot. These cannot be silently filled or retuned after inspecting held-out results. Further inference requires a separately versioned follow-up study; the existing negative results remain intact.
-
-Public branch delivery is BLOCKED by automatic approval review. Read-only verification confirmed the destination `sadiapeerzada/NLP-to-Formal-Language-Proof` is PUBLIC and the user has ADMIN access. Two push attempts were rejected because public disclosure of raw study outputs, logs and author metadata requires explicit approval covering that payload. No push occurred. The local research commit is preserved pending that approval.
+Recommendation now: NO-GO for a full-compliance submission; ready for supervisor review of the accurately limited pilot.

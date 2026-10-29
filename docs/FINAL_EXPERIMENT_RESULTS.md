@@ -1,42 +1,25 @@
-# Final genuine experimental results
+# Final corrected experimental results
 
-The user directly reported supervisor approval of AI-assisted semantic review replacing independent human semantic review, and free local MLX replacing Groq. Report date: **28 October 2026**. Actual supervisor decision date is unknown. Evidence is the student's direct report, **not independently verified**; no supervisor document, identity, signature or original date has been invented. Exact implementation choices were made under the user's explicit execution authorization.
+The primary observed and complete-case rates are separated from the internally frozen missing-as-failure sensitivity. There is no autonomous Stage-A or end-to-end accuracy estimate.
 
-All 60 frozen eligible held-out statements were processed under one seed, 2027, using the exact cached Qwen2.5-7B-Instruct 4-bit snapshot. The final development pilot and actual no-new-generation resume check passed control/provenance validation. Pilot model failures were not counted as held-out results.
-
-| Condition | Verified | Rate | Wilson 95% (%) | Missing | Repair attempts |
+| Condition | Success / observed | Rate | Wilson 95% | Known failures | Unavailable |
 |---|---:|---:|---|---:|---:|
-| A | 0/60 | 0.0% | [0.0, 6.0] | 0 | 0 |
-| B | 1/60 | 1.7% | [0.3, 8.9] | 0 | 178 |
-| C | 1/60 | 1.7% | [0.3, 8.9] | 2 | 174 |
+| A | 0/60 | 0.00% | [0.00, 6.02]% | 60 | 0 |
+| B | 1/60 | 1.67% | [0.29, 8.86]% | 59 | 0 |
+| C | 1/58 | 1.72% | [0.31, 9.14]% | 57 | 2 |
 
-Full-denominator rates and Wilson intervals count missing outcomes as failures for sensitivity; paired tests use complete matched outcomes. Incomplete trajectories: **2**. Individual/problem-level inference assumes independence; family-cluster intervals address the recorded related-target grouping. `None` McNemar p-values mean no informative discordant-pair test, not equivalence.
+The primary B/C comparison uses **58 complete pairs**, with B=C=1/58 (1.72%) on the same target, `lib_a_exp_add`. C−B is 0.00 percentage points and there are zero discordant pairs. The frozen helper reports McNemar as `null` / non-informative; conventionally p=1. Neither is evidence of equivalence. Complete-pair problem/family bootstrap intervals [0,0] are conditional on observed pairs, not missingness uncertainty. The matched subset has 52 family clusters; all 60 statements occupy 54.
 
-- C_vs_B: +0.0 pp; family-cluster 95% [+0.0, +0.0] pp; complete pairs 58; exact McNemar p=None; Holm p=None.
-- C_vs_A: +1.7 pp; family-cluster 95% [+0.0, +5.5] pp; complete pairs 58; exact McNemar p=1.0; Holm p=1.0.
-- B_vs_A: +1.7 pp; family-cluster 95% [+0.0, +5.5] pp; complete pairs 60; exact McNemar p=1.0; Holm p=1.0.
+The frozen protocol explicitly defines full-denominator missing-as-failure **sensitivity**. Under that coding C=1/60 (1.67%), with Wilson interval [0.29,8.86]%; it is not 60 measured C outcomes. Both missing C cases failed in B, so possible full-cohort C−B effects span 0 to +3.33 percentage points. These are identification bounds, not confidence limits or an equivalence margin.
 
-Actual generation attempts: **412**; completed generations: **410**. Known completed-call prompt tokens: **362,035**; completion tokens: **130,401**. Physical totals count the shared initial once, while each condition's counterfactual resource row includes it. Complete native generation seconds: **11233.6**; recorded trajectory wall seconds: **108797.3**. Unknown interrupted-call endpoints are not invented.
+- C_vs_B: 58 matched cases; difference +0.00 percentage points; family-cluster interval [+0.00, +0.00]; exact p=None; Holm p=None.
+- C_vs_A: 58 matched cases; difference +1.72 percentage points; family-cluster interval [+0.00, +5.66]; exact p=1.0; Holm p=1.0.
+- B_vs_A: 60 matched cases; difference +1.67 percentage points; family-cluster interval [+0.00, +5.45]; exact p=1.0; Holm p=1.0.
 
-Actual outputs: `analysis/results.json`, `condition_results.csv`, `initial_failure_outcomes.csv`, `rendered_evidence.json`, `selected_qualitative_examples.json`; all relative to `data/final_study/v1/`. Figures and four main tables are under `paper/generated/final_*`. The selected authentic examples are lib_a_exp_add, div_007, lib_a_trig_unit, div_008, div_011; their display-only snippets are truncated/transliterated, while original Unicode outputs remain unchanged.
+There are **410 completed held-out responses**: 60 initial, 178 B repairs and 172 C repairs. The **412 durable logical intents** include one preflight context rejection and one header-only interruption; they are not 412 confirmed completed inference calls. The final frozen pilot has three cases / 21 responses, excluded from test estimates. No new inference was run during this revision.
 
-Limits: one primary seed (2027), one general instruction model and quantization; 60 test statements in 54 curated family clusters, rather than 60 independent topic families; five development clusters; author-assisted AI adjudication and unreliable independent-model judgments; named-lemma/pretraining exposure; fixed-theorem proof synthesis rather than unrestricted NL translation; B-before-C order and host/cache effects on timings. These limits remain explicit rather than being concealed as completed multi-seed or independent-human validation.
+Known physical completed-response totals: 362,035 input tokens, 130,401 output tokens, 11,233.6 native generation seconds. Shared initials are counted once physically and once per counterfactual condition row. Completed repairs per eligible case: B mean 2.97, C mean 2.87; C consumed-intent mean 2.90; both medians are three. Full resource distributions, including medians, are machine-readable. The same 58 complete cases have 230 completed responses per condition (including initials); paired per-problem resource comparisons are in `paired_resources.json`. No cost or duration is imputed for the unavailable response; completed-only costs are not full-run cost estimates.
 
-No paid inference, fabricated score, manual proof counted as model output, hidden retry or retrospective protocol change was used.
+One seed (2027), low success, related families, author-assisted AI adjudication, library/pretraining exposure, B-before-C order, cached loads and observed shared-host activity limit inference. No supported superiority, equivalence or causal latency claim is made.
 
-Repair calls per eligible problem (60-case denominator, including zeros and consumed interrupted intents):
-
-- A: mean 0.00; median 0.0.
-- B: mean 2.97; median 3.0.
-- C: mean 2.90; median 3.0.
-
-A read-only process sample identified another local MLX workload on the host during execution. Its duration and overhead were not measured; timing is observed shared-host performance, not an isolated-hardware benchmark. See `runtime_observations.json`.
-
-Incomplete generation streams additionally preserve **0** observed output tokens. These are retained partial tokens, not completed responses or an invented exact total beyond the durable stream; completed-call totals above exclude them.
-
-Unavailable condition outcomes and recorded causes:
-
-- `lib_a_trig_unit` / C: Context budget exceeded; incomplete_interrupted_generation.
-- `lib_i_bernoulli` / C: Interrupted generation; incomplete_interrupted_generation.
-
-Checkpoint recovery preserved an interrupted generation without replay. Its trajectory elapsed wall time includes the inactive interval before recovery and must not be read as uninterrupted compute time. Exact recovery records and hashes are in `data/final_study/v1/resume_history/`.
+Canonical reconstruction: `data/final_review/20261029_v2/analysis_verified/results.json`. Deterministic repeat: `analysis_repeat/results.json`. Original `data/final_study/v1/analysis/` is unchanged historical evidence. Every revised table/figure uses the canonical reconstruction; qualified old all-60 estimates remain separately labeled rather than overwritten.

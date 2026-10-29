@@ -3,29 +3,32 @@
 \usepackage{graphicx,booktabs,url,xurl}
 \setlength{\emergencystretch}{3em}
 \begin{document}
-\title{Compiler-Guided Repair for Natural-Language-to-Lean Formalization}
+\title{Compiler-Guided Repair for Natural-Language-to-Lean Formalization}\subtitle{A Fixed-Theorem Local-Model Pilot}
 \titlerunning{Compiler-Guided Lean Proof Repair}
-\author{Sadia Peerzada}
-\authorrunning{S. Peerzada}
-\institute{\email{sadiapeerzada2006@gmail.com}}
+\author{Anonymous author}
+\authorrunning{Anonymous author}
+\institute{Author details withheld for publication-safety review}
 \maketitle
 
 \begin{abstract}
-We execute a paired local-model study of one-shot proof generation (A), blind
-repair (B), and compiler-guided repair (C) for natural-language statements
-paired with fixed Lean theorem types. B and C reuse exactly the same failed
-initial candidate and permit at most three repairs each. The frozen dataset
-contains 60 test statements and 15 development statements across five
-categories, screened under an explicitly AI-assisted semantic policy.
-Using one hash-pinned 4-bit Qwen2.5-7B instruction model, the observed verified
-success counts are A: 0/60 (0.0\%), B: 1/60 (1.7\%), C: 1/60 (1.7\%). The C--B difference is +0.0 percentage points;
-the 95\% family-cluster bootstrap interval is [+0.0, +0.0] points.
-The recorded experiment does not establish a robust advantage for compiler feedback; a non-significant or non-informative test is not evidence of equivalence. We preserve raw model responses, compiler diagnostics, token
-streams, stopping events and checkpoints. The evidence concerns fixed-type
-proof synthesis, not unrestricted generation of faithful formal statements.
-Single-seed inference, related theorem families, author-assisted AI adjudication,
-and library/pretraining exposure limit generalization.
-\keywords{Lean 4 \and compiler feedback \and proof repair \and local inference \and semantic review}
+We compare no-repair generation (A), blind retry (B), and Lean-compiler-guided
+repair (C) for English statements paired with fixed reviewed theorem types.
+B and C start from identical failed candidates, use one hash-pinned 4-bit
+Qwen2.5-7B instruction model, and allow at most three repair calls under common
+context/output caps. Of 60 held-out statements, A verifies 0/60 and B 1/60;
+C verifies 1/58 observed outcomes, with two unavailable outcomes. On the 58
+complete paired trajectories, B and C each verify 1/58 (1.72\%): the paired
+difference is 0.00 percentage points, with no discordant pairs. A degenerate
+conditional bootstrap interval does not establish equivalence or account for
+missingness. Full-cohort identification bounds are 0 to +3.33 points for C--B.
+Counting unavailable C outcomes as failures yields the separately planned
+1/60 sensitivity estimate. We report genuine outputs, compiler errors, resource
+usage and failure cases rather than a demonstrated feedback benefit. One seed,
+a three-case development pilot, low success, related families, author-assisted
+AI review and privacy-limited public replay restrict the conclusions. The task
+is fixed-type proof synthesis; autonomous NL-to-statement and end-to-end accuracy
+are not measured.
+\keywords{Lean 4 \and proof repair \and compiler diagnostics \and local inference \and negative results}
 \end{abstract}
 
 \section{Introduction and Research Questions}
@@ -61,6 +64,11 @@ verification. Our experiment is a bounded paired comparison using a general
 local instruction model. It includes no retrieval service, proof search tree,
 fine-tuning, or paid hosted inference, and should not be compared directly with
 systems using different tasks, data or compute budgets.
+
+Compiler-conditioned repair training is studied by APRIL~\cite{wang2026april};
+our study instead compares bounded inference retries with one unfine-tuned local
+model. Work on faithfulness beyond compilation~\cite{zhang2026beyond} also
+motivates distinguishing fixed-type proof success from semantic fidelity.
 
 \section{System Architecture and Verification}
 The pipeline loads immutable English/type pairs, renders an initial prompt,
@@ -104,7 +112,7 @@ They remain excluded for source-provenance reasons; corrections were not used
 to inflate eligible counts. Original records and before/after histories remain
 available.
 
-\input{generated/final_table1.tex}
+\input{generated/review_v2/table1.tex}
 
 The approved replacement policy uses explicit AI adjudication of quantifiers,
 domains, assumptions, strength, endpoints and equivalent encodings. Phi-3.5 and
@@ -128,7 +136,9 @@ statements occupy five conservative family clusters; the 60 test statements
 occupy 54. These are not claimed to be 75 independent topic families.
 All texts were accessed for authorized curation, but no held-out primary-model
 proof outcome was used to select prompts or settings. Ordered IDs and exact
-dataset bytes were frozen with cryptographic hashes.
+dataset bytes were frozen with cryptographic hashes. The source commit and local
+launch record precede held-out inference. No evidence establishes public publication
+of the IDs/hash before testing; this is an internal freeze, not external preregistration.
 
 \section{Frozen Experimental Design}
 The primary model is \texttt{mlx-community/Qwen2.5-7B-Instruct-4bit}, run
@@ -143,8 +153,10 @@ The local host uses an Apple M4 processor with 16 GiB physical memory.
 The per-call seed is the first unsigned 32-bit word of SHA-256 of the base
 seed, phase/problem/condition/step context and exact prompt hash. Consequently,
 B's stopping behavior does not shift C's random stream. All conditions use
-the same model and environment. A has zero repairs; B and C each permit up to
-three, with at most seven logical generations per problem including the shared
+the same model and environment. The common caps are a prompt budget, not equal
+realized input-token cost: genuine C diagnostics lengthen prompts, and one C
+prompt exceeds the cap before generation. A token-cost-matched effect is not measured. A has zero repairs; B and C each permit up to
+three, with at most seven logical generation intents per problem including the shared
 initial call. Success stops a branch. Model weights are released during the
 memory-heavy Lean check and reloaded from the same verified bytes on the next
 call. This preserves independent KV state and incurs measurable loading overhead.
@@ -154,7 +166,7 @@ memory cost. Before any held-out generation, the final protocol added the same
 explicit Lean 4 syntax instruction to all three conditions and fixed the memory
 schedule. This was syntax/implementation development, not test-outcome tuning;
 the format diagnostic still failed mathematical verification. Prototypes are
-preserved and excluded from study estimates. The final three-case pilot passed
+preserved and excluded from study estimates. The final pilot covers only three of the fifteen development cases and passed
 the provenance/control audit, and an actual resume invocation generated no new
 calls. No model, prompt, dataset or budget changed after held-out execution began.
 
@@ -166,96 +178,135 @@ The environment is Lean 4.32.0 with clean Mathlib commit
 \path{81a5d257c8e410db227a6665ed08f64fea08e997}. There is no provider fallback or paid inference path.
 
 \section{Results and Statistical Analysis}
-Across all 60 frozen test statements, observed verified success is A: 0/60 (0.0\%), B: 1/60 (1.7\%), C: 1/60 (1.7\%).
-There are 2 incomplete trajectories. Table~\ref{tab:abc} uses the
-full eligible denominator, treating unavailable outcomes as failures for the
-conservative sensitivity estimate; incomplete outcomes are also reported
-separately in the artifacts. Figure~\ref{fig:budget} shows cumulative observed
-success against the repair budget. Repair calls are adaptive attempts, not
-independent samples or additional benchmark problems.
-\input{generated/final_missingness.tex}
+Table~\ref{tab:abc} distinguishes observed outcomes from missingness. A succeeds
+0/60 (0.00\%); B succeeds 1/60 (1.67\%); C succeeds 1/58 observed outcomes
+(1.72\%), with 57 known failures and two unavailable outcomes. Wilson intervals
+are [0.00,6.02]\% for A, [0.29,8.86]\% for B, and [0.31,9.14]\% for observed C.
+They assume independent problem units; related family clusters limit that assumption.
 
-\input{generated/final_table2.tex}
+\input{generated/review_v2/table2.tex}
+
+\subsection{Matched effects and uncertainty}
+On 58 complete pairs, B and C each succeed on the same single target,
+\texttt{lib\_a\_exp\_add}. The C--B risk difference is 0.00 percentage points,
+with zero discordant pairs. The frozen exact McNemar helper stores a null,
+non-informative result; the conventional numerical value is $p=1$. Neither
+convention supplies evidence of equivalence. Both problem and family-cluster
+bootstrap intervals are [0.00,0.00] points, conditional on those observed pairs.
+This degeneracy reflects identical observed outcomes, not high precision about
+a general feedback effect.
+
+\input{generated/review_v2/paired.tex}
+
+The revised paired point estimates, intervals and tests use the same complete
+cases for each contrast. For C--A this is 58 pairs (difference +1.72 points);
+for B--A it is 60 (+1.67 points). Both exact $p$ values and Holm-adjusted values
+are 1. The three planned comparisons remain in multiplicity accounting; the
+non-informative C--B slot is conservatively treated as 1 internally, but still
+reported as non-informative. Bootstrap sensitivity uses 10,000 resamples and
+seed 20271021. The complete C contrasts have 52 represented family clusters;
+the full test cohort has 54. Resampling cases or families does not remove
+selection bias from unavailable outcomes. No statistically supported improvement
+is claimed; low success and only one solved target give limited power.
+
+\subsection{Unavailable outcomes and sensitivity}
+The frozen protocol explicitly planned both complete-pair inference and a
+full-denominator missing-as-failure sensitivity. The latter is C=1/60 (1.67\%),
+with Wilson interval [0.29,8.86]\%, and is not the observed C rate. Both missing
+C cases failed in B. If neither missing C outcome would succeed, the full-cohort
+C--B difference is zero; if both would succeed it is +3.33 percentage points.
+These are identification bounds, not confidence limits. The zero bootstrap
+interval does not cover this missingness uncertainty.
+
+For \texttt{lib\_a\_trig\_unit}, the exact C1 prompt has 9,653 input tokens,
+already exceeding the 8,192-token context cap before reserving 2,000 output
+tokens. The recorded preflight rejection produced no response. For
+\texttt{lib\_i\_bernoulli}, C1 has 2,205 input tokens but only a stream header
+survives, with zero durably observed generated tokens. No candidate is available
+to verify. The terminal no-replay rule forbids either retry; changing diagnostics,
+caps or the seed would change the frozen study. The interruption cause is unknown.
+
 \begin{figure}[t]
-\centering\includegraphics[width=.88\linewidth]{generated/final_success_budget.pdf}
-\caption{Observed verified success by maximum repair budget. The budget-zero
-point is identical across all conditions because the initial candidate is shared.
-Missing outcomes count as failures in this full-denominator display.}
+\centering\includegraphics[width=.9\linewidth]{generated/review_v2/success_budget.pdf}
+\caption{Verified success versus allowed repair calls on the same 58 complete
+trajectories for all curves and budgets. B and C overlap. The displayed axis is
+0--5\%. The two unavailable C trajectories are excluded at every budget; this
+complete-case display does not assume they are missing at random.}
 \label{fig:budget}
 \end{figure}
 
-The primary C--B comparison has 58 complete matched pairs. Its
-full-denominator difference is +0.0 percentage points, with family-cluster
-95\% interval [+0.0, +0.0]. The exact two-sided McNemar $p$ is non-informative;
-the Holm-adjusted value over three planned comparisons is non-informative.
-The recorded experiment does not establish a robust advantage for compiler feedback; a non-significant or non-informative test is not evidence of equivalence. Problem-level Wilson intervals and exact McNemar tests assume
-independent problem units; related within-family targets limit that assumption.
-We therefore report the pre-specified family-cluster sensitivity interval and
-do not make an unqualified significance claim. Zero discordance is
-non-informative; a degenerate bootstrap interval would not prove equivalence.
+\subsection{Attempts, tokens and latency}
+The ledger contains 412 logical generation intents and 410 completed responses:
+60 shared initial outputs, 178 B repairs and 172 C repairs. C has 174 repair
+intents, including its preflight rejection and header-only interruption. An
+intent is not a confirmed completed inference call. B completes a mean 2.97
+repairs per eligible problem; C completes 2.87 (2.90 consumed intents). Both
+repair-count medians are three. Physical completed-call totals count the shared
+initial once: 362,035 input tokens, 130,401 output tokens and 11,233.6 native
+generation seconds. Counterfactual condition rows each include their initial.
+No unavailable response tokens or duration are invented.
 
-\input{generated/final_paired_tests.tex}
+\input{generated/review_v2/resources.tex}
+\input{generated/review_v2/matched_resources.tex}
 
-Intervals use 10,000 bootstrap resamples and seed 20271021, at problem and
-family-cluster levels. Category summaries and error-conditioned outcomes are
-descriptive, with actual denominators; no post-hoc subgroup significance claim
-is made. The physical run used 412 generation attempts and 410
-completed generations, with 362,035 known prompt tokens and 130,401
-completion tokens from completed generations. Partial streams additionally
-preserve 0 observed generated tokens; those are not completed
-responses and are excluded from the completed-call totals. Physical totals count the initial call once; each
-counterfactual condition's resource total includes that shared initial cost.
-Raw wall, generation and compiler timings are retained. Generation timings
-exclude model-loading overhead; trajectory wall times include it. Sequential
-condition order, cache state and host activity limit causal latency comparisons.
-A read-only process observation during execution also identified a separate
-local MLX workload on the same host; its duration and attributable overhead
-were not measured, and the unrelated workload was not modified.
-A worker interruption required checkpoint recovery. The incomplete generation
-was not replayed. Trajectory elapsed time for that case includes the inactive
-interval before recovery, so it cannot be interpreted as continuous compute time.
-The resource matrix reports known input/output tokens, model-call wall seconds
-(including reload overhead), and Lean seconds. An interrupted call without a
-recorded endpoint has no invented duration; its trace and missingness remain
-explicit in the supplementary resource data.
-\input{generated/final_resources.tex}
-\input{generated/final_resource_distributions.tex}
-\input{generated/final_repair_calls.tex}
+Call wall time includes model loading; native generation time excludes it.
+The table reports completed-response costs only, not unknown full-run costs.
+Sequential B-before-C execution, cache state and an observed unrelated MLX
+workload confound causal latency comparisons. Recovery elapsed time includes an
+inactive interval and is not continuous compute. The diagnostic input overhead
+also prevents reading this as an equal-total-token-cost comparison.
+\section{Compiler-Error Taxonomy}
+Table~\ref{tab:errors} uses the frozen deterministic primary taxonomy: parser
+errors take precedence, then unknown names, type/elaboration errors, tactic/goals,
+and other errors. Each failed initial belongs to one group. It includes 26 parser,
+20 unknown-name, nine tactic/goal, four type/elaboration and one other failure.
+The only solved target is in the unknown-name group (B=C=1/20 there); all other
+groups have zero observed repairs that verify. C is unavailable in one parser
+and one tactic/goal case, so their observed denominators are 25 and eight.
+These descriptive counts do not support error-specific superiority claims.
 
-\section{Compiler Errors and Qualitative Analysis}
-Table~\ref{tab:errors} groups failed initial candidates into a single primary
-category using a fixed message taxonomy; Figure~\ref{fig:errors} shows verified
-repair outcomes. Parser, unknown-name, type/elaboration and tactic/goal failures
-are distinguished. Safety guards and infrastructure failures are separate from
-compiler errors. The artifact also records all attempted-candidate error events;
-those repeated events are not independent problem observations.
-As a post-hoc process diagnostic, 90 of 178 completed B repairs
-and 70 of 172 completed C repairs were byte-identical to the
-preceding candidate. These counts describe repetition, not additional tests or
-independent samples.
-
-\input{generated/final_table3.tex}
+\input{generated/review_v2/table3.tex}
 \begin{figure}[t]
-\centering\includegraphics[width=.88\linewidth]{generated/final_error_outcomes.pdf}
-\caption{Verified B/C repair outcomes by primary initial failure category.
-The denominator for each group is given in Table~\ref{tab:errors}; small groups
-are illustrative rather than inferential.}
+\centering\includegraphics[width=.9\linewidth]{generated/review_v2/error_rates.pdf}
+\caption{Observed repair-success fractions by primary initial error. B/C use
+their observed denominators in Table~\ref{tab:errors}; the two missing C outcomes
+remain explicit. No subgroup hypothesis tests are added.}
 \label{fig:errors}
 \end{figure}
 
-The following 5 examples are authentic recorded outputs, selected post hoc
-to cover available outcome types, initial error classes and mathematical
-categories, then dataset order. Selection does not
-change the statistical sample. A blind-only success displays its last B output;
-otherwise the last available C output is displayed, followed by B or the shared
-initial when C made no attempt. The branch and verifier outcome are explicit.
-Code/diagnostic snippets are
-truncated and ASCII-transliterated for typesetting only; complete original
-Unicode bytes, prompts and diagnostics remain in the run artifacts.
-\input{generated/final_qualitative.tex}
+Representative diagnostics identify unavailable symbols, malformed syntax,
+ill-typed applications and unsolved proof obligations. Such messages identify an
+obstacle but do not supply a correct mathematical argument or a working lemma.
+Unknown identifiers and unknown theorem names are not reliably distinguishable
+from compiler wording alone; tactic and unsolved-goal messages can co-occur.
+A separate, explicitly post-hoc message-tag artifact records these overlapping
+subtypes and genuine examples, without replacing the pre-specified primary groups.
+No compiler timeout was observed among the completed candidates; the context
+rejection is a generation resource failure, not a Lean error. Failed model
+outputs and their actual diagnostics remain retained, including repeated errors.
 
+\section{Qualitative Repair Cases}
+Five authentic cases were selected post hoc for outcome, category and error
+coverage. There is only one distinct solved test target; five successes are not
+claimed. Each example displays the actual immediately preceding candidate,
+its real compiler message, and the last recorded repair. A blind case's compiler
+message is shown for analysis only: B did not receive it. Excerpts are limited
+to five lines and 58 characters per line, with ASCII display transliteration;
+full original candidate bytes and hashes remain in the evidence. A byte-identical
+retry is a genuine observed non-change, not a manufactured repair.
+\input{generated/review_v2/qualitative.tex}
 \section{Semantic Faithfulness and Threats to Validity}
-\input{generated/final_table4.tex}
+\input{generated/review_v2/table4.tex}
+Historical coding-AI assessments label 94 original references faithful, one
+not faithful, and one uncertain. The unfaithful example, \texttt{mod\_001},
+omits the English positive-modulus restriction in Lean; the uncertain example,
+\texttt{ind\_001}, leaves summation endpoints ambiguous. Both were corrected
+and rechecked, but remain excluded for source provenance. Twenty nonduplicate
+source-insufficient items and one exact duplicate are excluded overall. Selected
+75/75 faithful AI adjudications are eligibility decisions, not measured accuracy.
+The reference-review labels are not model-generated statement translations;
+autonomous Stage-A and end-to-end semantic accuracy are not measured.
+
 Successful proofs must have the exact reviewed reference type; changing a
 quantifier, adding a hypothesis or weakening the conclusion cannot substitute
 for solving that target. Nevertheless, faithfulness to English remains
@@ -283,8 +334,13 @@ and resume checkpoints. Protocol SHA-256 is
 \path{a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317}; dataset-freeze SHA-256 is
 \path{de0850197b821ca4c519737c4cffb16d78e2a329d15be6c7f3c6a7f5487db67f}; model inventory SHA-256 is
 \path{24d68abbe5e1434e5263ad123cca517c2c1799c7465e104e83f6cb02baeac4f9}. The pre-held-out source commit and launch time,
-complete test outputs, source/evidence hashes and PDF build manifest are included.
-Original Groq and exploratory local protocols remain available for provenance.
+source/evidence hashes and a release build manifest accompany the review bundle.
+Original complete test logs and historical exploratory evidence remain local.
+The original reference batch was freshly recompiled, and both successful model
+candidates were reverified against the exact targets and allowed axioms.
+Reconstruction checks every completed token journal against its raw response,
+re-tokenizes all prompts offline, and regenerates metrics deterministically.
+Raw-evidence whitespace is preserved; editable source whitespace is checked separately.
 
 The student reported supervisor approval of AI-assisted semantic review and
 free local MLX substitution on 28 October 2026. The original decision date,
@@ -292,15 +348,22 @@ document and signature were not supplied; approval is not claimed independently
 verified. Exact implementation choices were frozen under the user's execution
 authorization. No publisher permission or human review was fabricated. AI tools
 assisted construction, adjudication and inference; they are not credited as
-authors. The supplied author name and correspondence are used without inventing
-an institutional affiliation.
+authors. Author identity and correspondence are withheld in this publication-safety review copy.
+
+Public evidence is a privacy-redacted view. Paths inside compiler diagnostics,
+prompts and metadata are replaced in exported copies; recorded original hashes,
+token counts and seeds still describe the original private bytes. The original
+frozen validators must not be applied to redacted views as though their bytes
+were identical. Aggregate reanalysis is public; exact prompt replay and complete
+source-evidence validation require the preserved originals. This is a disclosed
+public reproducibility limit, not a replacement or revision of the experiment.
 
 \section{Conclusion}
-This study records a controlled local comparison of one-shot, blind and
+This internally frozen, single-seed empirical pilot records a controlled local comparison of one-shot, blind and
 compiler-guided proof repair for 60 fixed theorem targets with shared initial
-candidates. The recorded experiment does not establish a robust advantage for compiler feedback; a non-significant or non-informative test is not evidence of equivalence. The contribution is the reproducible paired evidence
+candidates. The recorded experiment does not establish a robust advantage for compiler feedback; a non-significant or non-informative test is not evidence of equivalence. The contribution is the hash-committed paired evidence
 and its failure analysis under a clearly delimited low-resource configuration,
-not a claim of general superiority, independent human semantic validation, or
+not a claim of general superiority, equivalence, independent human semantic validation, or
 complete unconstrained natural-language formalization.
 
 \bibliographystyle{splncs04}

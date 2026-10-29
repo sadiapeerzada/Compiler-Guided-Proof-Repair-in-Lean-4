@@ -1,0 +1,9 @@
+# Formal paired comparison audit
+
+All **60** test identities and **410** completed response/verification pairs were reconstructed from the raw evidence. The machine-readable per-case audit is `data/final_review/20261029_v2/analysis_verified/results.json` (`pairing_audits`, 60 entries), with exact record IDs and artifact paths. `case_outcomes.json` contains all A/B/C outcomes. No integrity discrepancy was found; reporting corrections are separately listed in `reporting_corrections`.
+
+Checks cover identical failed initial hashes, the exact frozen theorem and model, fixed environment/prompt-template hashes, reconstructed prompts, durable intent hashes, native chat text, offline tokenization, complete token journals matching raw responses, maximum three repairs, genuine predecessor C diagnostics and fixed B feedback. Each actual compiled source is rebuilt from the exact candidate and target; successful raw Lean JSON and axiom dependencies are checked. C’s preflight rejection obeys the context stop rule; it is not a completed within-budget generation.
+
+**58 B/C pairs are complete; two are incomplete.** Initials are shared in all 60. The common budgets are 8,192 total context / 2,000 output tokens and at most three repair calls. C’s actual input is longer because it contains diagnostics; equal realized input-token expenditure is not claimed. No reference proof is present in any reconstructed prompt. Named-library-lemma/pretraining exposure remains possible and is not disproved by prompt isolation. Curated families and exact statements are disjoint across splits; this is not proof of all mathematical/pretraining independence.
+
+M3 remains **PARTIAL**. The fixed pilot planned three cases, not all fifteen development items. No prompt tuning or new condition was added after test outcomes, and no unavailable trajectory was backfilled.

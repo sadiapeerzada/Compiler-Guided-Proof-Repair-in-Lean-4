@@ -1,31 +1,13 @@
 # Compiler-Guided Repair for Natural-Language-to-Lean Formalization
 
-Research target: TAIMMA 2027 / Springer CCIS. The final study uses genuine free local MLX inference and strict Lean verification. Current execution and delivery status are recorded in [the final results report](docs/FINAL_EXPERIMENT_RESULTS.md) and [M1–M7 report](docs/FINAL_M1_M7_COMPLIANCE_REPORT.md); no improvement or significance is assumed before actual analysis.
+The [final submission review](docs/FINAL_M1_M7_COMPLIANCE_REPORT.md) maps the actual study to the professor’s supplied requirements. **Full-compliance submission: NO-GO** while M1/M2/M3 remain partial. The reduced fixed-theorem empirical pilot is prepared for supervisor review. M4/M5/M6 and the M7 empirical manuscript rewrite are complete in their documented scopes.
 
-The frozen approved-method dataset contains **15 development and 60 held-out examples**, selected from 96 audited candidates. One exact duplicate and 20 other source-insufficient originals are excluded. The splits have no curated theorem-family overlap; they contain five and 54 family clusters respectively, not 75 independent topics. See [dataset card](docs/dataset_card.md), [freeze](data/final_study/v1/freeze.json) and [AI review status](docs/SEMANTIC_REVIEW_STATUS.md).
+Observed results are **A 0/60, B 1/60, C 1/58**, with two unavailable C outcomes. On the **58 complete pairs**, B and C each succeed on the same target (1/58, 1.72%); no advantage or equivalence is established. C=1/60 is the separately planned missing-as-failure sensitivity. The possible full-cohort C−B difference spans 0 to +3.33 percentage points when the missing C outcomes are varied.
 
-The student directly reported supervisor acceptance of AI-assisted semantic review and local MLX on 28 October 2026. The [approval record](data/final_study/v1/approvals/student_reported.json) identifies that evidence status: actual decision date, original document/signature and independent verification were not supplied. AI reviews are never labeled independent human reviews. Historical human-only gates remain intact; the final versioned AI policy uses separate eligibility fields.
+The frozen 15-development/60-test dataset contains five mathematical categories with no curated family crossing the split. The study uses one Qwen2.5-7B-Instruct MLX 4-bit snapshot, one seed and a three-case development pilot. It measures proof synthesis for supplied reviewed theorem types, not autonomous NL-to-statement or end-to-end semantic accuracy. Pretest public publication of the final IDs/hash is not evidenced; the internal freeze is preserved.
 
-The controlled comparison is:
+The revised [14-page Springer manuscript](paper/compiled_final_review_v2.pdf) reports the actual low success, genuine before/after cases, compiler taxonomy, uncertainty, AI-review limitations and public/private reproducibility boundary. See [corrected results](docs/FINAL_EXPERIMENT_RESULTS.md), [pairing audit](docs/PAIRED_COMPARISON_AUDIT.md), [missing outcomes](docs/MISSING_C_OUTCOME_INVESTIGATION.md), and [submission gate](docs/FINAL_SUBMISSION_GATE.md).
 
-- **A:** one initial candidate, no repair.
-- **B:** that identical initial candidate, up to three blind repairs without compiler diagnostics.
-- **C:** that identical initial candidate, up to three repairs using the immediately preceding genuine compiler diagnostics.
+All original final-study evidence remains unchanged under `data/final_study/v1/`. New append-only reconstruction and verification artifacts are under `data/final_review/20261029_v2/`; private command logs remain in its ignored `local/` subdirectory. The final revision passed 297 tests / 28 subtests, the Lean build, a fresh reference batch, strict reverification of both model successes, full model/tokenizer hashing and deterministic metric regeneration. No new model inference was executed.
 
-All conditions use the same fixed English/reviewed Lean target, immutable Qwen2.5-7B-Instruct MLX snapshot, decoding limits and Lean environment. The task measures proof synthesis for a supplied reference type, not unrestricted English-to-statement translation. The [final protocol v0.4.2](configs/repair_experiment_local_v0.4.2.json) was frozen before held-out generation; [the original Groq protocol](configs/repair_experiment_protocol_v0.2.0.json) remains historical provenance. One primary seed, 2027, limits robustness claims.
-
-## Execution and reproducibility
-
-The agent executes the full study automatically. `scripts/audit_and_execute_final_study.py` audits the actual pilot and zero-call resume, then runs all held-out trajectories and validated paired analysis. `scripts/finalize_completed_study.py` waits for genuine analysis before rendering actual tables/figures, writing the manuscript, running tests/Lean/result validation, compiling the PDF and writing the four FINAL reports. Neither script commits, merges or submits a paper.
-
-Raw output, per-token streams, every repair, diagnostics, hashes, token counts and timing are preserved under `data/final_study/v1/final_runs/`. Durable interrupted attempts consume their budget; missing output is never silently regenerated. See [the reproduction guide](docs/FINAL_EXECUTION_REPRODUCIBILITY.md) for exact commands, runtime and resume behavior. At most one model worker may run.
-
-Lean is 4.32.0 and Mathlib is `81a5d257c8e410db227a6665ed08f64fea08e997`. The primary model snapshot and every weight/tokenizer/template file are hash-bound in [the inventory](data/local_model/20261027/model_inventory.json). Model weights and TeX binaries are not committed; no paid inference or API fallback is used.
-
-## Manuscript and limitations
-
-The [manuscript workflow](paper/README.md) produces `paper/compiled_final_manuscript.pdf` only from actual validated results. The [pre-results PDF](paper/compiled_pre_results.pdf), manual historical traces, neutral checks and development prototypes retain their historical scope and never enter study estimates. [Claims and evidence](paper/claims_to_evidence.md) distinguish measured proof success from semantic accuracy, AI adjudication from human review, and published license evidence from independent legal clearance.
-
-The author is Sadia Peerzada, correspondence `sadiapeerzada2006@gmail.com`; no affiliation was supplied. Named-library-lemma exposure, possible pretraining contamination, one seed and correlated family clusters remain limitations. See [remaining publication actions](docs/REMAINING_HUMAN_ACTIONS.md).
-
-Delivery is on `research/taimma2027-complete-study`; automatic merge into `main` and conference submission are not authorized. Historical preparation/audit snapshots and previous reports remain in version control and the final-study history directory.
+The previously approved redacted release was merged into public `main` under `publication/`. This newer revision is on a local review branch and separate publication staging branch; it has not been pushed or merged. Only a newly reviewed, exact file inventory may be approved for publication. Author/contact information is withheld in the proposed public manuscript. Historical manual demonstrations, exploratory pilots and earlier reports remain historical and never enter model accuracy estimates.
