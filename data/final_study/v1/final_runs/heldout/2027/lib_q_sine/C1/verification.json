@@ -1,0 +1,126 @@
+{
+  "success": false,
+  "errors": [
+    "line 17: Tactic `apply` failed: could not unify the conclusion of `@abs_le`\n  |?a| ≤ ?b ↔ -?b ≤ ?a ∧ ?a ≤ ?b\nwith the goal\n  |Real.sin x| ≤ 1\n\nNote: The full type of `@abs_le` is\n  ∀ {G : Type ?u.17} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\n    |a| ≤ b ↔ -b ≤ a ∧ a ≤ b\n\nx : ℝ\nhx : 0 ≤ x\n⊢ |Real.sin x| ≤ 1",
+    "line 19: Unknown identifier `abs_eq_self_of_nonneg`",
+    "line 25: Tactic `apply` failed: could not unify the conclusion of `@abs_le`\n  |?a| ≤ ?b ↔ -?b ≤ ?a ∧ ?a ≤ ?b\nwith the goal\n  |Real.sin x| ≤ x\n\nNote: The full type of `@abs_le` is\n  ∀ {G : Type ?u.24} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\n    |a| ≤ b ↔ -b ≤ a ∧ a ≤ b\n\nx : ℝ\nhx : 0 ≤ x\nkey_sin_le_1 : Real.sin x ≤ 1\n⊢ |Real.sin x| ≤ x",
+    "line 27: Unknown identifier `abs_eq_self_of_nonneg`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.174,
+  "diagnostics_parsed": 6,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 17: Tactic `apply` failed: could not unify the conclusion of `@abs_le`\n  |?a| ≤ ?b ↔ -?b ≤ ?a ∧ ?a ≤ ?b\nwith the goal\n  |Real.sin x| ≤ 1\n\nNote: The full type of `@abs_le` is\n  ∀ {G : Type ?u.17} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\n    |a| ≤ b ↔ -b ≤ a ∧ a ≤ b\n\nx : ℝ\nhx : 0 ≤ x\n⊢ |Real.sin x| ≤ 1\nline 19: Unknown identifier `abs_eq_self_of_nonneg`\nline 25: Tactic `apply` failed: could not unify the conclusion of `@abs_le`\n  |?a| ≤ ?b ↔ -?b ≤ ?a ∧ ?a ≤ ?b\nwith the goal\n  |Real.sin x| ≤ x\n\nNote: The full type of `@abs_le` is\n  ∀ {G : Type ?u.24} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\n    |a| ≤ b ↔ -b ≤ a ∧ a ≤ b\n\nx : ℝ\nhx : 0 ≤ x\nkey_sin_le_1 : Real.sin x ≤ 1\n⊢ |Real.sin x| ≤ x\nline 27: Unknown identifier `abs_eq_self_of_nonneg`",
+  "candidate_sha256": "52decd111bca984cfe5f4ef4a2fba9315c4abbc48bc5f6c11f74cfb7bb778cca",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_sine (x : ℝ) (hx : 0 ≤ x) : Real.sin x ≤ x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_sine (x : ℝ) (hx : 0 ≤ x) : Real.sin x ≤ x\n:= by\n  have key_sin_le_1 : Real.sin x ≤ 1\n  := by\n    have key_sin_abs_le_1 : abs (Real.sin x) ≤ 1\n    := by\n      apply abs_le\n      exact Real.sin_x_le_one\n    rw [abs_eq_self_of_nonneg (Real.sin_x_nonneg x)]\n    exact key_sin_abs_le_1\n  have key_sin_le_x : Real.sin x ≤ x\n  := by\n    have key_sin_abs_le_x : abs (Real.sin x) ≤ x\n    := by\n      apply abs_le\n      exact key_sin_le_1\n    rw [abs_eq_self_of_nonneg (Real.sin_x_nonneg x)]\n    exact key_sin_abs_le_x\n  exact key_sin_le_x\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_sine = Nl2LeanCandidate.study_q_sine := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_sine\n",
+  "verification_source_sha256": "0c5b101781abec8c2e9426d8611b263abd38aa0c384fdb7a2a0c9d7ac41b6c8e",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 20,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `apply` failed: could not unify the conclusion of `@abs_le`\n  |?a| ≤ ?b ↔ -?b ≤ ?a ∧ ?a ≤ ?b\nwith the goal\n  |Real.sin x| ≤ 1\n\nNote: The full type of `@abs_le` is\n  ∀ {G : Type ?u.17} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\n    |a| ≤ b ↔ -b ≤ a ∧ a ≤ b\n\nx : ℝ\nhx : 0 ≤ x\n⊢ |Real.sin x| ≤ 1",
+      "endPos": {
+        "column": 18,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 6,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `abs_eq_self_of_nonneg`",
+      "endPos": {
+        "column": 29,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `apply` failed: could not unify the conclusion of `@abs_le`\n  |?a| ≤ ?b ↔ -?b ≤ ?a ∧ ?a ≤ ?b\nwith the goal\n  |Real.sin x| ≤ x\n\nNote: The full type of `@abs_le` is\n  ∀ {G : Type ?u.24} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\n    |a| ≤ b ↔ -b ≤ a ∧ a ≤ b\n\nx : ℝ\nhx : 0 ≤ x\nkey_sin_le_1 : Real.sin x ≤ 1\n⊢ |Real.sin x| ≤ x",
+      "endPos": {
+        "column": 18,
+        "line": 25
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 6,
+        "line": 25
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `abs_eq_self_of_nonneg`",
+      "endPos": {
+        "column": 29,
+        "line": 27
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 27
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_sine' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 34
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 34
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `apply` failed: could not unify the conclusion of `@abs_le`\\n  |?a| ≤ ?b ↔ -?b ≤ ?a ∧ ?a ≤ ?b\\nwith the goal\\n  |Real.sin x| ≤ 1\\n\\nNote: The full type of `@abs_le` is\\n  ∀ {G : Type ?u.17} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\\n    |a| ≤ b ↔ -b ≤ a ∧ a ≤ b\\n\\nx : ℝ\\nhx : 0 ≤ x\\n⊢ |Real.sin x| ≤ 1\",\"endPos\":{\"column\":18,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":6,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `abs_eq_self_of_nonneg`\",\"endPos\":{\"column\":29,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `apply` failed: could not unify the conclusion of `@abs_le`\\n  |?a| ≤ ?b ↔ -?b ≤ ?a ∧ ?a ≤ ?b\\nwith the goal\\n  |Real.sin x| ≤ x\\n\\nNote: The full type of `@abs_le` is\\n  ∀ {G : Type ?u.24} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\\n    |a| ≤ b ↔ -b ≤ a ∧ a ≤ b\\n\\nx : ℝ\\nhx : 0 ≤ x\\nkey_sin_le_1 : Real.sin x ≤ 1\\n⊢ |Real.sin x| ≤ x\",\"endPos\":{\"column\":18,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":6,\"line\":25},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `abs_eq_self_of_nonneg`\",\"endPos\":{\"column\":29,\"line\":27},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":27},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_sine' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":34},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5052f6a2d9fdfe6d43f424ec.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":34},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

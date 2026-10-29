@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Unknown identifier `even_add`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 54.46,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Unknown identifier `even_add`",
+  "candidate_sha256": "2c2b7f2cf1243d3c13391bbac3f344fd7ce22514ef0ab88f181e7f695a3fa84a",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem even_add_of_even (a b : ℤ) (ha : Even a) (hb : Even b) : Even (a + b) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem even_add_of_even (a b : ℤ) (ha : Even a) (hb : Even b) : Even (a + b) :=\nby\n  obtain ⟨a', ha'⟩ := ha\n  obtain ⟨b', hb'⟩ := hb\n  exact even_add ha' hb'\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.even_add_of_even = Nl2LeanCandidate.even_add_of_even := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.even_add_of_even\n",
+  "verification_source_sha256": "11df51225699999bb99b908c3486b3469814971baae5f663030bdd25a737c2fc",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 24,
+        "line": 5
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7586cfb8dd20d1183f6cad49.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `even_add`",
+      "endPos": {
+        "column": 16,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7586cfb8dd20d1183f6cad49.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.even_add_of_even' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 18
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7586cfb8dd20d1183f6cad49.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 18
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":24,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7586cfb8dd20d1183f6cad49.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `even_add`\",\"endPos\":{\"column\":16,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7586cfb8dd20d1183f6cad49.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.even_add_of_even' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7586cfb8dd20d1183f6cad49.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

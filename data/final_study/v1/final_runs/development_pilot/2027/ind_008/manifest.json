@@ -1,0 +1,1077 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "development_pilot",
+  "seed": 2027,
+  "problem_id": "ind_008",
+  "protocol_sha256": "a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317",
+  "dataset_sha256": "41e47f74ac50a30dbf34b1473c7b01b7727de05e7698480ed9db6255c710b56d",
+  "status": "completed",
+  "started_at": "2026-10-28T09:42:42.475345+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k in Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k in Finset.of_list [0], 2 ^ k + ∑ k in ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k in Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k in ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/B1/completion.json",
+          "completion_sha256": "98194bcab4ff91b90cd0526043e697ee4697cd77638b099fc1732cdba928e100",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/B1/verification.json",
+          "verification_sha256": "0ec3406cc79a3ef1940fa289a0e398c697399ce59e97aae27e3e5ff0eb7a9be6",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 12: unexpected token 'in'; expected ','",
+              "line 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+              "line 11: Unknown identifier `ne_of_eq_of_gt`",
+              "line 10: unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.448,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 12: unexpected token 'in'; expected ','\nline 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn\nline 11: Unknown identifier `ne_of_eq_of_gt`\nline 10: unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k in Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k in Finset.of_list [0], 2 ^ k + ∑ k in ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k in Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k in ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "6d9e20f589466a56ad7648b7f6d19255e35412212e540f71dff8cb4e30ad7cb8",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 38,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 35,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+                "endPos": {
+                  "column": 47,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 45,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `ne_of_eq_of_gt`",
+                "endPos": {
+                  "column": 63,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 49,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 35,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 31
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 31
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":38,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":35,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  hn\\nhas type\\n  1 ≤ n\\nbut is expected to have type\\n  0 ≤ n\\nin the application\\n  lt_of_le_of_ne hn\",\"endPos\":{\"column\":47,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":45,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `ne_of_eq_of_gt`\",\"endPos\":{\"column\":63,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":49,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h2\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k, sorry\\n\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\nh2 : ∃ s, n = ∑ k, sorry\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":35,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":31},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":31},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 595,
+          "completion_tokens": 350,
+          "generation_seconds": 23.63795733400002,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k in Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k in Finset.of_list [0], 2 ^ k + ∑ k in ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k in Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k in ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/B2/completion.json",
+          "completion_sha256": "ef7924e5cd9addf4044ac4cbf113aafbe621bcb881fe2e6e02197861e4f92650",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/B2/verification.json",
+          "verification_sha256": "33d0a86fede4ce19f3b17781a3855e6c29ff1bbd8a64566d3042aa6f60cf1f19",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 12: unexpected token 'in'; expected ','",
+              "line 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+              "line 11: Unknown identifier `ne_of_eq_of_gt`",
+              "line 10: unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.308,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 12: unexpected token 'in'; expected ','\nline 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn\nline 11: Unknown identifier `ne_of_eq_of_gt`\nline 10: unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k in Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k in Finset.of_list [0], 2 ^ k + ∑ k in ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k in Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k in ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "6d9e20f589466a56ad7648b7f6d19255e35412212e540f71dff8cb4e30ad7cb8",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 38,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 35,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+                "endPos": {
+                  "column": 47,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 45,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `ne_of_eq_of_gt`",
+                "endPos": {
+                  "column": 63,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 49,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 35,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 31
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 31
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":38,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":35,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  hn\\nhas type\\n  1 ≤ n\\nbut is expected to have type\\n  0 ≤ n\\nin the application\\n  lt_of_le_of_ne hn\",\"endPos\":{\"column\":47,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":45,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `ne_of_eq_of_gt`\",\"endPos\":{\"column\":63,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":49,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h2\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k, sorry\\n\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\nh2 : ∃ s, n = ∑ k, sorry\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":35,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":31},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":31},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 595,
+          "completion_tokens": 350,
+          "generation_seconds": 20.248737124999934,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k in Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k in Finset.of_list [0], 2 ^ k + ∑ k in ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k in Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k in ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/B3/completion.json",
+          "completion_sha256": "22566c5431f38940eaf4a36482f43111ecec1bea9fb4bee978916b057a3c8e97",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/B3/verification.json",
+          "verification_sha256": "0b17ba6306ff0d267b8e345994b57a6640c05b39df16b4d95007d3b9d2533b7a",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 12: unexpected token 'in'; expected ','",
+              "line 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+              "line 11: Unknown identifier `ne_of_eq_of_gt`",
+              "line 10: unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 31.578,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 12: unexpected token 'in'; expected ','\nline 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn\nline 11: Unknown identifier `ne_of_eq_of_gt`\nline 10: unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k in Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k in Finset.of_list [0], 2 ^ k + ∑ k in ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k in Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k in ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "6d9e20f589466a56ad7648b7f6d19255e35412212e540f71dff8cb4e30ad7cb8",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 38,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 35,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+                "endPos": {
+                  "column": 47,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 45,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `ne_of_eq_of_gt`",
+                "endPos": {
+                  "column": 63,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 49,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 35,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 31
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 31
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":38,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":35,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  hn\\nhas type\\n  1 ≤ n\\nbut is expected to have type\\n  0 ≤ n\\nin the application\\n  lt_of_le_of_ne hn\",\"endPos\":{\"column\":47,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":45,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `ne_of_eq_of_gt`\",\"endPos\":{\"column\":63,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":49,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h2\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k, sorry\\n\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\nh2 : ∃ s, n = ∑ k, sorry\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":35,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":31},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":31},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 595,
+          "completion_tokens": 350,
+          "generation_seconds": 19.16837887499969,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "7b01b75fa3cdd47a7deb72efef4d618935f54b4d90cf65a42818d3102569dfc2",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k ∈ Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k ∈ Finset.of_list [0], 2 ^ k + ∑ k ∈ ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k ∈ Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k ∈ ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/C1/completion.json",
+          "completion_sha256": "c67e47f7ed8774a757b33724059a17b457bbdb0432452f09e209b757273a8050",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/C1/verification.json",
+          "verification_sha256": "b3b3b931b8b8ad2acb29f4d4b7d5dd5a12df249812f1d1fee46d98037653d94f",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: unknown tactic",
+              "line 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+              "line 11: Unknown identifier `ne_of_eq_of_gt`",
+              "line 14: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.86,
+            "diagnostics_parsed": 7,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: unknown tactic\nline 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn\nline 11: Unknown identifier `ne_of_eq_of_gt`\nline 14: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "7b01b75fa3cdd47a7deb72efef4d618935f54b4d90cf65a42818d3102569dfc2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k ∈ Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k ∈ Finset.of_list [0], 2 ^ k + ∑ k ∈ ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k ∈ Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k ∈ ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "08aa83055a8eca1401cea882ced0729e6468320b8d61f8e4eed76d4a379d12e4",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+                "endPos": {
+                  "column": 47,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 45,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `ne_of_eq_of_gt`",
+                "endPos": {
+                  "column": 63,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 49,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 16,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 31
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 31
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":22,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  hn\\nhas type\\n  1 ≤ n\\nbut is expected to have type\\n  0 ≤ n\\nin the application\\n  lt_of_le_of_ne hn\",\"endPos\":{\"column\":47,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":45,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `ne_of_eq_of_gt`\",\"endPos\":{\"column\":63,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":49,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":16,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":31},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":31},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1506,
+          "completion_tokens": 350,
+          "generation_seconds": 25.228152959,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'in'; expected ','\",\n      \"endPos\": {\n        \"column\": 38,\n        \"line\": 12\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 35,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Application type mismatch: The argument\\n  hn\\nhas type\\n  1 ≤ n\\nbut is expected to have type\\n  0 ≤ n\\nin the application\\n  lt_of_le_of_ne hn\",\n      \"endPos\": {\n        \"column\": 47,\n        \"line\": 11\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 45,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown identifier `ne_of_eq_of_gt`\",\n      \"endPos\": {\n        \"column\": 63,\n        \"line\": 11\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 49,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\ncase h2\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k, sorry\\n\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\nh2 : ∃ s, n = ∑ k, sorry\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\n      \"endPos\": {\n        \"column\": 35,\n        \"line\": 12\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 10\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 31\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 31\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "7b01b75fa3cdd47a7deb72efef4d618935f54b4d90cf65a42818d3102569dfc2",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k ∈ Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k ∈ Finset.of_list [0], 2 ^ k + ∑ k ∈ ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k ∈ Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k ∈ ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/C2/completion.json",
+          "completion_sha256": "d41b663d5192a54238a29ab73ebdeb0b04f3c474b8bfc45bb270666c564d6513",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/C2/verification.json",
+          "verification_sha256": "657f4baa196223f3cf0b4c2f0edccf640e6d3bf8c1d5787743c0b4df54757b6f",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: unknown tactic",
+              "line 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+              "line 11: Unknown identifier `ne_of_eq_of_gt`",
+              "line 14: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.344,
+            "diagnostics_parsed": 7,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: unknown tactic\nline 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn\nline 11: Unknown identifier `ne_of_eq_of_gt`\nline 14: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "7b01b75fa3cdd47a7deb72efef4d618935f54b4d90cf65a42818d3102569dfc2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k ∈ Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k ∈ Finset.of_list [0], 2 ^ k + ∑ k ∈ ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k ∈ Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k ∈ ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "08aa83055a8eca1401cea882ced0729e6468320b8d61f8e4eed76d4a379d12e4",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+                "endPos": {
+                  "column": 47,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 45,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `ne_of_eq_of_gt`",
+                "endPos": {
+                  "column": 63,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 49,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 16,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 31
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 31
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":22,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  hn\\nhas type\\n  1 ≤ n\\nbut is expected to have type\\n  0 ≤ n\\nin the application\\n  lt_of_le_of_ne hn\",\"endPos\":{\"column\":47,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":45,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `ne_of_eq_of_gt`\",\"endPos\":{\"column\":63,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":49,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":16,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":31},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":31},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1651,
+          "completion_tokens": 350,
+          "generation_seconds": 24.13615070800006,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unknown tactic\",\n      \"endPos\": null,\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Application type mismatch: The argument\\n  hn\\nhas type\\n  1 ≤ n\\nbut is expected to have type\\n  0 ≤ n\\nin the application\\n  lt_of_le_of_ne hn\",\n      \"endPos\": {\n        \"column\": 47,\n        \"line\": 11\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 45,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown identifier `ne_of_eq_of_gt`\",\n      \"endPos\": {\n        \"column\": 63,\n        \"line\": 11\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 49,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\n      \"endPos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.inductionWithNoAlts._namedError\",\n      \"pos\": {\n        \"column\": 16,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\n      \"endPos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 10\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 31\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 31\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "7b01b75fa3cdd47a7deb72efef4d618935f54b4d90cf65a42818d3102569dfc2"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "7b01b75fa3cdd47a7deb72efef4d618935f54b4d90cf65a42818d3102569dfc2",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k ∈ Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k ∈ Finset.of_list [0], 2 ^ k + ∑ k ∈ ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k ∈ Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k ∈ ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/C3/completion.json",
+          "completion_sha256": "5d06874c525c868a032514abce873ddd6a0da05910c712ead97ef32632857871",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/C3/verification.json",
+          "verification_sha256": "535fcc77c3b702c892f42d23efbf412b62a8f7ab0d1c33557948c2ca14d48fba",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: unknown tactic",
+              "line 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+              "line 11: Unknown identifier `ne_of_eq_of_gt`",
+              "line 14: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 39.948,
+            "diagnostics_parsed": 7,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: unknown tactic\nline 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn\nline 11: Unknown identifier `ne_of_eq_of_gt`\nline 14: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "7b01b75fa3cdd47a7deb72efef4d618935f54b4d90cf65a42818d3102569dfc2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k ∈ Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k ∈ Finset.of_list [0], 2 ^ k + ∑ k ∈ ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k ∈ Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k ∈ ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "08aa83055a8eca1401cea882ced0729e6468320b8d61f8e4eed76d4a379d12e4",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+                "endPos": {
+                  "column": 47,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 45,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `ne_of_eq_of_gt`",
+                "endPos": {
+                  "column": 63,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 49,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 16,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 31
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 31
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":22,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  hn\\nhas type\\n  1 ≤ n\\nbut is expected to have type\\n  0 ≤ n\\nin the application\\n  lt_of_le_of_ne hn\",\"endPos\":{\"column\":47,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":45,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `ne_of_eq_of_gt`\",\"endPos\":{\"column\":63,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":49,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":16,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":31},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":31},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1663,
+          "completion_tokens": 350,
+          "generation_seconds": 26.251547875000142,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unknown tactic\",\n      \"endPos\": null,\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Application type mismatch: The argument\\n  hn\\nhas type\\n  1 ≤ n\\nbut is expected to have type\\n  0 ≤ n\\nin the application\\n  lt_of_le_of_ne hn\",\n      \"endPos\": {\n        \"column\": 47,\n        \"line\": 11\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 45,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown identifier `ne_of_eq_of_gt`\",\n      \"endPos\": {\n        \"column\": 63,\n        \"line\": 11\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 49,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\n      \"endPos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.inductionWithNoAlts._namedError\",\n      \"pos\": {\n        \"column\": 16,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\nh2 : ∃ s, n = ∑ k ∈ s, 2 ^ k\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\n      \"endPos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 10\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 31\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 31\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "7b01b75fa3cdd47a7deb72efef4d618935f54b4d90cf65a42818d3102569dfc2"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908",
+    "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k in Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k in Finset.of_list [0], 2 ^ k + ∑ k in ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k in Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k in ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2",
+    "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/initial/completion.json",
+    "completion_sha256": "e8bf481ad6cb73ce05fa7ac98b19178d6e8d650bc9ee279918eb08258157a5be",
+    "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ind_008/initial/verification.json",
+    "verification_sha256": "63dd28a4ae9ed69a2cd70e564fece043d27c78f11736cab7080159f6c9353f6f",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 12: unexpected token 'in'; expected ','",
+        "line 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+        "line 11: Unknown identifier `ne_of_eq_of_gt`",
+        "line 10: unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 34.284,
+      "diagnostics_parsed": 6,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 12: unexpected token 'in'; expected ','\nline 11: Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn\nline 11: Unknown identifier `ne_of_eq_of_gt`\nline 10: unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+      "candidate_sha256": "f010a9d175ca1d125e01b7fa2cc329ff193649085c57509147e4c7d10a57d908",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by exact lt_of_le_of_ne hn (ne_of_eq_of_gt zero_ne_one)\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · have h3 : 1 = ∑ k in Finset.empty, 2 ^ k := by simp\n      exact ⟨Finset.empty, h3⟩\n    · have h4 : 2 * n = ∑ k in Finset.of_list [0], 2 ^ k + ∑ k in ih.1, 2 ^ k := by\n        simp [Finset.sum_insert, ih]\n      have h5 : 2 * n = ∑ k in Finset.of_list [0] ∪ ih.1, 2 ^ k := by\n        simp [Finset.sum_union_of_disjoint (Finset.disjoint_of_ne (Finset.mem_singleton 0))]\n      have h6 : n = ∑ k in ih.1, 2 ^ k := by\n        rw [ih.2, h5]\n      have h7 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n        exact ⟨Finset.of_list ih.1, h6⟩\n      exact h7\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+      "verification_source_sha256": "6d9e20f589466a56ad7648b7f6d19255e35412212e540f71dff8cb4e30ad7cb8",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 44,
+            "line": 5
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 5
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "unexpected token 'in'; expected ','",
+          "endPos": {
+            "column": 38,
+            "line": 12
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 35,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Application type mismatch: The argument\n  hn\nhas type\n  1 ≤ n\nbut is expected to have type\n  0 ≤ n\nin the application\n  lt_of_le_of_ne hn",
+          "endPos": {
+            "column": 47,
+            "line": 11
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 45,
+            "line": 11
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Unknown identifier `ne_of_eq_of_gt`",
+          "endPos": {
+            "column": 63,
+            "line": 11
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "lean.unknownIdentifier._namedError",
+          "pos": {
+            "column": 49,
+            "line": 11
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "unsolved goals\ncase h2\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k, sorry\n\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\nh2 : ∃ s, n = ∑ k, sorry\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+          "endPos": {
+            "column": 35,
+            "line": 12
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "Tactic.unsolvedGoals",
+          "pos": {
+            "column": 3,
+            "line": 10
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+          "endPos": {
+            "column": 6,
+            "line": 31
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 31
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":38,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":35,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  hn\\nhas type\\n  1 ≤ n\\nbut is expected to have type\\n  0 ≤ n\\nin the application\\n  lt_of_le_of_ne hn\",\"endPos\":{\"column\":47,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":45,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `ne_of_eq_of_gt`\",\"endPos\":{\"column\":63,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":49,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h2\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k, sorry\\n\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\nh2 : ∃ s, n = ∑ k, sorry\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":35,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":31},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":31},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 222,
+    "completion_tokens": 350,
+    "generation_seconds": 27.07634337499985
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-28T09:50:01.923857+00:00"
+}

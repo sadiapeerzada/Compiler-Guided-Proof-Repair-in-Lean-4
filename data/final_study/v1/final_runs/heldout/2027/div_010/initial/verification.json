@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 12: Unknown identifier `int.mul_right_dvd`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 35.287,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 12: Unknown identifier `int.mul_right_dvd`",
+  "candidate_sha256": "231ecf4afbf44d9028527bc74c2a3afedca2e179801ae883b5bee1a8a3d3295e",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem dvd_mul_right_int (a b c : ℤ) (hab : a ∣ b) : a ∣ b * c := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem dvd_mul_right_int (a b c : ℤ) (hab : a ∣ b) : a ∣ b * c\n:= by\n  obtain ⟨k, hk⟩ := hab\n  exact int.mul_right_dvd hk\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.dvd_mul_right_int = Nl2LeanCandidate.dvd_mul_right_int := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.dvd_mul_right_int\n",
+  "verification_source_sha256": "c208850d9a788f2ca85c11c1b098001fc61a9cc8a6eafd80b81f341493e0c378",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 25,
+        "line": 5
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93fa86559e079178bf6f7efb.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `int.mul_right_dvd`",
+      "endPos": {
+        "column": 25,
+        "line": 12
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93fa86559e079178bf6f7efb.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.dvd_mul_right_int' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93fa86559e079178bf6f7efb.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 17
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93fa86559e079178bf6f7efb.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `int.mul_right_dvd`\",\"endPos\":{\"column\":25,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93fa86559e079178bf6f7efb.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.dvd_mul_right_int' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93fa86559e079178bf6f7efb.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

@@ -1,0 +1,180 @@
+{
+  "success": false,
+  "errors": [
+    "line 12: Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a * b\nof type `ℕ`",
+    "line 13: Failed to rewrite using equation theorems for `factorization`",
+    "line 14: failed to synthesize instance of type class\n  HAppend (ℕ →₀ ℕ) (ℕ →₀ ℕ) ?m.39\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.",
+    "line 15: Unknown identifier `primeExponentFactorization_add`",
+    "line 17: Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a * b\nof type `ℕ`",
+    "line 17: failed to synthesize instance of type class\n  HAppend (ℕ →₀ ℕ) (ℕ →₀ ℕ) ?m.56\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.",
+    "line 11: unsolved goals\na b : ℕ\nha : a ≠ 0\nhb : b ≠ 0\nh1 : (a * b).factorization = sorry\nh2 : a.factorization + b.factorization = sorry\n⊢ (a * b).factorization = a.factorization + b.factorization"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.75,
+  "diagnostics_parsed": 9,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 12: Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a * b\nof type `ℕ`\nline 13: Failed to rewrite using equation theorems for `factorization`\nline 14: failed to synthesize instance of type class\n  HAppend (ℕ →₀ ℕ) (ℕ →₀ ℕ) ?m.39\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\nline 15: Unknown identifier `primeExponentFactorization_add`\nline 17: Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a * b\nof type `ℕ`\nline 17: failed to synthesize instance of type class\n  HAppend (ℕ →₀ ℕ) (ℕ →₀ ℕ) ?m.56\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\nline 11: unsolved goals\na b : ℕ\nha : a ≠ 0\nhb : b ≠ 0\nh1 : (a * b).factorization = sorry\nh2 : a.factorization + b.factorization = sorry\n⊢ (a * b).factorization = a.factorization + b.factorization",
+  "candidate_sha256": "2b28b548ac393454d6f5fe5fb0d566983ac97a51747d0267135f8c9c2248f7f0",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_factorization (a b : ℕ) (ha : a ≠ 0) (hb : b ≠ 0) : (a * b).factorization = a.factorization + b.factorization := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_factorization (a b : ℕ) (ha : a ≠ 0) (hb : b ≠ 0) : (a * b).factorization = a.factorization + b.factorization := by\n  have h1 : (a * b).factorization = (a * b).primeExponentFactorization := by\n    rw [factorization]\n  have h2 : a.factorization + b.factorization = (a.factorization ++ b.factorization).primeExponentFactorization := by\n    rw [primeExponentFactorization_add]\n    simp\n  have h3 : (a * b).primeExponentFactorization = (a.factorization ++ b.factorization).primeExponentFactorization := by\n    rw [h1, h2]\n  have h4 : (a * b).factorization = (a.factorization ++ b.factorization).factorization := by\n    rw [factorization, h3]\n  rw [h4]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_factorization = Nl2LeanCandidate.study_d_factorization := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_factorization\n",
+  "verification_source_sha256": "ffe9b70aac55ebdbba5d243b1d77416859dd1632e339adb501704b2fb1e32e53",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 29,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a * b\nof type `ℕ`",
+      "endPos": {
+        "column": 70,
+        "line": 12
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.invalidField._namedError",
+      "pos": {
+        "column": 44,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Failed to rewrite using equation theorems for `factorization`",
+      "endPos": {
+        "column": 21,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "failed to synthesize instance of type class\n  HAppend (ℕ →₀ ℕ) (ℕ →₀ ℕ) ?m.39\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.",
+      "endPos": {
+        "column": 83,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.synthInstanceFailed._namedError",
+      "pos": {
+        "column": 49,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `primeExponentFactorization_add`",
+      "endPos": {
+        "column": 38,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a * b\nof type `ℕ`",
+      "endPos": {
+        "column": 46,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.invalidField._namedError",
+      "pos": {
+        "column": 20,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "failed to synthesize instance of type class\n  HAppend (ℕ →₀ ℕ) (ℕ →₀ ℕ) ?m.56\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.",
+      "endPos": {
+        "column": 84,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.synthInstanceFailed._namedError",
+      "pos": {
+        "column": 50,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\na b : ℕ\nha : a ≠ 0\nhb : b ≠ 0\nh1 : (a * b).factorization = sorry\nh2 : a.factorization + b.factorization = sorry\n⊢ (a * b).factorization = a.factorization + b.factorization",
+      "endPos": {
+        "column": 9,
+        "line": 21
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 129,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_factorization' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 26
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 26
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\\n  a * b\\nof type `ℕ`\",\"endPos\":{\"column\":70,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.invalidField._namedError\",\"pos\":{\"column\":44,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Failed to rewrite using equation theorems for `factorization`\",\"endPos\":{\"column\":21,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"failed to synthesize instance of type class\\n  HAppend (ℕ →₀ ℕ) (ℕ →₀ ℕ) ?m.39\\n\\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\",\"endPos\":{\"column\":83,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.synthInstanceFailed._namedError\",\"pos\":{\"column\":49,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `primeExponentFactorization_add`\",\"endPos\":{\"column\":38,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\\n  a * b\\nof type `ℕ`\",\"endPos\":{\"column\":46,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.invalidField._namedError\",\"pos\":{\"column\":20,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"failed to synthesize instance of type class\\n  HAppend (ℕ →₀ ℕ) (ℕ →₀ ℕ) ?m.56\\n\\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\",\"endPos\":{\"column\":84,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.synthInstanceFailed._namedError\",\"pos\":{\"column\":50,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b : ℕ\\nha : a ≠ 0\\nhb : b ≠ 0\\nh1 : (a * b).factorization = sorry\\nh2 : a.factorization + b.factorization = sorry\\n⊢ (a * b).factorization = a.factorization + b.factorization\",\"endPos\":{\"column\":9,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":129,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_factorization' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":26},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67e0b85e64808068bf71fdf9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":26},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

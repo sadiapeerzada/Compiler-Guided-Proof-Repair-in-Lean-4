@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: Unknown constant `Real.sin_le_self`",
+    "line 16: No goals to be solved"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.37,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: Unknown constant `Real.sin_le_self`\nline 16: No goals to be solved",
+  "candidate_sha256": "f83e84aaad45f17358cef2ad9d0bc37ee7efe02df5401b4f9e48aee686f345ce",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_sine (x : ℝ) (hx : 0 ≤ x) : Real.sin x ≤ x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_sine (x : ℝ) (hx : 0 ≤ x) : Real.sin x ≤ x\n:= by\n  have key_sin_le_x : Real.sin x ≤ x\n  := by\n    apply Real.sin_le_self\n    exact hx\n  exact key_sin_le_x\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_sine = Nl2LeanCandidate.study_q_sine := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_sine\n",
+  "verification_source_sha256": "f62c04b5187e10ba028e1caa09df4094e355fc8876c4775e5800c4a6d9699b8f",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 20,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ac1a963480c01f6d268f40a3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Real.sin_le_self`",
+      "endPos": {
+        "column": 26,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ac1a963480c01f6d268f40a3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "No goals to be solved",
+      "endPos": {
+        "column": 12,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ac1a963480c01f6d268f40a3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_sine' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 22
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ac1a963480c01f6d268f40a3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 22
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ac1a963480c01f6d268f40a3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.sin_le_self`\",\"endPos\":{\"column\":26,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ac1a963480c01f6d268f40a3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":12,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ac1a963480c01f6d268f40a3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_sine' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ac1a963480c01f6d268f40a3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

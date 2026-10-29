@@ -1,0 +1,816 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "heldout",
+  "seed": 2027,
+  "problem_id": "lib_q_rearrangement",
+  "protocol_sha256": "a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317",
+  "dataset_sha256": "47e1b9acc1efc5c6be1113c0b4e103b29f6cb7aeed77a5ffe98bae97fdda9a5b",
+  "status": "completed",
+  "started_at": "2026-10-29T15:11:17.240774+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "e9bd001cbaa0bbbbf56573faf08c068e6f38e2a7b5da1035f57150c7f8631bdf",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "e9bd001cbaa0bbbbf56573faf08c068e6f38e2a7b5da1035f57150c7f8631bdf",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "0d72d65e46406efc959797d9d0a0767b064d82e9306e395ad11a115320b0e965",
+          "candidate": "open scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_mul, sub_mul] at hab hcd \n    exact le_add_of_pos_left (le_sub_of_le_of_le hab hcd)\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact le_add_of_pos_left h1",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/B1/completion.json",
+          "completion_sha256": "dff606936be483857506dd676e6e7cbfaf93df24110f45cdf9b4930c799914fb",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/B1/verification.json",
+          "verification_sha256": "a7aa1f686aa7fff33fd0b691774682f90f97954efeed1d6a80d0da278335d002",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+              "line 19: Unknown identifier `le_add_of_pos_left`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.274,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c\nline 19: Unknown identifier `le_add_of_pos_left`",
+            "candidate_sha256": "0d72d65e46406efc959797d9d0a0767b064d82e9306e395ad11a115320b0e965",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_mul, sub_mul] at hab hcd \n    exact le_add_of_pos_left (le_sub_of_le_of_le hab hcd)\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact le_add_of_pos_left h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_rearrangement = Nl2LeanCandidate.study_q_rearrangement := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_rearrangement\n",
+            "verification_source_sha256": "668bf25ba85b2e69570c631a3728ac9819e6269d7eb6da996a9d5b294f91ab25",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 29,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2ebb4bc8726ac045aeddf80e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+                "endPos": {
+                  "column": 15,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2ebb4bc8726ac045aeddf80e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 8,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `le_add_of_pos_left`",
+                "endPos": {
+                  "column": 26,
+                  "line": 19
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2ebb4bc8726ac045aeddf80e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 8,
+                  "line": 19
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 24
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2ebb4bc8726ac045aeddf80e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 24
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2ebb4bc8726ac045aeddf80e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  (?a - ?b) * ?c\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\"endPos\":{\"column\":15,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2ebb4bc8726ac045aeddf80e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `le_add_of_pos_left`\",\"endPos\":{\"column\":26,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2ebb4bc8726ac045aeddf80e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2ebb4bc8726ac045aeddf80e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 442,
+          "completion_tokens": 185,
+          "generation_seconds": 10.924918083997909,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "e5e41499a1c24413e819d732782bfc1328f45a2fbcf4161cf46a7138261059e7",
+          "candidate": "open scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_mul, sub_mul] at hab hcd \n    exact le_add_of_left_le_of_le hab hcd\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact le_add_of_left_le_of_le h1",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/B2/completion.json",
+          "completion_sha256": "d8634e54b888009e7dbaf04105a7706488fe9afa1cde78be988225853e9bc06c",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/B2/verification.json",
+          "verification_sha256": "1d11c679c17925bbb34fc7a06437c8bb32869cdfe57dd49aed64896173cd1ab0",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+              "line 19: Unknown identifier `le_add_of_left_le_of_le`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.426,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c\nline 19: Unknown identifier `le_add_of_left_le_of_le`",
+            "candidate_sha256": "e5e41499a1c24413e819d732782bfc1328f45a2fbcf4161cf46a7138261059e7",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_mul, sub_mul] at hab hcd \n    exact le_add_of_left_le_of_le hab hcd\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact le_add_of_left_le_of_le h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_rearrangement = Nl2LeanCandidate.study_q_rearrangement := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_rearrangement\n",
+            "verification_source_sha256": "9ccb04edfe71a32b2c3983a5d7193bb37acecb78a7265ac476319dab594bdaca",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 29,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+                "endPos": {
+                  "column": 15,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 8,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `le_add_of_left_le_of_le`",
+                "endPos": {
+                  "column": 31,
+                  "line": 19
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 8,
+                  "line": 19
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 24
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 24
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  (?a - ?b) * ?c\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\"endPos\":{\"column\":15,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `le_add_of_left_le_of_le`\",\"endPos\":{\"column\":31,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 437,
+          "completion_tokens": 182,
+          "generation_seconds": 10.507620750002388,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "8031e958d1fb96a3c998f224175919e227f8b4b31bd18dfa93aae2f8630e2d54",
+          "candidate": "open scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_mul, sub_mul] at hab hcd \n    exact le_add_of_left_le_of_le hab hcd\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact h1",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/B3/completion.json",
+          "completion_sha256": "0c6dd97fd932b53b1213da80d56225516025c714d5c3871cbba98e54a904e7f6",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/B3/verification.json",
+          "verification_sha256": "f6698802257ea36285633c50e5160a16740aa6e48fdd3b216c12f78961ba884b",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+              "line 19: Type mismatch\n  h1\nhas type\n  a * (d - c) ≤ b * (d - c)\nbut is expected to have type\n  a * d + b * c ≤ a * c + b * d"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.317,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c\nline 19: Type mismatch\n  h1\nhas type\n  a * (d - c) ≤ b * (d - c)\nbut is expected to have type\n  a * d + b * c ≤ a * c + b * d",
+            "candidate_sha256": "8031e958d1fb96a3c998f224175919e227f8b4b31bd18dfa93aae2f8630e2d54",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_mul, sub_mul] at hab hcd \n    exact le_add_of_left_le_of_le hab hcd\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_rearrangement = Nl2LeanCandidate.study_q_rearrangement := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_rearrangement\n",
+            "verification_source_sha256": "37bd697b4cbf5daeb40ad055f10185d4e48dbb85e42223c98eff5cd02fd6957c",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 29,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_64ac4476ac35079c94c6af8a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+                "endPos": {
+                  "column": 15,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_64ac4476ac35079c94c6af8a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 8,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Type mismatch\n  h1\nhas type\n  a * (d - c) ≤ b * (d - c)\nbut is expected to have type\n  a * d + b * c ≤ a * c + b * d",
+                "endPos": {
+                  "column": 10,
+                  "line": 19
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_64ac4476ac35079c94c6af8a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 19
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 24
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_64ac4476ac35079c94c6af8a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 24
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_64ac4476ac35079c94c6af8a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  (?a - ?b) * ?c\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\"endPos\":{\"column\":15,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_64ac4476ac35079c94c6af8a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  h1\\nhas type\\n  a * (d - c) ≤ b * (d - c)\\nbut is expected to have type\\n  a * d + b * c ≤ a * c + b * d\",\"endPos\":{\"column\":10,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_64ac4476ac35079c94c6af8a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_64ac4476ac35079c94c6af8a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 434,
+          "completion_tokens": 175,
+          "generation_seconds": 9.963705000001937,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "e9bd001cbaa0bbbbf56573faf08c068e6f38e2a7b5da1035f57150c7f8631bdf",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "7eb13db4ece6410c17deae0c99e19e9b80afb64cd4b14698da1c316520f529c1",
+          "candidate": "open scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_eq_add_neg, sub_eq_add_neg] at hab hcd \n    exact le_add_of_pos_left (le_sub_of_le_of_le hab hcd)\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact le_add_of_nonneg_left (by linarith)",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/C1/completion.json",
+          "completion_sha256": "895811aa0512a6c976e08ea0a50f09972724d076735f827990e43a3b697731da",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/C1/verification.json",
+          "verification_sha256": "b4dd5d8bd9fa8ef16566f35db8e6f97f43ab5435662d1a553ae22276126cd47c",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+              "line 19: linarith failed to find a contradiction\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\nh1 : a * (d - c) ≤ b * (d - c)\nh2 : a * d - a * c = a * (d - c)\nh3 : b * d - b * c = b * (d - c)\n⊢ False\nfailed"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.791,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c\nline 19: linarith failed to find a contradiction\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\nh1 : a * (d - c) ≤ b * (d - c)\nh2 : a * d - a * c = a * (d - c)\nh3 : b * d - b * c = b * (d - c)\n⊢ False\nfailed",
+            "candidate_sha256": "7eb13db4ece6410c17deae0c99e19e9b80afb64cd4b14698da1c316520f529c1",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_eq_add_neg, sub_eq_add_neg] at hab hcd \n    exact le_add_of_pos_left (le_sub_of_le_of_le hab hcd)\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact le_add_of_nonneg_left (by linarith)\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_rearrangement = Nl2LeanCandidate.study_q_rearrangement := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_rearrangement\n",
+            "verification_source_sha256": "39b412b43841933b688565ab01ad1cb56d4157f8db0ad9babdadf1ff81494bf5",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 29,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1d4ed1ec0c85c9b1972d0fd8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1d4ed1ec0c85c9b1972d0fd8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 8,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "linarith failed to find a contradiction\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\nh1 : a * (d - c) ≤ b * (d - c)\nh2 : a * d - a * c = a * (d - c)\nh3 : b * d - b * c = b * (d - c)\n⊢ False\nfailed",
+                "endPos": {
+                  "column": 42,
+                  "line": 19
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1d4ed1ec0c85c9b1972d0fd8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 34,
+                  "line": 19
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 24
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1d4ed1ec0c85c9b1972d0fd8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 24
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1d4ed1ec0c85c9b1972d0fd8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1d4ed1ec0c85c9b1972d0fd8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"linarith failed to find a contradiction\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\nh1 : a * (d - c) ≤ b * (d - c)\\nh2 : a * d - a * c = a * (d - c)\\nh3 : b * d - b * c = b * (d - c)\\n⊢ False\\nfailed\",\"endPos\":{\"column\":42,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1d4ed1ec0c85c9b1972d0fd8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1d4ed1ec0c85c9b1972d0fd8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1042,
+          "completion_tokens": 192,
+          "generation_seconds": 13.972749540997029,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\n      \"endPos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3562b9bc9a8ee2a62437e4ad.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Application type mismatch: The argument\\n  h1\\nhas type\\n  a * (d - c) ≤ b * (d - c)\\nbut is expected to have type\\n  0 ≤ ?m.132\\nin the application\\n  le_add_of_nonneg_left h1\",\n      \"endPos\": {\n        \"column\": 32,\n        \"line\": 19\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3562b9bc9a8ee2a62437e4ad.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 30,\n        \"line\": 19\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 24\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3562b9bc9a8ee2a62437e4ad.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 24\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "e9bd001cbaa0bbbbf56573faf08c068e6f38e2a7b5da1035f57150c7f8631bdf"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "5b83aac9078f7bbc5d6f2c47ba505b4b1ac20cecc0088ad8c22f010eadcb95ad",
+          "candidate": "open scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_eq_add_neg, sub_eq_add_neg] at hab hcd \n    exact le_add_of_pos_left (le_sub_of_le_of_le hab hcd)\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact h1",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/C2/completion.json",
+          "completion_sha256": "ca6380377e9fda62d3de1c34fde54a00b5d90a28bfd98e87dfdf7a176c2b1810",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/C2/verification.json",
+          "verification_sha256": "34ddbf5a94da265d2c87df926cf848e345f55f03f39570d5c498d31c0a09bdc3",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+              "line 19: Type mismatch\n  h1\nhas type\n  a * (d - c) ≤ b * (d - c)\nbut is expected to have type\n  a * d + b * c ≤ a * c + b * d"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 36.733,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c\nline 19: Type mismatch\n  h1\nhas type\n  a * (d - c) ≤ b * (d - c)\nbut is expected to have type\n  a * d + b * c ≤ a * c + b * d",
+            "candidate_sha256": "5b83aac9078f7bbc5d6f2c47ba505b4b1ac20cecc0088ad8c22f010eadcb95ad",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_eq_add_neg, sub_eq_add_neg] at hab hcd \n    exact le_add_of_pos_left (le_sub_of_le_of_le hab hcd)\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_rearrangement = Nl2LeanCandidate.study_q_rearrangement := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_rearrangement\n",
+            "verification_source_sha256": "f297fb55532f73f43ca1a10312d883c638aee2a09eaf2abbb93f49ee036572f9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 29,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4667b0c23271037600d3f6dc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4667b0c23271037600d3f6dc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 8,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Type mismatch\n  h1\nhas type\n  a * (d - c) ≤ b * (d - c)\nbut is expected to have type\n  a * d + b * c ≤ a * c + b * d",
+                "endPos": {
+                  "column": 10,
+                  "line": 19
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4667b0c23271037600d3f6dc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 19
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 24
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4667b0c23271037600d3f6dc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 24
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4667b0c23271037600d3f6dc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4667b0c23271037600d3f6dc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  h1\\nhas type\\n  a * (d - c) ≤ b * (d - c)\\nbut is expected to have type\\n  a * d + b * c ≤ a * c + b * d\",\"endPos\":{\"column\":10,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4667b0c23271037600d3f6dc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4667b0c23271037600d3f6dc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1069,
+          "completion_tokens": 184,
+          "generation_seconds": 13.847462208999787,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\n      \"endPos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1d4ed1ec0c85c9b1972d0fd8.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"linarith failed to find a contradiction\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\nh1 : a * (d - c) ≤ b * (d - c)\\nh2 : a * d - a * c = a * (d - c)\\nh3 : b * d - b * c = b * (d - c)\\n⊢ False\\nfailed\",\n      \"endPos\": {\n        \"column\": 42,\n        \"line\": 19\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1d4ed1ec0c85c9b1972d0fd8.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 34,\n        \"line\": 19\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 24\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1d4ed1ec0c85c9b1972d0fd8.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 24\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "7eb13db4ece6410c17deae0c99e19e9b80afb64cd4b14698da1c316520f529c1"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "5527ee9ac8cec9863ab1d09ee51b158eddbe9658b30e9675e02bfef204f7c1a8",
+          "candidate": "open scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_eq_add_neg, sub_eq_add_neg] at hab hcd \n    exact le_add_of_pos_left (le_sub_of_le_of_le hab hcd)\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  have h4 : a * (d - c) ≤ b * (d - c) := by\n    rw [h1]\n    exact le_of_add_le_add_left hcd\n  have h5 : a * c + b * d ≤ a * c + b * c + b * (d - c) := by\n    rw [add_assoc, h4, add_comm b (b * (d - c))]\n  exact le_add_of_pos_left (le_sub_of_le_of_le h5 hcd)",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/C3/completion.json",
+          "completion_sha256": "4dc29d5227a2037203a79bddee31a8ffa03561dd122b2becefaf7ef06e97c27a",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/C3/verification.json",
+          "verification_sha256": "a7c9a58fc1eb227fe597f6349d57b958f71243210af46af7ca7e562730b463cb",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+              "line 20: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\n  a * (d - c) ≤ b * (d - c)",
+              "line 23: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h4` is a proof of\n  a * (d - c) ≤ b * (d - c)",
+              "line 24: Unknown identifier `le_add_of_pos_left`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 36.258,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c\nline 20: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\n  a * (d - c) ≤ b * (d - c)\nline 23: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h4` is a proof of\n  a * (d - c) ≤ b * (d - c)\nline 24: Unknown identifier `le_add_of_pos_left`",
+            "candidate_sha256": "5527ee9ac8cec9863ab1d09ee51b158eddbe9658b30e9675e02bfef204f7c1a8",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_eq_add_neg, sub_eq_add_neg] at hab hcd \n    exact le_add_of_pos_left (le_sub_of_le_of_le hab hcd)\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  have h4 : a * (d - c) ≤ b * (d - c) := by\n    rw [h1]\n    exact le_of_add_le_add_left hcd\n  have h5 : a * c + b * d ≤ a * c + b * c + b * (d - c) := by\n    rw [add_assoc, h4, add_comm b (b * (d - c))]\n  exact le_add_of_pos_left (le_sub_of_le_of_le h5 hcd)\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_rearrangement = Nl2LeanCandidate.study_q_rearrangement := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_rearrangement\n",
+            "verification_source_sha256": "0b0d0e3c32a8d6a23559b2d17c7185751a47b2d4e907de6b3b8bc903e1024a9a",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 29,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 8,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\n  a * (d - c) ≤ b * (d - c)",
+                "endPos": {
+                  "column": 10,
+                  "line": 20
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 8,
+                  "line": 20
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h4` is a proof of\n  a * (d - c) ≤ b * (d - c)",
+                "endPos": {
+                  "column": 21,
+                  "line": 23
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 19,
+                  "line": 23
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `le_add_of_pos_left`",
+                "endPos": {
+                  "column": 26,
+                  "line": 24
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 8,
+                  "line": 24
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 29
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 29
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\\n  a * (d - c) ≤ b * (d - c)\",\"endPos\":{\"column\":10,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":20},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h4` is a proof of\\n  a * (d - c) ≤ b * (d - c)\",\"endPos\":{\"column\":21,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":19,\"line\":23},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `le_add_of_pos_left`\",\"endPos\":{\"column\":26,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":24},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":29},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":29},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1029,
+          "completion_tokens": 289,
+          "generation_seconds": 17.99104733299464,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\n      \"endPos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4667b0c23271037600d3f6dc.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Type mismatch\\n  h1\\nhas type\\n  a * (d - c) ≤ b * (d - c)\\nbut is expected to have type\\n  a * d + b * c ≤ a * c + b * d\",\n      \"endPos\": {\n        \"column\": 10,\n        \"line\": 19\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4667b0c23271037600d3f6dc.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 19\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 24\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4667b0c23271037600d3f6dc.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 24\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "5b83aac9078f7bbc5d6f2c47ba505b4b1ac20cecc0088ad8c22f010eadcb95ad"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "e9bd001cbaa0bbbbf56573faf08c068e6f38e2a7b5da1035f57150c7f8631bdf",
+    "candidate": "open scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_eq_add_neg, sub_eq_add_neg] at hab hcd \n    exact le_add_of_pos_left (le_sub_of_le_of_le hab hcd)\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact le_add_of_nonneg_left h1",
+    "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/initial/completion.json",
+    "completion_sha256": "2ec5230d2a35817fc42ed839238f8d9d09e6395aaea1d70e81e13c15f3c144c7",
+    "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_rearrangement/initial/verification.json",
+    "verification_sha256": "f4da6fa3b2f825c286e0a2c3dc5d76fe540333d05634511a880c0e02d3840ac7",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+        "line 19: Application type mismatch: The argument\n  h1\nhas type\n  a * (d - c) ≤ b * (d - c)\nbut is expected to have type\n  0 ≤ ?m.132\nin the application\n  le_add_of_nonneg_left h1"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 36.81,
+      "diagnostics_parsed": 4,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c\nline 19: Application type mismatch: The argument\n  h1\nhas type\n  a * (d - c) ≤ b * (d - c)\nbut is expected to have type\n  0 ≤ ?m.132\nin the application\n  le_add_of_nonneg_left h1",
+      "candidate_sha256": "e9bd001cbaa0bbbbf56573faf08c068e6f38e2a7b5da1035f57150c7f8631bdf",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_eq_add_neg, sub_eq_add_neg] at hab hcd \n    exact le_add_of_pos_left (le_sub_of_le_of_le hab hcd)\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact le_add_of_nonneg_left h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_rearrangement = Nl2LeanCandidate.study_q_rearrangement := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_rearrangement\n",
+      "verification_source_sha256": "61d60e22a6118b1eca67abf6481c83d082d39d8103e3fad31f37fab1d205a6d4",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 29,
+            "line": 6
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3562b9bc9a8ee2a62437e4ad.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 6
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+          "endPos": {
+            "column": 22,
+            "line": 14
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3562b9bc9a8ee2a62437e4ad.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 8,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Application type mismatch: The argument\n  h1\nhas type\n  a * (d - c) ≤ b * (d - c)\nbut is expected to have type\n  0 ≤ ?m.132\nin the application\n  le_add_of_nonneg_left h1",
+          "endPos": {
+            "column": 32,
+            "line": 19
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3562b9bc9a8ee2a62437e4ad.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 30,
+            "line": 19
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+          "endPos": {
+            "column": 6,
+            "line": 24
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3562b9bc9a8ee2a62437e4ad.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 24
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3562b9bc9a8ee2a62437e4ad.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3562b9bc9a8ee2a62437e4ad.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  h1\\nhas type\\n  a * (d - c) ≤ b * (d - c)\\nbut is expected to have type\\n  0 ≤ ?m.132\\nin the application\\n  le_add_of_nonneg_left h1\",\"endPos\":{\"column\":32,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3562b9bc9a8ee2a62437e4ad.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":30,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3562b9bc9a8ee2a62437e4ad.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 224,
+    "completion_tokens": 190,
+    "generation_seconds": 9.749868416001846
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-29T15:17:21.861287+00:00"
+}

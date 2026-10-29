@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Unknown identifier `classical.rational_between`",
+    "line 13: Tactic `rcases` failed: `x✝ : ?m.9` is not an inductive datatype",
+    "line 16: unexpected token '-'; expected command"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.63,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Unknown identifier `classical.rational_between`\nline 13: Tactic `rcases` failed: `x✝ : ?m.9` is not an inductive datatype\nline 16: unexpected token '-'; expected command",
+  "candidate_sha256": "409bd552172528444b90066496f1fa7253c31b5b0fcc522422e754f84150b2ea",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_rational_density (x y : ℝ) (h : x < y) : ∃ q : ℚ, x < q ∧ (q : ℝ) < y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_rational_density (x y : ℝ) (h : x < y) : ∃ q : ℚ, x < q ∧ (q : ℝ) < y\n:= by\n  obtain ⟨n, d, q⟩ := classical.rational_between (x : ℝ) (y : ℝ) h\n  use q\n  split\n  - exact h\n  - exact (lt_of_le_of_lt (le_of_lt_of_eq (eq_of_le_of_lt (of_pos_of_ne_zero (by norm_num) (by norm_num))) (by norm_num)))\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_rational_density = Nl2LeanCandidate.study_q_rational_density := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_rational_density\n",
+  "verification_source_sha256": "73aa86316291158ff6daf04b6f47b2da6dd5a8a8bbc10497ec59d8d4e0767338",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 32,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2d13ff72e8aec83864a937cb.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `classical.rational_between`",
+      "endPos": {
+        "column": 48,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2d13ff72e8aec83864a937cb.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 22,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rcases` failed: `x✝ : ?m.9` is not an inductive datatype",
+      "endPos": {
+        "column": 18,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2d13ff72e8aec83864a937cb.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 9,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token '-'; expected command",
+      "endPos": {
+        "column": 3,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2d13ff72e8aec83864a937cb.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_rational_density' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 22
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2d13ff72e8aec83864a937cb.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 22
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":32,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2d13ff72e8aec83864a937cb.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `classical.rational_between`\",\"endPos\":{\"column\":48,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2d13ff72e8aec83864a937cb.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":22,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rcases` failed: `x✝ : ?m.9` is not an inductive datatype\",\"endPos\":{\"column\":18,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2d13ff72e8aec83864a937cb.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":9,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token '-'; expected command\",\"endPos\":{\"column\":3,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2d13ff72e8aec83864a937cb.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_rational_density' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2d13ff72e8aec83864a937cb.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

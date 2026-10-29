@@ -1,23 +1,13 @@
 # Semantic review status
 
-Status: BLOCKED for review outcomes; workflow implementation is available.
+The operative final-study method is **AI-assisted semantic review**, approved according to the student's direct report on 28 October 2026. The actual supervisor decision date and original approval document/signature were not supplied; the report has not been independently verified. See [the approval record](../data/final_study/v1/approvals/student_reported.json).
 
-All 96 candidates remain pending independent semantic review. No reviewer ID, date, decision, signature, source permission or supervisor approval has been invented.
+All 96 candidate records were inspected through the [AI audit](AI_SEMANTIC_AUDIT_REPORT.md), including separate Phi-family reviews, coding-assistant adjudication, Lean proof/type checks and bounded mathematical probes. The final adjudicator is the authoring coding assistant, not an independent human. Raw model disagreements, malformed responses and specific resolutions remain inspectable; unreliable responses are not silently counted as faithful votes.
 
-The separate [AI-only audit](AI_SEMANTIC_AUDIT_REPORT.md) adds model/static assessments and automated checks without filling any human decision. Its proposed alternative review policy is [pending supervisor approval](AI_SEMANTIC_REVIEW_SUPERVISOR_REQUEST.md). AI audit records must not be imported as independent human reviews.
+The versioned [AI eligibility policy](../data/final_study/v1/ai_eligibility_policy.json) admits 75 source-supported statements: 15 development and 60 held-out, in five and 54 curated family clusters with no cross-split cluster overlap. Each row binds its English, Lean target, source/license evidence, strict reference proof, AI adjudication and split assignment. One exact duplicate and 20 other source-insufficient candidates are excluded. Corrected modulus and summation examples retain correction history, fresh proofs and repeated model reviews; both remain excluded for source provenance. See [the frozen dataset](../data/final_study/v1/freeze.json).
 
-Start at `data/review_packets/m1_m7_delivery_20261028/README.md`. Each Markdown packet includes English, Lean, exact binders/quantifiers, assumptions/imports, source, category/difficulty/family/split, complete proof-verification status and reviewer instructions. Companion JSON and `.decision.json` files bind decisions to English, Lean, imports and assumptions using SHA-256. Labels are faithful / not faithful / uncertain, initially blank.
+This establishes eligibility under the approved AI policy, not measured human semantic accuracy. Compilation alone does not establish English/Lean equivalence. The final experiment fixes the reviewed reference target and measures proof synthesis, not unrestricted statement translation.
 
-`src/semantic_review.py` imports authentic human decisions only with an externally supplied human-verified qualified Lean reviewer registry, actual reviewer identity/date, independence attestation, substantive explanation, and matching evidence-artifact bytes. It rejects unknown/self reviewers, stale statements, future dates, changed evidence, duplicates and conflicting completed decisions needing adjudication. Import writes a fresh candidate snapshot and receipt; historical records and unrelated license, family, split and eligibility statuses are not promoted. Hashes establish binding, not human identity: a qualified human must actually verify the registry/evidence; these records cannot be supplied by an agent pretending to be a reviewer.
+Historical human-review fields and blank decisions are preserved. `src/semantic_review.py` still requires actual externally verified human reviewer identity, independence and evidence. AI decisions are never imported as human reviews. The final study uses the separate `study_eligibility` field and `src/final_study.py`; a historical human-only readiness failure does not constitute failure of that explicitly different policy.
 
-Example commands, after real decisions and registry exist:
-
-```sh
-.venv/bin/python src/semantic_review.py --output-dir /tmp/new-review-packets
-.venv/bin/python src/semantic_review.py --decisions <actual-decisions.json> \
-  --reviewer-registry <human-verified-registry.json> --output-dir <fresh-import-dir>
-```
-
-The `semantic_success` function requires successful compilation plus a current independently validated faithful decision. Compilation alone, an uncertain/not-faithful label, or missing registry/evidence yields false. Tests cover Lean-compiling but unfaithful formalizations and changed English/Lean bindings. The primary A/B/C runner independently requires an eligible fixed reviewed reference theorem, identical for all conditions. It cannot substitute a generated unreviewed statement for that reference.
-
-Actual generated statement results can be prepared separately with `--generated-results <actual-pipeline-results.jsonl>`. Each generated subject gets a distinct run-bound ID, preserves its English/reference comparison and raw result hash, and resets semantic decisions to pending. It never inherits a reference's faithful label or treats `solved: true` as semantic success. This path was tested synthetically; there are no genuine mathematical generated subjects to review yet.
+The earlier [supervisor request](AI_SEMANTIC_REVIEW_SUPERVISOR_REQUEST.md) remains a historical proposal, not the approval document. Current approval provenance is only the student-reported record above.

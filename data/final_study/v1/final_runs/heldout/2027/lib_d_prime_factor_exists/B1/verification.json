@@ -1,0 +1,144 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: Unknown identifier `«exists».intro`",
+    "line 16: No goals to be solved",
+    "line 22: Type mismatch\n  hp2\nhas type\n  p > 1\nbut is expected to have type\n  Nat.Prime p",
+    "line 24: Unknown identifier `nat.dvd_of_le`",
+    "line 25: No goals to be solved"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.867,
+  "diagnostics_parsed": 7,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: Unknown identifier `«exists».intro`\nline 16: No goals to be solved\nline 22: Type mismatch\n  hp2\nhas type\n  p > 1\nbut is expected to have type\n  Nat.Prime p\nline 24: Unknown identifier `nat.dvd_of_le`\nline 25: No goals to be solved",
+  "candidate_sha256": "073ab51f7261da37c1a4cbefb13fbeeb4caf7503463997d526c1d9d33f9e43cd",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_factor_exists (n : ℕ) (hn : 2 ≤ n) : ∃ p : ℕ, p.Prime ∧ p ∣ n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_d_prime_factor_exists (n : ℕ) (hn : 2 ≤ n) : ∃ p : ℕ, p.Prime ∧ p ∣ n\n:= by\n  have h1 : ∃ p : ℕ, p ≤ n ∧ p > 1 := by\n    apply exists.intro\n    exact n\n    split\n    · exact hn\n    · exact ⟨2, by rw [two_mul]; exact nat.prime.two_is_prime⟩\n  obtain ⟨p, hp1, hp2⟩ := h1\n  have hp4 : p.Prime := by\n    exact hp2\n  have hp5 : p ∣ n := by\n    apply nat.dvd_of_le\n    exact hp1\n  exact ⟨p, hp4, hp5⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_factor_exists = Nl2LeanCandidate.study_d_prime_factor_exists := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_factor_exists\n",
+  "verification_source_sha256": "1340eadeef1a0ea07e72c0e7f47548211b63154792fae9daa4f181825c61948a",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 35,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `«exists».intro`",
+      "endPos": {
+        "column": 22,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "No goals to be solved",
+      "endPos": {
+        "column": 11,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  hp2\nhas type\n  p > 1\nbut is expected to have type\n  Nat.Prime p",
+      "endPos": {
+        "column": 13,
+        "line": 22
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 22
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `nat.dvd_of_le`",
+      "endPos": {
+        "column": 23,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 24
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "No goals to be solved",
+      "endPos": {
+        "column": 13,
+        "line": 25
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 25
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_prime_factor_exists' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 31
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 31
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `«exists».intro`\",\"endPos\":{\"column\":22,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":11,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  hp2\\nhas type\\n  p > 1\\nbut is expected to have type\\n  Nat.Prime p\",\"endPos\":{\"column\":13,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":22},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `nat.dvd_of_le`\",\"endPos\":{\"column\":23,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":24},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":13,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":25},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_factor_exists' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":31},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6b0ede117812897cc409fc5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":31},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

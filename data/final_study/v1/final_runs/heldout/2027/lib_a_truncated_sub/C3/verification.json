@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 12: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  a - b + b = a\n\na b : ℕ\nh : b ≤ a\n⊢ a - b + b = a"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.052,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 12: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  a - b + b = a\n\na b : ℕ\nh : b ≤ a\n⊢ a - b + b = a",
+  "candidate_sha256": "6db4d0dac6eb16b754772b443d1cdb3ab320b605ef960339873a3b5f05243a9c",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_truncated_sub (a b : ℕ) (h : b ≤ a) : a - b + b = a := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_truncated_sub (a b : ℕ) (h : b ≤ a) : a - b + b = a := by\n  rw [add_assoc]\n  rfl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_truncated_sub = Nl2LeanCandidate.study_a_truncated_sub := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_truncated_sub\n",
+  "verification_source_sha256": "f723b956608aafde543464b7f6fc78d0c56fc6d49eb9c7ed0858083adebcec6f",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 29,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b976e4dfd78556da665ded57.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  a - b + b = a\n\na b : ℕ\nh : b ≤ a\n⊢ a - b + b = a",
+      "endPos": {
+        "column": 15,
+        "line": 12
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b976e4dfd78556da665ded57.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 6,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_truncated_sub' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 18
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b976e4dfd78556da665ded57.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 18
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b976e4dfd78556da665ded57.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  a - b + b = a\\n\\na b : ℕ\\nh : b ≤ a\\n⊢ a - b + b = a\",\"endPos\":{\"column\":15,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b976e4dfd78556da665ded57.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":6,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_truncated_sub' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b976e4dfd78556da665ded57.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

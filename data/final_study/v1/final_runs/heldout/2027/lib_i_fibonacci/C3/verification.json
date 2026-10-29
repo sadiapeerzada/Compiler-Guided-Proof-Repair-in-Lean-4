@@ -1,0 +1,105 @@
+{
+  "success": false,
+  "errors": [
+    "line 17: unknown tactic",
+    "line 17: unsolved goals\n⊢ Nat.fib (0 + 2) = Nat.fib 2",
+    "line 14: Alternative `succ` has not been provided"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.455,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 17: unknown tactic\nline 17: unsolved goals\n⊢ Nat.fib (0 + 2) = Nat.fib 2\nline 14: Alternative `succ` has not been provided",
+  "candidate_sha256": "83e777877b36303efa8ff052e1ac41e785a81d5aa69ec0abd50ec8894c47eeb4",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_i_fibonacci (n : ℕ) : Nat.fib (n + 2) = Nat.fib n + Nat.fib (n + 1) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_i_fibonacci (n : ℕ) : Nat.fib (n + 2) = Nat.fib n + Nat.fib (n + 1) :=\nby\n  induction n with\n  | zero =>\n    calc\n      Nat.fib (0 + 2) = Nat.fib 2   := by refl\n      _               = 1 + 1       := by refl\n      _               = Nat.fib 0 + Nat.fib 1 := by refl\n  | succ n =>\n    calc\n      Nat.fib (succ n + 2) = Nat.fib (n + 3)   := by refl\n      _                    = Nat.fib (n + 2) + Nat.fib (n + 3 - 1) := by refl\n      _                    = Nat.fib (n + 2) + Nat.fib (n + 2)       := by rw [Nat.fib_add]\n      _                    = Nat.fib n + Nat.fib (n + 1) + Nat.fib (n + 2) := by rw [Nat.fib_add]\n      _                    = Nat.fib n + (Nat.fib (n + 1) + Nat.fib (n + 2)) := by refl\n      _                    = Nat.fib n + Nat.fib (n + 1) := by refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_i_fibonacci = Nl2LeanCandidate.study_i_fibonacci := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_i_fibonacci\n",
+  "verification_source_sha256": "a7abc6783220685f7794b068d7e21c825947ca8632c736396b2bd71aa2cb4c0d",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 25,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c2b6bb637a4f2d2db508e5a7.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unknown tactic",
+      "endPos": null,
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c2b6bb637a4f2d2db508e5a7.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 43,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\n⊢ Nat.fib (0 + 2) = Nat.fib 2",
+      "endPos": {
+        "column": 46,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c2b6bb637a4f2d2db508e5a7.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 39,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Alternative `succ` has not been provided",
+      "endPos": {
+        "column": 11,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c2b6bb637a4f2d2db508e5a7.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_i_fibonacci' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 32
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c2b6bb637a4f2d2db508e5a7.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 32
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c2b6bb637a4f2d2db508e5a7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c2b6bb637a4f2d2db508e5a7.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":43,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\n⊢ Nat.fib (0 + 2) = Nat.fib 2\",\"endPos\":{\"column\":46,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c2b6bb637a4f2d2db508e5a7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":39,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `succ` has not been provided\",\"endPos\":{\"column\":11,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c2b6bb637a4f2d2db508e5a7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_i_fibonacci' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":32},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c2b6bb637a4f2d2db508e5a7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":32},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

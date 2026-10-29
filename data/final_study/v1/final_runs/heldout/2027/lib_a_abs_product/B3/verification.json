@@ -1,0 +1,180 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: Tactic `apply` failed: could not unify the conclusion of `@abs_eq`\n  |?a| = ?b ↔ ?a = ?b ∨ ?a = -?b\nwith the goal\n  |x * y| = x * y ∨ |x * y| = -x * y\n\nNote: The full type of `@abs_eq` is\n  ∀ {G : Type ?u.32} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\n    0 ≤ b → (|a| = b ↔ a = b ∨ a = -b)\n\nx y : ℝ\n⊢ |x * y| = x * y ∨ |x * y| = -x * y",
+    "line 17: Tactic `apply` failed: could not unify the conclusion of `@abs_mul`\n  |?a * ?b| = |?a| * |?b|\nwith the goal\n  |x| * |y| = x * y ∨ |x| * |y| = -x * y\n\nNote: The full type of `@abs_mul` is\n  ∀ {α : Type ?u.53} [inst : Ring α] [inst_1 : LinearOrder α] [IsOrderedRing α] (a b : α), |a * b| = |a| * |b|\n\nx y : ℝ\nh1 : |x * y| = x * y ∨ |x * y| = -x * y\n⊢ |x| * |y| = x * y ∨ |x| * |y| = -x * y",
+    "line 19: Unknown identifier `mul_eq_abs`",
+    "line 21: Unknown identifier `eq_abs`",
+    "line 23: Unknown identifier `eq_abs`",
+    "line 26: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\n  |x * y| = x * y ∨ |x * y| = -x * y",
+    "line 27: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h12 ?a✝` is a proof of\n  False"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 41.951,
+  "diagnostics_parsed": 9,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: Tactic `apply` failed: could not unify the conclusion of `@abs_eq`\n  |?a| = ?b ↔ ?a = ?b ∨ ?a = -?b\nwith the goal\n  |x * y| = x * y ∨ |x * y| = -x * y\n\nNote: The full type of `@abs_eq` is\n  ∀ {G : Type ?u.32} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\n    0 ≤ b → (|a| = b ↔ a = b ∨ a = -b)\n\nx y : ℝ\n⊢ |x * y| = x * y ∨ |x * y| = -x * y\nline 17: Tactic `apply` failed: could not unify the conclusion of `@abs_mul`\n  |?a * ?b| = |?a| * |?b|\nwith the goal\n  |x| * |y| = x * y ∨ |x| * |y| = -x * y\n\nNote: The full type of `@abs_mul` is\n  ∀ {α : Type ?u.53} [inst : Ring α] [inst_1 : LinearOrder α] [IsOrderedRing α] (a b : α), |a * b| = |a| * |b|\n\nx y : ℝ\nh1 : |x * y| = x * y ∨ |x * y| = -x * y\n⊢ |x| * |y| = x * y ∨ |x| * |y| = -x * y\nline 19: Unknown identifier `mul_eq_abs`\nline 21: Unknown identifier `eq_abs`\nline 23: Unknown identifier `eq_abs`\nline 26: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\n  |x * y| = x * y ∨ |x * y| = -x * y\nline 27: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h12 ?a✝` is a proof of\n  False",
+  "candidate_sha256": "d0202590b10f8a106ca7bbd759d1a9941f4363d657bf6e8e9e87b9b176497c5c",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_abs_product (x y : ℝ) : |x * y| = |x| * |y| := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_a_abs_product (x y : ℝ) : |x * y| = |x| * |y| :=\nby\n  have h1 : |x * y| = x * y ∨ |x * y| = -x * y := by\n    apply abs_eq\n  have h2 : |x| * |y| = x * y ∨ |x| * |y| = -x * y := by\n    apply abs_mul\n  have h3 : x * y = |x * y| ∨ x * y = -|x * y| := by\n    apply mul_eq_abs\n  have h4 : x = |x| ∨ x = -|x| := by\n    apply eq_abs\n  have h5 : y = |y| ∨ y = -|y| := by\n    apply eq_abs\n  have h6 : |x * y| = |x| * |y| := by\n    by_cases h12 : x * y = |x * y|\n    · rw [h12, h1]\n    · rw [h12, h2]\n  exact h6\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_abs_product = Nl2LeanCandidate.study_a_abs_product := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_abs_product\n",
+  "verification_source_sha256": "2020c02edca3f4037635af1183f0bb7d08aa2945149e5f631453f2acb52168c7",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 27,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `apply` failed: could not unify the conclusion of `@abs_eq`\n  |?a| = ?b ↔ ?a = ?b ∨ ?a = -?b\nwith the goal\n  |x * y| = x * y ∨ |x * y| = -x * y\n\nNote: The full type of `@abs_eq` is\n  ∀ {G : Type ?u.32} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\n    0 ≤ b → (|a| = b ↔ a = b ∨ a = -b)\n\nx y : ℝ\n⊢ |x * y| = x * y ∨ |x * y| = -x * y",
+      "endPos": {
+        "column": 16,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `apply` failed: could not unify the conclusion of `@abs_mul`\n  |?a * ?b| = |?a| * |?b|\nwith the goal\n  |x| * |y| = x * y ∨ |x| * |y| = -x * y\n\nNote: The full type of `@abs_mul` is\n  ∀ {α : Type ?u.53} [inst : Ring α] [inst_1 : LinearOrder α] [IsOrderedRing α] (a b : α), |a * b| = |a| * |b|\n\nx y : ℝ\nh1 : |x * y| = x * y ∨ |x * y| = -x * y\n⊢ |x| * |y| = x * y ∨ |x| * |y| = -x * y",
+      "endPos": {
+        "column": 17,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `mul_eq_abs`",
+      "endPos": {
+        "column": 20,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `eq_abs`",
+      "endPos": {
+        "column": 16,
+        "line": 21
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 21
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `eq_abs`",
+      "endPos": {
+        "column": 16,
+        "line": 23
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 23
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\n  |x * y| = x * y ∨ |x * y| = -x * y",
+      "endPos": {
+        "column": 17,
+        "line": 26
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 15,
+        "line": 26
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h12 ?a✝` is a proof of\n  False",
+      "endPos": {
+        "column": 13,
+        "line": 27
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 10,
+        "line": 27
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_abs_product' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 33
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 33
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `apply` failed: could not unify the conclusion of `@abs_eq`\\n  |?a| = ?b ↔ ?a = ?b ∨ ?a = -?b\\nwith the goal\\n  |x * y| = x * y ∨ |x * y| = -x * y\\n\\nNote: The full type of `@abs_eq` is\\n  ∀ {G : Type ?u.32} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\\n    0 ≤ b → (|a| = b ↔ a = b ∨ a = -b)\\n\\nx y : ℝ\\n⊢ |x * y| = x * y ∨ |x * y| = -x * y\",\"endPos\":{\"column\":16,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `apply` failed: could not unify the conclusion of `@abs_mul`\\n  |?a * ?b| = |?a| * |?b|\\nwith the goal\\n  |x| * |y| = x * y ∨ |x| * |y| = -x * y\\n\\nNote: The full type of `@abs_mul` is\\n  ∀ {α : Type ?u.53} [inst : Ring α] [inst_1 : LinearOrder α] [IsOrderedRing α] (a b : α), |a * b| = |a| * |b|\\n\\nx y : ℝ\\nh1 : |x * y| = x * y ∨ |x * y| = -x * y\\n⊢ |x| * |y| = x * y ∨ |x| * |y| = -x * y\",\"endPos\":{\"column\":17,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `mul_eq_abs`\",\"endPos\":{\"column\":20,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `eq_abs`\",\"endPos\":{\"column\":16,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":21},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `eq_abs`\",\"endPos\":{\"column\":16,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":23},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\\n  |x * y| = x * y ∨ |x * y| = -x * y\",\"endPos\":{\"column\":17,\"line\":26},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":15,\"line\":26},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h12 ?a✝` is a proof of\\n  False\",\"endPos\":{\"column\":13,\"line\":27},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":10,\"line\":27},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_abs_product' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":33},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e7ddc939df972217a9c18fe2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":33},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

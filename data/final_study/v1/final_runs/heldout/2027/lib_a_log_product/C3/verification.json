@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Application type mismatch: The argument\n  hx\nhas type\n  x ≠ 0\nbut is expected to have type\n  0 < x\nin the application\n  mul_pos hx",
+    "line 15: 'calc' expression has type\n  (Real.log (x * y) = Real.log |x * y|) = (Real.log (x * y) = Real.log |x * y|)\nbut is expected to have type\n  Real.log (x * y) = Real.log x + Real.log y",
+    "line 16: unexpected token ':'; expected command"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.441,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Application type mismatch: The argument\n  hx\nhas type\n  x ≠ 0\nbut is expected to have type\n  0 < x\nin the application\n  mul_pos hx\nline 15: 'calc' expression has type\n  (Real.log (x * y) = Real.log |x * y|) = (Real.log (x * y) = Real.log |x * y|)\nbut is expected to have type\n  Real.log (x * y) = Real.log x + Real.log y\nline 16: unexpected token ':'; expected command",
+  "candidate_sha256": "2d7a743c16cad0ee586ef6ed403b7bdd45aa6ae348831fa404381836823382cc",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_log_product (x y : ℝ) (hx : x ≠ 0) (hy : y ≠ 0) : Real.log (x * y) = Real.log x + Real.log y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_log_product (x y : ℝ) (hx : x ≠ 0) (hy : y ≠ 0) : Real.log (x * y) = Real.log x + Real.log y\n:= by\n  have hxy_pos : 0 < x * y := by\n    exact mul_pos hx hy\n  calc\n    Real.log (x * y) = Real.log (abs (x * y)) : by rw [Real.log_abs]\n    ... = Real.log (abs x * abs y) : by rw [abs_mul]\n    ... = Real.log (abs x) + Real.log (abs y) : by rw [Real.log_mul]\n    ... = Real.log x + Real.log y : by rw [hx, hy, abs_of_pos, abs_of_pos, Real.log_abs]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_log_product = Nl2LeanCandidate.study_a_log_product := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_log_product\n",
+  "verification_source_sha256": "9579ab6cd1d82dc44ed7bcda1a6d0b8ef2239115532f81a9195f4b90f8c915b0",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 27,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5fea3397c7b8d28216a5d8fc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Application type mismatch: The argument\n  hx\nhas type\n  x ≠ 0\nbut is expected to have type\n  0 < x\nin the application\n  mul_pos hx",
+      "endPos": {
+        "column": 20,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5fea3397c7b8d28216a5d8fc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 18,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'calc' expression has type\n  (Real.log (x * y) = Real.log |x * y|) = (Real.log (x * y) = Real.log |x * y|)\nbut is expected to have type\n  Real.log (x * y) = Real.log x + Real.log y",
+      "endPos": {
+        "column": 6,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5fea3397c7b8d28216a5d8fc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token ':'; expected command",
+      "endPos": {
+        "column": 47,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5fea3397c7b8d28216a5d8fc.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 46,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_log_product' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5fea3397c7b8d28216a5d8fc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 24
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5fea3397c7b8d28216a5d8fc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  hx\\nhas type\\n  x ≠ 0\\nbut is expected to have type\\n  0 < x\\nin the application\\n  mul_pos hx\",\"endPos\":{\"column\":20,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5fea3397c7b8d28216a5d8fc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":18,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'calc' expression has type\\n  (Real.log (x * y) = Real.log |x * y|) = (Real.log (x * y) = Real.log |x * y|)\\nbut is expected to have type\\n  Real.log (x * y) = Real.log x + Real.log y\",\"endPos\":{\"column\":6,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5fea3397c7b8d28216a5d8fc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token ':'; expected command\",\"endPos\":{\"column\":47,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5fea3397c7b8d28216a5d8fc.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":46,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_log_product' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5fea3397c7b8d28216a5d8fc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

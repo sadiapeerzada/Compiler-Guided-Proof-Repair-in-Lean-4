@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: `obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`",
+    "line 15: unexpected token 'with'; expected command"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.026,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: `obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`\nline 15: unexpected token 'with'; expected command",
+  "candidate_sha256": "5414ace36b13e50cea45433a2dc95a27c27814e54b07b8d5a5cde7ccf9f173b9",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_pigeonhole (s t : Finset ℕ) (f : ℕ → ℕ) (h : t.card < s.card) (hm : ∀ x ∈ s, f x ∈ t) : ∃ x ∈ s, ∃ y ∈ s, x ≠ y ∧ f x = f y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_pigeonhole (s t : Finset ℕ) (f : ℕ → ℕ) (h : t.card < s.card) (hm : ∀ x ∈ s, f x ∈ t) : ∃ x ∈ s, ∃ y ∈ s, x ≠ y ∧ f x = f y\n:= by\n  have h1 : ∀ x ∈ s, f x ∈ t := hm\n  have h2 : t.card < s.card := h\n  obtain x with hx : x ∈ s ∧ f x ∈ t := by\n    use [choose (λ x hx, h1 x hx)]; split; assumption\n  have h3 : f x ∈ t := hx.2\n  have h4 : ∃ y ∈ s, y ≠ x ∧ f y = f x := by\n    have h5 : s.card > 1 := by\n      rw [h2]; exact Nat.lt_of_le_of_lt (Finset.card_pos_of_mem hx.1) (Nat.lt_of_sub_pos (Nat.sub_self 1))\n    obtain y with hy : y ∈ s ∧ f y ∈ t := by\n      use [choose (λ y hy, h1 y hy)]; split; assumption\n    obtain rfl | h6 : y = x := by\n      rwa [hx.1, Finset.mem_insert]\n    · contradiction\n    · exact ⟨y, hy.1, h6, h3, h1 y hy.1⟩\n  obtain y with hy : y ∈ s ∧ y ≠ x ∧ f y = f x := h4\n  exact ⟨x, y, hy.2, hy.3⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_pigeonhole = Nl2LeanCandidate.study_q_pigeonhole := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_pigeonhole\n",
+  "verification_source_sha256": "24d76e984583e35d823cbb9343f1611c8a8a85be8287b66fcbb6473c668e2d73",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 26,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c22c7d2b902e24570cd83d61.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "`obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`",
+      "endPos": {
+        "column": 10,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c22c7d2b902e24570cd83d61.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token 'with'; expected command",
+      "endPos": {
+        "column": 15,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c22c7d2b902e24570cd83d61.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 11,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_pigeonhole' depends on axioms: [propext, sorryAx, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 33
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c22c7d2b902e24570cd83d61.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 33
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":26,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c22c7d2b902e24570cd83d61.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"`obtain` requires either an expected type or a value.\\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`\",\"endPos\":{\"column\":10,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c22c7d2b902e24570cd83d61.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'with'; expected command\",\"endPos\":{\"column\":15,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c22c7d2b902e24570cd83d61.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":11,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_pigeonhole' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":33},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c22c7d2b902e24570cd83d61.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":33},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

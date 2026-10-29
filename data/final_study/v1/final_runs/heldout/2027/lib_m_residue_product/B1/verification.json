@@ -1,0 +1,162 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Unknown identifier `mod_le`",
+    "line 14: No goals to be solved",
+    "line 16: Unknown identifier `mod_le`",
+    "line 16: No goals to be solved",
+    "line 12: unsolved goals\na b m : ℕ\nh1 : a % m * (b % m) % m ≤ a * b % m\nh2 : a * b % m ≤ a % m * (b % m) % m\n⊢ a * b % m = a % m * (b % m) % m",
+    "line 16: unexpected token '['; expected command"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 35.552,
+  "diagnostics_parsed": 8,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Unknown identifier `mod_le`\nline 14: No goals to be solved\nline 16: Unknown identifier `mod_le`\nline 16: No goals to be solved\nline 12: unsolved goals\na b m : ℕ\nh1 : a % m * (b % m) % m ≤ a * b % m\nh2 : a * b % m ≤ a % m * (b % m) % m\n⊢ a * b % m = a % m * (b % m) % m\nline 16: unexpected token '['; expected command",
+  "candidate_sha256": "8cad94fda4980488be4b96fe2533ffd287a99c3ea99bbd749238768e1a83775d",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_residue_product (a b m : ℕ) : (a * b) % m = ((a % m) * (b % m)) % m := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_residue_product (a b m : ℕ) : (a * b) % m = ((a % m) * (b % m)) % m\n:= by\n  have h1 : (a % m) * (b % m) % m ≤ (a * b) % m := by\n    apply mod_le; assumption\n  have h2 : (a * b) % m ≤ (a % m) * (b % m) % m := by\n    apply mod_le; apply mul_mod; [apply mod_le, apply mod_le]\n  exact le_antisymm h1 h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_residue_product = Nl2LeanCandidate.study_m_residue_product := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_residue_product\n",
+  "verification_source_sha256": "809dc70a9e36942a154a25c0e4af9c230aa7523e4247b9888b8238529c1f54ef",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `mod_le`",
+      "endPos": {
+        "column": 16,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "No goals to be solved",
+      "endPos": {
+        "column": 28,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 18,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `mod_le`",
+      "endPos": {
+        "column": 16,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "No goals to be solved",
+      "endPos": {
+        "column": 31,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 18,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\na b m : ℕ\nh1 : a % m * (b % m) % m ≤ a * b % m\nh2 : a * b % m ≤ a % m * (b % m) % m\n⊢ a * b % m = a % m * (b % m) % m",
+      "endPos": {
+        "column": 32,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 3,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token '['; expected command",
+      "endPos": {
+        "column": 34,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 33,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_residue_product' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 22
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 22
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `mod_le`\",\"endPos\":{\"column\":16,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":28,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":18,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `mod_le`\",\"endPos\":{\"column\":16,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":31,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":18,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b m : ℕ\\nh1 : a % m * (b % m) % m ≤ a * b % m\\nh2 : a * b % m ≤ a % m * (b % m) % m\\n⊢ a * b % m = a % m * (b % m) % m\",\"endPos\":{\"column\":32,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token '['; expected command\",\"endPos\":{\"column\":34,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":33,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_residue_product' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_672b969777d80423838c06be.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

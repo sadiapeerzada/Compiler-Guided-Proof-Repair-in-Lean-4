@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 10: Unknown identifier `lt_of_add_pos`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 20.212,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 10: Unknown identifier `lt_of_add_pos`",
+  "candidate_sha256": "05ab228662736a3b63f22104dcb1ec5be3a064f129bbacf63c8faa2c5c2e818f",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\ntheorem add_three_lt_add_seven (n : \u2115) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : \u2115) : n + 3 < n + 7 :=\nby\n  have h : 3 < 7 := lt_of_add_pos (by simp)\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+  "verification_source_sha256": "a69b129178707ffb96e99074c15c328e801f42abbad2673d3c9584ba408847ed",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 30,
+        "line": 4
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/format_probe_ineq004.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 4
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `lt_of_add_pos`",
+      "endPos": {
+        "column": 33,
+        "line": 10
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/format_probe_ineq004.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 20,
+        "line": 10
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/format_probe_ineq004.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 16
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":4},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/format_probe_ineq004.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":4},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `lt_of_add_pos`\",\"endPos\":{\"column\":33,\"line\":10},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/format_probe_ineq004.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":20,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/format_probe_ineq004.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":16},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

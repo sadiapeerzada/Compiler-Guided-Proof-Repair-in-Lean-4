@@ -1,0 +1,906 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "heldout",
+  "seed": 2027,
+  "problem_id": "lib_q_amgm",
+  "protocol_sha256": "a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317",
+  "dataset_sha256": "47e1b9acc1efc5c6be1113c0b4e103b29f6cb7aeed77a5ffe98bae97fdda9a5b",
+  "status": "completed",
+  "started_at": "2026-10-29T14:05:32.937873+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+          "candidate": "open scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n      _ ≥ 0 : by simp [sq_nonneg]\n  exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/B1/completion.json",
+          "completion_sha256": "74633fc3edc7764367ad57aa785e5441e2bcc325d6aec4a0066486f687023697",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/B1/verification.json",
+          "verification_sha256": "3ee6590b90fe2f69b605b65e8e6498637f90405fce00deb21a9a7c6ef6616967",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+              "line 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+              "line 14: unexpected token ':'; expected command"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.166,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\nline 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\nline 14: unexpected token ':'; expected command",
+            "candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n      _ ≥ 0 : by simp [sq_nonneg]\n  exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_amgm = Nl2LeanCandidate.study_q_amgm := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_amgm\n",
+            "verification_source_sha256": "113c43804c51c1c4dec029c461988fd8649d5b8e3d3145f8de1fb060b5ad07df",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 20,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4315a605818878aaf3d92aac.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+                "endPos": {
+                  "column": 8,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4315a605818878aaf3d92aac.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+                "endPos": {
+                  "column": 45,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4315a605818878aaf3d92aac.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 62,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token ':'; expected command",
+                "endPos": {
+                  "column": 47,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4315a605818878aaf3d92aac.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 46,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4315a605818878aaf3d92aac.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4315a605818878aaf3d92aac.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'calc' expression has type\\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\\nbut is expected to have type\\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\",\"endPos\":{\"column\":8,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4315a605818878aaf3d92aac.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx y : ℝ\\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\",\"endPos\":{\"column\":45,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4315a605818878aaf3d92aac.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":62,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token ':'; expected command\",\"endPos\":{\"column\":47,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4315a605818878aaf3d92aac.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":46,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4315a605818878aaf3d92aac.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 352,
+          "completion_tokens": 117,
+          "generation_seconds": 8.177788791996136,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "fde99c39697f6d69ef417dade58dc5cfa499ffbe27412bc83ed01d0aaf27d502",
+          "candidate": "open scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n    _ ≥ 0 : by simp [sq_nonneg]\n  exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/B2/completion.json",
+          "completion_sha256": "d64a4dce51af6d45be42ff0722a653944449d9b5ab636c0fd0c3fbb36b50518e",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/B2/verification.json",
+          "verification_sha256": "219d78613bfec02091924cec5ea091ba87fd4dac394f1edaab8787724e5cfb85",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+              "line 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+              "line 14: unexpected token ':'; expected command"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 32.631,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\nline 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\nline 14: unexpected token ':'; expected command",
+            "candidate_sha256": "fde99c39697f6d69ef417dade58dc5cfa499ffbe27412bc83ed01d0aaf27d502",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n    _ ≥ 0 : by simp [sq_nonneg]\n  exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_amgm = Nl2LeanCandidate.study_q_amgm := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_amgm\n",
+            "verification_source_sha256": "265d63f7cd62c61f3a38d6ecefd770f283cd83c12c2083089204858d1c202dda",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 20,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c17cd41edd9a242aeb362ebd.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+                "endPos": {
+                  "column": 8,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c17cd41edd9a242aeb362ebd.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+                "endPos": {
+                  "column": 45,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c17cd41edd9a242aeb362ebd.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 62,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token ':'; expected command",
+                "endPos": {
+                  "column": 47,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c17cd41edd9a242aeb362ebd.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 46,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c17cd41edd9a242aeb362ebd.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c17cd41edd9a242aeb362ebd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'calc' expression has type\\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\\nbut is expected to have type\\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\",\"endPos\":{\"column\":8,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c17cd41edd9a242aeb362ebd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx y : ℝ\\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\",\"endPos\":{\"column\":45,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c17cd41edd9a242aeb362ebd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":62,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token ':'; expected command\",\"endPos\":{\"column\":47,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c17cd41edd9a242aeb362ebd.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":46,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c17cd41edd9a242aeb362ebd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 352,
+          "completion_tokens": 117,
+          "generation_seconds": 7.136209458003577,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "fde99c39697f6d69ef417dade58dc5cfa499ffbe27412bc83ed01d0aaf27d502",
+          "candidate": "open scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n    _ ≥ 0 : by simp [sq_nonneg]\n  exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/B3/completion.json",
+          "completion_sha256": "57778c3785e1d29cc8b453af0028d63f31aa612529d6e5c559d7586898f16403",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/B3/verification.json",
+          "verification_sha256": "db5e0559d4aba120f449ddd199aa304b398dd7a2288cad192aec222ed8b1d06d",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+              "line 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+              "line 14: unexpected token ':'; expected command"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 31.519,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\nline 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\nline 14: unexpected token ':'; expected command",
+            "candidate_sha256": "fde99c39697f6d69ef417dade58dc5cfa499ffbe27412bc83ed01d0aaf27d502",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n    _ ≥ 0 : by simp [sq_nonneg]\n  exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_amgm = Nl2LeanCandidate.study_q_amgm := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_amgm\n",
+            "verification_source_sha256": "265d63f7cd62c61f3a38d6ecefd770f283cd83c12c2083089204858d1c202dda",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 20,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d791c5bdcec9a5ab7b8ded9c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+                "endPos": {
+                  "column": 8,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d791c5bdcec9a5ab7b8ded9c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+                "endPos": {
+                  "column": 45,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d791c5bdcec9a5ab7b8ded9c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 62,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token ':'; expected command",
+                "endPos": {
+                  "column": 47,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d791c5bdcec9a5ab7b8ded9c.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 46,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d791c5bdcec9a5ab7b8ded9c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d791c5bdcec9a5ab7b8ded9c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'calc' expression has type\\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\\nbut is expected to have type\\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\",\"endPos\":{\"column\":8,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d791c5bdcec9a5ab7b8ded9c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx y : ℝ\\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\",\"endPos\":{\"column\":45,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d791c5bdcec9a5ab7b8ded9c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":62,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token ':'; expected command\",\"endPos\":{\"column\":47,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d791c5bdcec9a5ab7b8ded9c.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":46,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d791c5bdcec9a5ab7b8ded9c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 352,
+          "completion_tokens": 117,
+          "generation_seconds": 7.039875000002212,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+          "candidate": "open scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n      _ ≥ 0 : by simp [sq_nonneg]\n  exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/C1/completion.json",
+          "completion_sha256": "42c30e8656dabd7b7d6a81e16718705f9b80cd2ebe02f11a27445f439b1340af",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/C1/verification.json",
+          "verification_sha256": "8ee16f225769b971d993721836ebd3d4eda8097706b624a3875768f0b8fb6aae",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+              "line 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+              "line 14: unexpected token ':'; expected command"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.747,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\nline 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\nline 14: unexpected token ':'; expected command",
+            "candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n      _ ≥ 0 : by simp [sq_nonneg]\n  exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_amgm = Nl2LeanCandidate.study_q_amgm := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_amgm\n",
+            "verification_source_sha256": "113c43804c51c1c4dec029c461988fd8649d5b8e3d3145f8de1fb060b5ad07df",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 20,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+                "endPos": {
+                  "column": 8,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+                "endPos": {
+                  "column": 45,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 62,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token ':'; expected command",
+                "endPos": {
+                  "column": 47,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 46,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'calc' expression has type\\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\\nbut is expected to have type\\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\",\"endPos\":{\"column\":8,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx y : ℝ\\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\",\"endPos\":{\"column\":45,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":62,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token ':'; expected command\",\"endPos\":{\"column\":47,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":46,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1108,
+          "completion_tokens": 117,
+          "generation_seconds": 11.118191458001093,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"'calc' expression has type\\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\\nbut is expected to have type\\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\",\n      \"endPos\": {\n        \"column\": 8,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 4,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nx y : ℝ\\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\",\n      \"endPos\": {\n        \"column\": 45,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 62,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token ':'; expected command\",\n      \"endPos\": {\n        \"column\": 47,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 46,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 21\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 21\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+          "candidate": "open scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n      _ ≥ 0 : by simp [sq_nonneg]\n  exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/C2/completion.json",
+          "completion_sha256": "0ffd03799ab36c1c76a822445ae571b4c0f6be73d52445f0df59e2f679c7b088",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/C2/verification.json",
+          "verification_sha256": "9ffd9c71e4607ef16d8928eb15d096e5c6b2e74ad6911d1518c6adc867636f06",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+              "line 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+              "line 14: unexpected token ':'; expected command"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.515,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\nline 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\nline 14: unexpected token ':'; expected command",
+            "candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n      _ ≥ 0 : by simp [sq_nonneg]\n  exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_amgm = Nl2LeanCandidate.study_q_amgm := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_amgm\n",
+            "verification_source_sha256": "113c43804c51c1c4dec029c461988fd8649d5b8e3d3145f8de1fb060b5ad07df",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 20,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+                "endPos": {
+                  "column": 8,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+                "endPos": {
+                  "column": 45,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 62,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token ':'; expected command",
+                "endPos": {
+                  "column": 47,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 46,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'calc' expression has type\\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\\nbut is expected to have type\\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\",\"endPos\":{\"column\":8,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx y : ℝ\\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\",\"endPos\":{\"column\":45,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":62,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token ':'; expected command\",\"endPos\":{\"column\":47,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":46,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1120,
+          "completion_tokens": 117,
+          "generation_seconds": 11.138230290998763,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"'calc' expression has type\\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\\nbut is expected to have type\\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\",\n      \"endPos\": {\n        \"column\": 8,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 4,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nx y : ℝ\\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\",\n      \"endPos\": {\n        \"column\": 45,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 62,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token ':'; expected command\",\n      \"endPos\": {\n        \"column\": 47,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 46,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 21\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a4732367e170b29f5d10771c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 21\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+          "candidate": "open scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n      _ ≥ 0 : by simp [sq_nonneg]\n  exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/C3/completion.json",
+          "completion_sha256": "c5d4fd3a06c9469007f01c973e8b844999a9eb8269b989d142c315c711f05f2d",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/C3/verification.json",
+          "verification_sha256": "ffa46c8f25a0f6d3686a9c12aed203e941d2f6c21998ad9c945bcc6b749d1f46",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+              "line 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+              "line 14: unexpected token ':'; expected command"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 36.62,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\nline 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\nline 14: unexpected token ':'; expected command",
+            "candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n      _ ≥ 0 : by simp [sq_nonneg]\n  exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_amgm = Nl2LeanCandidate.study_q_amgm := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_amgm\n",
+            "verification_source_sha256": "113c43804c51c1c4dec029c461988fd8649d5b8e3d3145f8de1fb060b5ad07df",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 20,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99a79e390e992cfbccd04e7e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+                "endPos": {
+                  "column": 8,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99a79e390e992cfbccd04e7e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+                "endPos": {
+                  "column": 45,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99a79e390e992cfbccd04e7e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 62,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token ':'; expected command",
+                "endPos": {
+                  "column": 47,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99a79e390e992cfbccd04e7e.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 46,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99a79e390e992cfbccd04e7e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99a79e390e992cfbccd04e7e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'calc' expression has type\\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\\nbut is expected to have type\\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\",\"endPos\":{\"column\":8,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99a79e390e992cfbccd04e7e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx y : ℝ\\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\",\"endPos\":{\"column\":45,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99a79e390e992cfbccd04e7e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":62,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token ':'; expected command\",\"endPos\":{\"column\":47,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99a79e390e992cfbccd04e7e.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":46,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99a79e390e992cfbccd04e7e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1120,
+          "completion_tokens": 117,
+          "generation_seconds": 11.122687791998032,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"'calc' expression has type\\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\\nbut is expected to have type\\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\",\n      \"endPos\": {\n        \"column\": 8,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 4,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nx y : ℝ\\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\",\n      \"endPos\": {\n        \"column\": 45,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 62,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token ':'; expected command\",\n      \"endPos\": {\n        \"column\": 47,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 46,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 21\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_93f541c838e08a9bdc84a46c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 21\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+    "candidate": "open scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n      _ ≥ 0 : by simp [sq_nonneg]\n  exact h",
+    "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/initial/completion.json",
+    "completion_sha256": "5857b5fa4994ff19b715f43a07f616b0129b82f32f6de45c919b0b2c97cd6a71",
+    "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_amgm/initial/verification.json",
+    "verification_sha256": "6c2991fa95d18265cebc39ea634feed5f19e8edfcbb491c1b912772a262f6a32",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+        "line 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+        "line 14: unexpected token ':'; expected command"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 38.169,
+      "diagnostics_parsed": 5,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 13: 'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\nline 11: unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\nline 14: unexpected token ':'; expected command",
+      "candidate_sha256": "e05341915ba82d9fc6f5d4f3261a28b1413c32665e0db70a7bdcc968a021a5d9",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_amgm (x y : ℝ) : 2 * x * y ≤ x ^ 2 + y ^ 2 := by\n  have h : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0 := by\n    calc\n      x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2 : by ring\n      _ ≥ 0 : by simp [sq_nonneg]\n  exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_amgm = Nl2LeanCandidate.study_q_amgm := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_amgm\n",
+      "verification_source_sha256": "113c43804c51c1c4dec029c461988fd8649d5b8e3d3145f8de1fb060b5ad07df",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 20,
+            "line": 6
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 6
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "'calc' expression has type\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\nbut is expected to have type\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0",
+          "endPos": {
+            "column": 8,
+            "line": 13
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 4,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "unsolved goals\nx y : ℝ\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2",
+          "endPos": {
+            "column": 45,
+            "line": 14
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "Tactic.unsolvedGoals",
+          "pos": {
+            "column": 62,
+            "line": 11
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "unexpected token ':'; expected command",
+          "endPos": {
+            "column": 47,
+            "line": 14
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 46,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+          "endPos": {
+            "column": 6,
+            "line": 21
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 21
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'calc' expression has type\\n  (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2) = (x ^ 2 + y ^ 2 - 2 * x * y = (x - y) ^ 2)\\nbut is expected to have type\\n  x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\",\"endPos\":{\"column\":8,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx y : ℝ\\nh : x ^ 2 + y ^ 2 - 2 * x * y ≥ 0\\n⊢ 2 * x * y ≤ x ^ 2 + y ^ 2\",\"endPos\":{\"column\":45,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":62,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token ':'; expected command\",\"endPos\":{\"column\":47,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":46,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_amgm' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2082eab01eba9e5d0e28ddc6.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 203,
+    "completion_tokens": 117,
+    "generation_seconds": 6.9538627919973806
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-29T14:11:08.757773+00:00"
+}

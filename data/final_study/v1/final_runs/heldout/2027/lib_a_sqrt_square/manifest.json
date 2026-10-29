@@ -1,0 +1,780 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "heldout",
+  "seed": 2027,
+  "problem_id": "lib_a_sqrt_square",
+  "protocol_sha256": "a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317",
+  "dataset_sha256": "47e1b9acc1efc5c6be1113c0b4e103b29f6cb7aeed77a5ffe98bae97fdda9a5b",
+  "status": "completed",
+  "started_at": "2026-10-28T11:40:50.906767+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "0dc2c46112148e6a0089a30b861d58332f9aecdf9a9eab1cea8250e7a3c0d186",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "0dc2c46112148e6a0089a30b861d58332f9aecdf9a9eab1cea8250e7a3c0d186",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "7fd730443479d1af568dabf785838a231f0a047a517104ab95cc03cf05c0a070",
+          "candidate": "open scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_def]\n  have h' : (Real.sqrt x) * (Real.sqrt x) = x := by\n    rw [Real.sqrt_def]\n    exact h\n  exact h'",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/B1/completion.json",
+          "completion_sha256": "38956bb37b87e8f86a7a9b0c7dda7c561cdd672dd577f0fbd8ff32fdf25047a7",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/B1/verification.json",
+          "verification_sha256": "f948c2c98f02d11d109550a91ed10a750b11cecb1ad331f1384e30bfeed22873",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 12: Unknown constant `Real.sqrt_def`",
+              "line 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 36.231,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 12: Unknown constant `Real.sqrt_def`\nline 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+            "candidate_sha256": "7fd730443479d1af568dabf785838a231f0a047a517104ab95cc03cf05c0a070",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_def]\n  have h' : (Real.sqrt x) * (Real.sqrt x) = x := by\n    rw [Real.sqrt_def]\n    exact h\n  exact h'\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_sqrt_square = Nl2LeanCandidate.study_a_sqrt_square := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_sqrt_square\n",
+            "verification_source_sha256": "be8032cb660fe369d1009f1f1b240cf2fb24c76c982f4fdb388480343c48c4a3",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99f2ae4506ace0935af2d772.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Real.sqrt_def`",
+                "endPos": {
+                  "column": 19,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99f2ae4506ace0935af2d772.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 6,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+                "endPos": {
+                  "column": 10,
+                  "line": 16
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99f2ae4506ace0935af2d772.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 75,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99f2ae4506ace0935af2d772.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99f2ae4506ace0935af2d772.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.sqrt_def`\",\"endPos\":{\"column\":19,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99f2ae4506ace0935af2d772.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":6,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx : ℝ\\nh : 0 ≤ x\\n⊢ √x ^ 2 = x\",\"endPos\":{\"column\":10,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99f2ae4506ace0935af2d772.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":75,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_99f2ae4506ace0935af2d772.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 289,
+          "completion_tokens": 85,
+          "generation_seconds": 9.518542959000115,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "0dc2c46112148e6a0089a30b861d58332f9aecdf9a9eab1cea8250e7a3c0d186",
+          "candidate": "open scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_def]\n  exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/B2/completion.json",
+          "completion_sha256": "c571ee5ab955d72db0e242ea0c525e62c52ba8ab6ed58f921fbb0acb96b3cbd5",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/B2/verification.json",
+          "verification_sha256": "57aa40669ecece781a7012789221320a200d94b3ed9af05f66490bf88a018a71",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 12: Unknown constant `Real.sqrt_def`",
+              "line 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 44.064,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 12: Unknown constant `Real.sqrt_def`\nline 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+            "candidate_sha256": "0dc2c46112148e6a0089a30b861d58332f9aecdf9a9eab1cea8250e7a3c0d186",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_def]\n  exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_sqrt_square = Nl2LeanCandidate.study_a_sqrt_square := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_sqrt_square\n",
+            "verification_source_sha256": "e6aba2985d7ed7b4b992c2ead2c4e20d9af55147c96044fd4c9796fba5df25b1",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_f5f3b85a542be089c0b7bb5e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Real.sqrt_def`",
+                "endPos": {
+                  "column": 19,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_f5f3b85a542be089c0b7bb5e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 6,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+                "endPos": {
+                  "column": 9,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_f5f3b85a542be089c0b7bb5e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 75,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_f5f3b85a542be089c0b7bb5e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 18
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_f5f3b85a542be089c0b7bb5e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.sqrt_def`\",\"endPos\":{\"column\":19,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_f5f3b85a542be089c0b7bb5e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":6,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx : ℝ\\nh : 0 ≤ x\\n⊢ √x ^ 2 = x\",\"endPos\":{\"column\":9,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_f5f3b85a542be089c0b7bb5e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":75,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_f5f3b85a542be089c0b7bb5e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 321,
+          "completion_tokens": 53,
+          "generation_seconds": 6.001883833001557,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "293a7a58dbe07f6a091f6a8d6b9c0cc8fabb5fbcb28d9f56ecaf0acf8b6d390f",
+          "candidate": "open scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_def]\n  simp [h]",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/B3/completion.json",
+          "completion_sha256": "665af513839f092ff9f22d9210b40da5fd563403ef1d5b298b6d15e937c120e8",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/B3/verification.json",
+          "verification_sha256": "5bbd7c8491ff19a55af5f345a7b4e3a8aa6a3b13d06f3e066c378a880a9c1dee",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 12: Unknown constant `Real.sqrt_def`",
+              "line 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 43.577,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 12: Unknown constant `Real.sqrt_def`\nline 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+            "candidate_sha256": "293a7a58dbe07f6a091f6a8d6b9c0cc8fabb5fbcb28d9f56ecaf0acf8b6d390f",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_def]\n  simp [h]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_sqrt_square = Nl2LeanCandidate.study_a_sqrt_square := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_sqrt_square\n",
+            "verification_source_sha256": "7e8701732a1356d2431b56fdd966e77a6c7defaae00d2eb2f2430eb8b3272e9d",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cb07cf26a8dccc104da28940.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Real.sqrt_def`",
+                "endPos": {
+                  "column": 19,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cb07cf26a8dccc104da28940.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 6,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+                "endPos": {
+                  "column": 10,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cb07cf26a8dccc104da28940.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 75,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cb07cf26a8dccc104da28940.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 18
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cb07cf26a8dccc104da28940.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.sqrt_def`\",\"endPos\":{\"column\":19,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cb07cf26a8dccc104da28940.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":6,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx : ℝ\\nh : 0 ≤ x\\n⊢ √x ^ 2 = x\",\"endPos\":{\"column\":10,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cb07cf26a8dccc104da28940.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":75,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cb07cf26a8dccc104da28940.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 289,
+          "completion_tokens": 54,
+          "generation_seconds": 4.277015540999855,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "0dc2c46112148e6a0089a30b861d58332f9aecdf9a9eab1cea8250e7a3c0d186",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "69fd5ded7039f2fd1e88d180692807d419445c3003ed2d9e9654d8372adda1c6",
+          "candidate": "open scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_sq_of_nonneg h]",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/C1/completion.json",
+          "completion_sha256": "60264cbed2f34b0eb7e0cbde3ff15168c9baa8be0b02a8072c65c0fcaffc404e",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/C1/verification.json",
+          "verification_sha256": "512b17a8b152b180a905af2a69388e28f741dd0d3eab536d69bf787facf0dd93",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 12: Unknown constant `Real.sqrt_sq_of_nonneg`",
+              "line 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.854,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 12: Unknown constant `Real.sqrt_sq_of_nonneg`\nline 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+            "candidate_sha256": "69fd5ded7039f2fd1e88d180692807d419445c3003ed2d9e9654d8372adda1c6",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_sq_of_nonneg h]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_sqrt_square = Nl2LeanCandidate.study_a_sqrt_square := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_sqrt_square\n",
+            "verification_source_sha256": "14a42b54d85c1ac9eba24ee82664bd3b3809f51ede89b0aa09c013b1e04d1aa0",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b366d516358aee39bd391ecc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Real.sqrt_sq_of_nonneg`",
+                "endPos": {
+                  "column": 28,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b366d516358aee39bd391ecc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 6,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+                "endPos": {
+                  "column": 31,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b366d516358aee39bd391ecc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 75,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b366d516358aee39bd391ecc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b366d516358aee39bd391ecc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.sqrt_sq_of_nonneg`\",\"endPos\":{\"column\":28,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b366d516358aee39bd391ecc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":6,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx : ℝ\\nh : 0 ≤ x\\n⊢ √x ^ 2 = x\",\"endPos\":{\"column\":31,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b366d516358aee39bd391ecc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":75,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b366d516358aee39bd391ecc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 793,
+          "completion_tokens": 53,
+          "generation_seconds": 8.788826333000543,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Real.sqrt_def`\",\n      \"endPos\": {\n        \"column\": 19,\n        \"line\": 12\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67bbb866f10c33550b0aefde.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 6,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nx : ℝ\\nh : 0 ≤ x\\n⊢ √x ^ 2 = x\",\n      \"endPos\": {\n        \"column\": 9,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67bbb866f10c33550b0aefde.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 75,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67bbb866f10c33550b0aefde.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 18\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "0dc2c46112148e6a0089a30b861d58332f9aecdf9a9eab1cea8250e7a3c0d186"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "69fd5ded7039f2fd1e88d180692807d419445c3003ed2d9e9654d8372adda1c6",
+          "candidate": "open scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_sq_of_nonneg h]",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/C2/completion.json",
+          "completion_sha256": "17ac4ce278dd4de3b3e22496288dfc47c2a11fdb7c73f8b811b555432a435e50",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/C2/verification.json",
+          "verification_sha256": "85602974d6160bb4952b438e4a0d5935b1e3ffbf8d1d8b1f4864442c906fe5ff",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 12: Unknown constant `Real.sqrt_sq_of_nonneg`",
+              "line 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 25.208,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 12: Unknown constant `Real.sqrt_sq_of_nonneg`\nline 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+            "candidate_sha256": "69fd5ded7039f2fd1e88d180692807d419445c3003ed2d9e9654d8372adda1c6",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_sq_of_nonneg h]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_sqrt_square = Nl2LeanCandidate.study_a_sqrt_square := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_sqrt_square\n",
+            "verification_source_sha256": "14a42b54d85c1ac9eba24ee82664bd3b3809f51ede89b0aa09c013b1e04d1aa0",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_65b1ab98e536ce7a8606ad38.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Real.sqrt_sq_of_nonneg`",
+                "endPos": {
+                  "column": 28,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_65b1ab98e536ce7a8606ad38.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 6,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+                "endPos": {
+                  "column": 31,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_65b1ab98e536ce7a8606ad38.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 75,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_65b1ab98e536ce7a8606ad38.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_65b1ab98e536ce7a8606ad38.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.sqrt_sq_of_nonneg`\",\"endPos\":{\"column\":28,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_65b1ab98e536ce7a8606ad38.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":6,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx : ℝ\\nh : 0 ≤ x\\n⊢ √x ^ 2 = x\",\"endPos\":{\"column\":31,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_65b1ab98e536ce7a8606ad38.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":75,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_65b1ab98e536ce7a8606ad38.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 794,
+          "completion_tokens": 53,
+          "generation_seconds": 8.374881499999901,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Real.sqrt_sq_of_nonneg`\",\n      \"endPos\": {\n        \"column\": 28,\n        \"line\": 12\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b366d516358aee39bd391ecc.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 6,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nx : ℝ\\nh : 0 ≤ x\\n⊢ √x ^ 2 = x\",\n      \"endPos\": {\n        \"column\": 31,\n        \"line\": 12\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b366d516358aee39bd391ecc.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 75,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 17\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b366d516358aee39bd391ecc.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 17\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "69fd5ded7039f2fd1e88d180692807d419445c3003ed2d9e9654d8372adda1c6"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "69fd5ded7039f2fd1e88d180692807d419445c3003ed2d9e9654d8372adda1c6",
+          "candidate": "open scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_sq_of_nonneg h]",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/C3/completion.json",
+          "completion_sha256": "dcd5de613038889e545e45e41ed89a7c4e6400101db6ae2ffd068eb91c6cfbef",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/C3/verification.json",
+          "verification_sha256": "cd3cc44c8695f0c5b5d5624f4f11e2423eea4c3a688908116d9c6c3516859335",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 12: Unknown constant `Real.sqrt_sq_of_nonneg`",
+              "line 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 32.385,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 12: Unknown constant `Real.sqrt_sq_of_nonneg`\nline 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+            "candidate_sha256": "69fd5ded7039f2fd1e88d180692807d419445c3003ed2d9e9654d8372adda1c6",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_sq_of_nonneg h]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_sqrt_square = Nl2LeanCandidate.study_a_sqrt_square := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_sqrt_square\n",
+            "verification_source_sha256": "14a42b54d85c1ac9eba24ee82664bd3b3809f51ede89b0aa09c013b1e04d1aa0",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2bf41a7783806334b7cdfc64.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Real.sqrt_sq_of_nonneg`",
+                "endPos": {
+                  "column": 28,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2bf41a7783806334b7cdfc64.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 6,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+                "endPos": {
+                  "column": 31,
+                  "line": 12
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2bf41a7783806334b7cdfc64.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 75,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2bf41a7783806334b7cdfc64.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2bf41a7783806334b7cdfc64.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.sqrt_sq_of_nonneg`\",\"endPos\":{\"column\":28,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2bf41a7783806334b7cdfc64.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":6,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx : ℝ\\nh : 0 ≤ x\\n⊢ √x ^ 2 = x\",\"endPos\":{\"column\":31,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2bf41a7783806334b7cdfc64.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":75,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2bf41a7783806334b7cdfc64.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 800,
+          "completion_tokens": 53,
+          "generation_seconds": 8.812529625000025,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Real.sqrt_sq_of_nonneg`\",\n      \"endPos\": {\n        \"column\": 28,\n        \"line\": 12\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_65b1ab98e536ce7a8606ad38.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 6,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nx : ℝ\\nh : 0 ≤ x\\n⊢ √x ^ 2 = x\",\n      \"endPos\": {\n        \"column\": 31,\n        \"line\": 12\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_65b1ab98e536ce7a8606ad38.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 75,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 17\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_65b1ab98e536ce7a8606ad38.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 17\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "69fd5ded7039f2fd1e88d180692807d419445c3003ed2d9e9654d8372adda1c6"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "0dc2c46112148e6a0089a30b861d58332f9aecdf9a9eab1cea8250e7a3c0d186",
+    "candidate": "open scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_def]\n  exact h",
+    "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/initial/completion.json",
+    "completion_sha256": "2c782e4bacdf3b1bd32b644a03c2fb15bca7411aa83768c2c4702e41b1c41aad",
+    "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_sqrt_square/initial/verification.json",
+    "verification_sha256": "4edc6680025866cfb89fc95772ce0ff83f17a1ff4174535c6103de69b07c7d23",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 12: Unknown constant `Real.sqrt_def`",
+        "line 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 57.713,
+      "diagnostics_parsed": 4,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 12: Unknown constant `Real.sqrt_def`\nline 11: unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+      "candidate_sha256": "0dc2c46112148e6a0089a30b861d58332f9aecdf9a9eab1cea8250e7a3c0d186",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_sqrt_square (x : ℝ) (h : 0 ≤ x) : (Real.sqrt x) ^ 2 = x := by\n  rw [Real.sqrt_def]\n  exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_sqrt_square = Nl2LeanCandidate.study_a_sqrt_square := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_sqrt_square\n",
+      "verification_source_sha256": "e6aba2985d7ed7b4b992c2ead2c4e20d9af55147c96044fd4c9796fba5df25b1",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 27,
+            "line": 6
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67bbb866f10c33550b0aefde.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 6
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "Unknown constant `Real.sqrt_def`",
+          "endPos": {
+            "column": 19,
+            "line": 12
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67bbb866f10c33550b0aefde.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "lean.unknownIdentifier._namedError",
+          "pos": {
+            "column": 6,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "unsolved goals\nx : ℝ\nh : 0 ≤ x\n⊢ √x ^ 2 = x",
+          "endPos": {
+            "column": 9,
+            "line": 13
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67bbb866f10c33550b0aefde.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "Tactic.unsolvedGoals",
+          "pos": {
+            "column": 75,
+            "line": 11
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+          "endPos": {
+            "column": 6,
+            "line": 18
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67bbb866f10c33550b0aefde.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 18
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67bbb866f10c33550b0aefde.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.sqrt_def`\",\"endPos\":{\"column\":19,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67bbb866f10c33550b0aefde.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":6,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx : ℝ\\nh : 0 ≤ x\\n⊢ √x ^ 2 = x\",\"endPos\":{\"column\":9,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67bbb866f10c33550b0aefde.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":75,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_sqrt_square' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_67bbb866f10c33550b0aefde.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 203,
+    "completion_tokens": 53,
+    "generation_seconds": 6.191704415999993
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-28T11:46:51.325256+00:00"
+}

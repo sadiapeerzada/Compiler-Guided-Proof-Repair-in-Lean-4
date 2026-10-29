@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: unexpected token 'in'; expected ','"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 61.048,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: unexpected token 'in'; expected ','",
+  "candidate_sha256": "53c93a69a63737431fea574284615b5a6b85ff2909a0bd01b226631c9af21ab7",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact p.prime\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_wilson = Nl2LeanCandidate.study_m_wilson := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_wilson\n",
+  "verification_source_sha256": "8a531de9b9a44afd50aca78c76addbc12b747ffed67ef0e5d7a01d6dc14134fe",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token 'in'; expected ','",
+      "endPos": {
+        "column": 37,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 34,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 25
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 25
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

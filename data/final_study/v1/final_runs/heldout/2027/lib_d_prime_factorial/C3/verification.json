@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 20: unexpected token ','; expected '↦', '=>'"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.261,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 20: unexpected token ','; expected '↦', '=>'",
+  "candidate_sha256": "502c437954d15b034793a9de8de9487dd21bb1e0cd0ebb15a0f6cf2e2263f4c0",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_factorial (p n : ℕ) (hp : p.Prime) : p ∣ n.factorial ↔ p ≤ n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_d_prime_factorial (p n : ℕ) (hp : p.Prime) : p ∣ n.factorial ↔ p ≤ n\n:= by\n  split\n  · intro h\n    obtain ⟨k, hk, hk'⟩ := h\n    have : p ≤ n := by\n      have : k ≤ n := by\n        rw [hk]\n        exact le_of_not_gt (λ hkn, by\n          have : n.factorial = 0 := by\n            rw [factorial_of_not_le hp hkn]\n            exact hk'\n          contradiction\n        )\n    exact this\n  · intro h\n    have : p ≤ n := h\n    obtain ⟨k, hk, hk'⟩ := exists_factorial_divisor hp\n    have : n ≤ k := by\n      rw [hk]\n      exact le_of_not_gt (λ hkn, by\n        have : p ∣ n.factorial := by\n          rw [factorial_of_le hkn]\n          exact h\n        contradiction\n      )\n    exact this\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_factorial = Nl2LeanCandidate.study_d_prime_factorial := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_factorial\n",
+  "verification_source_sha256": "ee57e42ac884f5991cb11dfc983934c0db0c5d11e46434c90a6e7f08ffbf708c",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0e7da528070437948c198159.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token ','; expected '↦', '=>'",
+      "endPos": {
+        "column": 34,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0e7da528070437948c198159.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 33,
+        "line": 20
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_prime_factorial' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 43
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0e7da528070437948c198159.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 43
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0e7da528070437948c198159.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token ','; expected '↦', '=>'\",\"endPos\":{\"column\":34,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0e7da528070437948c198159.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":33,\"line\":20},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_factorial' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":43},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0e7da528070437948c198159.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":43},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

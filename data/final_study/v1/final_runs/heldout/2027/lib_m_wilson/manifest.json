@@ -1,0 +1,654 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "heldout",
+  "seed": 2027,
+  "problem_id": "lib_m_wilson",
+  "protocol_sha256": "a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317",
+  "dataset_sha256": "47e1b9acc1efc5c6be1113c0b4e103b29f6cb7aeed77a5ffe98bae97fdda9a5b",
+  "status": "completed",
+  "started_at": "2026-10-29T13:59:03.979701+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca",
+          "candidate": "open scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact Fact.p.prime\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/B1/completion.json",
+          "completion_sha256": "1b2546898baecb5207395bd1709f3a419a24eb5e1b6f25e4b17924bdb5981850",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/B1/verification.json",
+          "verification_sha256": "33dc86dd1d80bff133b01480bfa9817689d390ff2ac179c55256456d037048ca",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: unexpected token 'in'; expected ','"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 46.101,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: unexpected token 'in'; expected ','",
+            "candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact Fact.p.prime\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_wilson = Nl2LeanCandidate.study_m_wilson := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_wilson\n",
+            "verification_source_sha256": "1b341eabbdfa079588ac0686736b1070d9730c2ad2f3c08490e49694f6a76b83",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3877ef7b70bcacd3f367d4bc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 37,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3877ef7b70bcacd3f367d4bc.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 34,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 25
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3877ef7b70bcacd3f367d4bc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 25
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3877ef7b70bcacd3f367d4bc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3877ef7b70bcacd3f367d4bc.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3877ef7b70bcacd3f367d4bc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 383,
+          "completion_tokens": 142,
+          "generation_seconds": 8.66134270800103,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca",
+          "candidate": "open scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact Fact.p.prime\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/B2/completion.json",
+          "completion_sha256": "476e08eb77b5f7ffaf9150635199481a0182f7e25ef1fd6deda4c763416dde93",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/B2/verification.json",
+          "verification_sha256": "9bb99f8a31c9471f3bac8d413191ba79db8438a608b6a127ed094cc8cf5330c6",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: unexpected token 'in'; expected ','"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.507,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: unexpected token 'in'; expected ','",
+            "candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact Fact.p.prime\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_wilson = Nl2LeanCandidate.study_m_wilson := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_wilson\n",
+            "verification_source_sha256": "1b341eabbdfa079588ac0686736b1070d9730c2ad2f3c08490e49694f6a76b83",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_79853ba4d7ce87dcff00adbe.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 37,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_79853ba4d7ce87dcff00adbe.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 34,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 25
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_79853ba4d7ce87dcff00adbe.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 25
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_79853ba4d7ce87dcff00adbe.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_79853ba4d7ce87dcff00adbe.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_79853ba4d7ce87dcff00adbe.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 383,
+          "completion_tokens": 142,
+          "generation_seconds": 9.780218667001463,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca",
+          "candidate": "open scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact Fact.p.prime\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/B3/completion.json",
+          "completion_sha256": "4ddc1042896578ac87bf6de27e651a4379e3ec79fd2c1ade8dc66d29ed20aae3",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/B3/verification.json",
+          "verification_sha256": "5e609264bbcdfe1cd1cf4e62750f65cd58256ce2d3070cf3a56b253c4836fa61",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: unexpected token 'in'; expected ','"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.607,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: unexpected token 'in'; expected ','",
+            "candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact Fact.p.prime\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_wilson = Nl2LeanCandidate.study_m_wilson := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_wilson\n",
+            "verification_source_sha256": "1b341eabbdfa079588ac0686736b1070d9730c2ad2f3c08490e49694f6a76b83",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_74965e80d919b9f63fb959b0.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 37,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_74965e80d919b9f63fb959b0.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 34,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 25
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_74965e80d919b9f63fb959b0.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 25
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_74965e80d919b9f63fb959b0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_74965e80d919b9f63fb959b0.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_74965e80d919b9f63fb959b0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 383,
+          "completion_tokens": 142,
+          "generation_seconds": 8.221319333999418,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "53c93a69a63737431fea574284615b5a6b85ff2909a0bd01b226631c9af21ab7",
+          "candidate": "open scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact p.prime\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/C1/completion.json",
+          "completion_sha256": "7d508b9eda3ef0adbfb7b2a59906d0e9e2c51c7990c0dfbbb4bca253bb4e107d",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/C1/verification.json",
+          "verification_sha256": "c97d8f6b215068ae86acc351639c084632780cb1023c6ade3a557662491ac2a9",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: unexpected token 'in'; expected ','"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.081,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: unexpected token 'in'; expected ','",
+            "candidate_sha256": "53c93a69a63737431fea574284615b5a6b85ff2909a0bd01b226631c9af21ab7",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact p.prime\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_wilson = Nl2LeanCandidate.study_m_wilson := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_wilson\n",
+            "verification_source_sha256": "8a531de9b9a44afd50aca78c76addbc12b747ffed67ef0e5d7a01d6dc14134fe",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0a1941dc9b52587fdb85ec6.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 37,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0a1941dc9b52587fdb85ec6.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 34,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 25
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0a1941dc9b52587fdb85ec6.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 25
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0a1941dc9b52587fdb85ec6.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0a1941dc9b52587fdb85ec6.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0a1941dc9b52587fdb85ec6.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 718,
+          "completion_tokens": 141,
+          "generation_seconds": 10.25684541699593,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'in'; expected ','\",\n      \"endPos\": {\n        \"column\": 37,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4709963114a2c4bb09348502.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 34,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 25\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4709963114a2c4bb09348502.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 25\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "53c93a69a63737431fea574284615b5a6b85ff2909a0bd01b226631c9af21ab7",
+          "candidate": "open scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact p.prime\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/C2/completion.json",
+          "completion_sha256": "45bddcf9abd9dbc2b6f57956e2c8171924c492cd043c09897a9e0b0c6a2e5db4",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/C2/verification.json",
+          "verification_sha256": "1e96edd03f5d2d31f8f805c9a6bda1b7dd17f25c2ee42c4cf3c4eba283fdfe27",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: unexpected token 'in'; expected ','"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.841,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: unexpected token 'in'; expected ','",
+            "candidate_sha256": "53c93a69a63737431fea574284615b5a6b85ff2909a0bd01b226631c9af21ab7",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact p.prime\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_wilson = Nl2LeanCandidate.study_m_wilson := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_wilson\n",
+            "verification_source_sha256": "8a531de9b9a44afd50aca78c76addbc12b747ffed67ef0e5d7a01d6dc14134fe",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_50a0e7ab1b6ab13221cf1169.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 37,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_50a0e7ab1b6ab13221cf1169.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 34,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 25
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_50a0e7ab1b6ab13221cf1169.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 25
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_50a0e7ab1b6ab13221cf1169.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_50a0e7ab1b6ab13221cf1169.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_50a0e7ab1b6ab13221cf1169.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 709,
+          "completion_tokens": 141,
+          "generation_seconds": 10.84147541600396,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'in'; expected ','\",\n      \"endPos\": {\n        \"column\": 37,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0a1941dc9b52587fdb85ec6.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 34,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 25\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0a1941dc9b52587fdb85ec6.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 25\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "53c93a69a63737431fea574284615b5a6b85ff2909a0bd01b226631c9af21ab7"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "53c93a69a63737431fea574284615b5a6b85ff2909a0bd01b226631c9af21ab7",
+          "candidate": "open scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact p.prime\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/C3/completion.json",
+          "completion_sha256": "4ad7cb79ef82a8814f5ffb401ed20e075de39682d295abf4c32ba81b200bba30",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/C3/verification.json",
+          "verification_sha256": "d37decf8af4b58d7771baae2d808af4bc71e05bd68d6b560cebb11193220577b",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: unexpected token 'in'; expected ','"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 61.048,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: unexpected token 'in'; expected ','",
+            "candidate_sha256": "53c93a69a63737431fea574284615b5a6b85ff2909a0bd01b226631c9af21ab7",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact p.prime\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_wilson = Nl2LeanCandidate.study_m_wilson := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_wilson\n",
+            "verification_source_sha256": "8a531de9b9a44afd50aca78c76addbc12b747ffed67ef0e5d7a01d6dc14134fe",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 37,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 34,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 25
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 25
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ec253f0ce8956a4bf4cd79e1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 713,
+          "completion_tokens": 141,
+          "generation_seconds": 11.313869500001601,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'in'; expected ','\",\n      \"endPos\": {\n        \"column\": 37,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_50a0e7ab1b6ab13221cf1169.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 34,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 25\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_50a0e7ab1b6ab13221cf1169.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 25\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "53c93a69a63737431fea574284615b5a6b85ff2909a0bd01b226631c9af21ab7"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca",
+    "candidate": "open scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact Fact.p.prime\n  exact h2",
+    "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/initial/completion.json",
+    "completion_sha256": "796d70133f4728fd453335fd472d7b116585818c8759734b0fb2c84c115e968d",
+    "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_m_wilson/initial/verification.json",
+    "verification_sha256": "19f965a836814b5ca7070db4e447c4a22cc195fd0d2ea68ebefabe55c0f8d89c",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 13: unexpected token 'in'; expected ','"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 41.043,
+      "diagnostics_parsed": 3,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 13: unexpected token 'in'; expected ','",
+      "candidate_sha256": "762419fc08ed06b06f1f91ab341bbe52e62f8c44fd8a72226f8da2a3d78d3bca",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_wilson (p : ℕ) [Fact p.Prime] : ((p - 1).factorial : ZMod p) = -1\n:= by\n  have h : (p - 1).factorial = ∏ k in Finset.range (p - 1), k := by\n    apply Finset.prod_eq_big_prod\n    simp\n  have h2 : ∏ k in Finset.range (p - 1), k = -1 := by\n    rw [h]\n    apply ZMod.prod_inv_eq_neg_one\n    exact Fact.p.prime\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_wilson = Nl2LeanCandidate.study_m_wilson := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_wilson\n",
+      "verification_source_sha256": "1b341eabbdfa079588ac0686736b1070d9730c2ad2f3c08490e49694f6a76b83",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 22,
+            "line": 6
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4709963114a2c4bb09348502.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 6
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "unexpected token 'in'; expected ','",
+          "endPos": {
+            "column": 37,
+            "line": 13
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4709963114a2c4bb09348502.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 34,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+          "endPos": {
+            "column": 6,
+            "line": 25
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4709963114a2c4bb09348502.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 25
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4709963114a2c4bb09348502.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4709963114a2c4bb09348502.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_wilson' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4709963114a2c4bb09348502.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 213,
+    "completion_tokens": 142,
+    "generation_seconds": 7.860641084000235
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-29T14:05:32.936481+00:00"
+}

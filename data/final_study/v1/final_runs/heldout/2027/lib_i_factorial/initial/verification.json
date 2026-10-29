@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 12: Unknown identifier `factorial`",
+    "line 12: `simp` made no progress"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.565,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 12: Unknown identifier `factorial`\nline 12: `simp` made no progress",
+  "candidate_sha256": "4bf0f6e27dadf4c0c9b36d94c3cc035753fa1962f8fc1b4a49e8241da03a9d9b",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_i_factorial (n : ℕ) : (n + 1).factorial = (n + 1) * n.factorial := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_i_factorial (n : ℕ) : (n + 1).factorial = (n + 1) * n.factorial := by\n  simp [factorial]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_i_factorial = Nl2LeanCandidate.study_i_factorial := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_i_factorial\n",
+  "verification_source_sha256": "e314524178f21c550efe3169665af1e4d20488ffd69afe597a352ba65611298c",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 25,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0bf83c6de8f55f7599aad691.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `factorial`",
+      "endPos": {
+        "column": 17,
+        "line": 12
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0bf83c6de8f55f7599aad691.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "`simp` made no progress",
+      "endPos": {
+        "column": 18,
+        "line": 12
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0bf83c6de8f55f7599aad691.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_i_factorial' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0bf83c6de8f55f7599aad691.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 17
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0bf83c6de8f55f7599aad691.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `factorial`\",\"endPos\":{\"column\":17,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0bf83c6de8f55f7599aad691.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"`simp` made no progress\",\"endPos\":{\"column\":18,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0bf83c6de8f55f7599aad691.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_i_factorial' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0bf83c6de8f55f7599aad691.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

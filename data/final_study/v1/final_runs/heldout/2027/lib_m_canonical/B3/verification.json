@@ -1,0 +1,126 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: Unknown constant `Nat.sub_mod_eq_sub_of_lt_m`",
+    "line 17: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a - a % m\nin the target expression\n  a - b = a % m - b % m\n\nm a b : ℕ\nha : a < m\nhb : b < m\nh : a ≡ b [MOD m]\nh1 : a % m = b % m\nh2 : a - a % m = b - b % m\n⊢ a - b = a % m - b % m",
+    "line 19: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?n - ?n\nin the target expression\n  a - b = 0\n\nm a b : ℕ\nha : a < m\nhb : b < m\nh : a ≡ b [MOD m]\nh1 : a % m = b % m\nh2 : a - a % m = b - b % m\nh3 : a - b = a % m - b % m\n⊢ a - b = 0",
+    "line 20: Type mismatch\n  h4\nhas type\n  a - b = 0\nbut is expected to have type\n  a = b"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.124,
+  "diagnostics_parsed": 6,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: Unknown constant `Nat.sub_mod_eq_sub_of_lt_m`\nline 17: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a - a % m\nin the target expression\n  a - b = a % m - b % m\n\nm a b : ℕ\nha : a < m\nhb : b < m\nh : a ≡ b [MOD m]\nh1 : a % m = b % m\nh2 : a - a % m = b - b % m\n⊢ a - b = a % m - b % m\nline 19: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?n - ?n\nin the target expression\n  a - b = 0\n\nm a b : ℕ\nha : a < m\nhb : b < m\nh : a ≡ b [MOD m]\nh1 : a % m = b % m\nh2 : a - a % m = b - b % m\nh3 : a - b = a % m - b % m\n⊢ a - b = 0\nline 20: Type mismatch\n  h4\nhas type\n  a - b = 0\nbut is expected to have type\n  a = b",
+  "candidate_sha256": "54e37fa35066807d76c06ce0775539cb89f1a2c8be0140f610a60e4d2659b5d9",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_canonical (m a b : ℕ) (ha : a < m) (hb : b < m) (h : Nat.ModEq m a b) : a = b := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_canonical (m a b : ℕ) (ha : a < m) (hb : b < m) (h : Nat.ModEq m a b) : a = b\n:= by\n  have h1 : a % m = b % m := h\n  have h2 : a - a % m = b - b % m := by\n    rw [Nat.sub_mod_eq_sub_of_lt_m ha, Nat.sub_mod_eq_sub_of_lt_m hb]\n  have h3 : a - b = (a % m) - (b % m) := by\n    rw [h2, h1]\n  have h4 : a - b = 0 := by\n    rw [Nat.sub_self, h3]\n  exact h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_canonical = Nl2LeanCandidate.study_m_canonical := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_canonical\n",
+  "verification_source_sha256": "ff2ff7da1d478b3db89b826e8ffbd0cc4994241f46ba8562b815d11ff5d27e96",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 25,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.sub_mod_eq_sub_of_lt_m`",
+      "endPos": {
+        "column": 34,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a - a % m\nin the target expression\n  a - b = a % m - b % m\n\nm a b : ℕ\nha : a < m\nhb : b < m\nh : a ≡ b [MOD m]\nh1 : a % m = b % m\nh2 : a - a % m = b - b % m\n⊢ a - b = a % m - b % m",
+      "endPos": {
+        "column": 10,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?n - ?n\nin the target expression\n  a - b = 0\n\nm a b : ℕ\nha : a < m\nhb : b < m\nh : a ≡ b [MOD m]\nh1 : a % m = b % m\nh2 : a - a % m = b - b % m\nh3 : a - b = a % m - b % m\n⊢ a - b = 0",
+      "endPos": {
+        "column": 20,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  h4\nhas type\n  a - b = 0\nbut is expected to have type\n  a = b",
+      "endPos": {
+        "column": 10,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 20
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_canonical' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 25
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 25
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.sub_mod_eq_sub_of_lt_m`\",\"endPos\":{\"column\":34,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  a - a % m\\nin the target expression\\n  a - b = a % m - b % m\\n\\nm a b : ℕ\\nha : a < m\\nhb : b < m\\nh : a ≡ b [MOD m]\\nh1 : a % m = b % m\\nh2 : a - a % m = b - b % m\\n⊢ a - b = a % m - b % m\",\"endPos\":{\"column\":10,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?n - ?n\\nin the target expression\\n  a - b = 0\\n\\nm a b : ℕ\\nha : a < m\\nhb : b < m\\nh : a ≡ b [MOD m]\\nh1 : a % m = b % m\\nh2 : a - a % m = b - b % m\\nh3 : a - b = a % m - b % m\\n⊢ a - b = 0\",\"endPos\":{\"column\":20,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  h4\\nhas type\\n  a - b = 0\\nbut is expected to have type\\n  a = b\",\"endPos\":{\"column\":10,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":20},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_canonical' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_db4edf7a3be83ea2258c9d5e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

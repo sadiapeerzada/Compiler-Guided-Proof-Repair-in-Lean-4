@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a / ?m.76 + ?c / ?m.77\nin the target expression\n  1 / x + -(1 / y) = (y - x) / (x * y)\n\nx y : ℝ\nhx : x ≠ 0\nhy : y ≠ 0\n⊢ 1 / x + -(1 / y) = (y - x) / (x * y)"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.482,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a / ?m.76 + ?c / ?m.77\nin the target expression\n  1 / x + -(1 / y) = (y - x) / (x * y)\n\nx y : ℝ\nhx : x ≠ 0\nhy : y ≠ 0\n⊢ 1 / x + -(1 / y) = (y - x) / (x * y)",
+  "candidate_sha256": "7a80e0e82143657e81a339ca6d1a15f6f20d18fd753d8e6f6e29245e7ae18eaf",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_inverse_difference (x y : ℝ) (hx : x ≠ 0) (hy : y ≠ 0) : 1 / x - 1 / y = (y - x) / (x * y) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_inverse_difference (x y : ℝ) (hx : x ≠ 0) (hy : y ≠ 0) : 1 / x - 1 / y = (y - x) / (x * y) :=\nby\n  have h1 : 1 / x - 1 / y = (y - x) / (x * y) := by\n    rw [sub_eq_add_neg, div_add_div]\n    ring\n  exact h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_inverse_difference = Nl2LeanCandidate.study_a_inverse_difference := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_inverse_difference\n",
+  "verification_source_sha256": "c299c18366172edb425f28dfc5a411257c46d081f36b08eb92a8b6ead0e625a3",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 34,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0d04f4e95737dcf1a49b6f7e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a / ?m.76 + ?c / ?m.77\nin the target expression\n  1 / x + -(1 / y) = (y - x) / (x * y)\n\nx y : ℝ\nhx : x ≠ 0\nhy : y ≠ 0\n⊢ 1 / x + -(1 / y) = (y - x) / (x * y)",
+      "endPos": {
+        "column": 35,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0d04f4e95737dcf1a49b6f7e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 24,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_inverse_difference' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 21
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0d04f4e95737dcf1a49b6f7e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 21
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":34,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0d04f4e95737dcf1a49b6f7e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a / ?m.76 + ?c / ?m.77\\nin the target expression\\n  1 / x + -(1 / y) = (y - x) / (x * y)\\n\\nx y : ℝ\\nhx : x ≠ 0\\nhy : y ≠ 0\\n⊢ 1 / x + -(1 / y) = (y - x) / (x * y)\",\"endPos\":{\"column\":35,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0d04f4e95737dcf1a49b6f7e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":24,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_inverse_difference' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0d04f4e95737dcf1a49b6f7e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

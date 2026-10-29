@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 11: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this structure, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nn : ℤ\n⊢ Even n ↔ Even (3 * n)"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 40.805,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 11: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this structure, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nn : ℤ\n⊢ Even n ↔ Even (3 * n)",
+  "candidate_sha256": "70a05c0aec1d161b0236eb52e8e0891bd43c6177a81e300a879745b53b556be3",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem even_iff_even_three_mul (n : ℤ) : Even n ↔ Even (3 * n) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem even_iff_even_three_mul (n : ℤ) : Even n ↔ Even (3 * n) :=\nby\n  split\n  · intro h\n    obtain ⟨k, hk⟩ := h\n    exact even_of_add_one_even (by rw [mul_one, hk, mul_one])\n\n  · intro h\n    obtain ⟨k, hk⟩ := h\n    rw [mul_one, hk, mul_one]\n    exact even_of_add_one_even (by rw [mul_one, hk, mul_one])\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.even_iff_even_three_mul = Nl2LeanCandidate.even_iff_even_three_mul := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.even_iff_even_three_mul\n",
+  "verification_source_sha256": "396d1f6b8f917679a676246f1a15ddf12b5509ec8831ba6f30aaef09a79b6dfd",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 5
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a2592e4c29c8317c487ae5ff.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this structure, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nn : ℤ\n⊢ Even n ↔ Even (3 * n)",
+      "endPos": {
+        "column": 7,
+        "line": 11
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a2592e4c29c8317c487ae5ff.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.even_iff_even_three_mul' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a2592e4c29c8317c487ae5ff.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 24
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a2592e4c29c8317c487ae5ff.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `split` failed: Could not split an `if` or `match` expression in the goal\\n\\nHint: If you meant to destruct this structure, use the `cases` tactic instead\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\nn : ℤ\\n⊢ Even n ↔ Even (3 * n)\",\"endPos\":{\"column\":7,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a2592e4c29c8317c487ae5ff.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.even_iff_even_three_mul' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a2592e4c29c8317c487ae5ff.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

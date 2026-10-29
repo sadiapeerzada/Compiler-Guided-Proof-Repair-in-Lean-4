@@ -1,0 +1,87 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: unknown tactic",
+    "line 13: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 38.652,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: unknown tactic\nline 13: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+  "candidate_sha256": "51ad47931e86b5fa5eb5331bdd0d836d26e8edb0877c92a848c0adc7b59bca3d",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_i_telescope (f : ℕ → ℤ) (n : ℕ) : (∑ i ∈ Finset.range n, (f (i + 1) - f i)) = f n - f 0 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_i_telescope (f : ℕ → ℤ) (n : ℕ) : (∑ i ∈ Finset.range n, (f (i + 1) - f i)) = f n - f 0\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero]\n  · simp [Finset.range_succ]\n    have h := IH (n + 1)\n    rw [Finset.range_succ, add_assoc] at h\n    rw [h, add_right_comm]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_i_telescope = Nl2LeanCandidate.study_i_telescope := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_i_telescope\n",
+  "verification_source_sha256": "135c16ef0c0f57ddffcddd9243251adea87ed6e6d573d37c9f597462d5d130ca",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 25,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_80c4c8e22adc4430ed0dab16.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unknown tactic",
+      "endPos": null,
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_80c4c8e22adc4430ed0dab16.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 20,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+      "endPos": {
+        "column": 20,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_80c4c8e22adc4430ed0dab16.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.inductionWithNoAlts._namedError",
+      "pos": {
+        "column": 14,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_i_telescope' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 23
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_80c4c8e22adc4430ed0dab16.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 23
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_80c4c8e22adc4430ed0dab16.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_80c4c8e22adc4430ed0dab16.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_80c4c8e22adc4430ed0dab16.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_i_telescope' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_80c4c8e22adc4430ed0dab16.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":23},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

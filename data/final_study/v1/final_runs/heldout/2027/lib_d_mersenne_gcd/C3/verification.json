@@ -1,0 +1,249 @@
+{
+  "success": false,
+  "errors": [
+    "line 30: unknown tactic",
+    "line 14: Unknown identifier `hd`",
+    "line 14: unsolved goals\ncase zero\na b c : ℕ\n⊢ a ^ b.gcd c - 1 = 0",
+    "line 16: Unknown constant `Nat.gcd_eq_bezout`",
+    "line 18: Unknown constant `Nat.gcd_eq_bezout`",
+    "line 20: Unknown constant `Nat.gcd_eq_bezout`",
+    "line 22: Unknown constant `Nat.gcd_eq_bezout`",
+    "line 24: Unknown constant `Nat.gcd_eq_bezout`",
+    "line 26: Unknown constant `Nat.gcd_eq_bezout`",
+    "line 28: Unknown constant `Nat.gcd_eq_bezout`",
+    "line 15: unsolved goals\ncase succ\nd : ℕ\nhd : ∀ (a b c : ℕ), (a ^ b - 1).gcd (a ^ c - 1) = a ^ d - 1\na b c : ℕ\nh1 : a ^ b - 1 = (a ^ d - 1) * (a ^ (b % d) ^ (b / d) - 1) + (a ^ (b % d) - 1)\nh2 : a ^ c - 1 = (a ^ d - 1) * (a ^ (c % d) ^ (c / d) - 1) + (a ^ (c % d) - 1)\nh3 : a ^ (b % d) - 1 = (a ^ gcd b d - 1) * (a ^ (b % gcd b d) - 1)\nh4 : a ^ (c % d) - 1 = (a ^ gcd c d - 1) * (a ^ (c % gcd c d) - 1)\nh5 : a ^ gcd b d - 1 = a ^ gcd b c - 1\nh6 : a ^ gcd c d - 1 = a ^ gcd b c - 1\nh7 : a ^ gcd b c - 1 = a ^ gcd b c - 1\n⊢ ((a ^ d - 1) * (a ^ (b % d) ^ (b / d) - 1) + (a ^ gcd b c - 1) * (a ^ (b % gcd b d) - 1)).gcd\n      ((a ^ d - 1) * (a ^ (c % d) ^ (c / d) - 1) + (a ^ gcd b c - 1) * (a ^ (c % gcd c d) - 1)) =\n    a ^ (d + 1) - 1"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 39.91,
+  "diagnostics_parsed": 13,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 30: unknown tactic\nline 14: Unknown identifier `hd`\nline 14: unsolved goals\ncase zero\na b c : ℕ\n⊢ a ^ b.gcd c - 1 = 0\nline 16: Unknown constant `Nat.gcd_eq_bezout`\nline 18: Unknown constant `Nat.gcd_eq_bezout`\nline 20: Unknown constant `Nat.gcd_eq_bezout`\nline 22: Unknown constant `Nat.gcd_eq_bezout`\nline 24: Unknown constant `Nat.gcd_eq_bezout`\nline 26: Unknown constant `Nat.gcd_eq_bezout`\nline 28: Unknown constant `Nat.gcd_eq_bezout`\nline 15: unsolved goals\ncase succ\nd : ℕ\nhd : ∀ (a b c : ℕ), (a ^ b - 1).gcd (a ^ c - 1) = a ^ d - 1\na b c : ℕ\nh1 : a ^ b - 1 = (a ^ d - 1) * (a ^ (b % d) ^ (b / d) - 1) + (a ^ (b % d) - 1)\nh2 : a ^ c - 1 = (a ^ d - 1) * (a ^ (c % d) ^ (c / d) - 1) + (a ^ (c % d) - 1)\nh3 : a ^ (b % d) - 1 = (a ^ gcd b d - 1) * (a ^ (b % gcd b d) - 1)\nh4 : a ^ (c % d) - 1 = (a ^ gcd c d - 1) * (a ^ (c % gcd c d) - 1)\nh5 : a ^ gcd b d - 1 = a ^ gcd b c - 1\nh6 : a ^ gcd c d - 1 = a ^ gcd b c - 1\nh7 : a ^ gcd b c - 1 = a ^ gcd b c - 1\n⊢ ((a ^ d - 1) * (a ^ (b % d) ^ (b / d) - 1) + (a ^ gcd b c - 1) * (a ^ (b % gcd b d) - 1)).gcd\n      ((a ^ d - 1) * (a ^ (c % d) ^ (c / d) - 1) + (a ^ gcd b c - 1) * (a ^ (c % gcd c d) - 1)) =\n    a ^ (d + 1) - 1",
+  "candidate_sha256": "43c1574e18ce27626352ce8b7af57704d35304de9da17f6da4318d7de445415a",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_mersenne_gcd (a b c : ℕ) : Nat.gcd (a ^ b - 1) (a ^ c - 1) = a ^ Nat.gcd b c - 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_mersenne_gcd (a b c : ℕ) : Nat.gcd (a ^ b - 1) (a ^ c - 1) = a ^ Nat.gcd b c - 1\n:= by\n  induction' (Nat.gcd b c) with d hd hd' generalizing a b c\n  · simp [hd]\n  · have h1 : a ^ b - 1 = (a ^ d - 1) * (a ^ (b % d) ^ (b / d) - 1) + (a ^ (b % d) - 1) := by\n      rw [Nat.gcd_eq_bezout, Nat.gcd_pos, Nat.gcd_eq_0, Nat.gcd_eq_1]\n    have h2 : a ^ c - 1 = (a ^ d - 1) * (a ^ (c % d) ^ (c / d) - 1) + (a ^ (c % d) - 1) := by\n      rw [Nat.gcd_eq_bezout, Nat.gcd_pos, Nat.gcd_eq_0, Nat.gcd_eq_1]\n    have h3 : a ^ (b % d) - 1 = (a ^ (gcd b d) - 1) * (a ^ (b % (gcd b d)) - 1) := by\n      rw [Nat.gcd_eq_bezout, Nat.gcd_pos, Nat.gcd_eq_0, Nat.gcd_eq_1]\n    have h4 : a ^ (c % d) - 1 = (a ^ (gcd c d) - 1) * (a ^ (c % (gcd c d)) - 1) := by\n      rw [Nat.gcd_eq_bezout, Nat.gcd_pos, Nat.gcd_eq_0, Nat.gcd_eq_1]\n    have h5 : a ^ (gcd b d) - 1 = (a ^ (gcd b c) - 1) := by\n      rw [Nat.gcd_eq_bezout, Nat.gcd_pos, Nat.gcd_eq_0, Nat.gcd_eq_1]\n    have h6 : a ^ (gcd c d) - 1 = (a ^ (gcd b c) - 1) := by\n      rw [Nat.gcd_eq_bezout, Nat.gcd_pos, Nat.gcd_eq_0, Nat.gcd_eq_1]\n    have h7 : a ^ (gcd b c) - 1 = (a ^ (gcd b c) - 1) := by\n      rw [Nat.gcd_eq_bezout, Nat.gcd_pos, Nat.gcd_eq_0, Nat.gcd_eq_1]\n    rw [h1, h2, h3, h4, h5, h6, h7]\n    refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_mersenne_gcd = Nl2LeanCandidate.study_d_mersenne_gcd := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_mersenne_gcd\n",
+  "verification_source_sha256": "97a30e575cc9df8a1573c738486052ac872b1177dbe9cff8335240906242663d",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 28,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unknown tactic",
+      "endPos": null,
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 5,
+        "line": 30
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `hd`",
+      "endPos": {
+        "column": 12,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\ncase zero\na b c : ℕ\n⊢ a ^ b.gcd c - 1 = 0",
+      "endPos": {
+        "column": 13,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 2,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_bezout`",
+      "endPos": {
+        "column": 27,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_bezout`",
+      "endPos": {
+        "column": 27,
+        "line": 18
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 18
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_bezout`",
+      "endPos": {
+        "column": 27,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 20
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_bezout`",
+      "endPos": {
+        "column": 27,
+        "line": 22
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 22
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_bezout`",
+      "endPos": {
+        "column": 27,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 24
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_bezout`",
+      "endPos": {
+        "column": 27,
+        "line": 26
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 26
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_bezout`",
+      "endPos": {
+        "column": 27,
+        "line": 28
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 28
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\ncase succ\nd : ℕ\nhd : ∀ (a b c : ℕ), (a ^ b - 1).gcd (a ^ c - 1) = a ^ d - 1\na b c : ℕ\nh1 : a ^ b - 1 = (a ^ d - 1) * (a ^ (b % d) ^ (b / d) - 1) + (a ^ (b % d) - 1)\nh2 : a ^ c - 1 = (a ^ d - 1) * (a ^ (c % d) ^ (c / d) - 1) + (a ^ (c % d) - 1)\nh3 : a ^ (b % d) - 1 = (a ^ gcd b d - 1) * (a ^ (b % gcd b d) - 1)\nh4 : a ^ (c % d) - 1 = (a ^ gcd c d - 1) * (a ^ (c % gcd c d) - 1)\nh5 : a ^ gcd b d - 1 = a ^ gcd b c - 1\nh6 : a ^ gcd c d - 1 = a ^ gcd b c - 1\nh7 : a ^ gcd b c - 1 = a ^ gcd b c - 1\n⊢ ((a ^ d - 1) * (a ^ (b % d) ^ (b / d) - 1) + (a ^ gcd b c - 1) * (a ^ (b % gcd b d) - 1)).gcd\n      ((a ^ d - 1) * (a ^ (c % d) ^ (c / d) - 1) + (a ^ gcd b c - 1) * (a ^ (c % gcd c d) - 1)) =\n    a ^ (d + 1) - 1",
+      "endPos": {
+        "column": 8,
+        "line": 30
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 2,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_mersenne_gcd' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 35
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 35
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":5,\"line\":30},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `hd`\",\"endPos\":{\"column\":12,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase zero\\na b c : ℕ\\n⊢ a ^ b.gcd c - 1 = 0\",\"endPos\":{\"column\":13,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_bezout`\",\"endPos\":{\"column\":27,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_bezout`\",\"endPos\":{\"column\":27,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_bezout`\",\"endPos\":{\"column\":27,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":20},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_bezout`\",\"endPos\":{\"column\":27,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":22},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_bezout`\",\"endPos\":{\"column\":27,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":24},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_bezout`\",\"endPos\":{\"column\":27,\"line\":26},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":26},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_bezout`\",\"endPos\":{\"column\":27,\"line\":28},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":28},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase succ\\nd : ℕ\\nhd : ∀ (a b c : ℕ), (a ^ b - 1).gcd (a ^ c - 1) = a ^ d - 1\\na b c : ℕ\\nh1 : a ^ b - 1 = (a ^ d - 1) * (a ^ (b % d) ^ (b / d) - 1) + (a ^ (b % d) - 1)\\nh2 : a ^ c - 1 = (a ^ d - 1) * (a ^ (c % d) ^ (c / d) - 1) + (a ^ (c % d) - 1)\\nh3 : a ^ (b % d) - 1 = (a ^ gcd b d - 1) * (a ^ (b % gcd b d) - 1)\\nh4 : a ^ (c % d) - 1 = (a ^ gcd c d - 1) * (a ^ (c % gcd c d) - 1)\\nh5 : a ^ gcd b d - 1 = a ^ gcd b c - 1\\nh6 : a ^ gcd c d - 1 = a ^ gcd b c - 1\\nh7 : a ^ gcd b c - 1 = a ^ gcd b c - 1\\n⊢ ((a ^ d - 1) * (a ^ (b % d) ^ (b / d) - 1) + (a ^ gcd b c - 1) * (a ^ (b % gcd b d) - 1)).gcd\\n      ((a ^ d - 1) * (a ^ (c % d) ^ (c / d) - 1) + (a ^ gcd b c - 1) * (a ^ (c % gcd c d) - 1)) =\\n    a ^ (d + 1) - 1\",\"endPos\":{\"column\":8,\"line\":30},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_mersenne_gcd' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":35},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10658aad48e7aa1813b3fd5d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":35},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

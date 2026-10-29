@@ -1,0 +1,144 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: unsolved goals\ncase pos\np : ℕ\nhp : Nat.Prime p\na : ℤ\nh : a = 0\n⊢ ¬p = 0",
+    "line 16: Unknown identifier `pow_add_one`",
+    "line 18: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a ^ p\nin the target expression\n  a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]\n\np : ℕ\nhp : Nat.Prime p\na : ℤ\nh1 : a ^ p = if a = 0 then 0 else a * a ^ (p - 1)\n⊢ a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]",
+    "line 23: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a * 1 % ?m.82\nin the target expression\n  a * 1 ≡ a [ZMOD ↑p]\n\np : ℕ\nhp : Nat.Prime p\na : ℤ\nh1 : a ^ p = if a = 0 then 0 else a * a ^ (p - 1)\nh2 : a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]\n⊢ a * 1 ≡ a [ZMOD ↑p]",
+    "line 24: Type mismatch\n  Int.ModEq.trans h2 h3\nhas type\n  a * a ^ (p - 1) ≡ a [ZMOD ↑p]\nbut is expected to have type\n  a ^ p ≡ a [ZMOD ↑p]"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 38.672,
+  "diagnostics_parsed": 7,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: unsolved goals\ncase pos\np : ℕ\nhp : Nat.Prime p\na : ℤ\nh : a = 0\n⊢ ¬p = 0\nline 16: Unknown identifier `pow_add_one`\nline 18: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a ^ p\nin the target expression\n  a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]\n\np : ℕ\nhp : Nat.Prime p\na : ℤ\nh1 : a ^ p = if a = 0 then 0 else a * a ^ (p - 1)\n⊢ a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]\nline 23: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a * 1 % ?m.82\nin the target expression\n  a * 1 ≡ a [ZMOD ↑p]\n\np : ℕ\nhp : Nat.Prime p\na : ℤ\nh1 : a ^ p = if a = 0 then 0 else a * a ^ (p - 1)\nh2 : a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]\n⊢ a * 1 ≡ a [ZMOD ↑p]\nline 24: Type mismatch\n  Int.ModEq.trans h2 h3\nhas type\n  a * a ^ (p - 1) ≡ a [ZMOD ↑p]\nbut is expected to have type\n  a ^ p ≡ a [ZMOD ↑p]",
+  "candidate_sha256": "b91ada25d484d5b5ae172d5e3f665201177dd584278019fae5eac5144770a8ca",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_fermat (p : ℕ) (hp : p.Prime) (a : ℤ) : Int.ModEq (p : ℤ) (a ^ p) a := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_fermat (p : ℕ) (hp : p.Prime) (a : ℤ) : Int.ModEq (p : ℤ) (a ^ p) a\n:= by\n  have h1 : a ^ p = (if a = 0 then 0 else a * (a ^ (p - 1))) := by\n    by_cases h : a = 0\n    · simp [h]\n    · rw [pow_add_one, one_mul]\n  have h2 : Int.ModEq (p : ℤ) (a * (a ^ (p - 1))) (a * 1) := by\n    rw [h1]\n    apply Int.ModEq_mul\n    · exact hp.ne_zero\n    · exact Int.ModEq.refl (a * 1)\n  have h3 : Int.ModEq (p : ℤ) (a * 1) a := by\n    rw [Int.ModEq.refl (a * 1)]\n  exact h2.trans h3\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_fermat = Nl2LeanCandidate.study_m_fermat := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_fermat\n",
+  "verification_source_sha256": "f2dd99d4c7e25edd8c910afe212333edbaf69352b7740b4e89816470291189f5",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\ncase pos\np : ℕ\nhp : Nat.Prime p\na : ℤ\nh : a = 0\n⊢ ¬p = 0",
+      "endPos": {
+        "column": 14,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 4,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `pow_add_one`",
+      "endPos": {
+        "column": 21,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a ^ p\nin the target expression\n  a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]\n\np : ℕ\nhp : Nat.Prime p\na : ℤ\nh1 : a ^ p = if a = 0 then 0 else a * a ^ (p - 1)\n⊢ a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]",
+      "endPos": {
+        "column": 10,
+        "line": 18
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 18
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a * 1 % ?m.82\nin the target expression\n  a * 1 ≡ a [ZMOD ↑p]\n\np : ℕ\nhp : Nat.Prime p\na : ℤ\nh1 : a ^ p = if a = 0 then 0 else a * a ^ (p - 1)\nh2 : a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]\n⊢ a * 1 ≡ a [ZMOD ↑p]",
+      "endPos": {
+        "column": 30,
+        "line": 23
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 23
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  Int.ModEq.trans h2 h3\nhas type\n  a * a ^ (p - 1) ≡ a [ZMOD ↑p]\nbut is expected to have type\n  a ^ p ≡ a [ZMOD ↑p]",
+      "endPos": {
+        "column": 19,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 24
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_fermat' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 29
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 29
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase pos\\np : ℕ\\nhp : Nat.Prime p\\na : ℤ\\nh : a = 0\\n⊢ ¬p = 0\",\"endPos\":{\"column\":14,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":4,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `pow_add_one`\",\"endPos\":{\"column\":21,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  a ^ p\\nin the target expression\\n  a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]\\n\\np : ℕ\\nhp : Nat.Prime p\\na : ℤ\\nh1 : a ^ p = if a = 0 then 0 else a * a ^ (p - 1)\\n⊢ a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]\",\"endPos\":{\"column\":10,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  a * 1 % ?m.82\\nin the target expression\\n  a * 1 ≡ a [ZMOD ↑p]\\n\\np : ℕ\\nhp : Nat.Prime p\\na : ℤ\\nh1 : a ^ p = if a = 0 then 0 else a * a ^ (p - 1)\\nh2 : a * a ^ (p - 1) ≡ a * 1 [ZMOD ↑p]\\n⊢ a * 1 ≡ a [ZMOD ↑p]\",\"endPos\":{\"column\":30,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":23},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  Int.ModEq.trans h2 h3\\nhas type\\n  a * a ^ (p - 1) ≡ a [ZMOD ↑p]\\nbut is expected to have type\\n  a ^ p ≡ a [ZMOD ↑p]\",\"endPos\":{\"column\":19,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":24},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_fermat' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":29},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_13430b5c4552d43140dec450.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":29},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

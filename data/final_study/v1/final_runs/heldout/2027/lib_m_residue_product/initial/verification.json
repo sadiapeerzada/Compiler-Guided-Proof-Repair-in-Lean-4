@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: 'calc' expression has type\n  (a % m * (b % m) ≤ a * b) = (a % m * (b % m) ≤ a * b)\nbut is expected to have type\n  a % m * (b % m) < m * m",
+    "line 12: unsolved goals\na b m : ℕ\nh1 : a % m * (b % m) < m * m\n⊢ a * b % m = a % m * (b % m) % m",
+    "line 15: unexpected token ':'; expected command"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.421,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: 'calc' expression has type\n  (a % m * (b % m) ≤ a * b) = (a % m * (b % m) ≤ a * b)\nbut is expected to have type\n  a % m * (b % m) < m * m\nline 12: unsolved goals\na b m : ℕ\nh1 : a % m * (b % m) < m * m\n⊢ a * b % m = a % m * (b % m) % m\nline 15: unexpected token ':'; expected command",
+  "candidate_sha256": "fa637e3dd148f0427c2d6f1459c8edc3046946fbb8b2cf73a0d441066c625df1",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_residue_product (a b m : ℕ) : (a * b) % m = ((a % m) * (b % m)) % m := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_residue_product (a b m : ℕ) : (a * b) % m = ((a % m) * (b % m)) % m\n:= by\n  have h1 : (a % m) * (b % m) < m * m := by\n    calc\n      (a % m) * (b % m) ≤ a * b : by apply le_of_lt; apply mod_lt; assumption\n      _ < m * m : by apply mul_lt_mul; [apply zero_lt_one, apply zero_lt_one]\n  have h2 : (a * b) % m ≤ m := by apply mod_lt; assumption\n  have h3 : ((a % m) * (b % m)) % m ≤ m := by apply mod_lt; exact h1\n  have h4 : (a * b) % m - ((a % m) * (b % m)) % m ≤ m := by\n    calc\n      (a * b) % m - ((a % m) * (b % m)) % m ≤ (a * b) % m : by apply le_of_sub_nonneg; apply le_mod\n      _ ≤ m : h2\n  have h5 : (a * b) % m - ((a % m) * (b % m)) % m ≥ 0 := by apply le_mod; assumption\n  have h6 : (a * b) % m - ((a % m) * (b % m)) % m = 0 ∨ (a * b) % m - ((a % m) * (b % m)) % m = m := by\n    apply mod_unique; [apply h4, apply h5]\n  have h7 : (a * b) % m = ((a % m) * (b % m)) % m ∨ (a * b) % m = ((a % m) * (b % m)) % m + m := by\n    apply or_of_le; exact h6\n  have h8 : (a * b) % m = ((a % m) * (b % m)) % m := by\n    by_cases h : (a * b) % m = ((a % m) * (b % m)) % m + m; [left, apply h, right, apply zero_add]\n    have h9 : (a * b) % m - ((a % m) * (b % m)) % m = m := by apply eq_of_sub_eq_add; assumption\n    have h10 : m = 0 := by apply mod_eq_zero; assumption\n    contradiction\n  exact h8\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_residue_product = Nl2LeanCandidate.study_m_residue_product := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_residue_product\n",
+  "verification_source_sha256": "9ebc475867c7992518feefd9b912aeb4620d4a470b2d4134c7ebab1167bd84a3",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_dae7f28b55a3282be991486e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "'calc' expression has type\n  (a % m * (b % m) ≤ a * b) = (a % m * (b % m) ≤ a * b)\nbut is expected to have type\n  a % m * (b % m) < m * m",
+      "endPos": {
+        "column": 8,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_dae7f28b55a3282be991486e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\na b m : ℕ\nh1 : a % m * (b % m) < m * m\n⊢ a * b % m = a % m * (b % m) % m",
+      "endPos": {
+        "column": 31,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_dae7f28b55a3282be991486e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 3,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token ':'; expected command",
+      "endPos": {
+        "column": 33,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_dae7f28b55a3282be991486e.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 32,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_residue_product' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 38
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_dae7f28b55a3282be991486e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 38
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_dae7f28b55a3282be991486e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'calc' expression has type\\n  (a % m * (b % m) ≤ a * b) = (a % m * (b % m) ≤ a * b)\\nbut is expected to have type\\n  a % m * (b % m) < m * m\",\"endPos\":{\"column\":8,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_dae7f28b55a3282be991486e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b m : ℕ\\nh1 : a % m * (b % m) < m * m\\n⊢ a * b % m = a % m * (b % m) % m\",\"endPos\":{\"column\":31,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_dae7f28b55a3282be991486e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token ':'; expected command\",\"endPos\":{\"column\":33,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_dae7f28b55a3282be991486e.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":32,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_residue_product' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":38},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_dae7f28b55a3282be991486e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":38},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

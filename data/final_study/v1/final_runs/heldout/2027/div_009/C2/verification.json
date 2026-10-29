@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 10: unsolved goals\ncase h\nn : ℤ\n⊢ ?m.19\n\nn : ℤ\nh : ?m.19\n⊢ Even (n ^ 3 - n)",
+    "line 11: unexpected token '='; expected command"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.934,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 10: unsolved goals\ncase h\nn : ℤ\n⊢ ?m.19\n\nn : ℤ\nh : ?m.19\n⊢ Even (n ^ 3 - n)\nline 11: unexpected token '='; expected command",
+  "candidate_sha256": "8f97c05c3e4c0a3221f70d79f984ea086f01824e144a01e03dc559f5cb6f98bd",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem even_cube_sub_self (n : ℤ) : Even (n ^ 3 - n) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem even_cube_sub_self (n : ℤ) : Even (n ^ 3 - n) :=\nby\n  have h = n ^ 3 - n = n * (n ^ 2 - 1)\n  rw [h]\n  have h1 = n ^ 2 - 1 = (n - 1) * (n + 1)\n  rw [h1]\n  have h2 = n * (n - 1) * (n + 1)\n  rw [h2]\n  have h3 = n * (n - 1) * (n + 1) % 2 = 0\n  rw [Even_def]\n  have h4 = (n % 2) * ((n - 1) % 2) * ((n + 1) % 2) % 2 = 0\n  rw [mod_mul_mod]\n  have h5 = (n % 2) * (n % 2) * (n % 2) % 2 = 0\n  rw [mod_pow]\n  exact h5\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.even_cube_sub_self = Nl2LeanCandidate.even_cube_sub_self := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.even_cube_sub_self\n",
+  "verification_source_sha256": "3add17de90332a700b9a336ce2f06bb2398f8a9d8928b79c6230faa3ace69a09",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 26,
+        "line": 5
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d63f7668616551181900b7f0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\ncase h\nn : ℤ\n⊢ ?m.19\n\nn : ℤ\nh : ?m.19\n⊢ Even (n ^ 3 - n)",
+      "endPos": {
+        "column": 8,
+        "line": 11
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d63f7668616551181900b7f0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 0,
+        "line": 10
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token '='; expected command",
+      "endPos": {
+        "column": 10,
+        "line": 11
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d63f7668616551181900b7f0.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 9,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.even_cube_sub_self' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 28
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d63f7668616551181900b7f0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 28
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":26,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d63f7668616551181900b7f0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h\\nn : ℤ\\n⊢ ?m.19\\n\\nn : ℤ\\nh : ?m.19\\n⊢ Even (n ^ 3 - n)\",\"endPos\":{\"column\":8,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d63f7668616551181900b7f0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":0,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token '='; expected command\",\"endPos\":{\"column\":10,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d63f7668616551181900b7f0.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":9,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.even_cube_sub_self' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":28},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d63f7668616551181900b7f0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":28},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

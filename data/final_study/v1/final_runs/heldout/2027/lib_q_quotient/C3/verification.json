@@ -1,0 +1,126 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Type mismatch\n  le_refl m\nhas type\n  m ≤ m\nbut is expected to have type\n  m / 0 ≤ m",
+    "line 17: Unknown identifier `le_of_ge`",
+    "line 17: Unknown identifier `zero_pos`",
+    "line 15: unsolved goals\ncase a\nm n✝ n : ℕ\n⊢ ℕ"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 32.995,
+  "diagnostics_parsed": 6,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Type mismatch\n  le_refl m\nhas type\n  m ≤ m\nbut is expected to have type\n  m / 0 ≤ m\nline 17: Unknown identifier `le_of_ge`\nline 17: Unknown identifier `zero_pos`\nline 15: unsolved goals\ncase a\nm n✝ n : ℕ\n⊢ ℕ",
+  "candidate_sha256": "c951bac88bbb67338d708391f0fe9a5a58beff715010e4d9b8ab97dacf45da64",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_quotient (m n : ℕ) : m / n ≤ m := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_quotient (m n : ℕ) : m / n ≤ m := by\n  match n with\n  | 0 => exact le_refl m\n  | n + 1 => \n    have h1 : m / (n + 1) ≤ m := by\n      apply le_of_add_le_add_right\n      exact le_of_lt (lt_of_le_of_ne (le_of_ge (by linarith)) (ne_of_gt zero_pos))\n    exact h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_quotient = Nl2LeanCandidate.study_q_quotient := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_quotient\n",
+  "verification_source_sha256": "ae5cd91befcc3481f5c635bb732f7e857b88517ff7954e1501314fd9f69d29b9",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 24,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  le_refl m\nhas type\n  m ≤ m\nbut is expected to have type\n  m / 0 ≤ m",
+      "endPos": {
+        "column": 24,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 9,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `le_of_ge`",
+      "endPos": {
+        "column": 46,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 38,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `zero_pos`",
+      "endPos": {
+        "column": 80,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 72,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\ncase a\nm n✝ n : ℕ\n⊢ ℕ",
+      "endPos": {
+        "column": 82,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 33,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_quotient' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 23
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 23
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":24,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  le_refl m\\nhas type\\n  m ≤ m\\nbut is expected to have type\\n  m / 0 ≤ m\",\"endPos\":{\"column\":24,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":9,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `le_of_ge`\",\"endPos\":{\"column\":46,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":38,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `zero_pos`\",\"endPos\":{\"column\":80,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":72,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase a\\nm n✝ n : ℕ\\n⊢ ℕ\",\"endPos\":{\"column\":82,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":33,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_quotient' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b379a8d4502e298a47462618.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":23},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

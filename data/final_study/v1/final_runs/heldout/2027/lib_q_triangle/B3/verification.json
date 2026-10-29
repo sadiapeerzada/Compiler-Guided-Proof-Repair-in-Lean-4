@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Unknown identifier `abs_add_eq_add_of_nonneg`",
+    "line 14: Unknown identifier `abs_add_le_add`",
+    "line 12: unsolved goals\nx y : ℝ\n⊢ ℝ\n\nx y : ℝ\n⊢ ℝ"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 21.05,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Unknown identifier `abs_add_eq_add_of_nonneg`\nline 14: Unknown identifier `abs_add_le_add`\nline 12: unsolved goals\nx y : ℝ\n⊢ ℝ\n\nx y : ℝ\n⊢ ℝ",
+  "candidate_sha256": "4c1dce2efc2452ab96bade5a2fac660b5028736fd90eea2e739f926f7c87de52",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_triangle (x y : ℝ) : |x + y| ≤ |x| + |y| := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_triangle (x y : ℝ) : |x + y| ≤ |x| + |y| :=\nby\n  apply le_trans (le_of_eq (abs_add_eq_add_of_nonneg (by linarith)))\n  apply abs_add_le_add\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_triangle = Nl2LeanCandidate.study_q_triangle := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_triangle\n",
+  "verification_source_sha256": "7b9c3a7d848ed80b3604785ef1afc2bbfde26fdb62a5895c052c0c9342911de9",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 24,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_60fa8efd5420f3b144a01f9c.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `abs_add_eq_add_of_nonneg`",
+      "endPos": {
+        "column": 52,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_60fa8efd5420f3b144a01f9c.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 28,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `abs_add_le_add`",
+      "endPos": {
+        "column": 22,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_60fa8efd5420f3b144a01f9c.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\nx y : ℝ\n⊢ ℝ\n\nx y : ℝ\n⊢ ℝ",
+      "endPos": {
+        "column": 22,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_60fa8efd5420f3b144a01f9c.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 0,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_triangle' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_60fa8efd5420f3b144a01f9c.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 19
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":24,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_60fa8efd5420f3b144a01f9c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `abs_add_eq_add_of_nonneg`\",\"endPos\":{\"column\":52,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_60fa8efd5420f3b144a01f9c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":28,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `abs_add_le_add`\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_60fa8efd5420f3b144a01f9c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx y : ℝ\\n⊢ ℝ\\n\\nx y : ℝ\\n⊢ ℝ\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_60fa8efd5420f3b144a01f9c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":0,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_triangle' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_60fa8efd5420f3b144a01f9c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":19},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

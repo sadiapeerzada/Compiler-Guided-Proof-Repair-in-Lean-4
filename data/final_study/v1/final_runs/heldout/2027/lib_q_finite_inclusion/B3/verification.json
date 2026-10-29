@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Invalid field `card_le_of_subset`: The environment does not contain `Finset.card_le_of_subset`, so it is not possible to project the field `card_le_of_subset` from an expression\n  s\nof type `Finset ℕ`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 32.948,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Invalid field `card_le_of_subset`: The environment does not contain `Finset.card_le_of_subset`, so it is not possible to project the field `card_le_of_subset` from an expression\n  s\nof type `Finset ℕ`",
+  "candidate_sha256": "c5c5695c337da0f95f4fcf2f059ffb616d169621876d9be1e4ad81c773f85a4c",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_finite_inclusion (s t : Finset ℕ) (h : s ⊆ t) : s.card ≤ t.card := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_finite_inclusion (s t : Finset ℕ) (h : s ⊆ t) : s.card ≤ t.card\n:= by\n  have h_card : ∀ x : ℕ, x ∈ s → x ∈ t := fun x hx => h hx\n  exact s.card_le_of_subset h_card\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_finite_inclusion = Nl2LeanCandidate.study_q_finite_inclusion := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_finite_inclusion\n",
+  "verification_source_sha256": "2e5cd15d43a093bc07fc9ff05795823cc4d40f7aa5bab6fb72a2e6e85460dcfe",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 32,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_308b0999959f6cd40180fb92.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Invalid field `card_le_of_subset`: The environment does not contain `Finset.card_le_of_subset`, so it is not possible to project the field `card_le_of_subset` from an expression\n  s\nof type `Finset ℕ`",
+      "endPos": {
+        "column": 27,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_308b0999959f6cd40180fb92.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.invalidField._namedError",
+      "pos": {
+        "column": 10,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_finite_inclusion' depends on axioms: [propext, sorryAx, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_308b0999959f6cd40180fb92.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 19
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":32,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_308b0999959f6cd40180fb92.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Invalid field `card_le_of_subset`: The environment does not contain `Finset.card_le_of_subset`, so it is not possible to project the field `card_le_of_subset` from an expression\\n  s\\nof type `Finset ℕ`\",\"endPos\":{\"column\":27,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_308b0999959f6cd40180fb92.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.invalidField._namedError\",\"pos\":{\"column\":10,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_finite_inclusion' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_308b0999959f6cd40180fb92.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":19},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

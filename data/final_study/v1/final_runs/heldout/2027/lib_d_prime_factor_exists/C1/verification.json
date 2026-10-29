@@ -1,0 +1,126 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: Unknown identifier `«exists».intro`",
+    "line 16: No goals to be solved",
+    "line 21: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\n  p > 1",
+    "line 25: Type mismatch\n  hp1\nhas type\n  p ≤ n\nbut is expected to have type\n  n = p * p"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 32.844,
+  "diagnostics_parsed": 6,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: Unknown identifier `«exists».intro`\nline 16: No goals to be solved\nline 21: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\n  p > 1\nline 25: Type mismatch\n  hp1\nhas type\n  p ≤ n\nbut is expected to have type\n  n = p * p",
+  "candidate_sha256": "0342418ce388cd45ee817e975efdd86433b61581826fc036cbffd537687ee5ab",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_factor_exists (n : ℕ) (hn : 2 ≤ n) : ∃ p : ℕ, p.Prime ∧ p ∣ n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_d_prime_factor_exists (n : ℕ) (hn : 2 ≤ n) : ∃ p : ℕ, p.Prime ∧ p ∣ n\n:= by\n  have h1 : ∃ p : ℕ, p ≤ n ∧ p > 1 := by\n    apply exists.intro n\n    split\n    · exact hn\n    · exact ⟨n, by rw [one_mul]; exact nat.prime.nat_of_prime n⟩\n  obtain ⟨p, hp1, hp2⟩ := h1\n  have hp3 : p.Prime := by\n    rw [hp2]\n    exact nat.prime_of_dvd_of_pos hp1\n  have hp4 : p ∣ n := by\n    use p\n    exact hp1\n  exact ⟨p, hp3, hp4⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_factor_exists = Nl2LeanCandidate.study_d_prime_factor_exists := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_factor_exists\n",
+  "verification_source_sha256": "700d951ef781ec95ee76cf19a774f993ac2541c85746c87334fd04b374e0f8cf",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 35,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `«exists».intro`",
+      "endPos": {
+        "column": 22,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "No goals to be solved",
+      "endPos": {
+        "column": 9,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\n  p > 1",
+      "endPos": {
+        "column": 11,
+        "line": 21
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 21
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  hp1\nhas type\n  p ≤ n\nbut is expected to have type\n  n = p * p",
+      "endPos": {
+        "column": 13,
+        "line": 25
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 25
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_prime_factor_exists' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 31
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 31
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `«exists».intro`\",\"endPos\":{\"column\":22,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":9,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\\n  p > 1\",\"endPos\":{\"column\":11,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":21},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  hp1\\nhas type\\n  p ≤ n\\nbut is expected to have type\\n  n = p * p\",\"endPos\":{\"column\":13,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":25},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_factor_exists' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":31},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ce9c01a863a487f5795007f4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":31},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

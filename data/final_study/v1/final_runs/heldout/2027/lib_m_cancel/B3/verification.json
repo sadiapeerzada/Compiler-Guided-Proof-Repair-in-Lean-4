@@ -1,0 +1,144 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Unknown constant `Nat.gcd_eq_gcd_mul`",
+    "line 17: Unknown constant `Nat.mod_div_eq_mod`",
+    "line 19: Invalid rewrite argument: The pattern to be substituted is a metavariable (`?m.105`) in this equality\n  ?m.105 = ?m.107",
+    "line 20: Unknown constant `Nat.mod_eq_mod_of_div_eq`",
+    "line 19: Application type mismatch: The argument\n  h3\nhas type\n  c * a % (m / g) = c * b % (m / g)\nbut is expected to have type\n  0 < ?m.106\nin the application\n  Nat.mul_right_cancel h3"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.444,
+  "diagnostics_parsed": 7,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Unknown constant `Nat.gcd_eq_gcd_mul`\nline 17: Unknown constant `Nat.mod_div_eq_mod`\nline 19: Invalid rewrite argument: The pattern to be substituted is a metavariable (`?m.105`) in this equality\n  ?m.105 = ?m.107\nline 20: Unknown constant `Nat.mod_eq_mod_of_div_eq`\nline 19: Application type mismatch: The argument\n  h3\nhas type\n  c * a % (m / g) = c * b % (m / g)\nbut is expected to have type\n  0 < ?m.106\nin the application\n  Nat.mul_right_cancel h3",
+  "candidate_sha256": "04ee82d800352fff49a079d50da632d8d5acdd2539368f4adf33602d45800245",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_cancel (m c a b : ℕ) (hm : 0 < m) (h : Nat.ModEq m (c * a) (c * b)) : Nat.ModEq (m / Nat.gcd m c) a b := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_cancel (m c a b : ℕ) (hm : 0 < m) (h : Nat.ModEq m (c * a) (c * b)) : Nat.ModEq (m / Nat.gcd m c) a b\n:= by\n  let g := Nat.gcd m c\n  have h1 : m = (m / g) * g := by rw [Nat.gcd_eq_gcd_mul]\n  have h2 : c * a % m = c * b % m := by rw [h]\n  have h3 : c * a % (m / g) = c * b % (m / g) := by\n    rw [h1, Nat.mod_div_eq_mod]\n  have h4 : a % (m / g) = b % (m / g) := by\n    rw [Nat.mul_right_cancel h3, Nat.gcd_pos_of_pos hm, Nat.gcd_eq_gcd_mul]\n  exact Nat.mod_eq_mod_of_div_eq h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_cancel = Nl2LeanCandidate.study_m_cancel := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_cancel\n",
+  "verification_source_sha256": "87042caf913a0c4ad0f38b3b7081f917a1dd582e61cd2e50fdee762bd4b6f97f",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_gcd_mul`",
+      "endPos": {
+        "column": 56,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 38,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.mod_div_eq_mod`",
+      "endPos": {
+        "column": 30,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 12,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid rewrite argument: The pattern to be substituted is a metavariable (`?m.105`) in this equality\n  ?m.105 = ?m.107",
+      "endPos": {
+        "column": 31,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.mod_eq_mod_of_div_eq`",
+      "endPos": {
+        "column": 32,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 20
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Application type mismatch: The argument\n  h3\nhas type\n  c * a % (m / g) = c * b % (m / g)\nbut is expected to have type\n  0 < ?m.106\nin the application\n  Nat.mul_right_cancel h3",
+      "endPos": {
+        "column": 31,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 29,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_cancel' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 25
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 25
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_gcd_mul`\",\"endPos\":{\"column\":56,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":38,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.mod_div_eq_mod`\",\"endPos\":{\"column\":30,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":12,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: The pattern to be substituted is a metavariable (`?m.105`) in this equality\\n  ?m.105 = ?m.107\",\"endPos\":{\"column\":31,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.mod_eq_mod_of_div_eq`\",\"endPos\":{\"column\":32,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":20},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  h3\\nhas type\\n  c * a % (m / g) = c * b % (m / g)\\nbut is expected to have type\\n  0 < ?m.106\\nin the application\\n  Nat.mul_right_cancel h3\",\"endPos\":{\"column\":31,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":29,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_cancel' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302d10effa2ca5f60a2234b5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

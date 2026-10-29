@@ -1,0 +1,87 @@
+{
+  "success": false,
+  "errors": [
+    "line 11: unknown tactic",
+    "line 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `i`."
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 59.015,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 11: unknown tactic\nline 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `i`.",
+  "candidate_sha256": "c7c5237e2950863a2ab2c716a149c00427f6a53413ab8d74f87a97a5c8dc9d24",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem sum_squares_closed_form (n : ℕ) : (∑ k ∈ Finset.range (n + 1), k ^ 2) = n * (n + 1) * (2 * n + 1) / 6 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem sum_squares_closed_form (n : ℕ) : (∑ k ∈ Finset.range (n + 1), k ^ 2) = n * (n + 1) * (2 * n + 1) / 6\n:= by\n  induction n with i hi\n  · simp [Finset.sum_range_zero]\n  · have := hi i\n    rw [Finset.sum_range_succ, add_assoc, mul_assoc, mul_comm i (i + 1), add_comm (i + 1), add_assoc, add_left_comm, add_right_comm]\n    ring\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.sum_squares_closed_form = Nl2LeanCandidate.sum_squares_closed_form := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.sum_squares_closed_form\n",
+  "verification_source_sha256": "43e6d55de110000c92eba806ec63e885e25e4d8b083448cad8d8f065deb700f9",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 5
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_527f557d77bb15108e7f8de1.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unknown tactic",
+      "endPos": null,
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_527f557d77bb15108e7f8de1.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 20,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `i`.",
+      "endPos": {
+        "column": 20,
+        "line": 11
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_527f557d77bb15108e7f8de1.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.inductionWithNoAlts._namedError",
+      "pos": {
+        "column": 14,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.sum_squares_closed_form' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_527f557d77bb15108e7f8de1.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 20
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_527f557d77bb15108e7f8de1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_527f557d77bb15108e7f8de1.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `i`.\",\"endPos\":{\"column\":20,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_527f557d77bb15108e7f8de1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.sum_squares_closed_form' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_527f557d77bb15108e7f8de1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

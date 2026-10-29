@@ -1,0 +1,57 @@
+{
+  "success": true,
+  "errors": [],
+  "exit_code": 0,
+  "elapsed_seconds": 36.581,
+  "diagnostics_parsed": 2,
+  "axiom_dependencies": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "failure_kind": null,
+  "diagnostic_text": null,
+  "candidate_sha256": "ac08a664fe0ffbb72889502923a199d6ceeb00e398e737949111ef5a389dab90",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_exp_add (x y : ℝ) : Real.exp (x + y) = Real.exp x * Real.exp y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_exp_add (x y : ℝ) : Real.exp (x + y) = Real.exp x * Real.exp y\n:= by\n  have h : Real.exp (x + y) = Real.exp x * Real.exp y := by\n    rw [Real.exp_add]\n  exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_exp_add = Nl2LeanCandidate.study_a_exp_add := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_exp_add\n",
+  "verification_source_sha256": "cdb21c46b0c098fe62d8aea46604bd2475394c5cd3540841528e7117093434fe",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 23,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7a612b03336481371d583c3d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_exp_add' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7a612b03336481371d583c3d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 20
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7a612b03336481371d583c3d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_exp_add' depends on axioms: [propext, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7a612b03336481371d583c3d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

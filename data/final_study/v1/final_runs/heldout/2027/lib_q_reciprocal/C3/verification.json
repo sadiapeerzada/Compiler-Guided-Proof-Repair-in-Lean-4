@@ -1,0 +1,126 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Application type mismatch: The argument\n  hxy\nhas type\n  x ≤ y\nbut is expected to have type\n  0 < ?m.33\nin the application\n  div_pos hxy",
+    "line 16: Unknown identifier `div_le_div_iff`",
+    "line 18: Unknown identifier `le_comm`",
+    "line 12: unsolved goals\nx y : ℝ\nhx : 0 < x\nhxy : x ≤ y\nhxy_pos : 0 < y\nh_inv_x_le_inv_y : 1 / x ≤ 1 / y\n⊢ 1 / y ≤ 1 / x"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 35.021,
+  "diagnostics_parsed": 6,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Application type mismatch: The argument\n  hxy\nhas type\n  x ≤ y\nbut is expected to have type\n  0 < ?m.33\nin the application\n  div_pos hxy\nline 16: Unknown identifier `div_le_div_iff`\nline 18: Unknown identifier `le_comm`\nline 12: unsolved goals\nx y : ℝ\nhx : 0 < x\nhxy : x ≤ y\nhxy_pos : 0 < y\nh_inv_x_le_inv_y : 1 / x ≤ 1 / y\n⊢ 1 / y ≤ 1 / x",
+  "candidate_sha256": "8b01617086b978874819d7fc1919ba0cd8dcad2904d145144c33f7d359eae7e5",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_reciprocal (x y : ℝ) (hx : 0 < x) (hxy : x ≤ y) : 1 / y ≤ 1 / x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_reciprocal (x y : ℝ) (hx : 0 < x) (hxy : x ≤ y) : 1 / y ≤ 1 / x\n:= by\n  have hxy_pos : 0 < y := by\n    exact div_pos hxy hx\n  have h_inv_x_le_inv_y : 1 / x ≤ 1 / y := by\n    rw [div_le_div_iff (by linarith [hx])]\n    exact hxy_pos\n  rw [le_comm] at h_inv_x_le_inv_y\n  exact h_inv_x_le_inv_y\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_reciprocal = Nl2LeanCandidate.study_q_reciprocal := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_reciprocal\n",
+  "verification_source_sha256": "b98ac6acdf5efe18ac16107030f00c9d22c55cd583a6fe6e8f910d07e94b1f9c",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 26,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Application type mismatch: The argument\n  hxy\nhas type\n  x ≤ y\nbut is expected to have type\n  0 < ?m.33\nin the application\n  div_pos hxy",
+      "endPos": {
+        "column": 21,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 18,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `div_le_div_iff`",
+      "endPos": {
+        "column": 22,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `le_comm`",
+      "endPos": {
+        "column": 13,
+        "line": 18
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 6,
+        "line": 18
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\nx y : ℝ\nhx : 0 < x\nhxy : x ≤ y\nhxy_pos : 0 < y\nh_inv_x_le_inv_y : 1 / x ≤ 1 / y\n⊢ 1 / y ≤ 1 / x",
+      "endPos": {
+        "column": 24,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 3,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_reciprocal' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 24
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":26,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  hxy\\nhas type\\n  x ≤ y\\nbut is expected to have type\\n  0 < ?m.33\\nin the application\\n  div_pos hxy\",\"endPos\":{\"column\":21,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":18,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `div_le_div_iff`\",\"endPos\":{\"column\":22,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `le_comm`\",\"endPos\":{\"column\":13,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":6,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx y : ℝ\\nhx : 0 < x\\nhxy : x ≤ y\\nhxy_pos : 0 < y\\nh_inv_x_le_inv_y : 1 / x ≤ 1 / y\\n⊢ 1 / y ≤ 1 / x\",\"endPos\":{\"column\":24,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_reciprocal' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_609ac6aea9768dcdd8946baa.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

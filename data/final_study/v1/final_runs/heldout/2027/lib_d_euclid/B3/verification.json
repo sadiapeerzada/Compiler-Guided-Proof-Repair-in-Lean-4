@@ -1,0 +1,69 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: unknown tactic"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.978,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: unknown tactic",
+  "candidate_sha256": "e3a40310d48161cd0c871f39ac0a935a47e2f493978eb5cc00224ce74cfdf2e8",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_euclid (p a b : ℕ) (hp : p.Prime) : p ∣ a * b ↔ p ∣ a ∨ p ∣ b := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_euclid (p a b : ℕ) (hp : p.Prime) : p ∣ a * b ↔ p ∣ a ∨ p ∣ b\n:= by\n  split\n  · intro h\n    cases h with ha hb\n    · exact or.inl ha\n    · exact or.inr hb\n  · intro h\n    obtain ha | hb := h\n    · exact or.inl (by rw [mul_div_cancel_left hp a])\n    · exact or.inr (by rw [mul_div_cancel_right hp b])\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_euclid = Nl2LeanCandidate.study_d_euclid := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_euclid\n",
+  "verification_source_sha256": "c082f56e476aee8d83b45fa78262409dd1556e94335719af6022e641dae757be",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2f412fdb190640899a0e4f8b.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unknown tactic",
+      "endPos": null,
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2f412fdb190640899a0e4f8b.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 18,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_euclid' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 26
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2f412fdb190640899a0e4f8b.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 26
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2f412fdb190640899a0e4f8b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2f412fdb190640899a0e4f8b.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":18,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_euclid' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":26},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2f412fdb190640899a0e4f8b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":26},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

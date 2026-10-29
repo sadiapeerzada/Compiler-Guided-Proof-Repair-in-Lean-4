@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?x + 1).gcd ?y\nin the target expression\n  n.gcd (n + 1) = 1\n\nn : ℕ\n⊢ n.gcd (n + 1) = 1"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 31.032,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?x + 1).gcd ?y\nin the target expression\n  n.gcd (n + 1) = 1\n\nn : ℕ\n⊢ n.gcd (n + 1) = 1",
+  "candidate_sha256": "81c7afaeeac6ec575e21d170f8b6ba87edf53154920fe7ad76a70a624bdc0df7",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_coprime_successor (n : ℕ) : Nat.Coprime n (n + 1) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_coprime_successor (n : ℕ) : Nat.Coprime n (n + 1) := by\n  have h3 : Nat.gcd n (n + 1) = 1 := by\n    rw [Nat.gcd_add_one]\n    exact Nat.zero_le n\n  exact h3\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_coprime_successor = Nl2LeanCandidate.study_d_coprime_successor := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_coprime_successor\n",
+  "verification_source_sha256": "52db37f291749f4249c91617b9b41c372e4d0e48997256b2cf74b7234cf7b16f",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 33,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0fe0440abb24bcc2f8dfe2bc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?x + 1).gcd ?y\nin the target expression\n  n.gcd (n + 1) = 1\n\nn : ℕ\n⊢ n.gcd (n + 1) = 1",
+      "endPos": {
+        "column": 23,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0fe0440abb24bcc2f8dfe2bc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_coprime_successor' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0fe0440abb24bcc2f8dfe2bc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 20
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":33,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0fe0440abb24bcc2f8dfe2bc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  (?x + 1).gcd ?y\\nin the target expression\\n  n.gcd (n + 1) = 1\\n\\nn : ℕ\\n⊢ n.gcd (n + 1) = 1\",\"endPos\":{\"column\":23,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0fe0440abb24bcc2f8dfe2bc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_coprime_successor' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0fe0440abb24bcc2f8dfe2bc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

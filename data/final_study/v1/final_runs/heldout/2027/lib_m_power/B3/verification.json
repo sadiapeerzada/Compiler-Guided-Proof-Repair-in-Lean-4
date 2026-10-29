@@ -1,0 +1,105 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: unknown tactic",
+    "line 15: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+    "line 12: unsolved goals\na b m : ℤ\nn : ℕ\nh : a ≡ b [ZMOD m]\nh1 : a % m = b % m\nh2 : (a % m) ^ n = (b % m) ^ n\n⊢ a ^ n ≡ b ^ n [ZMOD m]"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 35.25,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: unknown tactic\nline 15: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\nline 12: unsolved goals\na b m : ℤ\nn : ℕ\nh : a ≡ b [ZMOD m]\nh1 : a % m = b % m\nh2 : (a % m) ^ n = (b % m) ^ n\n⊢ a ^ n ≡ b ^ n [ZMOD m]",
+  "candidate_sha256": "049aa349e73402a1aa96c45c3401c7c208dd6e00090755e33ac525788188bf5d",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_power (a b m : ℤ) (n : ℕ) (h : Int.ModEq m a b) : Int.ModEq m (a ^ n) (b ^ n) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_power (a b m : ℤ) (n : ℕ) (h : Int.ModEq m a b) : Int.ModEq m (a ^ n) (b ^ n) :=\nby\n  have h1 : a % m = b % m := h\n  have h2 : (a % m) ^ n = (b % m) ^ n := by\n    induction n with n ih\n    · rw [Nat.zero_power, Int.zero_mod, Int.zero_pow]\n    · rw [Nat.succ_power, Int.mod_add_div_self, ih, Int.mod_pow]\n  rw [h1, h2]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_power = Nl2LeanCandidate.study_m_power := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_power\n",
+  "verification_source_sha256": "ba98451b5cdf4f9c2d62df5d183f4577669b23708104cc0a478d01e570718cc1",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 21,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0dc67ba80526e3e9bbca9748.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unknown tactic",
+      "endPos": null,
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0dc67ba80526e3e9bbca9748.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 22,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+      "endPos": {
+        "column": 22,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0dc67ba80526e3e9bbca9748.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.inductionWithNoAlts._namedError",
+      "pos": {
+        "column": 16,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\na b m : ℤ\nn : ℕ\nh : a ≡ b [ZMOD m]\nh1 : a % m = b % m\nh2 : (a % m) ^ n = (b % m) ^ n\n⊢ a ^ n ≡ b ^ n [ZMOD m]",
+      "endPos": {
+        "column": 22,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0dc67ba80526e3e9bbca9748.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 0,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_power' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 23
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0dc67ba80526e3e9bbca9748.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 23
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":21,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0dc67ba80526e3e9bbca9748.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0dc67ba80526e3e9bbca9748.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":22,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":22,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0dc67ba80526e3e9bbca9748.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":16,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b m : ℤ\\nn : ℕ\\nh : a ≡ b [ZMOD m]\\nh1 : a % m = b % m\\nh2 : (a % m) ^ n = (b % m) ^ n\\n⊢ a ^ n ≡ b ^ n [ZMOD m]\",\"endPos\":{\"column\":22,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0dc67ba80526e3e9bbca9748.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":0,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_power' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_0dc67ba80526e3e9bbca9748.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":23},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

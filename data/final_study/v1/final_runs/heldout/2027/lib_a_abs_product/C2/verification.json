@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 12: unexpected identifier; expected ':=', 'where' or '|'",
+    "line 37: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 45.036,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 12: unexpected identifier; expected ':=', 'where' or '|'\nline 37: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+  "candidate_sha256": "d8b11f590b05e2aa5d2e0def34c3b1d4444e485894b8a759408a90a77fefd0a6",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_abs_product (x y : ℝ) : |x * y| = |x| * |y| := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_a_abs_product (x y : ℝ) : |x * y| = |x| * |y|\nproof\n  have h1 : |x * y| = x * y ∨ |x * y| = -x * y := by\n    apply abs_eq\n  have h2 : |x| * |y| = x * y ∨ |x| * |y| = -x * y := by\n    apply abs_mul\n  have h3 : x * y = |x * y| ∨ x * y = -|x * y| := by\n    apply mul_eq_abs\n  have h4 : x = |x| ∨ x = -|x| := by\n    apply eq_abs\n  have h5 : y = |y| ∨ y = -|y| := by\n    apply eq_abs\n  have h6 : |x| * |y| = |x * y| := by\n    by_cases h12 : x * y = |x * y|\n    · rw [h12]\n      rw [abs_mul]\n    · rw [h12]\n      rw [mul_neg_neg, abs_mul]\n  have h7 : |x * y| = |x| * |y| := by\n    by_cases h13 : x * y = |x * y|\n    · rw [h13]\n      rw [abs_mul]\n    · rw [h13]\n      rw [mul_neg_neg, abs_mul]\n  exact h7\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_abs_product = Nl2LeanCandidate.study_a_abs_product := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_abs_product\n",
+  "verification_source_sha256": "e09e5f83e19df1aced64ac6e8b0b5c57b512da982e84eea2ab1dadcea6b2eab3",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 27,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b94a2262ba1575edf5550c21.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unexpected identifier; expected ':=', 'where' or '|'",
+      "endPos": {
+        "column": 5,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b94a2262ba1575edf5550c21.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 59,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+      "endPos": {
+        "column": 3,
+        "line": 37
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b94a2262ba1575edf5550c21.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 37
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_abs_product' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 42
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b94a2262ba1575edf5550c21.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 42
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b94a2262ba1575edf5550c21.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected ':=', 'where' or '|'\",\"endPos\":{\"column\":5,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b94a2262ba1575edf5550c21.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":59,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":37},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b94a2262ba1575edf5550c21.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":37},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_abs_product' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":42},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b94a2262ba1575edf5550c21.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":42},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

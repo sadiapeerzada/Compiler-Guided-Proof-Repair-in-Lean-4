@@ -1,0 +1,144 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: Unknown identifier `«exists».intro`",
+    "line 16: No goals to be solved",
+    "line 21: Invalid projection: Projections extract constructor fields for one-constructor inductive types. The expression\n  hp1\nhas type `p.le n` which is not a one-constructor inductive type.",
+    "line 23: Unknown identifier `nat.dvd_of_le`",
+    "line 24: No goals to be solved"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.078,
+  "diagnostics_parsed": 7,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: Unknown identifier `«exists».intro`\nline 16: No goals to be solved\nline 21: Invalid projection: Projections extract constructor fields for one-constructor inductive types. The expression\n  hp1\nhas type `p.le n` which is not a one-constructor inductive type.\nline 23: Unknown identifier `nat.dvd_of_le`\nline 24: No goals to be solved",
+  "candidate_sha256": "dbe0b649b2c8944cda7bc01ce80e5597349fafc14a063c5776e972ed74c9a808",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_factor_exists (n : ℕ) (hn : 2 ≤ n) : ∃ p : ℕ, p.Prime ∧ p ∣ n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_d_prime_factor_exists (n : ℕ) (hn : 2 ≤ n) : ∃ p : ℕ, p.Prime ∧ p ∣ n\n:= by\n  have h1 : ∃ p : ℕ, p ≤ n ∧ p > 1 := by\n    apply exists.intro n\n    split\n    · exact hn\n    · exact ⟨2, by rw [two_mul]; exact nat.prime.two_is_prime⟩\n  obtain ⟨p, hp1, hp2⟩ := h1\n  have hp4 : p.Prime := by\n    exact hp1.2\n  have hp5 : p ∣ n := by\n    apply nat.dvd_of_le\n    exact hp1.1\n  exact ⟨p, hp4, hp5⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_factor_exists = Nl2LeanCandidate.study_d_prime_factor_exists := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_factor_exists\n",
+  "verification_source_sha256": "900d0abd6134dafed2e984908a55b1e5f3192657ce541879ac68332f2ca2e026",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 35,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `«exists».intro`",
+      "endPos": {
+        "column": 22,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "No goals to be solved",
+      "endPos": {
+        "column": 9,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid projection: Projections extract constructor fields for one-constructor inductive types. The expression\n  hp1\nhas type `p.le n` which is not a one-constructor inductive type.",
+      "endPos": {
+        "column": 15,
+        "line": 21
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 10,
+        "line": 21
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `nat.dvd_of_le`",
+      "endPos": {
+        "column": 23,
+        "line": 23
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 23
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "No goals to be solved",
+      "endPos": {
+        "column": 15,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 24
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_prime_factor_exists' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 30
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 30
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `«exists».intro`\",\"endPos\":{\"column\":22,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":9,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid projection: Projections extract constructor fields for one-constructor inductive types. The expression\\n  hp1\\nhas type `p.le n` which is not a one-constructor inductive type.\",\"endPos\":{\"column\":15,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":10,\"line\":21},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `nat.dvd_of_le`\",\"endPos\":{\"column\":23,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":23},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":15,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":24},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_factor_exists' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":30},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a19f174cd440b97be7cc781.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":30},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

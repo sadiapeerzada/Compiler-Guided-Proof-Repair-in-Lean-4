@@ -1,0 +1,126 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Unknown constant `Real.ofReal`",
+    "line 13: unsolved goals\nx y : ℝ\n⊢ Real.exp x * Real.exp y = sorry",
+    "line 15: Unknown constant `Real.ofReal`",
+    "line 16: Unknown constant `Real.ofReal_exp`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 53.754,
+  "diagnostics_parsed": 6,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Unknown constant `Real.ofReal`\nline 13: unsolved goals\nx y : ℝ\n⊢ Real.exp x * Real.exp y = sorry\nline 15: Unknown constant `Real.ofReal`\nline 16: Unknown constant `Real.ofReal_exp`",
+  "candidate_sha256": "774dabac6d8563cffce47790c6ac43d2b85a3e513b6c67a4097243e7bd15ce24",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_exp_add (x y : ℝ) : Real.exp (x + y) = Real.exp x * Real.exp y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_exp_add (x y : ℝ) : Real.exp (x + y) = Real.exp x * Real.exp y\n:= by\n  have h : Real.exp (x + y) = Real.ofReal (Real.exp x * Real.exp y) := by\n    rw [Real.exp_add]\n  have h' : Real.ofReal (Real.exp x * Real.exp y) = Real.exp x * Real.exp y := by\n    rw [Real.ofReal_exp]\n  exact h.symm.trans h'\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_exp_add = Nl2LeanCandidate.study_a_exp_add := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_exp_add\n",
+  "verification_source_sha256": "46b7a5e1e9e9eb18303a10055f91d87b84a24683bb0892cf40d7c3c2e4de52a9",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 23,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Real.ofReal`",
+      "endPos": {
+        "column": 41,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 30,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\nx y : ℝ\n⊢ Real.exp x * Real.exp y = sorry",
+      "endPos": {
+        "column": 21,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 71,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Real.ofReal`",
+      "endPos": {
+        "column": 23,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 12,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Real.ofReal_exp`",
+      "endPos": {
+        "column": 23,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_exp_add' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 22
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 22
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.ofReal`\",\"endPos\":{\"column\":41,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":30,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx y : ℝ\\n⊢ Real.exp x * Real.exp y = sorry\",\"endPos\":{\"column\":21,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":71,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.ofReal`\",\"endPos\":{\"column\":23,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":12,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.ofReal_exp`\",\"endPos\":{\"column\":23,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_exp_add' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d9dc6707acd119d60ee22adc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

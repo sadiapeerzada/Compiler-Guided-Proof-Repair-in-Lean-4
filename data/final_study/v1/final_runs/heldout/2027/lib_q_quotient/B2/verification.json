@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Type mismatch\n  le_refl m\nhas type\n  m ≤ m\nbut is expected to have type\n  m / 0 ≤ m",
+    "line 16: Unknown identifier `nat.div_le_of_mul_le`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 37.36,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Type mismatch\n  le_refl m\nhas type\n  m ≤ m\nbut is expected to have type\n  m / 0 ≤ m\nline 16: Unknown identifier `nat.div_le_of_mul_le`",
+  "candidate_sha256": "32b6a7d3542cbdfb30bdca9a0fc7a3e5bea2bf5efeb789892c5077db2edce9d3",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_quotient (m n : ℕ) : m / n ≤ m := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_quotient (m n : ℕ) : m / n ≤ m := by\n  match n with\n  | 0 => exact le_refl m\n  | n + 1 => \n    have h1 : m / (n + 1) ≤ m := by\n      apply nat.div_le_of_mul_le (le_refl n) (le_refl m)\n    exact h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_quotient = Nl2LeanCandidate.study_q_quotient := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_quotient\n",
+  "verification_source_sha256": "15ecc49cb89ada43307addc39771c558ccca6c0bf2051b873b845c77e6d380db",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 24,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4474807e9b91d5e13e0c5fc2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  le_refl m\nhas type\n  m ≤ m\nbut is expected to have type\n  m / 0 ≤ m",
+      "endPos": {
+        "column": 24,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4474807e9b91d5e13e0c5fc2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 9,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `nat.div_le_of_mul_le`",
+      "endPos": {
+        "column": 32,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4474807e9b91d5e13e0c5fc2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 12,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_quotient' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 22
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4474807e9b91d5e13e0c5fc2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 22
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":24,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4474807e9b91d5e13e0c5fc2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  le_refl m\\nhas type\\n  m ≤ m\\nbut is expected to have type\\n  m / 0 ≤ m\",\"endPos\":{\"column\":24,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4474807e9b91d5e13e0c5fc2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":9,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `nat.div_le_of_mul_le`\",\"endPos\":{\"column\":32,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4474807e9b91d5e13e0c5fc2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":12,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_quotient' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4474807e9b91d5e13e0c5fc2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

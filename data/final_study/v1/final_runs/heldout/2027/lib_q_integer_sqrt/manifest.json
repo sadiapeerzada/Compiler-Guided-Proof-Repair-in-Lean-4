@@ -1,0 +1,960 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "heldout",
+  "seed": 2027,
+  "problem_id": "lib_q_integer_sqrt",
+  "protocol_sha256": "a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317",
+  "dataset_sha256": "47e1b9acc1efc5c6be1113c0b4e103b29f6cb7aeed77a5ffe98bae97fdda9a5b",
+  "status": "completed",
+  "started_at": "2026-10-29T14:33:14.955053+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "9841e3066670a648d9612549a7535727fc5492b520be90134dfa26380a72f47d",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "9841e3066670a648d9612549a7535727fc5492b520be90134dfa26380a72f47d",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "fffbffd885c5fa637cfd339d250fb29d3dab09e944d93d96e8bb221bdaaafdf5",
+          "candidate": "open scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact 0 < 0 + 1\n  · have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le this\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt this (by linarith)\n  have h3 : Nat.sqrt n ^ 2 < n + 1 := by\n    rw [Nat.sqrt_eq_of_sq_eq this]\n    exact IH\n  have h4 : Nat.sqrt n ^ 2 < n + 2 := by\n    rw [Nat.sqrt_eq_of_sq_eq h2]\n    exact h3\n  exact h4",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/B1/completion.json",
+          "completion_sha256": "8262028c0e72cc96c6f07a8fba0add824ba7d243d6618f47fe908f27167ee121",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/B1/verification.json",
+          "verification_sha256": "5e964e37e60953ed77276d0ad688a44e1739435c90f1f66d977cf031cc98dec4",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`",
+              "line 15: Unknown constant `Nat.sqrt_le_of_sq_le`",
+              "line 15: unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+              "line 16: No goals to be solved"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.48,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`\nline 15: Unknown constant `Nat.sqrt_le_of_sq_le`\nline 15: unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\nline 16: No goals to be solved",
+            "candidate_sha256": "fffbffd885c5fa637cfd339d250fb29d3dab09e944d93d96e8bb221bdaaafdf5",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact 0 < 0 + 1\n  · have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le this\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt this (by linarith)\n  have h3 : Nat.sqrt n ^ 2 < n + 1 := by\n    rw [Nat.sqrt_eq_of_sq_eq this]\n    exact IH\n  have h4 : Nat.sqrt n ^ 2 < n + 2 := by\n    rw [Nat.sqrt_eq_of_sq_eq h2]\n    exact h3\n  exact h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_integer_sqrt = Nl2LeanCandidate.study_q_integer_sqrt := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_integer_sqrt\n",
+            "verification_source_sha256": "215d7cfd6acf744f4d5d48f0bd02e1b27c3eec0c72b317aa3ceb2a8d69707d3a",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`",
+                "endPos": {
+                  "column": 19,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nat.sqrt_le_of_sq_le`",
+                "endPos": {
+                  "column": 66,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 46,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+                "endPos": {
+                  "column": 71,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 2,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "No goals to be solved",
+                "endPos": {
+                  "column": 6,
+                  "line": 16
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 16
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 30
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 30
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  0 < 0 + 1\\nhas type\\n  Prop\\nof sort `Type` but is expected to have type\\n  Nat.sqrt 0 ^ 2 < 0 + 1\\nof sort `Prop`\",\"endPos\":{\"column\":19,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.sqrt_le_of_sq_le`\",\"endPos\":{\"column\":66,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":46,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase succ\\nn : ℕ\\nIH : n.sqrt ^ 2 < n + 1\\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\",\"endPos\":{\"column\":71,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":30},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8037eb80ef57575e026c7fd7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":30},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 468,
+          "completion_tokens": 205,
+          "generation_seconds": 11.328397042001598,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "fffbffd885c5fa637cfd339d250fb29d3dab09e944d93d96e8bb221bdaaafdf5",
+          "candidate": "open scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact 0 < 0 + 1\n  · have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le this\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt this (by linarith)\n  have h3 : Nat.sqrt n ^ 2 < n + 1 := by\n    rw [Nat.sqrt_eq_of_sq_eq this]\n    exact IH\n  have h4 : Nat.sqrt n ^ 2 < n + 2 := by\n    rw [Nat.sqrt_eq_of_sq_eq h2]\n    exact h3\n  exact h4",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/B2/completion.json",
+          "completion_sha256": "4f084fa9cc41fb9446c43fac585f39f46587b75ba97b6a5e1b1147ed3e7a8a61",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/B2/verification.json",
+          "verification_sha256": "6fe63f8c4a5549ead1450c4004bd6031e43ea321add5f7272c6ec06a26463d45",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`",
+              "line 15: Unknown constant `Nat.sqrt_le_of_sq_le`",
+              "line 15: unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+              "line 16: No goals to be solved"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.613,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`\nline 15: Unknown constant `Nat.sqrt_le_of_sq_le`\nline 15: unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\nline 16: No goals to be solved",
+            "candidate_sha256": "fffbffd885c5fa637cfd339d250fb29d3dab09e944d93d96e8bb221bdaaafdf5",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact 0 < 0 + 1\n  · have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le this\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt this (by linarith)\n  have h3 : Nat.sqrt n ^ 2 < n + 1 := by\n    rw [Nat.sqrt_eq_of_sq_eq this]\n    exact IH\n  have h4 : Nat.sqrt n ^ 2 < n + 2 := by\n    rw [Nat.sqrt_eq_of_sq_eq h2]\n    exact h3\n  exact h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_integer_sqrt = Nl2LeanCandidate.study_q_integer_sqrt := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_integer_sqrt\n",
+            "verification_source_sha256": "215d7cfd6acf744f4d5d48f0bd02e1b27c3eec0c72b317aa3ceb2a8d69707d3a",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`",
+                "endPos": {
+                  "column": 19,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nat.sqrt_le_of_sq_le`",
+                "endPos": {
+                  "column": 66,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 46,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+                "endPos": {
+                  "column": 71,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 2,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "No goals to be solved",
+                "endPos": {
+                  "column": 6,
+                  "line": 16
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 16
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 30
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 30
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  0 < 0 + 1\\nhas type\\n  Prop\\nof sort `Type` but is expected to have type\\n  Nat.sqrt 0 ^ 2 < 0 + 1\\nof sort `Prop`\",\"endPos\":{\"column\":19,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.sqrt_le_of_sq_le`\",\"endPos\":{\"column\":66,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":46,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase succ\\nn : ℕ\\nIH : n.sqrt ^ 2 < n + 1\\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\",\"endPos\":{\"column\":71,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":30},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6d1e8e7643adca3484e065da.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":30},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 434,
+          "completion_tokens": 205,
+          "generation_seconds": 11.12563579199923,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "fffbffd885c5fa637cfd339d250fb29d3dab09e944d93d96e8bb221bdaaafdf5",
+          "candidate": "open scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact 0 < 0 + 1\n  · have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le this\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt this (by linarith)\n  have h3 : Nat.sqrt n ^ 2 < n + 1 := by\n    rw [Nat.sqrt_eq_of_sq_eq this]\n    exact IH\n  have h4 : Nat.sqrt n ^ 2 < n + 2 := by\n    rw [Nat.sqrt_eq_of_sq_eq h2]\n    exact h3\n  exact h4",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/B3/completion.json",
+          "completion_sha256": "0b4ef4762a3bd7c5ff22e470246b5c84101bfa639092cc35a8308b5e25bca1dd",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/B3/verification.json",
+          "verification_sha256": "405ec3d62e3d26dd0b8b189707866f200cb3046a892ee5531023921e1417a07d",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`",
+              "line 15: Unknown constant `Nat.sqrt_le_of_sq_le`",
+              "line 15: unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+              "line 16: No goals to be solved"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 32.017,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`\nline 15: Unknown constant `Nat.sqrt_le_of_sq_le`\nline 15: unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\nline 16: No goals to be solved",
+            "candidate_sha256": "fffbffd885c5fa637cfd339d250fb29d3dab09e944d93d96e8bb221bdaaafdf5",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact 0 < 0 + 1\n  · have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le this\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt this (by linarith)\n  have h3 : Nat.sqrt n ^ 2 < n + 1 := by\n    rw [Nat.sqrt_eq_of_sq_eq this]\n    exact IH\n  have h4 : Nat.sqrt n ^ 2 < n + 2 := by\n    rw [Nat.sqrt_eq_of_sq_eq h2]\n    exact h3\n  exact h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_integer_sqrt = Nl2LeanCandidate.study_q_integer_sqrt := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_integer_sqrt\n",
+            "verification_source_sha256": "215d7cfd6acf744f4d5d48f0bd02e1b27c3eec0c72b317aa3ceb2a8d69707d3a",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`",
+                "endPos": {
+                  "column": 19,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nat.sqrt_le_of_sq_le`",
+                "endPos": {
+                  "column": 66,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 46,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+                "endPos": {
+                  "column": 71,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 2,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "No goals to be solved",
+                "endPos": {
+                  "column": 6,
+                  "line": 16
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 16
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 30
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 30
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  0 < 0 + 1\\nhas type\\n  Prop\\nof sort `Type` but is expected to have type\\n  Nat.sqrt 0 ^ 2 < 0 + 1\\nof sort `Prop`\",\"endPos\":{\"column\":19,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.sqrt_le_of_sq_le`\",\"endPos\":{\"column\":66,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":46,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase succ\\nn : ℕ\\nIH : n.sqrt ^ 2 < n + 1\\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\",\"endPos\":{\"column\":71,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":30},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_9d282744e3ad0c4fe3b28d8a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":30},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 434,
+          "completion_tokens": 205,
+          "generation_seconds": 11.120908791999682,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "9841e3066670a648d9612549a7535727fc5492b520be90134dfa26380a72f47d",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "da881881961caac4148511838e633521aef52504de8df44569db3fa4aeba2b04",
+          "candidate": "open scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact lt_of_pos_of_zero_lt (by exact zero_lt_one)\n  · have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le (by exact IH)\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt h1 (by linarith)\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/C1/completion.json",
+          "completion_sha256": "dcda108cfd050af904aae631f72cb88aa50203e44935bcc6835646ba5364c6d3",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/C1/verification.json",
+          "verification_sha256": "8d51ed418c6e2ed8ce0802639f927b78c938c2a126fc7c53611015a0d0544ca6",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Unknown identifier `lt_of_pos_of_zero_lt`",
+              "line 15: Unknown constant `Nat.sqrt_le_of_sq_le`",
+              "line 15: unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+              "line 16: No goals to be solved"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 32.842,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Unknown identifier `lt_of_pos_of_zero_lt`\nline 15: Unknown constant `Nat.sqrt_le_of_sq_le`\nline 15: unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\nline 16: No goals to be solved",
+            "candidate_sha256": "da881881961caac4148511838e633521aef52504de8df44569db3fa4aeba2b04",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact lt_of_pos_of_zero_lt (by exact zero_lt_one)\n  · have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le (by exact IH)\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt h1 (by linarith)\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_integer_sqrt = Nl2LeanCandidate.study_q_integer_sqrt := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_integer_sqrt\n",
+            "verification_source_sha256": "551484fd79803dc1e39e9a600f727681866efcc795c784d79c9c20d596ce62c8",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `lt_of_pos_of_zero_lt`",
+                "endPos": {
+                  "column": 30,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 10,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nat.sqrt_le_of_sq_le`",
+                "endPos": {
+                  "column": 66,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 46,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+                "endPos": {
+                  "column": 80,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 2,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "No goals to be solved",
+                "endPos": {
+                  "column": 6,
+                  "line": 16
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 16
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 24
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 24
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `lt_of_pos_of_zero_lt`\",\"endPos\":{\"column\":30,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.sqrt_le_of_sq_le`\",\"endPos\":{\"column\":66,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":46,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase succ\\nn : ℕ\\nIH : n.sqrt ^ 2 < n + 1\\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\",\"endPos\":{\"column\":80,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1223,
+          "completion_tokens": 143,
+          "generation_seconds": 12.908123875000456,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Type mismatch\\n  0 < 0 + 1\\nhas type\\n  Prop\\nof sort `Type` but is expected to have type\\n  Nat.sqrt 0 ^ 2 < 0 + 1\\nof sort `Prop`\",\n      \"endPos\": {\n        \"column\": 19,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 4,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\ncase sqrt_n_plus_1\\nn : ℕ\\nIH : n.sqrt ^ 2 < n + 1\\n⊢ ?m.46\\n\\ncase succ\\nn : ℕ\\nIH : n.sqrt ^ 2 < n + 1\\nsqrt_n_plus_1 : ?m.46\\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\",\n      \"endPos\": {\n        \"column\": 22,\n        \"line\": 15\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token '='; expected command\",\n      \"endPos\": {\n        \"column\": 24,\n        \"line\": 15\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 23,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 31\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 31\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "9841e3066670a648d9612549a7535727fc5492b520be90134dfa26380a72f47d"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "fad690b3bc75cd191300b9f8173a1108cab9165c8529d0712b01640f83c50e3f",
+          "candidate": "open scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact zero_lt_one\n  · have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le (by exact IH)\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt h1 (by linarith)\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/C2/completion.json",
+          "completion_sha256": "5e044645610d8d78e0821e1af4ae1fdf4b59a86bbb43d6644aef4f9044bd541b",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/C2/verification.json",
+          "verification_sha256": "75382027e4f855d6da3996db532ab6e57d5a6d075c3e66859d05b34ab9d32477",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 15: Unknown constant `Nat.sqrt_le_of_sq_le`",
+              "line 15: unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+              "line 16: No goals to be solved"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.072,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 15: Unknown constant `Nat.sqrt_le_of_sq_le`\nline 15: unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\nline 16: No goals to be solved",
+            "candidate_sha256": "fad690b3bc75cd191300b9f8173a1108cab9165c8529d0712b01640f83c50e3f",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact zero_lt_one\n  · have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le (by exact IH)\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt h1 (by linarith)\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_integer_sqrt = Nl2LeanCandidate.study_q_integer_sqrt := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_integer_sqrt\n",
+            "verification_source_sha256": "febedd55799b65dbc16be2bc0f221c3623a6719b66b477ac18fafd884cf0b9d3",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nat.sqrt_le_of_sq_le`",
+                "endPos": {
+                  "column": 66,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 46,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+                "endPos": {
+                  "column": 80,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 2,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "No goals to be solved",
+                "endPos": {
+                  "column": 6,
+                  "line": 16
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 16
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 24
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 24
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.sqrt_le_of_sq_le`\",\"endPos\":{\"column\":66,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":46,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase succ\\nn : ℕ\\nIH : n.sqrt ^ 2 < n + 1\\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\",\"endPos\":{\"column\":80,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1218,
+          "completion_tokens": 134,
+          "generation_seconds": 12.5306347500009,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown identifier `lt_of_pos_of_zero_lt`\",\n      \"endPos\": {\n        \"column\": 30,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 10,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Nat.sqrt_le_of_sq_le`\",\n      \"endPos\": {\n        \"column\": 66,\n        \"line\": 15\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 46,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\ncase succ\\nn : ℕ\\nIH : n.sqrt ^ 2 < n + 1\\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\",\n      \"endPos\": {\n        \"column\": 80,\n        \"line\": 15\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"No goals to be solved\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 16\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 16\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 24\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2eadbf1457477a336bd88d2a.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 24\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "da881881961caac4148511838e633521aef52504de8df44569db3fa4aeba2b04"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "0f80bf0bbdb59414200a0b990be15199d62a0f3a3668e2284aa25ddbefe277ac",
+          "candidate": "open scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact zero_lt_one\n  · have h1 := Nat.sqrt_le_of_sq_le (by exact IH)\n  have h2 := by linarith [h1]\n  exact h2",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/C3/completion.json",
+          "completion_sha256": "17467de837f115260903087b5e1a2a2d852ac0744ca50985c8694cdf50a741bd",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/C3/verification.json",
+          "verification_sha256": "36e4ee9ac8662f4a4adf81af39980e21ab0d91cba6a4e512874b6311dd9a481a",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 15: Unknown constant `Nat.sqrt_le_of_sq_le`",
+              "line 16: No goals to be solved"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.171,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 15: Unknown constant `Nat.sqrt_le_of_sq_le`\nline 16: No goals to be solved",
+            "candidate_sha256": "0f80bf0bbdb59414200a0b990be15199d62a0f3a3668e2284aa25ddbefe277ac",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact zero_lt_one\n  · have h1 := Nat.sqrt_le_of_sq_le (by exact IH)\n  have h2 := by linarith [h1]\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_integer_sqrt = Nl2LeanCandidate.study_q_integer_sqrt := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_integer_sqrt\n",
+            "verification_source_sha256": "618828d3e2c082c6cbda5e0bc5fcb3a132c706c98ae25a2078f0b2183b21f590",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_82eacd2796212510266bc8d6.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nat.sqrt_le_of_sq_le`",
+                "endPos": {
+                  "column": 35,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_82eacd2796212510266bc8d6.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 15,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "No goals to be solved",
+                "endPos": {
+                  "column": 29,
+                  "line": 16
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_82eacd2796212510266bc8d6.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 16
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_82eacd2796212510266bc8d6.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_82eacd2796212510266bc8d6.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.sqrt_le_of_sq_le`\",\"endPos\":{\"column\":35,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_82eacd2796212510266bc8d6.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":15,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":29,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_82eacd2796212510266bc8d6.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_82eacd2796212510266bc8d6.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1050,
+          "completion_tokens": 85,
+          "generation_seconds": 9.490509333001683,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Nat.sqrt_le_of_sq_le`\",\n      \"endPos\": {\n        \"column\": 66,\n        \"line\": 15\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 46,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\ncase succ\\nn : ℕ\\nIH : n.sqrt ^ 2 < n + 1\\nh1 : (n + 1).sqrt ^ 2 ≤ n + 1\\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\",\n      \"endPos\": {\n        \"column\": 80,\n        \"line\": 15\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"No goals to be solved\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 16\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 16\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 24\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d221261ad510e1307eca59a3.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 24\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "fad690b3bc75cd191300b9f8173a1108cab9165c8529d0712b01640f83c50e3f"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "9841e3066670a648d9612549a7535727fc5492b520be90134dfa26380a72f47d",
+    "candidate": "open scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact 0 < 0 + 1\n  · have sqrt_n_plus_1 = Nat.sqrt (n + 1) : Nat.sqrt (n + 1) = Nat.sqrt (n + 1)\n  have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le this\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt this (by linarith)\n  have h3 : Nat.sqrt n ^ 2 < n + 1 := by\n    rw [Nat.sqrt_eq_of_sq_eq this]\n    exact IH\n  have h4 : Nat.sqrt n ^ 2 < n + 2 := by\n    rw [Nat.sqrt_eq_of_sq_eq h2]\n    exact h3\n  exact h4",
+    "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/initial/completion.json",
+    "completion_sha256": "9426597c359d787612e6ccfc166ee69da6899a04204356598c0ee784c36097fa",
+    "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_integer_sqrt/initial/verification.json",
+    "verification_sha256": "03b672839d68b5d68d89fd15e8421b532d0e3f85fa47ec56fcd8c73e15112985",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 14: Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`",
+        "line 15: unsolved goals\ncase sqrt_n_plus_1\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\n⊢ ?m.46\n\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nsqrt_n_plus_1 : ?m.46\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+        "line 15: unexpected token '='; expected command"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 33.713,
+      "diagnostics_parsed": 5,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 14: Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`\nline 15: unsolved goals\ncase sqrt_n_plus_1\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\n⊢ ?m.46\n\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nsqrt_n_plus_1 : ?m.46\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\nline 15: unexpected token '='; expected command",
+      "candidate_sha256": "9841e3066670a648d9612549a7535727fc5492b520be90134dfa26380a72f47d",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_integer_sqrt (n : ℕ) : Nat.sqrt n ^ 2 < n + 1\n:= by\n  induction' n with n IH\n  · exact 0 < 0 + 1\n  · have sqrt_n_plus_1 = Nat.sqrt (n + 1) : Nat.sqrt (n + 1) = Nat.sqrt (n + 1)\n  have h1 : Nat.sqrt (n + 1) ^ 2 ≤ n + 1 := Nat.sqrt_le_of_sq_le this\n  have h2 : Nat.sqrt (n + 1) ^ 2 < n + 2 := by\n    rw [h1]\n    exact lt_of_le_of_lt this (by linarith)\n  have h3 : Nat.sqrt n ^ 2 < n + 1 := by\n    rw [Nat.sqrt_eq_of_sq_eq this]\n    exact IH\n  have h4 : Nat.sqrt n ^ 2 < n + 2 := by\n    rw [Nat.sqrt_eq_of_sq_eq h2]\n    exact h3\n  exact h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_integer_sqrt = Nl2LeanCandidate.study_q_integer_sqrt := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_integer_sqrt\n",
+      "verification_source_sha256": "2d6f44c85591d52c9ce1685853c485b2c6f4153f3331eed27ce48c6e186805e7",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 28,
+            "line": 6
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 6
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "Type mismatch\n  0 < 0 + 1\nhas type\n  Prop\nof sort `Type` but is expected to have type\n  Nat.sqrt 0 ^ 2 < 0 + 1\nof sort `Prop`",
+          "endPos": {
+            "column": 19,
+            "line": 14
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 4,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "unsolved goals\ncase sqrt_n_plus_1\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\n⊢ ?m.46\n\ncase succ\nn : ℕ\nIH : n.sqrt ^ 2 < n + 1\nsqrt_n_plus_1 : ?m.46\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1",
+          "endPos": {
+            "column": 22,
+            "line": 15
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "Tactic.unsolvedGoals",
+          "pos": {
+            "column": 2,
+            "line": 15
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "unexpected token '='; expected command",
+          "endPos": {
+            "column": 24,
+            "line": 15
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 23,
+            "line": 15
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]",
+          "endPos": {
+            "column": 6,
+            "line": 31
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 31
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  0 < 0 + 1\\nhas type\\n  Prop\\nof sort `Type` but is expected to have type\\n  Nat.sqrt 0 ^ 2 < 0 + 1\\nof sort `Prop`\",\"endPos\":{\"column\":19,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase sqrt_n_plus_1\\nn : ℕ\\nIH : n.sqrt ^ 2 < n + 1\\n⊢ ?m.46\\n\\ncase succ\\nn : ℕ\\nIH : n.sqrt ^ 2 < n + 1\\nsqrt_n_plus_1 : ?m.46\\n⊢ (n + 1).sqrt ^ 2 < n + 1 + 1\",\"endPos\":{\"column\":22,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token '='; expected command\",\"endPos\":{\"column\":24,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":23,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_integer_sqrt' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":31},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_1a67f7a5ad4e51dfa9977037.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":31},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 198,
+    "completion_tokens": 239,
+    "generation_seconds": 11.292004875002021
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-29T14:38:58.729963+00:00"
+}

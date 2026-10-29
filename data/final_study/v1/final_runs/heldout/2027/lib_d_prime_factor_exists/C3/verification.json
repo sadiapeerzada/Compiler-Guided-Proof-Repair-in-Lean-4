@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 16: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\ncase h\nn : ℕ\nhn : 2 ≤ n\n⊢ n ≤ n ∧ n > 1",
+    "line 21: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\n  p > 1",
+    "line 24: Type mismatch\n  hp1\nhas type\n  p ≤ n\nbut is expected to have type\n  p ∣ n"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.195,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 16: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\ncase h\nn : ℕ\nhn : 2 ≤ n\n⊢ n ≤ n ∧ n > 1\nline 21: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\n  p > 1\nline 24: Type mismatch\n  hp1\nhas type\n  p ≤ n\nbut is expected to have type\n  p ∣ n",
+  "candidate_sha256": "1c95243b6891aec7e3bac636d8bd1796543e05369f074bd0eb6b34d753a6f39e",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_factor_exists (n : ℕ) (hn : 2 ≤ n) : ∃ p : ℕ, p.Prime ∧ p ∣ n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_d_prime_factor_exists (n : ℕ) (hn : 2 ≤ n) : ∃ p : ℕ, p.Prime ∧ p ∣ n\n:= by\n  have h1 : ∃ p : ℕ, p ≤ n ∧ p > 1 := by\n    use n\n    split\n    · exact hn\n    · exact ⟨n, by rw [nat.one_mul]; exact nat.prime.nat_of_prime n⟩\n  obtain ⟨p, hp1, hp2⟩ := h1\n  have hp3 : p.Prime := by\n    rw [hp2]\n    exact nat.prime_of_dvd_of_pos hp1\n  have hp4 : p ∣ n := by\n    exact hp1\n  exact ⟨p, hp3, hp4⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_factor_exists = Nl2LeanCandidate.study_d_prime_factor_exists := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_factor_exists\n",
+  "verification_source_sha256": "4a9470be0f621973c8032931f6cd67ab76af363035094fa343b4ce71124d6cd8",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 35,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e738b8afed796a77e84e9bc2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\ncase h\nn : ℕ\nhn : 2 ≤ n\n⊢ n ≤ n ∧ n > 1",
+      "endPos": {
+        "column": 9,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e738b8afed796a77e84e9bc2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\n  p > 1",
+      "endPos": {
+        "column": 11,
+        "line": 21
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e738b8afed796a77e84e9bc2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 21
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  hp1\nhas type\n  p ≤ n\nbut is expected to have type\n  p ∣ n",
+      "endPos": {
+        "column": 13,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e738b8afed796a77e84e9bc2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 24
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_prime_factor_exists' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 30
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e738b8afed796a77e84e9bc2.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 30
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e738b8afed796a77e84e9bc2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `split` failed: Could not split an `if` or `match` expression in the goal\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\ncase h\\nn : ℕ\\nhn : 2 ≤ n\\n⊢ n ≤ n ∧ n > 1\",\"endPos\":{\"column\":9,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e738b8afed796a77e84e9bc2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\\n  p > 1\",\"endPos\":{\"column\":11,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e738b8afed796a77e84e9bc2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":21},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  hp1\\nhas type\\n  p ≤ n\\nbut is expected to have type\\n  p ∣ n\",\"endPos\":{\"column\":13,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e738b8afed796a77e84e9bc2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":24},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_factor_exists' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":30},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e738b8afed796a77e84e9bc2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":30},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this structure, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\na b n : ℕ\nhn : 0 < n\n⊢ (a ^ n).Coprime b ↔ a.Coprime b"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 32.805,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this structure, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\na b n : ℕ\nhn : 0 < n\n⊢ (a ^ n).Coprime b ↔ a.Coprime b",
+  "candidate_sha256": "1022185aa5d7253fa90bd392ac7243033b19e07c0385d9434fbe5cba55f5e487",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_coprime_power (a b n : ℕ) (hn : 0 < n) : Nat.Coprime (a ^ n) b ↔ Nat.Coprime a b := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_d_coprime_power (a b n : ℕ) (hn : 0 < n) : Nat.Coprime (a ^ n) b ↔ Nat.Coprime a b\n:= by\n  split\n  intro h\n  induction' a with a ha generalizing b\n  · exact Nat.coprime_zero _\n  · have h1 : a ^ n = a * (a ^ (n - 1)) := by rw [Nat.mul_one, Nat.pow_add_one]\n    have h2 : Nat.Coprime (a * (a ^ (n - 1))) b ↔ Nat.Coprime a b := by\n      rw [Nat.coprime_mul_left ha, Nat.coprime_one]\n    have h3 : Nat.Coprime (a ^ (n - 1)) b := by\n      have h4 : 0 < n - 1 := by linarith [hn]\n      exact h.trans (Nat.coprime_pow h3 h4)\n    exact h2.mp h3\n  intro h\n  induction' a with a ha generalizing b\n  · exact Nat.coprime_zero _\n  · have h1 : a ^ n = a * (a ^ (n - 1)) := by rw [Nat.mul_one, Nat.pow_add_one]\n    have h2 : Nat.Coprime (a * (a ^ (n - 1))) b ↔ Nat.Coprime a b := by\n      rw [Nat.coprime_mul_left ha, Nat.coprime_one]\n    have h3 : Nat.Coprime (a ^ (n - 1)) b := by\n      have h4 : 0 < n - 1 := by linarith [hn]\n      exact h.trans (Nat.coprime_pow h3 h4)\n    exact h2.mpr h3\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_coprime_power = Nl2LeanCandidate.study_d_coprime_power := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_coprime_power\n",
+  "verification_source_sha256": "70e3c2abf3913a069f2e1016537e163277cf44bf0f1e8317f22bd6270b402065",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 29,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0b889ea2a07b1000d057c44.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this structure, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\na b n : ℕ\nhn : 0 < n\n⊢ (a ^ n).Coprime b ↔ a.Coprime b",
+      "endPos": {
+        "column": 7,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0b889ea2a07b1000d057c44.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_coprime_power' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 39
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0b889ea2a07b1000d057c44.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 39
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0b889ea2a07b1000d057c44.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `split` failed: Could not split an `if` or `match` expression in the goal\\n\\nHint: If you meant to destruct this structure, use the `cases` tactic instead\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\na b n : ℕ\\nhn : 0 < n\\n⊢ (a ^ n).Coprime b ↔ a.Coprime b\",\"endPos\":{\"column\":7,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0b889ea2a07b1000d057c44.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_coprime_power' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":39},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0b889ea2a07b1000d057c44.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":39},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

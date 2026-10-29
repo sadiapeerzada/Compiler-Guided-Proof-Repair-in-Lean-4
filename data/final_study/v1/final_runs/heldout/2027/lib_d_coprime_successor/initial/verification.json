@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  0 * ?n\nin the target expression\n  n * 0 = 0\n\nn : ℕ\n⊢ n * 0 = 0",
+    "line 15: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  0 * ?n\nin the target expression\n  (n + 1) * 0 = 0\n\nn : ℕ\nh1 : n * 0 = 0\n⊢ (n + 1) * 0 = 0",
+    "line 17: Unknown constant `Nat.gcd_eq_gcd_add_one`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.95,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  0 * ?n\nin the target expression\n  n * 0 = 0\n\nn : ℕ\n⊢ n * 0 = 0\nline 15: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  0 * ?n\nin the target expression\n  (n + 1) * 0 = 0\n\nn : ℕ\nh1 : n * 0 = 0\n⊢ (n + 1) * 0 = 0\nline 17: Unknown constant `Nat.gcd_eq_gcd_add_one`",
+  "candidate_sha256": "2fef2140f3cbf8327439d82cb71ddbb5530cb429e526beb240af74b1b296e1e2",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_coprime_successor (n : ℕ) : Nat.Coprime n (n + 1) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_coprime_successor (n : ℕ) : Nat.Coprime n (n + 1) := by\n  have h1 : n * 0 = 0 := by\n    rw [Nat.zero_mul]\n  have h2 : (n + 1) * 0 = 0 := by\n    rw [Nat.zero_mul]\n  have h3 : Nat.gcd n (n + 1) = 1 := by\n    rw [Nat.gcd_eq_gcd_add_one]\n    exact h1\n  exact h3\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_coprime_successor = Nl2LeanCandidate.study_d_coprime_successor := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_coprime_successor\n",
+  "verification_source_sha256": "ab0d02d972d14025d08afa7302451531038681d0a400c489dfaf0bbeec209776",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 33,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  0 * ?n\nin the target expression\n  n * 0 = 0\n\nn : ℕ\n⊢ n * 0 = 0",
+      "endPos": {
+        "column": 20,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  0 * ?n\nin the target expression\n  (n + 1) * 0 = 0\n\nn : ℕ\nh1 : n * 0 = 0\n⊢ (n + 1) * 0 = 0",
+      "endPos": {
+        "column": 20,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_gcd_add_one`",
+      "endPos": {
+        "column": 30,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_coprime_successor' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 24
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":33,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  0 * ?n\\nin the target expression\\n  n * 0 = 0\\n\\nn : ℕ\\n⊢ n * 0 = 0\",\"endPos\":{\"column\":20,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  0 * ?n\\nin the target expression\\n  (n + 1) * 0 = 0\\n\\nn : ℕ\\nh1 : n * 0 = 0\\n⊢ (n + 1) * 0 = 0\",\"endPos\":{\"column\":20,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_gcd_add_one`\",\"endPos\":{\"column\":30,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_coprime_successor' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

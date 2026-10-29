@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 16: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\ncase h\nn : ℕ\nhn : 2 ≤ n\n⊢ n ≤ n ∧ n > 1",
+    "line 21: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\n  p > 1",
+    "line 25: Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 35.917,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 16: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\ncase h\nn : ℕ\nhn : 2 ≤ n\n⊢ n ≤ n ∧ n > 1\nline 21: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\n  p > 1\nline 25: Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided",
+  "candidate_sha256": "7eddd07f26ada9d249ef96b08fc13d72542a199e56a2a821f8dd094b226fcb14",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_factor_exists (n : ℕ) (hn : 2 ≤ n) : ∃ p : ℕ, p.Prime ∧ p ∣ n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_d_prime_factor_exists (n : ℕ) (hn : 2 ≤ n) : ∃ p : ℕ, p.Prime ∧ p ∣ n\n:= by\n  have h1 : ∃ p : ℕ, p ≤ n ∧ p > 1 := by\n    use n\n    split\n    · exact hn\n    · exact ⟨n, by rw [one_mul]; exact nat.prime.nat_of_prime n⟩\n  obtain ⟨p, hp1, hp2⟩ := h1\n  have hp3 : p.Prime := by\n    rw [hp2]\n    exact nat.prime_of_dvd_of_pos hp1\n  have hp4 : p ∣ n := by\n    use p\n    exact ⟨p, hp1⟩\n  exact ⟨p, hp3, hp4⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_factor_exists = Nl2LeanCandidate.study_d_prime_factor_exists := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_factor_exists\n",
+  "verification_source_sha256": "70c3a0fd75c9387f218156683612f4efb80c4371517e5f7d76855adaf5348673",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 35,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5d73c603edc1cedf450bfe63.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\ncase h\nn : ℕ\nhn : 2 ≤ n\n⊢ n ≤ n ∧ n > 1",
+      "endPos": {
+        "column": 9,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5d73c603edc1cedf450bfe63.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\n  p > 1",
+      "endPos": {
+        "column": 11,
+        "line": 21
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5d73c603edc1cedf450bfe63.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 21
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided",
+      "endPos": {
+        "column": 18,
+        "line": 25
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5d73c603edc1cedf450bfe63.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 10,
+        "line": 25
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_prime_factor_exists' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 31
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5d73c603edc1cedf450bfe63.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 31
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5d73c603edc1cedf450bfe63.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `split` failed: Could not split an `if` or `match` expression in the goal\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\ncase h\\nn : ℕ\\nhn : 2 ≤ n\\n⊢ n ≤ n ∧ n > 1\",\"endPos\":{\"column\":9,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5d73c603edc1cedf450bfe63.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hp2` is a proof of\\n  p > 1\",\"endPos\":{\"column\":11,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5d73c603edc1cedf450bfe63.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":21},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided\",\"endPos\":{\"column\":18,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5d73c603edc1cedf450bfe63.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":10,\"line\":25},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_factor_exists' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":31},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5d73c603edc1cedf450bfe63.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":31},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

@@ -1,0 +1,87 @@
+{
+  "success": false,
+  "errors": [
+    "line 10: unknown tactic",
+    "line 10: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 18.186,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 10: unknown tactic\nline 10: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+  "candidate_sha256": "3d398c0f707d07dc4e2ffc38db44d6e831d35cf3a22faab5cfda2ae9e5db4368",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem pow_seven_sub_one_dvd_six (n : ℕ) : 6 ∣ 7 ^ n - 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem pow_seven_sub_one_dvd_six (n : ℕ) : 6 ∣ 7 ^ n - 1 := by\n  induction n with n ih\n  · simp [pow_zero, sub_one]\n  · have : 7 * (7 ^ n) - 1 = 6 * (7 ^ n) + (7 ^ n - 1) := by\n      rw [mul_add, one_mul, add_comm]\n    rw [this]\n    exact dvd_add (by rw [mul_assoc; ih; pow_add; zero_mul]) (by rw [sub_one])\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.pow_seven_sub_one_dvd_six = Nl2LeanCandidate.pow_seven_sub_one_dvd_six := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.pow_seven_sub_one_dvd_six\n",
+  "verification_source_sha256": "c01036a6f7f2f0fa5d576d2b9376dc6d12b2827cda166ca136cf9da1dd09864d",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 33,
+        "line": 5
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6cbfafd943479e57e429321e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unknown tactic",
+      "endPos": null,
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6cbfafd943479e57e429321e.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 20,
+        "line": 10
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+      "endPos": {
+        "column": 20,
+        "line": 10
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6cbfafd943479e57e429321e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.inductionWithNoAlts._namedError",
+      "pos": {
+        "column": 14,
+        "line": 10
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.pow_seven_sub_one_dvd_six' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6cbfafd943479e57e429321e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 20
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":33,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6cbfafd943479e57e429321e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6cbfafd943479e57e429321e.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":10},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6cbfafd943479e57e429321e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.pow_seven_sub_one_dvd_six' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_6cbfafd943479e57e429321e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

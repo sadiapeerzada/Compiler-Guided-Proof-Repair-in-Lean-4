@@ -1,0 +1,126 @@
+{
+  "success": false,
+  "errors": [
+    "line 16: unexpected token ','; expected '↦', '=>'",
+    "line 16: Unknown identifier `choose`",
+    "line 15: unsolved goals\ncase h\ns t : Finset ℕ\nf : ℕ → ℕ\nh : t.card < s.card\nhm h1 : ∀ x ∈ s, f x ∈ t\nh2 : t.card < s.card\n⊢ sorry ∈ s ∧ f sorry ∈ t",
+    "line 12: unsolved goals\ns t : Finset ℕ\nf : ℕ → ℕ\nh : t.card < s.card\nhm h1 : ∀ x ∈ s, f x ∈ t\nh2 : t.card < s.card\nh3 : ∃ x ∈ s, f x ∈ t\n⊢ ∃ x ∈ s, ∃ y ∈ s, x ≠ y ∧ f x = f y"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.127,
+  "diagnostics_parsed": 6,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 16: unexpected token ','; expected '↦', '=>'\nline 16: Unknown identifier `choose`\nline 15: unsolved goals\ncase h\ns t : Finset ℕ\nf : ℕ → ℕ\nh : t.card < s.card\nhm h1 : ∀ x ∈ s, f x ∈ t\nh2 : t.card < s.card\n⊢ sorry ∈ s ∧ f sorry ∈ t\nline 12: unsolved goals\ns t : Finset ℕ\nf : ℕ → ℕ\nh : t.card < s.card\nhm h1 : ∀ x ∈ s, f x ∈ t\nh2 : t.card < s.card\nh3 : ∃ x ∈ s, f x ∈ t\n⊢ ∃ x ∈ s, ∃ y ∈ s, x ≠ y ∧ f x = f y",
+  "candidate_sha256": "be74a8259fff1a1a139fce5429d43b11741a35651980253e5de8d9bb8c43c104",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_pigeonhole (s t : Finset ℕ) (f : ℕ → ℕ) (h : t.card < s.card) (hm : ∀ x ∈ s, f x ∈ t) : ∃ x ∈ s, ∃ y ∈ s, x ≠ y ∧ f x = f y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_pigeonhole (s t : Finset ℕ) (f : ℕ → ℕ) (h : t.card < s.card) (hm : ∀ x ∈ s, f x ∈ t) : ∃ x ∈ s, ∃ y ∈ s, x ≠ y ∧ f x = f y\n:= by\n  have h1 : ∀ x ∈ s, f x ∈ t := hm\n  have h2 : t.card < s.card := h\n  have h3 : ∃ x, x ∈ s ∧ f x ∈ t := by\n    use [choose (λ x hx, h1 x hx)]; split; assumption\n  obtain x with hx : x ∈ s ∧ f x ∈ t := h3\n  have h4 : f x ∈ t := hx.2\n  have h5 : ∃ y ∈ s, y ≠ x ∧ f y = f x := by\n    have h6 : s.card > 1 := by\n      rw [h2]; exact Nat.lt_of_le_of_lt (Finset.card_pos_of_mem hx.1) (Nat.lt_of_sub_pos (Nat.sub_self 1))\n    obtain y with hy : y ∈ s ∧ f y ∈ t := by\n      use [choose (λ y hy, h1 y hy)]; split; assumption\n    obtain rfl | h7 : y = x := by\n      rwa [hx.1, Finset.mem_insert]\n    · contradiction\n    · exact ⟨y, hy.1, h7, h4, h1 y hy.1⟩\n  obtain y with hy : y ∈ s ∧ y ≠ x ∧ f y = f x := h5\n  exact ⟨x, y, hy.2, hy.3⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_pigeonhole = Nl2LeanCandidate.study_q_pigeonhole := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_pigeonhole\n",
+  "verification_source_sha256": "d6db7e52a6c7c65d69c8d4b56ebfc785f2e56db1c316420d28ca725a22e86ac0",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 26,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token ','; expected '↦', '=>'",
+      "endPos": {
+        "column": 24,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 23,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `choose`",
+      "endPos": {
+        "column": 15,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 9,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\ncase h\ns t : Finset ℕ\nf : ℕ → ℕ\nh : t.card < s.card\nhm h1 : ∀ x ∈ s, f x ∈ t\nh2 : t.card < s.card\n⊢ sorry ∈ s ∧ f sorry ∈ t",
+      "endPos": {
+        "column": 23,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 36,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\ns t : Finset ℕ\nf : ℕ → ℕ\nh : t.card < s.card\nhm h1 : ∀ x ∈ s, f x ∈ t\nh2 : t.card < s.card\nh3 : ∃ x ∈ s, f x ∈ t\n⊢ ∃ x ∈ s, ∃ y ∈ s, x ≠ y ∧ f x = f y",
+      "endPos": {
+        "column": 23,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 3,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_pigeonhole' depends on axioms: [propext, sorryAx, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 34
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 34
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":26,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token ','; expected '↦', '=>'\",\"endPos\":{\"column\":24,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":23,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `choose`\",\"endPos\":{\"column\":15,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":9,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h\\ns t : Finset ℕ\\nf : ℕ → ℕ\\nh : t.card < s.card\\nhm h1 : ∀ x ∈ s, f x ∈ t\\nh2 : t.card < s.card\\n⊢ sorry ∈ s ∧ f sorry ∈ t\",\"endPos\":{\"column\":23,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":36,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ns t : Finset ℕ\\nf : ℕ → ℕ\\nh : t.card < s.card\\nhm h1 : ∀ x ∈ s, f x ∈ t\\nh2 : t.card < s.card\\nh3 : ∃ x ∈ s, f x ∈ t\\n⊢ ∃ x ∈ s, ∃ y ∈ s, x ≠ y ∧ f x = f y\",\"endPos\":{\"column\":23,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_pigeonhole' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":34},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b0b67717f90c85f46d2d3412.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":34},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

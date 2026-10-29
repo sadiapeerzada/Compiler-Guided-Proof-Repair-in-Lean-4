@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: unexpected token 'in'; expected ','"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.642,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: unexpected token 'in'; expected ','",
+  "candidate_sha256": "fe2475bffc3fcdeb69d207392344d1473a542dc495a79846441e8cbf872cf99c",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : (0 : ℝ) ≤ ∑ i in finset.range (x + 1), 1 := by\n    apply le_sum\n    intro i\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact le_add_right zero_le_one\n  exact h_exp_sum\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_exp_tangent = Nl2LeanCandidate.study_q_exp_tangent := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_exp_tangent\n",
+  "verification_source_sha256": "71975d59c7a1f173f8963813573248bbee2b2aec635501a5b24b1454684a4530",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 27,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token 'in'; expected ','",
+      "endPos": {
+        "column": 31,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 28,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 27
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 27
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":31,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":28,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

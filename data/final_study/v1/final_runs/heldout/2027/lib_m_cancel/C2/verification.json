@@ -1,0 +1,126 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Unknown constant `Nat.gcd_eq_gcd_mul`",
+    "line 17: Unknown constant `Nat.mod_div_eq_mod`",
+    "line 19: Unknown constant `Nat.mod_eq_mod_add_mul_of_div_eq`",
+    "line 20: Unknown constant `Nat.mod_eq_mod_of_div_eq`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.601,
+  "diagnostics_parsed": 6,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Unknown constant `Nat.gcd_eq_gcd_mul`\nline 17: Unknown constant `Nat.mod_div_eq_mod`\nline 19: Unknown constant `Nat.mod_eq_mod_add_mul_of_div_eq`\nline 20: Unknown constant `Nat.mod_eq_mod_of_div_eq`",
+  "candidate_sha256": "b8fb3ea89f87af6c08f2e6f283a07b0cdc10e26e6994fd1004d0a426b800e161",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_cancel (m c a b : ℕ) (hm : 0 < m) (h : Nat.ModEq m (c * a) (c * b)) : Nat.ModEq (m / Nat.gcd m c) a b := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_cancel (m c a b : ℕ) (hm : 0 < m) (h : Nat.ModEq m (c * a) (c * b)) : Nat.ModEq (m / Nat.gcd m c) a b\n:= by\n  let g := Nat.gcd m c\n  have h1 : m = (m / g) * g := by rw [Nat.gcd_eq_gcd_mul]\n  have h2 : c * a % m = c * b % m := by rw [h]\n  have h3 : c * a % (m / g) = c * b % (m / g) := by\n    rw [h1, Nat.mod_div_eq_mod]\n  have h4 : a % (m / g) = b % (m / g) := by\n    rw [Nat.mod_eq_mod_add_mul_of_div_eq h2, h3]\n  exact Nat.mod_eq_mod_of_div_eq h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_cancel = Nl2LeanCandidate.study_m_cancel := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_cancel\n",
+  "verification_source_sha256": "a871d03ec16307cf8365c244651f1230039da29f24d3282abe950978ff5cb2df",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_gcd_mul`",
+      "endPos": {
+        "column": 56,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 38,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.mod_div_eq_mod`",
+      "endPos": {
+        "column": 30,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 12,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.mod_eq_mod_add_mul_of_div_eq`",
+      "endPos": {
+        "column": 40,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.mod_eq_mod_of_div_eq`",
+      "endPos": {
+        "column": 32,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 20
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_cancel' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 25
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 25
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_gcd_mul`\",\"endPos\":{\"column\":56,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":38,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.mod_div_eq_mod`\",\"endPos\":{\"column\":30,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":12,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.mod_eq_mod_add_mul_of_div_eq`\",\"endPos\":{\"column\":40,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.mod_eq_mod_of_div_eq`\",\"endPos\":{\"column\":32,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":20},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_cancel' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_89b80739319760b3f8c21981.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

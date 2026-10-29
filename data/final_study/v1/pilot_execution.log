@@ -1,0 +1,32 @@
+development_pilot 1 / 3 ind_008 completed {'A': False, 'B': False, 'C': False}
+Traceback (most recent call last):
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/scripts/run_final_study.py", line 145, in <module>
+    a=argparse.ArgumentParser(description=__doc__);a.add_argument('--protocol',type=Path,required=True);a.add_argument('--phase',choices=['development_pilot','heldout'],required=True);args=a.parse_args();run(args.protocol,args.phase)
+                                                                                                                                                                                                            ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/scripts/run_final_study.py", line 141, in run
+    state=trajectory(client,p,r,phase,seed,root)
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/scripts/run_final_study.py", line 80, in trajectory
+    try:state['initial']=step(client,p,run,record,phase,seed,'initial',prompt)
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/scripts/run_final_study.py", line 59, in step
+    v=check_lean_file_detailed(code,ROOT/'lean_project','study_'+hashlib.sha256(context.encode()).hexdigest()[:24],
+      ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          expected_statement=expected,policy=VerificationPolicy(timeout_seconds=p['verifier_timeout_seconds'])).to_record()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/src/verify.py", line 336, in check_lean_file_detailed
+    process = _run_compiler(
+        ["lake", "env", "lean", "--json", str(file_path)],
+    ...<3 lines>...
+        timeout=policy.timeout_seconds,
+    )
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/src/verify.py", line 223, in _run_compiler
+    stdout, stderr = process.communicate(timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 1222, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 2128, in _communicate
+    ready = selector.select(timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/selectors.py", line 398, in select
+    fd_event_list = self._selector.poll(timeout)
+KeyboardInterrupt

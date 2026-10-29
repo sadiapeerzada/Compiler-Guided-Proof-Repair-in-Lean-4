@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 18: Unknown constant `Real.sin_x_le_one`",
+    "line 19: Application type mismatch: The argument\n  hx\nhas type\n  0 ≤ x\nbut is expected to have type\n  1 ≤ x\nin the application\n  le_trans key_sin_le_1 hx"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 32.782,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 18: Unknown constant `Real.sin_x_le_one`\nline 19: Application type mismatch: The argument\n  hx\nhas type\n  0 ≤ x\nbut is expected to have type\n  1 ≤ x\nin the application\n  le_trans key_sin_le_1 hx",
+  "candidate_sha256": "517b1255634881569a48d63d7c3e46eae2e19d3c34466a3502e1efc20c9423d6",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_sine (x : ℝ) (hx : 0 ≤ x) : Real.sin x ≤ x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_sine (x : ℝ) (hx : 0 ≤ x) : Real.sin x ≤ x\n:= by\n  have key_sin_le_x : Real.sin x ≤ x\n  := by\n    classical\n    have key_sin_le_1 : Real.sin x ≤ 1\n    := by\n      apply Real.sin_x_le_one\n    exact le_trans key_sin_le_1 hx\n  exact key_sin_le_x\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_sine = Nl2LeanCandidate.study_q_sine := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_sine\n",
+  "verification_source_sha256": "8794ff34dfefa35de57cc5297a2b1ed1af72b51ec850140f4417c259eb4117c1",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 20,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8a87dd8300effe66e216df4d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Real.sin_x_le_one`",
+      "endPos": {
+        "column": 29,
+        "line": 18
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8a87dd8300effe66e216df4d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 12,
+        "line": 18
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Application type mismatch: The argument\n  hx\nhas type\n  0 ≤ x\nbut is expected to have type\n  1 ≤ x\nin the application\n  le_trans key_sin_le_1 hx",
+      "endPos": {
+        "column": 34,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8a87dd8300effe66e216df4d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 32,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_sine' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 25
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8a87dd8300effe66e216df4d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 25
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8a87dd8300effe66e216df4d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Real.sin_x_le_one`\",\"endPos\":{\"column\":29,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8a87dd8300effe66e216df4d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":12,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  hx\\nhas type\\n  0 ≤ x\\nbut is expected to have type\\n  1 ≤ x\\nin the application\\n  le_trans key_sin_le_1 hx\",\"endPos\":{\"column\":34,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8a87dd8300effe66e216df4d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":32,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_sine' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8a87dd8300effe66e216df4d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

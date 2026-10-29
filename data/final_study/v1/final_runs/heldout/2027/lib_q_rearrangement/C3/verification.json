@@ -1,0 +1,126 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+    "line 20: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\n  a * (d - c) ≤ b * (d - c)",
+    "line 23: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h4` is a proof of\n  a * (d - c) ≤ b * (d - c)",
+    "line 24: Unknown identifier `le_add_of_pos_left`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.258,
+  "diagnostics_parsed": 6,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c\nline 20: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\n  a * (d - c) ≤ b * (d - c)\nline 23: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h4` is a proof of\n  a * (d - c) ≤ b * (d - c)\nline 24: Unknown identifier `le_add_of_pos_left`",
+  "candidate_sha256": "5527ee9ac8cec9863ab1d09ee51b158eddbe9658b30e9675e02bfef204f7c1a8",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_eq_add_neg, sub_eq_add_neg] at hab hcd \n    exact le_add_of_pos_left (le_sub_of_le_of_le hab hcd)\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  have h4 : a * (d - c) ≤ b * (d - c) := by\n    rw [h1]\n    exact le_of_add_le_add_left hcd\n  have h5 : a * c + b * d ≤ a * c + b * c + b * (d - c) := by\n    rw [add_assoc, h4, add_comm b (b * (d - c))]\n  exact le_add_of_pos_left (le_sub_of_le_of_le h5 hcd)\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_rearrangement = Nl2LeanCandidate.study_q_rearrangement := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_rearrangement\n",
+  "verification_source_sha256": "0b0d0e3c32a8d6a23559b2d17c7185751a47b2d4e907de6b3b8bc903e1024a9a",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 29,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+      "endPos": {
+        "column": 22,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\n  a * (d - c) ≤ b * (d - c)",
+      "endPos": {
+        "column": 10,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 20
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h4` is a proof of\n  a * (d - c) ≤ b * (d - c)",
+      "endPos": {
+        "column": 21,
+        "line": 23
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 19,
+        "line": 23
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `le_add_of_pos_left`",
+      "endPos": {
+        "column": 26,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 24
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 29
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 29
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h1` is a proof of\\n  a * (d - c) ≤ b * (d - c)\",\"endPos\":{\"column\":10,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":20},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h4` is a proof of\\n  a * (d - c) ≤ b * (d - c)\",\"endPos\":{\"column\":21,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":19,\"line\":23},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `le_add_of_pos_left`\",\"endPos\":{\"column\":26,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":24},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":29},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ad5f8e1e26585b3dc7fe4335.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":29},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

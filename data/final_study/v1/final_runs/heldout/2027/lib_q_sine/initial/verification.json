@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: 'calc' expression has type\n  (y ≤ y + y * y) = (y ≤ y + y * y)\nbut is expected to have type\n  y ≤ y + y * y",
+    "line 12: unsolved goals\nx : ℝ\nhx : 0 ≤ x\nkey_ineq : ∀ (y : ℝ), y ≤ y + y * y\n⊢ Real.sin x ≤ x",
+    "line 15: unexpected token ':'; expected command"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 32.602,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: 'calc' expression has type\n  (y ≤ y + y * y) = (y ≤ y + y * y)\nbut is expected to have type\n  y ≤ y + y * y\nline 12: unsolved goals\nx : ℝ\nhx : 0 ≤ x\nkey_ineq : ∀ (y : ℝ), y ≤ y + y * y\n⊢ Real.sin x ≤ x\nline 15: unexpected token ':'; expected command",
+  "candidate_sha256": "ca861b11de7470bf8a156168a8080fb2ca6ea699e7dbd83cc331c55ce0bb968e",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_sine (x : ℝ) (hx : 0 ≤ x) : Real.sin x ≤ x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_sine (x : ℝ) (hx : 0 ≤ x) : Real.sin x ≤ x\n:= by\n  have key_ineq : ∀ (y : ℝ), y ≤ y + y * y\n  := fun y => calc\n    y ≤ y + y * y : by linarith\n  have key_bound : ∀ (y : ℝ), y ≤ 1 → y * y ≤ y\n  := fun y hy => calc\n    y * y ≤ y : by linarith\n  have key_sin_bound : Real.sin x ≤ x\n  := by\n    classical\n    have key_sin_le_1 : Real.sin x ≤ 1\n    := by\n      have key_sin_abs_le_1 : abs (Real.sin x) ≤ 1\n      := by\n        apply abs_le\n        exact Real.sin_x_le_one\n      rw [abs_eq_self_of_nonneg (Real.sin_x_nonneg x)]\n      exact key_sin_abs_le_1\n    have key_sin_le_x : Real.sin x ≤ x\n    := by\n      have key_sin_abs_le_x : abs (Real.sin x) ≤ x\n      := by\n        apply abs_le\n        exact key_sin_le_1\n      rw [abs_eq_self_of_nonneg (Real.sin_x_nonneg x)]\n      exact key_sin_abs_le_x\n    exact key_sin_le_x\n  exact key_sin_bound\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_sine = Nl2LeanCandidate.study_q_sine := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_sine\n",
+  "verification_source_sha256": "525e247d352d9b8c3913e13f1dccb2fad634a09d4a0fa843d657571c7e811513",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 20,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "'calc' expression has type\n  (y ≤ y + y * y) = (y ≤ y + y * y)\nbut is expected to have type\n  y ≤ y + y * y",
+      "endPos": {
+        "column": 18,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 14,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\nx : ℝ\nhx : 0 ≤ x\nkey_ineq : ∀ (y : ℝ), y ≤ y + y * y\n⊢ Real.sin x ≤ x",
+      "endPos": {
+        "column": 17,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 3,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token ':'; expected command",
+      "endPos": {
+        "column": 19,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 18,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_sine' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 44
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 44
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":20,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'calc' expression has type\\n  (y ≤ y + y * y) = (y ≤ y + y * y)\\nbut is expected to have type\\n  y ≤ y + y * y\",\"endPos\":{\"column\":18,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":14,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nx : ℝ\\nhx : 0 ≤ x\\nkey_ineq : ∀ (y : ℝ), y ≤ y + y * y\\n⊢ Real.sin x ≤ x\",\"endPos\":{\"column\":17,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token ':'; expected command\",\"endPos\":{\"column\":19,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":18,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_sine' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":44},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":44},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

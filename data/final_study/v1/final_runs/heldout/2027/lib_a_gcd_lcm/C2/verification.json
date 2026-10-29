@@ -1,0 +1,143 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Unknown constant `Nat.gcd_eq_gcd_symm`",
+    "line 16: Unknown constant `Nat.gcd_eq_gcd_symm`",
+    "line 18: Unknown constant `Nat.lcm_eq_mul_div_gcd`",
+    "line 12: unsolved goals\na b : ℕ\nh1 : a * b = a * a.gcd b + b * a.gcd b\nh2 : a * b = a * a.gcd b / a.gcd b + b * a.gcd b\nh3 : a.lcm b = a * b / a.gcd b\n⊢ a.gcd b * (a * b / a.gcd b) = a * b"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.736,
+  "diagnostics_parsed": 7,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Unknown constant `Nat.gcd_eq_gcd_symm`\nline 16: Unknown constant `Nat.gcd_eq_gcd_symm`\nline 18: Unknown constant `Nat.lcm_eq_mul_div_gcd`\nline 12: unsolved goals\na b : ℕ\nh1 : a * b = a * a.gcd b + b * a.gcd b\nh2 : a * b = a * a.gcd b / a.gcd b + b * a.gcd b\nh3 : a.lcm b = a * b / a.gcd b\n⊢ a.gcd b * (a * b / a.gcd b) = a * b",
+  "candidate_sha256": "6c6f7732f339a6988b66ad7c77202f6000a545a13fdd00bf23a305c4de31db2d",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_gcd_lcm (a b : ℕ) : Nat.gcd a b * Nat.lcm a b = a * b := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_gcd_lcm (a b : ℕ) : Nat.gcd a b * Nat.lcm a b = a * b\n:= by\n  have h1 : a * b = a * Nat.gcd a b + b * Nat.gcd a b := by\n    rw [Nat.gcd_eq_gcd_symm]\n  have h2 : a * b = a * Nat.gcd a b / Nat.gcd a b + b * Nat.gcd a b := by\n    rw [Nat.gcd_eq_gcd_symm]\n  have h3 : Nat.lcm a b = a * b / Nat.gcd a b := by\n    rw [Nat.lcm_eq_mul_div_gcd]\n  rw [h3]\n  ring\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_gcd_lcm = Nl2LeanCandidate.study_a_gcd_lcm := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_gcd_lcm\n",
+  "verification_source_sha256": "a3768b95638951d9227bf911004fe0f02b88b452c6471699a685bc6bdf76a12b",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 23,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_gcd_symm`",
+      "endPos": {
+        "column": 27,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_gcd_symm`",
+      "endPos": {
+        "column": 27,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.lcm_eq_mul_div_gcd`",
+      "endPos": {
+        "column": 30,
+        "line": 18
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 18
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.",
+      "endPos": {
+        "column": 6,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 20
+      },
+      "severity": "information"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\na b : ℕ\nh1 : a * b = a * a.gcd b + b * a.gcd b\nh2 : a * b = a * a.gcd b / a.gcd b + b * a.gcd b\nh3 : a.lcm b = a * b / a.gcd b\n⊢ a.gcd b * (a * b / a.gcd b) = a * b",
+      "endPos": {
+        "column": 6,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 3,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_gcd_lcm' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 25
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 25
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_gcd_symm`\",\"endPos\":{\"column\":27,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_gcd_symm`\",\"endPos\":{\"column\":27,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.lcm_eq_mul_div_gcd`\",\"endPos\":{\"column\":30,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Try this:\\n  [apply] ring_nf\\n  \\n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\\n    \\n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":20},\"severity\":\"information\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b : ℕ\\nh1 : a * b = a * a.gcd b + b * a.gcd b\\nh2 : a * b = a * a.gcd b / a.gcd b + b * a.gcd b\\nh3 : a.lcm b = a * b / a.gcd b\\n⊢ a.gcd b * (a * b / a.gcd b) = a * b\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_gcd_lcm' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d64fe4410899364a0f5bd711.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

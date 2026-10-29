@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b + ?b\nin the target expression\n  x - 1 ≤ Real.log x + 1 - x\n\nx : ℝ\nhx✝ hx : 0 < x\n⊢ x - 1 ≤ Real.log x + 1 - x",
+    "line 19: Type mismatch\n  h1 hx\nhas type\n  x - 1 ≤ Real.log x + 1 - x\nbut is expected to have type\n  Real.log x ≤ x - 1"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.005,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b + ?b\nin the target expression\n  x - 1 ≤ Real.log x + 1 - x\n\nx : ℝ\nhx✝ hx : 0 < x\n⊢ x - 1 ≤ Real.log x + 1 - x\nline 19: Type mismatch\n  h1 hx\nhas type\n  x - 1 ≤ Real.log x + 1 - x\nbut is expected to have type\n  Real.log x ≤ x - 1",
+  "candidate_sha256": "96aff3ec4c06b26d43f57c3d2892b7e7130a7e3be65ba74c3302821232ca566a",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_log_tangent (x : ℝ) (hx : 0 < x) : Real.log x ≤ x - 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_log_tangent (x : ℝ) (hx : 0 < x) : Real.log x ≤ x - 1\n:= by\n  have h1 : 0 < x → x - 1 ≤ Real.log x + 1 - x := by\n    intro hx\n    rw [sub_add_cancel]\n    apply sub_le_sub_right\n    apply Real.log_le_add_one\n    exact hx\n  exact h1 hx\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_log_tangent = Nl2LeanCandidate.study_q_log_tangent := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_log_tangent\n",
+  "verification_source_sha256": "7a336f35b9e0456ab62e3c09c0c98134a3d9eb4865a55c5e10d66dee41a41eec",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 27,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8b98ae1662912d29c8906fe3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b + ?b\nin the target expression\n  x - 1 ≤ Real.log x + 1 - x\n\nx : ℝ\nhx✝ hx : 0 < x\n⊢ x - 1 ≤ Real.log x + 1 - x",
+      "endPos": {
+        "column": 22,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8b98ae1662912d29c8906fe3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  h1 hx\nhas type\n  x - 1 ≤ Real.log x + 1 - x\nbut is expected to have type\n  Real.log x ≤ x - 1",
+      "endPos": {
+        "column": 13,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8b98ae1662912d29c8906fe3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_log_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8b98ae1662912d29c8906fe3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 24
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8b98ae1662912d29c8906fe3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b + ?b\\nin the target expression\\n  x - 1 ≤ Real.log x + 1 - x\\n\\nx : ℝ\\nhx✝ hx : 0 < x\\n⊢ x - 1 ≤ Real.log x + 1 - x\",\"endPos\":{\"column\":22,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8b98ae1662912d29c8906fe3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  h1 hx\\nhas type\\n  x - 1 ≤ Real.log x + 1 - x\\nbut is expected to have type\\n  Real.log x ≤ x - 1\",\"endPos\":{\"column\":13,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8b98ae1662912d29c8906fe3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_log_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8b98ae1662912d29c8906fe3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 17: Unknown identifier `abs_add_le_add`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 48.595,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 17: Unknown identifier `abs_add_le_add`",
+  "candidate_sha256": "c5b892cc82f195a307667ba7cc4bfd0a71e53db0e8e6135b5c869c416bbf2c61",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_triangle (x y : ℝ) : |x + y| ≤ |x| + |y| := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_triangle (x y : ℝ) : |x + y| ≤ |x| + |y| :=\nby\n  have h1 : |x + y| ≤ |x + y| := by\n    apply le_refl\n  have h2 : |x + y| ≤ |x| + |y| := by\n    apply le_trans h1\n    apply abs_add_le_add\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_triangle = Nl2LeanCandidate.study_q_triangle := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_triangle\n",
+  "verification_source_sha256": "3f89ce020a4fd3adaf3a2523ceac4554d625428e4a287b4c74111ab0a2da7190",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 24,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e53e3a961066fafefe08fcf5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `abs_add_le_add`",
+      "endPos": {
+        "column": 24,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e53e3a961066fafefe08fcf5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_triangle' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 23
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e53e3a961066fafefe08fcf5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 23
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":24,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e53e3a961066fafefe08fcf5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `abs_add_le_add`\",\"endPos\":{\"column\":24,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e53e3a961066fafefe08fcf5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_triangle' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e53e3a961066fafefe08fcf5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":23},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

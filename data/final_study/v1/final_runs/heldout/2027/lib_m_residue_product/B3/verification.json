@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Unknown identifier `mod_mul`",
+    "line 15: Type mismatch\n  h1\nhas type\n  a * b % m = a % m * b % m % m\nbut is expected to have type\n  a * b % m = a % m * (b % m) % m"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.749,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Unknown identifier `mod_mul`\nline 15: Type mismatch\n  h1\nhas type\n  a * b % m = a % m * b % m % m\nbut is expected to have type\n  a * b % m = a % m * (b % m) % m",
+  "candidate_sha256": "05d2690461aaac420001d8e719339c683f55aefadcd64d934847d70a540cd7c4",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_residue_product (a b m : ℕ) : (a * b) % m = ((a % m) * (b % m)) % m := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_residue_product (a b m : ℕ) : (a * b) % m = ((a % m) * (b % m)) % m\n:= by\n  have h1 : (a * b) % m = (a % m * b % m) % m := by\n    rw [mod_mul]\n  exact h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_residue_product = Nl2LeanCandidate.study_m_residue_product := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_residue_product\n",
+  "verification_source_sha256": "92760796b859d935c79fbbe4ab5f3d209d2527817fbcf9093ce58687d73fa6a8",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6c530b8ee274a345d5213fc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `mod_mul`",
+      "endPos": {
+        "column": 15,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6c530b8ee274a345d5213fc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  h1\nhas type\n  a * b % m = a % m * b % m % m\nbut is expected to have type\n  a * b % m = a % m * (b % m) % m",
+      "endPos": {
+        "column": 10,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6c530b8ee274a345d5213fc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_residue_product' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6c530b8ee274a345d5213fc.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 20
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6c530b8ee274a345d5213fc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `mod_mul`\",\"endPos\":{\"column\":15,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6c530b8ee274a345d5213fc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  h1\\nhas type\\n  a * b % m = a % m * b % m % m\\nbut is expected to have type\\n  a * b % m = a % m * (b % m) % m\",\"endPos\":{\"column\":10,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6c530b8ee274a345d5213fc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_residue_product' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c6c530b8ee274a345d5213fc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

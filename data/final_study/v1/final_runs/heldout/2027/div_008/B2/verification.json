@@ -1,0 +1,69 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: unknown tactic"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 39.042,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: unknown tactic",
+  "candidate_sha256": "f7dad148bd671b3b50533c7663a97f0aa51fe5bc0b467098cd0eb5261d5e0ed8",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem even_iff_even_three_mul (n : ℤ) : Even n ↔ Even (3 * n) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem even_iff_even_three_mul (n : ℤ) : Even n ↔ Even (3 * n) :=\nby\n  split\n  · intro h\n    have := h\n    cases h with k hk\n    exact even_mul_of_even _ (by rw [hk]; exact even_of_add_one_even (by rw [mul_one]))\n\n  · intro h\n    have := h\n    cases h with k hk\n    rw [hk]\n    exact even_of_add_one_even (by rw [mul_one])\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.even_iff_even_three_mul = Nl2LeanCandidate.even_iff_even_three_mul := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.even_iff_even_three_mul\n",
+  "verification_source_sha256": "01fd308d289ac3927651d5c78e873281a8ccdb3e36d921faa4ef57a2301dc4f5",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 5
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_26d14d2cf6cedd74260fedf3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unknown tactic",
+      "endPos": null,
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_26d14d2cf6cedd74260fedf3.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 18,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.even_iff_even_three_mul' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 26
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_26d14d2cf6cedd74260fedf3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 26
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_26d14d2cf6cedd74260fedf3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_26d14d2cf6cedd74260fedf3.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":18,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.even_iff_even_three_mul' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":26},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_26d14d2cf6cedd74260fedf3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":26},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

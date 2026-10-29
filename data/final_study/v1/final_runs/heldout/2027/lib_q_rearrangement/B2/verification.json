@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+    "line 19: Unknown identifier `le_add_of_left_le_of_le`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.426,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c\nline 19: Unknown identifier `le_add_of_left_le_of_le`",
+  "candidate_sha256": "e5e41499a1c24413e819d732782bfc1328f45a2fbcf4161cf46a7138261059e7",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_rearrangement (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a * d + b * c ≤ a * c + b * d\n:= by\n  have h1 : a * d - a * c ≤ b * d - b * c := by\n    rw [sub_mul, sub_mul] at hab hcd \n    exact le_add_of_left_le_of_le hab hcd\n  have h2 : a * d - a * c = a * (d - c) := by ring\n  have h3 : b * d - b * c = b * (d - c) := by ring\n  rw [h2, h3] at h1 \n  exact le_add_of_left_le_of_le h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_rearrangement = Nl2LeanCandidate.study_q_rearrangement := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_rearrangement\n",
+  "verification_source_sha256": "9ccb04edfe71a32b2c3983a5d7193bb37acecb78a7265ac476319dab594bdaca",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 29,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?a - ?b) * ?c\nin the target expression\n  a ≤ b\n\na b c d : ℝ\nhab : a ≤ b\nhcd : c ≤ d\n⊢ a * d - a * c ≤ b * d - b * c",
+      "endPos": {
+        "column": 15,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `le_add_of_left_le_of_le`",
+      "endPos": {
+        "column": 31,
+        "line": 19
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 24
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  (?a - ?b) * ?c\\nin the target expression\\n  a ≤ b\\n\\na b c d : ℝ\\nhab : a ≤ b\\nhcd : c ≤ d\\n⊢ a * d - a * c ≤ b * d - b * c\",\"endPos\":{\"column\":15,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `le_add_of_left_le_of_le`\",\"endPos\":{\"column\":31,\"line\":19},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_rearrangement' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_91817a1ff7d620d507152194.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

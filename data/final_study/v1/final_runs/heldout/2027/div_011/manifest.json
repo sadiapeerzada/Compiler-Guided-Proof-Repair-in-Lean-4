@@ -1,0 +1,780 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "heldout",
+  "seed": 2027,
+  "problem_id": "div_011",
+  "protocol_sha256": "a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317",
+  "dataset_sha256": "47e1b9acc1efc5c6be1113c0b4e103b29f6cb7aeed77a5ffe98bae97fdda9a5b",
+  "status": "completed",
+  "started_at": "2026-10-28T10:31:52.522326+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+          "candidate": "theorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by rw [mul_add, mul_sub, hk₁, hl₁]⟩",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/div_011/B1/completion.json",
+          "completion_sha256": "a9d645f58bb36732be09397789eca849d0d1881e57b9a512bf7a6f3f1e7cf261",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/div_011/B1/verification.json",
+          "verification_sha256": "1b0347642d3e92082a45e12a0896ca210649760108a10f8c4a65117cf89d17fe",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+              "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 37.297,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`\nline 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+            "candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by rw [mul_add, mul_sub, hk₁, hl₁]⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.dvd_add_sub_int = Nl2LeanCandidate.dvd_add_sub_int := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.dvd_add_sub_int\n",
+            "verification_source_sha256": "b202d31dc2a854744fbb9b1c4e2ddeca4d014ff647605b43e7f084c17f755205",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 23,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302fce4bcdad41415c606a53.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+                "endPos": {
+                  "column": 14,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302fce4bcdad41415c606a53.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 9,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+                "endPos": {
+                  "column": 37,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302fce4bcdad41415c606a53.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 30,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302fce4bcdad41415c606a53.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 18
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302fce4bcdad41415c606a53.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  k + l\\nhas type\\n  ℤ\\nof sort `Type` but is expected to have type\\n  a ∣ b + c\\nof sort `Prop`\",\"endPos\":{\"column\":14,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302fce4bcdad41415c606a53.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":9,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a * (?b + ?c)\\nin the target expression\\n  b - c = a * (k - l)\\n\\na b c k : ℤ\\nhk₁ : b = a * k\\nl : ℤ\\nhl₁ : c = a * l\\n⊢ b - c = a * (k - l)\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302fce4bcdad41415c606a53.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":30,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_302fce4bcdad41415c606a53.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 349,
+          "completion_tokens": 103,
+          "generation_seconds": 7.6362535410007695,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+          "candidate": "theorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by rw [mul_add, mul_sub, hk₁, hl₁]⟩",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/div_011/B2/completion.json",
+          "completion_sha256": "80bddf077c82c3345a7568a3efbbba41579f31e7557dcb373d2bc7d4f5ab155a",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/div_011/B2/verification.json",
+          "verification_sha256": "c533aa7a71ee3ea3b62e9492a41541ab3da45cb5651e872a1228d536a6b09bd2",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+              "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.358,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`\nline 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+            "candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by rw [mul_add, mul_sub, hk₁, hl₁]⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.dvd_add_sub_int = Nl2LeanCandidate.dvd_add_sub_int := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.dvd_add_sub_int\n",
+            "verification_source_sha256": "b202d31dc2a854744fbb9b1c4e2ddeca4d014ff647605b43e7f084c17f755205",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 23,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0c0116a31ec63503e4ed88f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+                "endPos": {
+                  "column": 14,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0c0116a31ec63503e4ed88f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 9,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+                "endPos": {
+                  "column": 37,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0c0116a31ec63503e4ed88f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 30,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0c0116a31ec63503e4ed88f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 18
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0c0116a31ec63503e4ed88f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  k + l\\nhas type\\n  ℤ\\nof sort `Type` but is expected to have type\\n  a ∣ b + c\\nof sort `Prop`\",\"endPos\":{\"column\":14,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0c0116a31ec63503e4ed88f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":9,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a * (?b + ?c)\\nin the target expression\\n  b - c = a * (k - l)\\n\\na b c k : ℤ\\nhk₁ : b = a * k\\nl : ℤ\\nhl₁ : c = a * l\\n⊢ b - c = a * (k - l)\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0c0116a31ec63503e4ed88f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":30,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c0c0116a31ec63503e4ed88f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 349,
+          "completion_tokens": 103,
+          "generation_seconds": 7.586142749998544,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+          "candidate": "theorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by rw [mul_add, mul_sub, hk₁, hl₁]⟩",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/div_011/B3/completion.json",
+          "completion_sha256": "09d0c328032386b116e6d40418314534affe26e26df9f108adfb9755f93f1c35",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/div_011/B3/verification.json",
+          "verification_sha256": "a789462a6cdffa3befbe7c46cd393d698a2b2d4425d7cef099d20b4b0d79e38c",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+              "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.216,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`\nline 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+            "candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by rw [mul_add, mul_sub, hk₁, hl₁]⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.dvd_add_sub_int = Nl2LeanCandidate.dvd_add_sub_int := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.dvd_add_sub_int\n",
+            "verification_source_sha256": "b202d31dc2a854744fbb9b1c4e2ddeca4d014ff647605b43e7f084c17f755205",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 23,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fe93b063eedf35caaa9c290e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+                "endPos": {
+                  "column": 14,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fe93b063eedf35caaa9c290e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 9,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+                "endPos": {
+                  "column": 37,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fe93b063eedf35caaa9c290e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 30,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fe93b063eedf35caaa9c290e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 18
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fe93b063eedf35caaa9c290e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  k + l\\nhas type\\n  ℤ\\nof sort `Type` but is expected to have type\\n  a ∣ b + c\\nof sort `Prop`\",\"endPos\":{\"column\":14,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fe93b063eedf35caaa9c290e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":9,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a * (?b + ?c)\\nin the target expression\\n  b - c = a * (k - l)\\n\\na b c k : ℤ\\nhk₁ : b = a * k\\nl : ℤ\\nhl₁ : c = a * l\\n⊢ b - c = a * (k - l)\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fe93b063eedf35caaa9c290e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":30,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fe93b063eedf35caaa9c290e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 349,
+          "completion_tokens": 103,
+          "generation_seconds": 7.790253833998577,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+          "candidate": "theorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by rw [mul_add, mul_sub, hk₁, hl₁]⟩",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/div_011/C1/completion.json",
+          "completion_sha256": "4affaf7108775e4fbf9c3f1dc1d3e39d462c21594cb1698d70365244419579b4",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/div_011/C1/verification.json",
+          "verification_sha256": "fcba7fec5cd83d8bc1843684dfdf5f909d9ec6791f92168ecb06736a29ab07b1",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+              "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.147,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`\nline 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+            "candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by rw [mul_add, mul_sub, hk₁, hl₁]⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.dvd_add_sub_int = Nl2LeanCandidate.dvd_add_sub_int := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.dvd_add_sub_int\n",
+            "verification_source_sha256": "b202d31dc2a854744fbb9b1c4e2ddeca4d014ff647605b43e7f084c17f755205",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 23,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b8e25148be0ce8591b3f14a0.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+                "endPos": {
+                  "column": 14,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b8e25148be0ce8591b3f14a0.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 9,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+                "endPos": {
+                  "column": 37,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b8e25148be0ce8591b3f14a0.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 30,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b8e25148be0ce8591b3f14a0.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 18
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b8e25148be0ce8591b3f14a0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  k + l\\nhas type\\n  ℤ\\nof sort `Type` but is expected to have type\\n  a ∣ b + c\\nof sort `Prop`\",\"endPos\":{\"column\":14,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b8e25148be0ce8591b3f14a0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":9,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a * (?b + ?c)\\nin the target expression\\n  b - c = a * (k - l)\\n\\na b c k : ℤ\\nhk₁ : b = a * k\\nl : ℤ\\nhl₁ : c = a * l\\n⊢ b - c = a * (k - l)\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b8e25148be0ce8591b3f14a0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":30,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b8e25148be0ce8591b3f14a0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 925,
+          "completion_tokens": 103,
+          "generation_seconds": 12.825912708000033,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Type mismatch\\n  k + l\\nhas type\\n  ℤ\\nof sort `Type` but is expected to have type\\n  a ∣ b + c\\nof sort `Prop`\",\n      \"endPos\": {\n        \"column\": 14,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_de0e72dc1c7648fd1d3ea5aa.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 9,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a * (?b + ?c)\\nin the target expression\\n  b - c = a * (k - l)\\n\\na b c k : ℤ\\nhk₁ : b = a * k\\nl : ℤ\\nhl₁ : c = a * l\\n⊢ b - c = a * (k - l)\",\n      \"endPos\": {\n        \"column\": 37,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_de0e72dc1c7648fd1d3ea5aa.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 30,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_de0e72dc1c7648fd1d3ea5aa.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 18\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "950a68fc6871bc52733c1fe758fed9a217eeb4d0ee17380bf8f95ad6b60fee5b",
+          "candidate": "theorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by\n    rw [mul_add, mul_sub]\n    exact ⟨k + l, by rw [mul_add, hk₁, hl₁]⟩\n    exact ⟨k - l, by rw [mul_sub, hk₁, hl₁]⟩\n  ⟩",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/div_011/C2/completion.json",
+          "completion_sha256": "45ce22d03350c554dd7ba4cf3dfd0776ebb4e0dee36591fa4395691895649d20",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/div_011/C2/verification.json",
+          "verification_sha256": "0216d35ffdca9ba71879f4c7d11bc57749932c21a884bfeae1eac18d45d9a8b6",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+              "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.782,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`\nline 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+            "candidate_sha256": "950a68fc6871bc52733c1fe758fed9a217eeb4d0ee17380bf8f95ad6b60fee5b",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by\n    rw [mul_add, mul_sub]\n    exact ⟨k + l, by rw [mul_add, hk₁, hl₁]⟩\n    exact ⟨k - l, by rw [mul_sub, hk₁, hl₁]⟩\n  ⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.dvd_add_sub_int = Nl2LeanCandidate.dvd_add_sub_int := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.dvd_add_sub_int\n",
+            "verification_source_sha256": "04e935e2cd3eb8cfea2cb403cc840221978b4863225bc4ed6e0d2daa901795ff",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 23,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3ccbd7636417abbe408e44d0.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+                "endPos": {
+                  "column": 14,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3ccbd7636417abbe408e44d0.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 9,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+                "endPos": {
+                  "column": 15,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3ccbd7636417abbe408e44d0.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 8,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3ccbd7636417abbe408e44d0.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3ccbd7636417abbe408e44d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  k + l\\nhas type\\n  ℤ\\nof sort `Type` but is expected to have type\\n  a ∣ b + c\\nof sort `Prop`\",\"endPos\":{\"column\":14,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3ccbd7636417abbe408e44d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":9,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a * (?b + ?c)\\nin the target expression\\n  b - c = a * (k - l)\\n\\na b c k : ℤ\\nhk₁ : b = a * k\\nl : ℤ\\nhl₁ : c = a * l\\n⊢ b - c = a * (k - l)\",\"endPos\":{\"column\":15,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3ccbd7636417abbe408e44d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3ccbd7636417abbe408e44d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 934,
+          "completion_tokens": 144,
+          "generation_seconds": 16.78706491599951,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Type mismatch\\n  k + l\\nhas type\\n  ℤ\\nof sort `Type` but is expected to have type\\n  a ∣ b + c\\nof sort `Prop`\",\n      \"endPos\": {\n        \"column\": 14,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b8e25148be0ce8591b3f14a0.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 9,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a * (?b + ?c)\\nin the target expression\\n  b - c = a * (k - l)\\n\\na b c k : ℤ\\nhk₁ : b = a * k\\nl : ℤ\\nhl₁ : c = a * l\\n⊢ b - c = a * (k - l)\",\n      \"endPos\": {\n        \"column\": 37,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b8e25148be0ce8591b3f14a0.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 30,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b8e25148be0ce8591b3f14a0.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 18\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "950a68fc6871bc52733c1fe758fed9a217eeb4d0ee17380bf8f95ad6b60fee5b",
+          "candidate": "theorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by\n    rw [mul_add, mul_sub]\n    exact ⟨k + l, by rw [mul_add, hk₁, hl₁]⟩\n    exact ⟨k - l, by rw [mul_sub, hk₁, hl₁]⟩\n  ⟩",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/div_011/C3/completion.json",
+          "completion_sha256": "2f6cf26b34cf3eb2c6a33a46667ef194c04732b33deb29df16b4e9010ab76861",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/div_011/C3/verification.json",
+          "verification_sha256": "f018865acf96a4033ab7b5e5efb6d88690919248a22f173f9a1ef52e913f3297",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+              "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.446,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`\nline 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+            "candidate_sha256": "950a68fc6871bc52733c1fe758fed9a217eeb4d0ee17380bf8f95ad6b60fee5b",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by\n    rw [mul_add, mul_sub]\n    exact ⟨k + l, by rw [mul_add, hk₁, hl₁]⟩\n    exact ⟨k - l, by rw [mul_sub, hk₁, hl₁]⟩\n  ⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.dvd_add_sub_int = Nl2LeanCandidate.dvd_add_sub_int := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.dvd_add_sub_int\n",
+            "verification_source_sha256": "04e935e2cd3eb8cfea2cb403cc840221978b4863225bc4ed6e0d2daa901795ff",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 23,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0605165057213f10a370703.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+                "endPos": {
+                  "column": 14,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0605165057213f10a370703.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 9,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+                "endPos": {
+                  "column": 15,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0605165057213f10a370703.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 8,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0605165057213f10a370703.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0605165057213f10a370703.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  k + l\\nhas type\\n  ℤ\\nof sort `Type` but is expected to have type\\n  a ∣ b + c\\nof sort `Prop`\",\"endPos\":{\"column\":14,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0605165057213f10a370703.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":9,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a * (?b + ?c)\\nin the target expression\\n  b - c = a * (k - l)\\n\\na b c k : ℤ\\nhk₁ : b = a * k\\nl : ℤ\\nhl₁ : c = a * l\\n⊢ b - c = a * (k - l)\",\"endPos\":{\"column\":15,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0605165057213f10a370703.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e0605165057213f10a370703.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 970,
+          "completion_tokens": 143,
+          "generation_seconds": 21.230314417000045,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Type mismatch\\n  k + l\\nhas type\\n  ℤ\\nof sort `Type` but is expected to have type\\n  a ∣ b + c\\nof sort `Prop`\",\n      \"endPos\": {\n        \"column\": 14,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3ccbd7636417abbe408e44d0.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 9,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a * (?b + ?c)\\nin the target expression\\n  b - c = a * (k - l)\\n\\na b c k : ℤ\\nhk₁ : b = a * k\\nl : ℤ\\nhl₁ : c = a * l\\n⊢ b - c = a * (k - l)\",\n      \"endPos\": {\n        \"column\": 15,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3ccbd7636417abbe408e44d0.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 22\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3ccbd7636417abbe408e44d0.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 22\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "950a68fc6871bc52733c1fe758fed9a217eeb4d0ee17380bf8f95ad6b60fee5b"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+    "candidate": "theorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by rw [mul_add, mul_sub, hk₁, hl₁]⟩",
+    "completion_path": "data/final_study/v1/final_runs/heldout/2027/div_011/initial/completion.json",
+    "completion_sha256": "9da3055a305d06e711cf0e149a342f55e52fd2199dadaedfc393502e4eb80bd1",
+    "verification_path": "data/final_study/v1/final_runs/heldout/2027/div_011/initial/verification.json",
+    "verification_sha256": "64cdb574854db360b198ad3ae364ef9fa497428464bd111f4ecd729f3532ca7f",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+        "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 36.545,
+      "diagnostics_parsed": 4,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 13: Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`\nline 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+      "candidate_sha256": "5b7addede7e58fda949999ea7ec39cb3dc6ff7b3fb0dd96c40b2ddcb9f4b5545",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem dvd_add_sub_int (a b c : ℤ) (hab : a ∣ b) (hac : a ∣ c) : a ∣ b + c ∧ a ∣ b - c\n:= by\n  obtain ⟨k, hk₁⟩ := hab\n  obtain ⟨l, hl₁⟩ := hac\n  exact ⟨k + l, k - l, by rw [mul_add, mul_sub, hk₁, hl₁]⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.dvd_add_sub_int = Nl2LeanCandidate.dvd_add_sub_int := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.dvd_add_sub_int\n",
+      "verification_source_sha256": "b202d31dc2a854744fbb9b1c4e2ddeca4d014ff647605b43e7f084c17f755205",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 23,
+            "line": 5
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_de0e72dc1c7648fd1d3ea5aa.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 5
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "Type mismatch\n  k + l\nhas type\n  ℤ\nof sort `Type` but is expected to have type\n  a ∣ b + c\nof sort `Prop`",
+          "endPos": {
+            "column": 14,
+            "line": 13
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_de0e72dc1c7648fd1d3ea5aa.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 9,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a * (?b + ?c)\nin the target expression\n  b - c = a * (k - l)\n\na b c k : ℤ\nhk₁ : b = a * k\nl : ℤ\nhl₁ : c = a * l\n⊢ b - c = a * (k - l)",
+          "endPos": {
+            "column": 37,
+            "line": 13
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_de0e72dc1c7648fd1d3ea5aa.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 30,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]",
+          "endPos": {
+            "column": 6,
+            "line": 18
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_de0e72dc1c7648fd1d3ea5aa.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 18
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_de0e72dc1c7648fd1d3ea5aa.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  k + l\\nhas type\\n  ℤ\\nof sort `Type` but is expected to have type\\n  a ∣ b + c\\nof sort `Prop`\",\"endPos\":{\"column\":14,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_de0e72dc1c7648fd1d3ea5aa.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":9,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a * (?b + ?c)\\nin the target expression\\n  b - c = a * (k - l)\\n\\na b c k : ℤ\\nhk₁ : b = a * k\\nl : ℤ\\nhl₁ : c = a * l\\n⊢ b - c = a * (k - l)\",\"endPos\":{\"column\":37,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_de0e72dc1c7648fd1d3ea5aa.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":30,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.dvd_add_sub_int' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_de0e72dc1c7648fd1d3ea5aa.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 224,
+    "completion_tokens": 103,
+    "generation_seconds": 6.787591415999486
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-28T10:37:54.124840+00:00"
+}

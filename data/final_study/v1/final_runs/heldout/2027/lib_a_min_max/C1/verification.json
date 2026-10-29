@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: 'calc' expression has type\n  (min x y + max x y = x + y) = (min x y + max x y = x + y)\nbut is expected to have type\n  min x y + max x y = x + y",
+    "line 13: Alternative `inr` has not been provided",
+    "line 15: unexpected token ':'; expected command"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.494,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: 'calc' expression has type\n  (min x y + max x y = x + y) = (min x y + max x y = x + y)\nbut is expected to have type\n  min x y + max x y = x + y\nline 13: Alternative `inr` has not been provided\nline 15: unexpected token ':'; expected command",
+  "candidate_sha256": "ed8c51109784b6337d6e573434c23719e6abfaa21336b635a386337fe2d9205d",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_min_max (x y : ℝ) : min x y + max x y = x + y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_min_max (x y : ℝ) : min x y + max x y = x + y\n:= by\n  cases le_or_gt x y with\n  | inl h => calc\n    min x y + max x y = x + y : by simp [h]\n  | inr h => calc\n    min x y + max x y = y + x : by simp [h]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_min_max = Nl2LeanCandidate.study_a_min_max := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_min_max\n",
+  "verification_source_sha256": "cf27fd8450fb168d5f224c5fc12353e2a47b8f1a0c8f7e4f0ac43433e1a771d9",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 23,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ef7f0adce52fe3598220a4f7.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "'calc' expression has type\n  (min x y + max x y = x + y) = (min x y + max x y = x + y)\nbut is expected to have type\n  min x y + max x y = x + y",
+      "endPos": {
+        "column": 17,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ef7f0adce52fe3598220a4f7.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 13,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Alternative `inr` has not been provided",
+      "endPos": {
+        "column": 7,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ef7f0adce52fe3598220a4f7.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token ':'; expected command",
+      "endPos": {
+        "column": 31,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ef7f0adce52fe3598220a4f7.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 30,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_min_max' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 22
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ef7f0adce52fe3598220a4f7.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 22
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ef7f0adce52fe3598220a4f7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'calc' expression has type\\n  (min x y + max x y = x + y) = (min x y + max x y = x + y)\\nbut is expected to have type\\n  min x y + max x y = x + y\",\"endPos\":{\"column\":17,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ef7f0adce52fe3598220a4f7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":13,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `inr` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ef7f0adce52fe3598220a4f7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token ':'; expected command\",\"endPos\":{\"column\":31,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ef7f0adce52fe3598220a4f7.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":30,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_min_max' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ef7f0adce52fe3598220a4f7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

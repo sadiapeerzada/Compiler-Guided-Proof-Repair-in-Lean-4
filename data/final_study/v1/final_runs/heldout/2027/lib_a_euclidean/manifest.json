@@ -1,0 +1,1032 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "heldout",
+  "seed": 2027,
+  "problem_id": "lib_a_euclidean",
+  "protocol_sha256": "a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317",
+  "dataset_sha256": "47e1b9acc1efc5c6be1113c0b4e103b29f6cb7aeed77a5ffe98bae97fdda9a5b",
+  "status": "completed",
+  "started_at": "2026-10-28T10:58:21.032437+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "edfa874222641c4386a3d5406bec4f920b3f7ea440c285ac4ff6716f6cb95750",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "edfa874222641c4386a3d5406bec4f920b3f7ea440c285ac4ff6716f6cb95750",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "e6264d1f454480b57db26e9136242cc0c6a3ba3f2ff403b1ea38352522cf034a",
+          "candidate": "open scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | zero =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact eq_self a\n    exact h\n  | nonZero b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/B1/completion.json",
+          "completion_sha256": "8efb80e1246ba0d4ec7a8ff95b4ef30d310ff19f2c5cfffc263c64b92d99458b",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/B1/verification.json",
+          "verification_sha256": "29aee0b00c59b5c2c7b3f332c8b71b9eec10236a908bc140c3a5bf842a7418e6",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Invalid alternative name `zero`: Expected `ofNat` or `negSucc`",
+              "line 19: Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`",
+              "line 13: Alternative `ofNat` has not been provided",
+              "line 13: Alternative `negSucc` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.969,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\nline 19: Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\nline 13: Alternative `ofNat` has not been provided\nline 13: Alternative `negSucc` has not been provided",
+            "candidate_sha256": "e6264d1f454480b57db26e9136242cc0c6a3ba3f2ff403b1ea38352522cf034a",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | zero =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact eq_self a\n    exact h\n  | nonZero b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_euclidean = Nl2LeanCandidate.study_a_euclidean := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_euclidean\n",
+            "verification_source_sha256": "47aedf500837909ea7e25e900a16613868b4202c54785456c8966632613ded3b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 25,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Invalid alternative name `zero`: Expected `ofNat` or `negSucc`",
+                "endPos": {
+                  "column": 11,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`",
+                "endPos": {
+                  "column": 11,
+                  "line": 23
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 19
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `ofNat` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `negSucc` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 28
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 28
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":11,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":11,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `ofNat` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `negSucc` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":28},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_e4c32615e37ed70bedc76d55.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":28},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 373,
+          "completion_tokens": 139,
+          "generation_seconds": 10.415641999999934,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "ca71b629344839b2f25587568ca172b66fca94c84e5e1e56d6bd9e55df3011a6",
+          "candidate": "open scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | zero =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact zero_eq_self a\n  | nonZero b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/B2/completion.json",
+          "completion_sha256": "dcd77991699ec985f0acb0d97d01b1dcc9522d28afd76c66420ee1ed59216d1f",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/B2/verification.json",
+          "verification_sha256": "51bd530bb4862dbefb03e1ec96d27e9d76a5b6856b91725dea63f1e0fc6d08fb",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Invalid alternative name `zero`: Expected `ofNat` or `negSucc`",
+              "line 18: Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`",
+              "line 13: Alternative `ofNat` has not been provided",
+              "line 13: Alternative `negSucc` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 41.457,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\nline 18: Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\nline 13: Alternative `ofNat` has not been provided\nline 13: Alternative `negSucc` has not been provided",
+            "candidate_sha256": "ca71b629344839b2f25587568ca172b66fca94c84e5e1e56d6bd9e55df3011a6",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | zero =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact zero_eq_self a\n  | nonZero b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_euclidean = Nl2LeanCandidate.study_a_euclidean := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_euclidean\n",
+            "verification_source_sha256": "68dac71562891a5fa4c7636e2a98ce2a42ec9def893dd5ec772f907d376ff5b7",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 25,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Invalid alternative name `zero`: Expected `ofNat` or `negSucc`",
+                "endPos": {
+                  "column": 26,
+                  "line": 17
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`",
+                "endPos": {
+                  "column": 11,
+                  "line": 22
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `ofNat` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `negSucc` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":26,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":11,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `ofNat` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `negSucc` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_15e35bc2771eed3557dcd8e1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 373,
+          "completion_tokens": 136,
+          "generation_seconds": 9.816458999999668,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "ca71b629344839b2f25587568ca172b66fca94c84e5e1e56d6bd9e55df3011a6",
+          "candidate": "open scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | zero =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact zero_eq_self a\n  | nonZero b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/B3/completion.json",
+          "completion_sha256": "89b0b1c0200e57237a1238e202e12ad38061a523903b0f9296e0a6594fc47225",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/B3/verification.json",
+          "verification_sha256": "57e7a37632279d382275b9a9c9c42d0fd9bbebf0335f6bbe26269bb0ce44fa9f",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Invalid alternative name `zero`: Expected `ofNat` or `negSucc`",
+              "line 18: Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`",
+              "line 13: Alternative `ofNat` has not been provided",
+              "line 13: Alternative `negSucc` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.489,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\nline 18: Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\nline 13: Alternative `ofNat` has not been provided\nline 13: Alternative `negSucc` has not been provided",
+            "candidate_sha256": "ca71b629344839b2f25587568ca172b66fca94c84e5e1e56d6bd9e55df3011a6",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | zero =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact zero_eq_self a\n  | nonZero b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_euclidean = Nl2LeanCandidate.study_a_euclidean := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_euclidean\n",
+            "verification_source_sha256": "68dac71562891a5fa4c7636e2a98ce2a42ec9def893dd5ec772f907d376ff5b7",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 25,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Invalid alternative name `zero`: Expected `ofNat` or `negSucc`",
+                "endPos": {
+                  "column": 26,
+                  "line": 17
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`",
+                "endPos": {
+                  "column": 11,
+                  "line": 22
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `ofNat` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `negSucc` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":26,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":11,\"line\":22},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `ofNat` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `negSucc` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_5f45eba577a9037439e08f0f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 370,
+          "completion_tokens": 307,
+          "generation_seconds": 19.693738666999707,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "edfa874222641c4386a3d5406bec4f920b3f7ea440c285ac4ff6716f6cb95750",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "e6264d1f454480b57db26e9136242cc0c6a3ba3f2ff403b1ea38352522cf034a",
+          "candidate": "open scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | zero =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact eq_self a\n    exact h\n  | nonZero b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/C1/completion.json",
+          "completion_sha256": "a42034dafb36185561b735ba1c5e8cdecc13161297131af63ef095822a4991cb",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/C1/verification.json",
+          "verification_sha256": "743cd575885e4c79a456b9342dae0bbfca4d7c0d201e65eacecdf9b34bf63be5",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: Invalid alternative name `zero`: Expected `ofNat` or `negSucc`",
+              "line 19: Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`",
+              "line 13: Alternative `ofNat` has not been provided",
+              "line 13: Alternative `negSucc` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.718,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\nline 19: Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\nline 13: Alternative `ofNat` has not been provided\nline 13: Alternative `negSucc` has not been provided",
+            "candidate_sha256": "e6264d1f454480b57db26e9136242cc0c6a3ba3f2ff403b1ea38352522cf034a",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | zero =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact eq_self a\n    exact h\n  | nonZero b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_euclidean = Nl2LeanCandidate.study_a_euclidean := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_euclidean\n",
+            "verification_source_sha256": "47aedf500837909ea7e25e900a16613868b4202c54785456c8966632613ded3b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 25,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Invalid alternative name `zero`: Expected `ofNat` or `negSucc`",
+                "endPos": {
+                  "column": 11,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`",
+                "endPos": {
+                  "column": 11,
+                  "line": 23
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 19
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `ofNat` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `negSucc` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 28
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 28
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":11,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":11,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `ofNat` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `negSucc` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":28},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":28},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1160,
+          "completion_tokens": 139,
+          "generation_seconds": 17.620478625000032,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\",\n      \"endPos\": {\n        \"column\": 11,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\",\n      \"endPos\": {\n        \"column\": 11,\n        \"line\": 23\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 19\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `ofNat` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `negSucc` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 28\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 28\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "edfa874222641c4386a3d5406bec4f920b3f7ea440c285ac4ff6716f6cb95750"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "35ec902fc608ca754425a0aa1b34d38d4856f23b1d016bbd237747f69dd99232",
+          "candidate": "open scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | 0 =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact eq_self a\n    exact h\n  | b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/C2/completion.json",
+          "completion_sha256": "2bd40d0fd5c4209eb83d04dae44ad3efa45e7d00d5f3c2b2bfd366c73dd81282",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/C2/verification.json",
+          "verification_sha256": "27eacb524913a290e0f6b2f2ba636e03d6114a597721f7938b92d4a4773efd5d",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: unexpected token; expected '_' or identifier",
+              "line 14: Missing alternative name: Expected `ofNat` or `negSucc`",
+              "line 13: Alternative `ofNat` has not been provided",
+              "line 13: Alternative `negSucc` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.599,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: unexpected token; expected '_' or identifier\nline 14: Missing alternative name: Expected `ofNat` or `negSucc`\nline 13: Alternative `ofNat` has not been provided\nline 13: Alternative `negSucc` has not been provided",
+            "candidate_sha256": "35ec902fc608ca754425a0aa1b34d38d4856f23b1d016bbd237747f69dd99232",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | 0 =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact eq_self a\n    exact h\n  | b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_euclidean = Nl2LeanCandidate.study_a_euclidean := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_euclidean\n",
+            "verification_source_sha256": "d34b13cae924901df67189132bddfcb6f74fa4076266b9e1d33deee31618f2ca",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 25,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token; expected '_' or identifier",
+                "endPos": {
+                  "column": 5,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing alternative name: Expected `ofNat` or `negSucc`",
+                "endPos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `ofNat` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `negSucc` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 28
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 28
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token; expected '_' or identifier\",\"endPos\":{\"column\":5,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing alternative name: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":3,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `ofNat` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `negSucc` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":28},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":28},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1170,
+          "completion_tokens": 138,
+          "generation_seconds": 17.083340208000664,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\",\n      \"endPos\": {\n        \"column\": 11,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\",\n      \"endPos\": {\n        \"column\": 11,\n        \"line\": 23\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 19\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `ofNat` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `negSucc` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 28\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_27a7ed74d890ae19bf11318c.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 28\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "e6264d1f454480b57db26e9136242cc0c6a3ba3f2ff403b1ea38352522cf034a"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "4839732ce42f39b5b95dc6eef9ec3d885bc1bd6703a51d802db5eda4ad4af4db",
+          "candidate": "open scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | 0 =>\n    have h : a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact eq_self a\n    exact h\n  | b' =>\n    have h : a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/C3/completion.json",
+          "completion_sha256": "dd047fd55e0939718fd6ae3bd34ce1f746d0dd61b05ecab9196246e944637a1d",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/C3/verification.json",
+          "verification_sha256": "dcc579b780cec31252c7b7c3539c82fc69d0e8ec28dcb8cd77515bc0a298d101",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: unexpected token; expected '_' or identifier",
+              "line 14: Missing alternative name: Expected `ofNat` or `negSucc`",
+              "line 13: Alternative `ofNat` has not been provided",
+              "line 13: Alternative `negSucc` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 42.722,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: unexpected token; expected '_' or identifier\nline 14: Missing alternative name: Expected `ofNat` or `negSucc`\nline 13: Alternative `ofNat` has not been provided\nline 13: Alternative `negSucc` has not been provided",
+            "candidate_sha256": "4839732ce42f39b5b95dc6eef9ec3d885bc1bd6703a51d802db5eda4ad4af4db",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | 0 =>\n    have h : a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, zero_mul]\n      exact eq_self a\n    exact h\n  | b' =>\n    have h : a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_euclidean = Nl2LeanCandidate.study_a_euclidean := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_euclidean\n",
+            "verification_source_sha256": "b0c119a79e5fb74a293f916de72483a606571c3f1d3a86e3d2f98e225bc514af",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 25,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token; expected '_' or identifier",
+                "endPos": {
+                  "column": 5,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing alternative name: Expected `ofNat` or `negSucc`",
+                "endPos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `ofNat` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `negSucc` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 28
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 28
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token; expected '_' or identifier\",\"endPos\":{\"column\":5,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing alternative name: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":3,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `ofNat` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `negSucc` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":28},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_7bf9d1dfe6893792b47b346c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":28},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1159,
+          "completion_tokens": 138,
+          "generation_seconds": 16.530394957999306,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token; expected '_' or identifier\",\n      \"endPos\": {\n        \"column\": 5,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Missing alternative name: Expected `ofNat` or `negSucc`\",\n      \"endPos\": {\n        \"column\": 3,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `ofNat` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `negSucc` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 28\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_c529f361fbb45198a9c9d9e2.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 28\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "35ec902fc608ca754425a0aa1b34d38d4856f23b1d016bbd237747f69dd99232"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "edfa874222641c4386a3d5406bec4f920b3f7ea440c285ac4ff6716f6cb95750",
+    "candidate": "open scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | zero =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, mul_zero]\n      exact eq_self a\n    exact h\n  | nonZero b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h",
+    "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/initial/completion.json",
+    "completion_sha256": "a645a8cd089a72e16892d1020f93ada608756064e6396177fd89fdd0fb3e7b0e",
+    "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_a_euclidean/initial/verification.json",
+    "verification_sha256": "19789f4fbd0b1708f5055ef57c24f8a65727fd2c2f0d11fc7c6677998ebfc7ef",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 14: Invalid alternative name `zero`: Expected `ofNat` or `negSucc`",
+        "line 19: Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`",
+        "line 13: Alternative `ofNat` has not been provided",
+        "line 13: Alternative `negSucc` has not been provided"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 35.266,
+      "diagnostics_parsed": 6,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 14: Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\nline 19: Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\nline 13: Alternative `ofNat` has not been provided\nline 13: Alternative `negSucc` has not been provided",
+      "candidate_sha256": "edfa874222641c4386a3d5406bec4f920b3f7ea440c285ac4ff6716f6cb95750",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_a_euclidean (a b : ℤ) : a % b + b * (a / b) = a\n:= by\n  cases b with\n  | zero =>\n    have h: a % 0 + 0 * (a / 0) = a := by\n      rw [mod_zero, mul_zero]\n      exact eq_self a\n    exact h\n  | nonZero b' =>\n    have h: a % b' + b' * (a / b') = a := by\n      rw [mod_add_div_self]\n      exact eq_self a\n    exact h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_euclidean = Nl2LeanCandidate.study_a_euclidean := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_euclidean\n",
+      "verification_source_sha256": "a77aa5ee173f267aec04b664ae5992ecde7746f282a01673c3ddbd518b8bd671",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 25,
+            "line": 6
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 6
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "Invalid alternative name `zero`: Expected `ofNat` or `negSucc`",
+          "endPos": {
+            "column": 11,
+            "line": 18
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 2,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`",
+          "endPos": {
+            "column": 11,
+            "line": 23
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 2,
+            "line": 19
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Alternative `ofNat` has not been provided",
+          "endPos": {
+            "column": 7,
+            "line": 13
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 2,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Alternative `negSucc` has not been provided",
+          "endPos": {
+            "column": 7,
+            "line": 13
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 2,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]",
+          "endPos": {
+            "column": 6,
+            "line": 28
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 28
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":11,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\",\"endPos\":{\"column\":11,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `ofNat` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `negSucc` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":28},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":28},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 213,
+    "completion_tokens": 139,
+    "generation_seconds": 11.435626291999142
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-28T11:04:56.706871+00:00"
+}

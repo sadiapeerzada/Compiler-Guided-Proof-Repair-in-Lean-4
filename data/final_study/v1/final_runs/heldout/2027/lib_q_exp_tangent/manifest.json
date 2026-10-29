@@ -1,0 +1,924 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "heldout",
+  "seed": 2027,
+  "problem_id": "lib_q_exp_tangent",
+  "protocol_sha256": "a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317",
+  "dataset_sha256": "47e1b9acc1efc5c6be1113c0b4e103b29f6cb7aeed77a5ffe98bae97fdda9a5b",
+  "status": "completed",
+  "started_at": "2026-10-29T14:20:28.097046+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "c0a689ebf18f24908e4ea42f3856dabfa0f2e1485a6da64bce8b81c5e38e8248",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "c0a689ebf18f24908e4ea42f3856dabfa0f2e1485a6da64bce8b81c5e38e8248",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "eac80f3f4bbfa340dc084298fd1050932715b5e6975df6c1a2e589d6d6167ee8",
+          "candidate": "open scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : (0 : ℝ) ≤ ∑ i in finset.range (x + 1), 1 := by\n    apply le_sum\n    intro i\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  exact h_exp_sum",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/B1/completion.json",
+          "completion_sha256": "30824688250c33f3ff4f40f41c06e7294abbec4a8af77604b6d1a0e3f94c30cc",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/B1/verification.json",
+          "verification_sha256": "1837db95568ee85bc3f06ff7809eaf7063eba2603084c89e044bef51add10bfd",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 18: unexpected token 'in'; expected ','",
+              "line 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+              "line 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ 0 ≤ ∑ i, sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : 0 ≤ ∑ i, sorry\n⊢ x + 1 ≤ Real.exp x"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.261,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 18: unexpected token 'in'; expected ','\nline 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\nline 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ 0 ≤ ∑ i, sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : 0 ≤ ∑ i, sorry\n⊢ x + 1 ≤ Real.exp x",
+            "candidate_sha256": "eac80f3f4bbfa340dc084298fd1050932715b5e6975df6c1a2e589d6d6167ee8",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : (0 : ℝ) ≤ ∑ i in finset.range (x + 1), 1 := by\n    apply le_sum\n    intro i\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  exact h_exp_sum\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_exp_tangent = Nl2LeanCandidate.study_q_exp_tangent := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_exp_tangent\n",
+            "verification_source_sha256": "cf167a0561f0e1ea64fa49dbdc8bfc848c0ce689db7ec5f2866d30b59db63ad9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_58b2dd9543ac98c92c382c26.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 31,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_58b2dd9543ac98c92c382c26.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 28,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_58b2dd9543ac98c92c382c26.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ 0 ≤ ∑ i, sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : 0 ≤ ∑ i, sorry\n⊢ x + 1 ≤ Real.exp x",
+                "endPos": {
+                  "column": 28,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_58b2dd9543ac98c92c382c26.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 30
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_58b2dd9543ac98c92c382c26.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 30
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_58b2dd9543ac98c92c382c26.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":31,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_58b2dd9543ac98c92c382c26.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":28,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"failed to synthesize\\n  CanonicallyOrderedAdd ℝ\\n\\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_58b2dd9543ac98c92c382c26.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h_sum\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\n⊢ 0 ≤ ∑ i, sorry\\n\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\nh_sum : 0 ≤ ∑ i, sorry\\n⊢ x + 1 ≤ Real.exp x\",\"endPos\":{\"column\":28,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_58b2dd9543ac98c92c382c26.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":30},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_58b2dd9543ac98c92c382c26.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":30},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 471,
+          "completion_tokens": 164,
+          "generation_seconds": 9.707789041996875,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "eac80f3f4bbfa340dc084298fd1050932715b5e6975df6c1a2e589d6d6167ee8",
+          "candidate": "open scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : (0 : ℝ) ≤ ∑ i in finset.range (x + 1), 1 := by\n    apply le_sum\n    intro i\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  exact h_exp_sum",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/B2/completion.json",
+          "completion_sha256": "6b3d40a5b8ae593e6ba4026d7f5d683bb6850a4bbdc604d51b97a8b455c394ea",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/B2/verification.json",
+          "verification_sha256": "86f58902730f10fbe10f68432173ff475a4ab454a86d07b075ed0f7a0032db08",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 18: unexpected token 'in'; expected ','",
+              "line 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+              "line 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ 0 ≤ ∑ i, sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : 0 ≤ ∑ i, sorry\n⊢ x + 1 ≤ Real.exp x"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.205,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 18: unexpected token 'in'; expected ','\nline 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\nline 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ 0 ≤ ∑ i, sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : 0 ≤ ∑ i, sorry\n⊢ x + 1 ≤ Real.exp x",
+            "candidate_sha256": "eac80f3f4bbfa340dc084298fd1050932715b5e6975df6c1a2e589d6d6167ee8",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : (0 : ℝ) ≤ ∑ i in finset.range (x + 1), 1 := by\n    apply le_sum\n    intro i\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  exact h_exp_sum\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_exp_tangent = Nl2LeanCandidate.study_q_exp_tangent := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_exp_tangent\n",
+            "verification_source_sha256": "cf167a0561f0e1ea64fa49dbdc8bfc848c0ce689db7ec5f2866d30b59db63ad9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4b838fb554576eeee288b432.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 31,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4b838fb554576eeee288b432.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 28,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4b838fb554576eeee288b432.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ 0 ≤ ∑ i, sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : 0 ≤ ∑ i, sorry\n⊢ x + 1 ≤ Real.exp x",
+                "endPos": {
+                  "column": 28,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4b838fb554576eeee288b432.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 30
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4b838fb554576eeee288b432.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 30
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4b838fb554576eeee288b432.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":31,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4b838fb554576eeee288b432.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":28,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"failed to synthesize\\n  CanonicallyOrderedAdd ℝ\\n\\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4b838fb554576eeee288b432.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h_sum\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\n⊢ 0 ≤ ∑ i, sorry\\n\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\nh_sum : 0 ≤ ∑ i, sorry\\n⊢ x + 1 ≤ Real.exp x\",\"endPos\":{\"column\":28,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4b838fb554576eeee288b432.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":30},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4b838fb554576eeee288b432.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":30},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 391,
+          "completion_tokens": 164,
+          "generation_seconds": 9.29575499999919,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "fe2475bffc3fcdeb69d207392344d1473a542dc495a79846441e8cbf872cf99c",
+          "candidate": "open scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : (0 : ℝ) ≤ ∑ i in finset.range (x + 1), 1 := by\n    apply le_sum\n    intro i\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact le_add_right zero_le_one\n  exact h_exp_sum",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/B3/completion.json",
+          "completion_sha256": "885dc1dab922b3001a1c7b199ff30165a2f7cda7df1247aa9be6c7ede9446377",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/B3/verification.json",
+          "verification_sha256": "d7ac7769e65167ca9cc57a447428bbe010c1ff0cf7be30cb37b47cf9ca2d8285",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 15: unexpected token 'in'; expected ','"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.642,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 15: unexpected token 'in'; expected ','",
+            "candidate_sha256": "fe2475bffc3fcdeb69d207392344d1473a542dc495a79846441e8cbf872cf99c",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : (0 : ℝ) ≤ ∑ i in finset.range (x + 1), 1 := by\n    apply le_sum\n    intro i\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact le_add_right zero_le_one\n  exact h_exp_sum\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_exp_tangent = Nl2LeanCandidate.study_q_exp_tangent := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_exp_tangent\n",
+            "verification_source_sha256": "71975d59c7a1f173f8963813573248bbee2b2aec635501a5b24b1454684a4530",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 31,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 28,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":31,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":28,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bcf159f5abedf997d355a622.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 391,
+          "completion_tokens": 143,
+          "generation_seconds": 8.40377116700256,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "c0a689ebf18f24908e4ea42f3856dabfa0f2e1485a6da64bce8b81c5e38e8248",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "27e2d3ec09ae52695ffd3255acda1c55af756997fc0f04894413da557ca3e88f",
+          "candidate": "open scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : ∑ k in finset.range (x + 1), 1 ≤ Real.exp x := by\n    apply le_sum\n    intro k\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  have h_add : x + 1 ≤ x + 1 + (0 : ℝ) := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp_add : Real.exp (x + 1) ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h_add\n  exact h_exp_sum ▸ h_exp_add",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/C1/completion.json",
+          "completion_sha256": "531231f633a5c43ecbfda58fcec5135e18f8e08df75b45acce02d1f3071a0fb9",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/C1/verification.json",
+          "verification_sha256": "09c0e8cf9da8eda53da4c00b92904c6d4ac8ae92c0d1eb65948b9fb2e809836a",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 18: unexpected token 'in'; expected ','",
+              "line 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+              "line 18: failed to synthesize instance of type class\n  AddCommMonoid (Sort ?u.23)\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.",
+              "line 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : sorry\n⊢ x + 1 ≤ Real.exp x"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.568,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 18: unexpected token 'in'; expected ','\nline 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\nline 18: failed to synthesize instance of type class\n  AddCommMonoid (Sort ?u.23)\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\nline 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : sorry\n⊢ x + 1 ≤ Real.exp x",
+            "candidate_sha256": "27e2d3ec09ae52695ffd3255acda1c55af756997fc0f04894413da557ca3e88f",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : ∑ k in finset.range (x + 1), 1 ≤ Real.exp x := by\n    apply le_sum\n    intro k\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  have h_add : x + 1 ≤ x + 1 + (0 : ℝ) := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp_add : Real.exp (x + 1) ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h_add\n  exact h_exp_sum ▸ h_exp_add\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_exp_tangent = Nl2LeanCandidate.study_q_exp_tangent := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_exp_tangent\n",
+            "verification_source_sha256": "65de2697cf997737d5b50028fc7b1598be26b6b8641b1ae5ab76eb687c8977c8",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 21,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 18,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "failed to synthesize instance of type class\n  AddCommMonoid (Sort ?u.23)\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.",
+                "endPos": {
+                  "column": 18,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.synthInstanceFailed._namedError",
+                "pos": {
+                  "column": 15,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : sorry\n⊢ x + 1 ≤ Real.exp x",
+                "endPos": {
+                  "column": 18,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 36
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 36
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":21,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":18,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"failed to synthesize\\n  CanonicallyOrderedAdd ℝ\\n\\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"failed to synthesize instance of type class\\n  AddCommMonoid (Sort ?u.23)\\n\\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\",\"endPos\":{\"column\":18,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.synthInstanceFailed._namedError\",\"pos\":{\"column\":15,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h_sum\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\n⊢ sorry\\n\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\nh_sum : sorry\\n⊢ x + 1 ≤ Real.exp x\",\"endPos\":{\"column\":18,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1218,
+          "completion_tokens": 242,
+          "generation_seconds": 16.93337345799955,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'in'; expected ','\",\n      \"endPos\": {\n        \"column\": 31,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 28,\n        \"line\": 18\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"failed to synthesize\\n  CanonicallyOrderedAdd ℝ\\n\\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\",\n      \"endPos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 4,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\ncase h_sum\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\n⊢ 0 ≤ ∑ i, sorry\\n\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\nh_sum : 0 ≤ ∑ i, sorry\\n⊢ x + 1 ≤ Real.exp x\",\n      \"endPos\": {\n        \"column\": 28,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 36\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 36\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "c0a689ebf18f24908e4ea42f3856dabfa0f2e1485a6da64bce8b81c5e38e8248"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "27e2d3ec09ae52695ffd3255acda1c55af756997fc0f04894413da557ca3e88f",
+          "candidate": "open scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : ∑ k in finset.range (x + 1), 1 ≤ Real.exp x := by\n    apply le_sum\n    intro k\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  have h_add : x + 1 ≤ x + 1 + (0 : ℝ) := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp_add : Real.exp (x + 1) ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h_add\n  exact h_exp_sum ▸ h_exp_add",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/C2/completion.json",
+          "completion_sha256": "938625250428cab1e1824e0ec406bbb89bb91608cf16818d699c54bd117e62e9",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/C2/verification.json",
+          "verification_sha256": "04c4b9d7b38673cda8301cce170742d4ef33dcb64f239354ae1bace1e46901f4",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 18: unexpected token 'in'; expected ','",
+              "line 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+              "line 18: failed to synthesize instance of type class\n  AddCommMonoid (Sort ?u.23)\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.",
+              "line 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : sorry\n⊢ x + 1 ≤ Real.exp x"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.643,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 18: unexpected token 'in'; expected ','\nline 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\nline 18: failed to synthesize instance of type class\n  AddCommMonoid (Sort ?u.23)\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\nline 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : sorry\n⊢ x + 1 ≤ Real.exp x",
+            "candidate_sha256": "27e2d3ec09ae52695ffd3255acda1c55af756997fc0f04894413da557ca3e88f",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : ∑ k in finset.range (x + 1), 1 ≤ Real.exp x := by\n    apply le_sum\n    intro k\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  have h_add : x + 1 ≤ x + 1 + (0 : ℝ) := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp_add : Real.exp (x + 1) ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h_add\n  exact h_exp_sum ▸ h_exp_add\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_exp_tangent = Nl2LeanCandidate.study_q_exp_tangent := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_exp_tangent\n",
+            "verification_source_sha256": "65de2697cf997737d5b50028fc7b1598be26b6b8641b1ae5ab76eb687c8977c8",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 21,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 18,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "failed to synthesize instance of type class\n  AddCommMonoid (Sort ?u.23)\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.",
+                "endPos": {
+                  "column": 18,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.synthInstanceFailed._namedError",
+                "pos": {
+                  "column": 15,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : sorry\n⊢ x + 1 ≤ Real.exp x",
+                "endPos": {
+                  "column": 18,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 36
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 36
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":21,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":18,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"failed to synthesize\\n  CanonicallyOrderedAdd ℝ\\n\\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"failed to synthesize instance of type class\\n  AddCommMonoid (Sort ?u.23)\\n\\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\",\"endPos\":{\"column\":18,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.synthInstanceFailed._namedError\",\"pos\":{\"column\":15,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h_sum\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\n⊢ sorry\\n\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\nh_sum : sorry\\n⊢ x + 1 ≤ Real.exp x\",\"endPos\":{\"column\":18,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1387,
+          "completion_tokens": 242,
+          "generation_seconds": 17.78283087500313,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'in'; expected ','\",\n      \"endPos\": {\n        \"column\": 21,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 18,\n        \"line\": 18\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"failed to synthesize\\n  CanonicallyOrderedAdd ℝ\\n\\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\",\n      \"endPos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 4,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"failed to synthesize instance of type class\\n  AddCommMonoid (Sort ?u.23)\\n\\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\",\n      \"endPos\": {\n        \"column\": 18,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.synthInstanceFailed._namedError\",\n      \"pos\": {\n        \"column\": 15,\n        \"line\": 18\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\ncase h_sum\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\n⊢ sorry\\n\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\nh_sum : sorry\\n⊢ x + 1 ≤ Real.exp x\",\n      \"endPos\": {\n        \"column\": 18,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 36\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_4ca7df9a86864dbc44ce8c31.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 36\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "27e2d3ec09ae52695ffd3255acda1c55af756997fc0f04894413da557ca3e88f"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "27e2d3ec09ae52695ffd3255acda1c55af756997fc0f04894413da557ca3e88f",
+          "candidate": "open scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : ∑ k in finset.range (x + 1), 1 ≤ Real.exp x := by\n    apply le_sum\n    intro k\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  have h_add : x + 1 ≤ x + 1 + (0 : ℝ) := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp_add : Real.exp (x + 1) ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h_add\n  exact h_exp_sum ▸ h_exp_add",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/C3/completion.json",
+          "completion_sha256": "29c6d45deb17f569ba73dca963377ad67c2859faaea4998fc27b9af4df357e92",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/C3/verification.json",
+          "verification_sha256": "5cb56c5c5149a1a2d9717f9ac9b5d297c1fd1b3fc2fa51050ff9c85e45c02031",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 18: unexpected token 'in'; expected ','",
+              "line 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+              "line 18: failed to synthesize instance of type class\n  AddCommMonoid (Sort ?u.23)\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.",
+              "line 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : sorry\n⊢ x + 1 ≤ Real.exp x"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.279,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 18: unexpected token 'in'; expected ','\nline 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\nline 18: failed to synthesize instance of type class\n  AddCommMonoid (Sort ?u.23)\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\nline 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : sorry\n⊢ x + 1 ≤ Real.exp x",
+            "candidate_sha256": "27e2d3ec09ae52695ffd3255acda1c55af756997fc0f04894413da557ca3e88f",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : ∑ k in finset.range (x + 1), 1 ≤ Real.exp x := by\n    apply le_sum\n    intro k\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  have h_add : x + 1 ≤ x + 1 + (0 : ℝ) := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp_add : Real.exp (x + 1) ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h_add\n  exact h_exp_sum ▸ h_exp_add\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_exp_tangent = Nl2LeanCandidate.study_q_exp_tangent := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_exp_tangent\n",
+            "verification_source_sha256": "65de2697cf997737d5b50028fc7b1598be26b6b8641b1ae5ab76eb687c8977c8",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 27,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 21,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 18,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+                "endPos": {
+                  "column": 22,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "failed to synthesize instance of type class\n  AddCommMonoid (Sort ?u.23)\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.",
+                "endPos": {
+                  "column": 18,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.synthInstanceFailed._namedError",
+                "pos": {
+                  "column": 15,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : sorry\n⊢ x + 1 ≤ Real.exp x",
+                "endPos": {
+                  "column": 18,
+                  "line": 18
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 36
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 36
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":21,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":18,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"failed to synthesize\\n  CanonicallyOrderedAdd ℝ\\n\\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"failed to synthesize instance of type class\\n  AddCommMonoid (Sort ?u.23)\\n\\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\",\"endPos\":{\"column\":18,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.synthInstanceFailed._namedError\",\"pos\":{\"column\":15,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h_sum\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\n⊢ sorry\\n\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\nh_sum : sorry\\n⊢ x + 1 ≤ Real.exp x\",\"endPos\":{\"column\":18,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d397950d4716e66f411e2891.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1412,
+          "completion_tokens": 242,
+          "generation_seconds": 17.984971874997427,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'in'; expected ','\",\n      \"endPos\": {\n        \"column\": 21,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 18,\n        \"line\": 18\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"failed to synthesize\\n  CanonicallyOrderedAdd ℝ\\n\\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\",\n      \"endPos\": {\n        \"column\": 22,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 4,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"failed to synthesize instance of type class\\n  AddCommMonoid (Sort ?u.23)\\n\\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\",\n      \"endPos\": {\n        \"column\": 18,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.synthInstanceFailed._namedError\",\n      \"pos\": {\n        \"column\": 15,\n        \"line\": 18\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\ncase h_sum\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\n⊢ sorry\\n\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\nh_sum : sorry\\n⊢ x + 1 ≤ Real.exp x\",\n      \"endPos\": {\n        \"column\": 18,\n        \"line\": 18\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 36\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_3859048f6b59472a7c7858b8.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 36\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "27e2d3ec09ae52695ffd3255acda1c55af756997fc0f04894413da557ca3e88f"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "c0a689ebf18f24908e4ea42f3856dabfa0f2e1485a6da64bce8b81c5e38e8248",
+    "candidate": "open scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : (0 : ℝ) ≤ ∑ i in finset.range (x + 2), 1 := by\n    apply le_sum\n    intro i\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  have h_add : x + 1 ≤ x + 1 + (0 : ℝ) := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp_add : Real.exp (x + 1) ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h_add\n  exact h_exp_sum ▸ h_exp_add",
+    "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/initial/completion.json",
+    "completion_sha256": "5ea73ef10023d6c1a84f68bf1efba03109b5e4ae73a3061293ce62269edf699e",
+    "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_q_exp_tangent/initial/verification.json",
+    "verification_sha256": "a55b8ef28b73493ab7d392dd6839c96aa0beda9f66f0bc7a882df0057d404e66",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 18: unexpected token 'in'; expected ','",
+        "line 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+        "line 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ 0 ≤ ∑ i, sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : 0 ≤ ∑ i, sorry\n⊢ x + 1 ≤ Real.exp x"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 32.733,
+      "diagnostics_parsed": 5,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 18: unexpected token 'in'; expected ','\nline 14: failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\nline 12: unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ 0 ≤ ∑ i, sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : 0 ≤ ∑ i, sorry\n⊢ x + 1 ≤ Real.exp x",
+      "candidate_sha256": "c0a689ebf18f24908e4ea42f3856dabfa0f2e1485a6da64bce8b81c5e38e8248",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_exp_tangent (x : ℝ) : x + 1 ≤ Real.exp x\n:= by\n  have h : 0 ≤ x + 1 := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp : 0 ≤ Real.exp x := by\n    apply Real.exp_nonneg\n  have h_sum : (0 : ℝ) ≤ ∑ i in finset.range (x + 2), 1 := by\n    apply le_sum\n    intro i\n    apply le_one\n  have h_exp_sum : Real.exp x ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h\n  have h_add : x + 1 ≤ x + 1 + (0 : ℝ) := by\n    apply le_add_right\n    exact zero_le_one\n  have h_exp_add : Real.exp (x + 1) ≤ Real.exp (x + 1) := by\n    apply Real.exp_le_exp_of_le\n    exact h_add\n  exact h_exp_sum ▸ h_exp_add\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_exp_tangent = Nl2LeanCandidate.study_q_exp_tangent := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_exp_tangent\n",
+      "verification_source_sha256": "f997f0fa181361319ab759914f80b11952873bb3658469f73fb0622b0830c6a9",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 27,
+            "line": 6
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 6
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "unexpected token 'in'; expected ','",
+          "endPos": {
+            "column": 31,
+            "line": 18
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 28,
+            "line": 18
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "failed to synthesize\n  CanonicallyOrderedAdd ℝ\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.",
+          "endPos": {
+            "column": 22,
+            "line": 14
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 4,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "unsolved goals\ncase h_sum\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\n⊢ 0 ≤ ∑ i, sorry\n\nx : ℝ\nh : 0 ≤ x + 1\nh_exp : 0 ≤ Real.exp x\nh_sum : 0 ≤ ∑ i, sorry\n⊢ x + 1 ≤ Real.exp x",
+          "endPos": {
+            "column": 28,
+            "line": 18
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "Tactic.unsolvedGoals",
+          "pos": {
+            "column": 3,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+          "endPos": {
+            "column": 6,
+            "line": 36
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 36
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":31,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":28,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"failed to synthesize\\n  CanonicallyOrderedAdd ℝ\\n\\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h_sum\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\n⊢ 0 ≤ ∑ i, sorry\\n\\nx : ℝ\\nh : 0 ≤ x + 1\\nh_exp : 0 ≤ Real.exp x\\nh_sum : 0 ≤ ∑ i, sorry\\n⊢ x + 1 ≤ Real.exp x\",\"endPos\":{\"column\":28,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_exp_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a19b90baf4399d0697b44e4e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 190,
+    "completion_tokens": 244,
+    "generation_seconds": 11.34604316700279
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-29T14:26:24.641097+00:00"
+}

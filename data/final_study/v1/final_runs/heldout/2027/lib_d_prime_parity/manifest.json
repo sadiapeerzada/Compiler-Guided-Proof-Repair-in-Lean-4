@@ -1,0 +1,1086 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "heldout",
+  "seed": 2027,
+  "problem_id": "lib_d_prime_parity",
+  "protocol_sha256": "a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317",
+  "dataset_sha256": "47e1b9acc1efc5c6be1113c0b4e103b29f6cb7aeed77a5ffe98bae97fdda9a5b",
+  "status": "completed",
+  "started_at": "2026-10-28T13:38:28.868258+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "fdcadfd3e89ee5344d8e4d0a0b909ae170e0cc6f71e05210d0321f4e40518fb3",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "fdcadfd3e89ee5344d8e4d0a0b909ae170e0cc6f71e05210d0321f4e40518fb3",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "32868b76e99be2da0e30de404ea57bec65dc4789cc5537b1bc9e91449e71c68d",
+          "candidate": "```lean\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h6 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h7 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h8 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h9 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h10 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h11 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h12 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h13 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h14 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h15 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h16 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h17 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h18 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h19 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h20 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h21 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h22 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h23 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h24 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h25 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h26 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h27 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h28 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h29 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h30 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h31 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h32 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h33 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h34 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/B1/completion.json",
+          "completion_sha256": "88a963dbbeb30c502f87489fd47384cd5f639c26dbd151db9de9be872d0f1896",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/B1/verification.json",
+          "verification_sha256": "4b7e1db4c6a7021aaa5f18643c12a7306420c144d964245f75fde0715fc11f32",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 10: unexpected token '`'; expected command",
+              "line 15: unexpected token; expected '_' or identifier",
+              "line 15: Missing alternative name: Expected `zero` or `succ`",
+              "line 14: Alternative `zero` has not been provided",
+              "line 14: Alternative `succ` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 36.702,
+            "diagnostics_parsed": 7,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 10: unexpected token '`'; expected command\nline 15: unexpected token; expected '_' or identifier\nline 15: Missing alternative name: Expected `zero` or `succ`\nline 14: Alternative `zero` has not been provided\nline 14: Alternative `succ` has not been provided",
+            "candidate_sha256": "32868b76e99be2da0e30de404ea57bec65dc4789cc5537b1bc9e91449e71c68d",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\n```lean\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h6 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h7 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h8 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h9 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h10 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h11 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h12 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h13 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h14 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h15 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h16 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h17 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h18 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h19 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h20 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h21 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h22 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h23 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h24 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h25 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h26 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h27 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h28 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h29 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h30 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h31 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h32 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h33 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h34 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_parity = Nl2LeanCandidate.study_d_prime_parity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_parity\n",
+            "verification_source_sha256": "c3bd0f49ea963410ff1d763fec0d83dc64a2d0e30704fdbe7ca3fe9f7f2492dc",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token '`'; expected command",
+                "endPos": {
+                  "column": 1,
+                  "line": 10
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token; expected '_' or identifier",
+                "endPos": {
+                  "column": 5,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing alternative name: Expected `zero` or `succ`",
+                "endPos": {
+                  "column": 3,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `zero` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `succ` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 123
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 123
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token '`'; expected command\",\"endPos\":{\"column\":1,\"line\":10},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token; expected '_' or identifier\",\"endPos\":{\"column\":5,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing alternative name: Expected `zero` or `succ`\",\"endPos\":{\"column\":3,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `zero` has not been provided\",\"endPos\":{\"column\":7,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `succ` has not been provided\",\"endPos\":{\"column\":7,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":123},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_d6b435a2f2a62ffc95c7ed4e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":123},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 2240,
+          "completion_tokens": 2000,
+          "generation_seconds": 216.2873837920015,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "32868b76e99be2da0e30de404ea57bec65dc4789cc5537b1bc9e91449e71c68d",
+          "candidate": "```lean\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h6 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h7 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h8 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h9 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h10 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h11 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h12 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h13 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h14 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h15 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h16 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h17 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h18 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h19 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h20 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h21 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h22 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h23 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h24 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h25 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h26 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h27 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h28 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h29 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h30 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h31 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h32 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h33 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h34 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/B2/completion.json",
+          "completion_sha256": "ab10474925a62d3b75197a657735c90075d87f9ed20d800270f96284aceecdf3",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/B2/verification.json",
+          "verification_sha256": "934e058b9f616d17e2f987f88c7db55b34d00aacbc330d7ae6e0c4fdd0d9eadd",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 10: unexpected token '`'; expected command",
+              "line 15: unexpected token; expected '_' or identifier",
+              "line 15: Missing alternative name: Expected `zero` or `succ`",
+              "line 14: Alternative `zero` has not been provided",
+              "line 14: Alternative `succ` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.79,
+            "diagnostics_parsed": 7,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 10: unexpected token '`'; expected command\nline 15: unexpected token; expected '_' or identifier\nline 15: Missing alternative name: Expected `zero` or `succ`\nline 14: Alternative `zero` has not been provided\nline 14: Alternative `succ` has not been provided",
+            "candidate_sha256": "32868b76e99be2da0e30de404ea57bec65dc4789cc5537b1bc9e91449e71c68d",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\n```lean\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h6 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h7 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h8 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h9 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h10 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h11 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h12 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h13 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h14 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h15 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h16 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h17 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h18 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h19 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h20 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h21 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h22 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h23 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h24 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h25 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h26 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h27 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h28 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h29 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h30 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h31 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h32 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h33 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h34 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_parity = Nl2LeanCandidate.study_d_prime_parity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_parity\n",
+            "verification_source_sha256": "c3bd0f49ea963410ff1d763fec0d83dc64a2d0e30704fdbe7ca3fe9f7f2492dc",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token '`'; expected command",
+                "endPos": {
+                  "column": 1,
+                  "line": 10
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token; expected '_' or identifier",
+                "endPos": {
+                  "column": 5,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing alternative name: Expected `zero` or `succ`",
+                "endPos": {
+                  "column": 3,
+                  "line": 15
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 15
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `zero` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `succ` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 123
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 123
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token '`'; expected command\",\"endPos\":{\"column\":1,\"line\":10},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token; expected '_' or identifier\",\"endPos\":{\"column\":5,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing alternative name: Expected `zero` or `succ`\",\"endPos\":{\"column\":3,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `zero` has not been provided\",\"endPos\":{\"column\":7,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `succ` has not been provided\",\"endPos\":{\"column\":7,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":123},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ff613a2c3472395c4b7b679e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":123},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 2240,
+          "completion_tokens": 2000,
+          "generation_seconds": 267.59812008300287,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "578af2b320257aaa9786c724d5806edf0631f5294017bc77a33377d8cc76109c",
+          "candidate": "open scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      exact absurd h5 (eq_of_mul_eq_mul_right hp h3)",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/B3/completion.json",
+          "completion_sha256": "6cf2fe648af9d95729a113d969764796013599847d536d946c5a6ed729239847",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/B3/verification.json",
+          "verification_sha256": "bb811b73d54149b892394d04f50cee05daa031b6b8be3a8b68690bf95f4ec2f3",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: unexpected token; expected '_' or identifier",
+              "line 14: Missing alternative name: Expected `zero` or `succ`",
+              "line 13: Alternative `zero` has not been provided",
+              "line 13: Alternative `succ` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 63.526,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: unexpected token; expected '_' or identifier\nline 14: Missing alternative name: Expected `zero` or `succ`\nline 13: Alternative `zero` has not been provided\nline 13: Alternative `succ` has not been provided",
+            "candidate_sha256": "578af2b320257aaa9786c724d5806edf0631f5294017bc77a33377d8cc76109c",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < p * p + p * p := by\n        rw [add_assoc, add_comm p p] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      exact absurd h5 (eq_of_mul_eq_mul_right hp h3)\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_parity = Nl2LeanCandidate.study_d_prime_parity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_parity\n",
+            "verification_source_sha256": "4307e7ed46768e3d7291057e5e3bd6571980093f90cba88891d7467627f23b0b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token; expected '_' or identifier",
+                "endPos": {
+                  "column": 5,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing alternative name: Expected `zero` or `succ`",
+                "endPos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `zero` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `succ` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 36
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 36
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token; expected '_' or identifier\",\"endPos\":{\"column\":5,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing alternative name: Expected `zero` or `succ`\",\"endPos\":{\"column\":3,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `zero` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `succ` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_14f863bffd1dd5756d39a0c5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 2240,
+          "completion_tokens": 326,
+          "generation_seconds": 70.5357401250003,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "fdcadfd3e89ee5344d8e4d0a0b909ae170e0cc6f71e05210d0321f4e40518fb3",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "e8cc701ea5a944572fbf831e097b049a0ebfe9ecf4ca387ba02aee8181dd1f28",
+          "candidate": "open scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < (p + 1) * (p + 1) := by\n        rw [mul_add, add_assoc] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      exact absurd h5 (lt_irrefl p (by norm_num))",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/C1/completion.json",
+          "completion_sha256": "9974ce38e88fae7d848acc61b2481b71d548f070cb6c471cd202ac4d358c072e",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/C1/verification.json",
+          "verification_sha256": "fb76e37f15c89512679fba011305b0357b8dca437f65eb7fd5f162f1ac54e08c",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: unexpected token; expected '_' or identifier",
+              "line 14: Missing alternative name: Expected `zero` or `succ`",
+              "line 13: Alternative `zero` has not been provided",
+              "line 13: Alternative `succ` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.675,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: unexpected token; expected '_' or identifier\nline 14: Missing alternative name: Expected `zero` or `succ`\nline 13: Alternative `zero` has not been provided\nline 13: Alternative `succ` has not been provided",
+            "candidate_sha256": "e8cc701ea5a944572fbf831e097b049a0ebfe9ecf4ca387ba02aee8181dd1f28",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < (p + 1) * (p + 1) := by\n        rw [mul_add, add_assoc] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      exact absurd h5 (lt_irrefl p (by norm_num))\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_parity = Nl2LeanCandidate.study_d_prime_parity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_parity\n",
+            "verification_source_sha256": "a54b9b6158c712efc501f53008106c1e54163853c81204347fc7a2de540bb4d4",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token; expected '_' or identifier",
+                "endPos": {
+                  "column": 5,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing alternative name: Expected `zero` or `succ`",
+                "endPos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `zero` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `succ` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 36
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 36
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token; expected '_' or identifier\",\"endPos\":{\"column\":5,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing alternative name: Expected `zero` or `succ`\",\"endPos\":{\"column\":3,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `zero` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `succ` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 3170,
+          "completion_tokens": 330,
+          "generation_seconds": 61.35796920899884,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token '`'; expected command\",\n      \"endPos\": {\n        \"column\": 1,\n        \"line\": 10\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 10\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token; expected '_' or identifier\",\n      \"endPos\": {\n        \"column\": 5,\n        \"line\": 15\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Missing alternative name: Expected `zero` or `succ`\",\n      \"endPos\": {\n        \"column\": 3,\n        \"line\": 15\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `zero` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `succ` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 123\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 123\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "fdcadfd3e89ee5344d8e4d0a0b909ae170e0cc6f71e05210d0321f4e40518fb3"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "1bd2adbd4c912993e8d7e5a73e9167568a3f2f20d16a1a355397861b44416069",
+          "candidate": "open scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < (p + 1) * (p + 1) := by\n        rw [mul_add, add_assoc] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      exact absurd h5 (lt_irrefl p (by norm_num))\n    right\n    exact Odd.of_not_dvd_two p (by norm_num)",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/C2/completion.json",
+          "completion_sha256": "2127a608c935b245e6c3a5a74799e4b7af906fcb05e2e8ab1d6d41ce7f67fcbe",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/C2/verification.json",
+          "verification_sha256": "43762916cb42cae8bd37d8718c765539f34d680ff8a2efb55a0466c2493f6fa6",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: unexpected token; expected '_' or identifier",
+              "line 14: Missing alternative name: Expected `zero` or `succ`",
+              "line 13: Alternative `zero` has not been provided",
+              "line 13: Alternative `succ` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 81.05,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: unexpected token; expected '_' or identifier\nline 14: Missing alternative name: Expected `zero` or `succ`\nline 13: Alternative `zero` has not been provided\nline 13: Alternative `succ` has not been provided",
+            "candidate_sha256": "1bd2adbd4c912993e8d7e5a73e9167568a3f2f20d16a1a355397861b44416069",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < (p + 1) * (p + 1) := by\n        rw [mul_add, add_assoc] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      exact absurd h5 (lt_irrefl p (by norm_num))\n    right\n    exact Odd.of_not_dvd_two p (by norm_num)\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_parity = Nl2LeanCandidate.study_d_prime_parity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_parity\n",
+            "verification_source_sha256": "3a78834b12f3c244d05ab2ff28d9d59e0c223fe5df1cd935eab6167ce8da003d",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token; expected '_' or identifier",
+                "endPos": {
+                  "column": 5,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing alternative name: Expected `zero` or `succ`",
+                "endPos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `zero` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `succ` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 38
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 38
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token; expected '_' or identifier\",\"endPos\":{\"column\":5,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing alternative name: Expected `zero` or `succ`\",\"endPos\":{\"column\":3,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `zero` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `succ` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":38},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":38},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1328,
+          "completion_tokens": 347,
+          "generation_seconds": 78.51276487500218,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token; expected '_' or identifier\",\n      \"endPos\": {\n        \"column\": 5,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Missing alternative name: Expected `zero` or `succ`\",\n      \"endPos\": {\n        \"column\": 3,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `zero` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `succ` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 36\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_fbfd50241178fa273ddd4448.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 36\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "e8cc701ea5a944572fbf831e097b049a0ebfe9ecf4ca387ba02aee8181dd1f28"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "4024f97ed5a5379ba518c5b28f2afa9f99b2081b4d6e45e23785c3701804cbf2",
+          "candidate": "open scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 0 => left\n  | succ 0 => left\n  | succ (succ n) =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < (p + 1) * (p + 1) := by\n        rw [mul_add, add_assoc] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      exact absurd h5 (lt_irrefl p (by norm_num))\n    right\n    exact Odd.of_not_dvd_two p (by norm_num)",
+          "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/C3/completion.json",
+          "completion_sha256": "eacb1ab9a05ebcca4979450460c321809f3bb0b637a5daa9176b35601317f015",
+          "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/C3/verification.json",
+          "verification_sha256": "283d9c5be5e74743efd1d54d2f9c117126ff50e9483256deefd6d2f09179862a",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 14: unexpected token; expected '_' or identifier",
+              "line 14: Missing alternative name: Expected `zero` or `succ`",
+              "line 13: Alternative `zero` has not been provided",
+              "line 13: Alternative `succ` has not been provided"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.151,
+            "diagnostics_parsed": 6,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 14: unexpected token; expected '_' or identifier\nline 14: Missing alternative name: Expected `zero` or `succ`\nline 13: Alternative `zero` has not been provided\nline 13: Alternative `succ` has not been provided",
+            "candidate_sha256": "4024f97ed5a5379ba518c5b28f2afa9f99b2081b4d6e45e23785c3701804cbf2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 0 => left\n  | succ 0 => left\n  | succ (succ n) =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < (p + 1) * (p + 1) := by\n        rw [mul_add, add_assoc] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      exact absurd h5 (lt_irrefl p (by norm_num))\n    right\n    exact Odd.of_not_dvd_two p (by norm_num)\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_parity = Nl2LeanCandidate.study_d_prime_parity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_parity\n",
+            "verification_source_sha256": "2464426bd9cf900ef7f7a3306f3daaf15d664eab30467a5ecb20e18f9974389a",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 28,
+                  "line": 6
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token; expected '_' or identifier",
+                "endPos": {
+                  "column": 5,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing alternative name: Expected `zero` or `succ`",
+                "endPos": {
+                  "column": 3,
+                  "line": 14
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `zero` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Alternative `succ` has not been provided",
+                "endPos": {
+                  "column": 7,
+                  "line": 13
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 39
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 39
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token; expected '_' or identifier\",\"endPos\":{\"column\":5,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing alternative name: Expected `zero` or `succ`\",\"endPos\":{\"column\":3,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `zero` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `succ` has not been provided\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":39},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_a55cc318a624d7d9d0730153.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":39},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1365,
+          "completion_tokens": 356,
+          "generation_seconds": 45.81274037500043,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token; expected '_' or identifier\",\n      \"endPos\": {\n        \"column\": 5,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Missing alternative name: Expected `zero` or `succ`\",\n      \"endPos\": {\n        \"column\": 3,\n        \"line\": 14\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `zero` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `succ` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 38\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_970279d7d46387f64cadd379.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 38\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "1bd2adbd4c912993e8d7e5a73e9167568a3f2f20d16a1a355397861b44416069"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "fdcadfd3e89ee5344d8e4d0a0b909ae170e0cc6f71e05210d0321f4e40518fb3",
+    "candidate": "```lean\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < (p + 1) * (p + 1) := by\n        rw [mul_add, mul_add] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h6 : d * d < p * p + 2 * p + 1 := by\n        rw [mul_add, add_assoc] at h5 \n        exact lt_of_lt_of_le h5 (add_lt_add_right (by norm_num) (by norm_num))\n      have h7 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h8 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h9 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h10 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h11 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h12 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h13 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h14 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h15 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h16 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h17 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h18 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h19 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h20 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h21 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h22 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h23 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h24 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h25 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h26 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h27 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h28 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h29 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h30 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h31 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h32 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h33 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h34 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt",
+    "completion_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/initial/completion.json",
+    "completion_sha256": "f65634ddbeb334e71e09bed6f9b9990bfa583b6643e923164d192bf5d84156bf",
+    "verification_path": "data/final_study/v1/final_runs/heldout/2027/lib_d_prime_parity/initial/verification.json",
+    "verification_sha256": "0ee7034b64b9bbaaee11254071173bdd8167a3bb1a77933255344876d2d8981f",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 10: unexpected token '`'; expected command",
+        "line 15: unexpected token; expected '_' or identifier",
+        "line 15: Missing alternative name: Expected `zero` or `succ`",
+        "line 14: Alternative `zero` has not been provided",
+        "line 14: Alternative `succ` has not been provided"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 42.954,
+      "diagnostics_parsed": 7,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 10: unexpected token '`'; expected command\nline 15: unexpected token; expected '_' or identifier\nline 15: Missing alternative name: Expected `zero` or `succ`\nline 14: Alternative `zero` has not been provided\nline 14: Alternative `succ` has not been provided",
+      "candidate_sha256": "fdcadfd3e89ee5344d8e4d0a0b909ae170e0cc6f71e05210d0321f4e40518fb3",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\n```lean\nopen scoped BigOperators\ntheorem study_d_prime_parity (p : ℕ) (hp : p.Prime) : p = 2 ∨ Odd p\n:= by\n  cases p with\n  | 2 => left\n  | p + 1 =>\n    have h1 : 1 < p ∧ p < 2 * p := by\n      split\n      · exact lt_of_add_one (by norm_num)\n      · exact lt_of_add_lt_add_right (by norm_num) (by norm_num)\n    have h2 : ¬(∃ (d : ℕ), d < p ∧ d * d = p) := by\n      intro d hd\n      have h3 : d * d < p * p := by\n        rw [hd.2] at h1 \n        exact lt_of_lt_of_le h1.1 (lt_of_add_lt_add_right (by norm_num) (by norm_num))\n      have h4 : d * d < 2 * p * p := by\n        rw [mul_assoc, mul_one] at h3 \n        exact lt_of_lt_of_le h3 (mul_lt_mul_left h1.2 h1.2)\n      have h5 : d * d < (p + 1) * (p + 1) := by\n        rw [mul_add, mul_add] at h4 \n        exact lt_of_lt_of_le h4 (add_lt_add_right (by norm_num) (by norm_num))\n      have h6 : d * d < p * p + 2 * p + 1 := by\n        rw [mul_add, add_assoc] at h5 \n        exact lt_of_lt_of_le h5 (add_lt_add_right (by norm_num) (by norm_num))\n      have h7 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h8 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h9 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h10 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h11 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h12 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h13 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h14 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h15 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h16 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h17 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h18 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h19 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h20 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h21 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h22 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h23 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h24 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h25 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h26 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h27 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h28 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h29 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h30 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h31 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h32 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h33 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt_of_lt_of_le h6 (add_lt_add_right (by norm_num) (by norm_num))\n      have h34 : d * d < p * p + p + p := by\n        rw [add_assoc, add_comm p p] at h6 \n        exact lt\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_prime_parity = Nl2LeanCandidate.study_d_prime_parity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_prime_parity\n",
+      "verification_source_sha256": "54161cd81247d89d03896ce1eb8d51d4e8e4b94cd1bf64168c6b9160243012ff",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 28,
+            "line": 6
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 6
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "unexpected token '`'; expected command",
+          "endPos": {
+            "column": 1,
+            "line": 10
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 10
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "unexpected token; expected '_' or identifier",
+          "endPos": {
+            "column": 5,
+            "line": 15
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 3,
+            "line": 15
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Missing alternative name: Expected `zero` or `succ`",
+          "endPos": {
+            "column": 3,
+            "line": 15
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 2,
+            "line": 15
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Alternative `zero` has not been provided",
+          "endPos": {
+            "column": 7,
+            "line": 14
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 2,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Alternative `succ` has not been provided",
+          "endPos": {
+            "column": 7,
+            "line": 14
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 2,
+            "line": 14
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]",
+          "endPos": {
+            "column": 6,
+            "line": 123
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 123
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token '`'; expected command\",\"endPos\":{\"column\":1,\"line\":10},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token; expected '_' or identifier\",\"endPos\":{\"column\":5,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing alternative name: Expected `zero` or `succ`\",\"endPos\":{\"column\":3,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `zero` has not been provided\",\"endPos\":{\"column\":7,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Alternative `succ` has not been provided\",\"endPos\":{\"column\":7,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_prime_parity' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":123},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b7d19e7fc027e92139219aaf.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":123},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 192,
+    "completion_tokens": 2000,
+    "generation_seconds": 127.24410575000002
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-28T13:59:03.061393+00:00"
+}

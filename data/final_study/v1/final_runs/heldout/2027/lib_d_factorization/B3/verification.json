@@ -1,0 +1,144 @@
+{
+  "success": false,
+  "errors": [
+    "line 12: Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a * b\nof type `ℕ`",
+    "line 13: Failed to rewrite using equation theorems for `factorization`",
+    "line 14: Invalid field `factorization`: The environment does not contain `Finsupp.factorization`, so it is not possible to project the field `factorization` from an expression\n  a.factorization + b.factorization\nof type `ℕ →₀ ℕ`",
+    "line 14: Invalid field `primeExponentFactorization`: The environment does not contain `Finsupp.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a.factorization + b.factorization\nof type `ℕ →₀ ℕ`",
+    "line 11: unsolved goals\na b : ℕ\nha : a ≠ 0\nhb : b ≠ 0\nh1 : (a * b).factorization = sorry\n⊢ (a * b).factorization = a.factorization + b.factorization"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 26.677,
+  "diagnostics_parsed": 7,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 12: Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a * b\nof type `ℕ`\nline 13: Failed to rewrite using equation theorems for `factorization`\nline 14: Invalid field `factorization`: The environment does not contain `Finsupp.factorization`, so it is not possible to project the field `factorization` from an expression\n  a.factorization + b.factorization\nof type `ℕ →₀ ℕ`\nline 14: Invalid field `primeExponentFactorization`: The environment does not contain `Finsupp.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a.factorization + b.factorization\nof type `ℕ →₀ ℕ`\nline 11: unsolved goals\na b : ℕ\nha : a ≠ 0\nhb : b ≠ 0\nh1 : (a * b).factorization = sorry\n⊢ (a * b).factorization = a.factorization + b.factorization",
+  "candidate_sha256": "991167232c062d20a3be423b18da508d623325af39ca5875bd61d2456b3bb11b",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_factorization (a b : ℕ) (ha : a ≠ 0) (hb : b ≠ 0) : (a * b).factorization = a.factorization + b.factorization := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_factorization (a b : ℕ) (ha : a ≠ 0) (hb : b ≠ 0) : (a * b).factorization = a.factorization + b.factorization := by\n  have h1 : (a * b).factorization = (a * b).primeExponentFactorization := by\n    rw [factorization]\n  have h2 : (a.factorization + b.factorization).factorization = (a.factorization + b.factorization).primeExponentFactorization := by\n    rw [primeExponentFactorization_add]\n    simp\n  have h3 : (a * b).primeExponentFactorization = (a.factorization + b.factorization).primeExponentFactorization := by\n    rw [h1, h2]\n  have h4 : (a * b).factorization = (a.factorization + b.factorization).factorization := by\n    rw [factorization, h3]\n  rw [h4]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_factorization = Nl2LeanCandidate.study_d_factorization := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_factorization\n",
+  "verification_source_sha256": "0af43f6179039a9552fdc0d1ae98d038c0bde789d59ac85fb0a01335c5bc2577",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 29,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a * b\nof type `ℕ`",
+      "endPos": {
+        "column": 70,
+        "line": 12
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.invalidField._namedError",
+      "pos": {
+        "column": 44,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Failed to rewrite using equation theorems for `factorization`",
+      "endPos": {
+        "column": 21,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid field `factorization`: The environment does not contain `Finsupp.factorization`, so it is not possible to project the field `factorization` from an expression\n  a.factorization + b.factorization\nof type `ℕ →₀ ℕ`",
+      "endPos": {
+        "column": 61,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.invalidField._namedError",
+      "pos": {
+        "column": 48,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid field `primeExponentFactorization`: The environment does not contain `Finsupp.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\n  a.factorization + b.factorization\nof type `ℕ →₀ ℕ`",
+      "endPos": {
+        "column": 126,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.invalidField._namedError",
+      "pos": {
+        "column": 100,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\na b : ℕ\nha : a ≠ 0\nhb : b ≠ 0\nh1 : (a * b).factorization = sorry\n⊢ (a * b).factorization = a.factorization + b.factorization",
+      "endPos": {
+        "column": 9,
+        "line": 21
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 129,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_factorization' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 26
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 26
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":29,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Invalid field `primeExponentFactorization`: The environment does not contain `Nat.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\\n  a * b\\nof type `ℕ`\",\"endPos\":{\"column\":70,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.invalidField._namedError\",\"pos\":{\"column\":44,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Failed to rewrite using equation theorems for `factorization`\",\"endPos\":{\"column\":21,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid field `factorization`: The environment does not contain `Finsupp.factorization`, so it is not possible to project the field `factorization` from an expression\\n  a.factorization + b.factorization\\nof type `ℕ →₀ ℕ`\",\"endPos\":{\"column\":61,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.invalidField._namedError\",\"pos\":{\"column\":48,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid field `primeExponentFactorization`: The environment does not contain `Finsupp.primeExponentFactorization`, so it is not possible to project the field `primeExponentFactorization` from an expression\\n  a.factorization + b.factorization\\nof type `ℕ →₀ ℕ`\",\"endPos\":{\"column\":126,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.invalidField._namedError\",\"pos\":{\"column\":100,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b : ℕ\\nha : a ≠ 0\\nhb : b ≠ 0\\nh1 : (a * b).factorization = sorry\\n⊢ (a * b).factorization = a.factorization + b.factorization\",\"endPos\":{\"column\":9,\"line\":21},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":129,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_factorization' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":26},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_b994e68595081ac112f3c5dd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":26},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

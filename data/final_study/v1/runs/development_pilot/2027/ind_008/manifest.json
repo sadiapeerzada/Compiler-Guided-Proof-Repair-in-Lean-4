@@ -1,0 +1,913 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "development_pilot",
+  "seed": 2027,
+  "problem_id": "ind_008",
+  "protocol_sha256": "6d374ddd9ee8466c6482eb901318afee95b0612f9664edcc00e3dd761f3be411",
+  "dataset_sha256": "41e47f74ac50a30dbf34b1473c7b01b7727de05e7698480ed9db6255c710b56d",
+  "status": "completed",
+  "started_at": "2026-10-28T09:22:22.754925+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend",
+          "completion_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/B1/completion.json",
+          "completion_sha256": "eabb7f41ccdd7127749a49471794ddaa0cff492fb11c25254e8e96946f2fa15b",
+          "verification_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/B1/verification.json",
+          "verification_sha256": "8be1f43b64381081b6c37b345ac44bbab30808c81c97fd3b3ac28c62bacb8860",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected token 'in'; expected ','",
+              "line 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+              "line 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+              "line 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 64.462,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected token 'in'; expected ','\nline 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\nline 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\nline 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+            "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "77d87a8ea80da1b8b884ed5ad36cfb82b9518b0452a79defb1999a3d41de9c4b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 94,
+                  "line": 9
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 91,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 36
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 36
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 118,
+                  "line": 39
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 65,
+                  "line": 39
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 67,
+                  "line": 41
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 41
+                },
+                "severity": "error"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":94,\"line\":9},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":91,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":118,\"line\":39},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":65,\"line\":39},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":67,\"line\":41},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_744d939430d759d8801e6211.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":14,\"line\":41},\"severity\":\"error\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 521,
+          "completion_tokens": 337,
+          "generation_seconds": 18.792646791999687,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend",
+          "completion_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/B2/completion.json",
+          "completion_sha256": "a367e5f0ea963b9e11533b8caafeb5b7b7d2930a35f10396c87a2abdb81659a4",
+          "verification_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/B2/verification.json",
+          "verification_sha256": "2bfebcdf64ba7c3a363459e87dfdf6575e35300e6899a12b29ea6eb7c314101b",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected token 'in'; expected ','",
+              "line 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+              "line 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+              "line 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 57.597,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected token 'in'; expected ','\nline 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\nline 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\nline 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+            "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "77d87a8ea80da1b8b884ed5ad36cfb82b9518b0452a79defb1999a3d41de9c4b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 94,
+                  "line": 9
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 91,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 36
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 36
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 118,
+                  "line": 39
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 65,
+                  "line": 39
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 67,
+                  "line": 41
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 41
+                },
+                "severity": "error"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":94,\"line\":9},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":91,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":118,\"line\":39},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":65,\"line\":39},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":67,\"line\":41},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_06a137afa6288da0e1c3c09b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":14,\"line\":41},\"severity\":\"error\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 521,
+          "completion_tokens": 337,
+          "generation_seconds": 18.65438399999948,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend",
+          "completion_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/B3/completion.json",
+          "completion_sha256": "a3881abcb4c8a136eaf10fef0fe0ae1ccbc1ebbdfeff142d7955c73bf4468ac5",
+          "verification_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/B3/verification.json",
+          "verification_sha256": "cc4a6ac5345a1d23208670c13427d351644a05271eae04b04fd58fecf8ad9d12",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected token 'in'; expected ','",
+              "line 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+              "line 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+              "line 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 69.501,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected token 'in'; expected ','\nline 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\nline 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\nline 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+            "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "77d87a8ea80da1b8b884ed5ad36cfb82b9518b0452a79defb1999a3d41de9c4b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 94,
+                  "line": 9
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 91,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 36
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 36
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 118,
+                  "line": 39
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 65,
+                  "line": 39
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 67,
+                  "line": 41
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 41
+                },
+                "severity": "error"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":94,\"line\":9},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":91,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":118,\"line\":39},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":65,\"line\":39},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":67,\"line\":41},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_098110a08fa92bfe0cf3a482.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":14,\"line\":41},\"severity\":\"error\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 521,
+          "completion_tokens": 337,
+          "generation_seconds": 18.651054667000608,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend",
+          "completion_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/C1/completion.json",
+          "completion_sha256": "f7c117a3f8bfdc23fa8b2e35a2a7c6f44378567087ab496ccbec9a64dc8bf057",
+          "verification_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/C1/verification.json",
+          "verification_sha256": "4e7ab3fe15bea359225e10061ae98dc8e478a5cfa98b6926a6dfb67c67596146",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected token 'in'; expected ','",
+              "line 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+              "line 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+              "line 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 68.085,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected token 'in'; expected ','\nline 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\nline 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\nline 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+            "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "77d87a8ea80da1b8b884ed5ad36cfb82b9518b0452a79defb1999a3d41de9c4b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 94,
+                  "line": 9
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 91,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 36
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 36
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 118,
+                  "line": 39
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 65,
+                  "line": 39
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 67,
+                  "line": 41
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 41
+                },
+                "severity": "error"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":94,\"line\":9},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":91,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":118,\"line\":39},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":65,\"line\":39},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":67,\"line\":41},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":14,\"line\":41},\"severity\":\"error\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1242,
+          "completion_tokens": 337,
+          "generation_seconds": 22.438603083999624,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'in'; expected ','\",\n      \"endPos\": {\n        \"column\": 94,\n        \"line\": 9\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 91,\n        \"line\": 9\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\n      \"endPos\": {\n        \"column\": 3,\n        \"line\": 36\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 36\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\n      \"endPos\": {\n        \"column\": 118,\n        \"line\": 39\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 65,\n        \"line\": 39\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\n      \"endPos\": {\n        \"column\": 67,\n        \"line\": 41\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 14,\n        \"line\": 41\n      },\n      \"severity\": \"error\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend",
+          "completion_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/C2/completion.json",
+          "completion_sha256": "555593f34c89928759c8f28953ea6ed143a8b95195a449f6c79acc5d79fd98f0",
+          "verification_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/C2/verification.json",
+          "verification_sha256": "a3eaabb944dc871bea91e8cbb64bed1841f0f76b899fdc6ae8f5121918a6bdd5",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected token 'in'; expected ','",
+              "line 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+              "line 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+              "line 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 87.068,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected token 'in'; expected ','\nline 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\nline 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\nline 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+            "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "77d87a8ea80da1b8b884ed5ad36cfb82b9518b0452a79defb1999a3d41de9c4b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 94,
+                  "line": 9
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 91,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 36
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 36
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 118,
+                  "line": 39
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 65,
+                  "line": 39
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 67,
+                  "line": 41
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 41
+                },
+                "severity": "error"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":94,\"line\":9},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":91,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":118,\"line\":39},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":65,\"line\":39},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":67,\"line\":41},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":14,\"line\":41},\"severity\":\"error\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1246,
+          "completion_tokens": 337,
+          "generation_seconds": 22.308038207999743,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'in'; expected ','\",\n      \"endPos\": {\n        \"column\": 94,\n        \"line\": 9\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 91,\n        \"line\": 9\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\n      \"endPos\": {\n        \"column\": 3,\n        \"line\": 36\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 36\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\n      \"endPos\": {\n        \"column\": 118,\n        \"line\": 39\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 65,\n        \"line\": 39\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\n      \"endPos\": {\n        \"column\": 67,\n        \"line\": 41\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_cc2cb18ef8c60918338d7957.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 14,\n        \"line\": 41\n      },\n      \"severity\": \"error\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend",
+          "completion_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/C3/completion.json",
+          "completion_sha256": "77925680225c1072a7b919ecd6e5fc8338682d358d48babeb61397deed3f9e01",
+          "verification_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/C3/verification.json",
+          "verification_sha256": "571ec0ca7ee894652d98717f33d657e701fbb7eee96f0bea2a640b7f524c44a7",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected token 'in'; expected ','",
+              "line 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+              "line 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+              "line 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 86.357,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected token 'in'; expected ','\nline 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\nline 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\nline 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+            "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "77d87a8ea80da1b8b884ed5ad36cfb82b9518b0452a79defb1999a3d41de9c4b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'in'; expected ','",
+                "endPos": {
+                  "column": 94,
+                  "line": 9
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 91,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 36
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 36
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 118,
+                  "line": 39
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 65,
+                  "line": 39
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+                "endPos": {
+                  "column": 67,
+                  "line": 41
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 41
+                },
+                "severity": "error"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":94,\"line\":9},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":91,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":118,\"line\":39},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":65,\"line\":39},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":67,\"line\":41},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ca89bf3723d5009545f5f5e5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":14,\"line\":41},\"severity\":\"error\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 1254,
+          "completion_tokens": 337,
+          "generation_seconds": 22.105489999999918,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'in'; expected ','\",\n      \"endPos\": {\n        \"column\": 94,\n        \"line\": 9\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 91,\n        \"line\": 9\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\n      \"endPos\": {\n        \"column\": 3,\n        \"line\": 36\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 36\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\n      \"endPos\": {\n        \"column\": 118,\n        \"line\": 39\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 65,\n        \"line\": 39\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\n      \"endPos\": {\n        \"column\": 67,\n        \"line\": 41\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2014828af53ee23b62f29b37.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 14,\n        \"line\": 41\n      },\n      \"severity\": \"error\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+    "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend",
+    "completion_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/initial/completion.json",
+    "completion_sha256": "7aeef42c05b087534a0400ab7d8e6633c82aacca0858969867a3892df412f95c",
+    "verification_path": "data/final_study/v1/runs/development_pilot/2027/ind_008/initial/verification.json",
+    "verification_sha256": "ad89e982d485e44e20a543b1f7149ec793ff5f6c124a62afa76717e3b9c7e859",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 9: unexpected token 'in'; expected ','",
+        "line 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+        "line 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+        "line 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 79.431,
+      "diagnostics_parsed": 5,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 9: unexpected token 'in'; expected ','\nline 36: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\nline 39: Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\nline 41: Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+      "candidate_sha256": "6750c7818128d4d7c4b52aad5ae1178ee74b7600163930ad84fa04331e594013",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k :=\nbegin\n  have h1 : n > 0 := le_of_lt hn,\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k, by\n  { \n    induction n with m hm,\n    { \n      have : 1 = ∑ k in Finset.empty, 2 ^ k := by simp,\n      use Finset.empty,\n      exact this \n    },\n    { \n      have : m + 1 > 0 := by { rw add_one, exact h1 },\n      have : ∃ s : Finset ℕ, m = ∑ k in s, 2 ^ k := by { exact hm },\n      then obtain ⟨s, hs⟩ := this,\n      have : m + 1 = ∑ k in s, 2 ^ k + 1 := by { rw add_comm, rw add_one, exact hs },\n      have : ∃ s : Finset ℕ, m + 1 = ∑ k in s, 2 ^ k := by\n      { \n        use s.insert (1 : ℕ),\n        rw [Finset.sum_insert_of_not_mem hs.1, add_comm, add_one, hs.2]\n      },\n      then obtain ⟨t, ht⟩ := this,\n      use t,\n      exact ht \n    }\n  },\n  exact h2\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+      "verification_source_sha256": "77d87a8ea80da1b8b884ed5ad36cfb82b9518b0452a79defb1999a3d41de9c4b",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 44,
+            "line": 5
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 5
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "unexpected token 'in'; expected ','",
+          "endPos": {
+            "column": 94,
+            "line": 9
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 91,
+            "line": 9
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+          "endPos": {
+            "column": 3,
+            "line": 36
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 36
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+          "endPos": {
+            "column": 118,
+            "line": 39
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "lean.unknownIdentifier._namedError",
+          "pos": {
+            "column": 65,
+            "line": 39
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`",
+          "endPos": {
+            "column": 67,
+            "line": 41
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "lean.unknownIdentifier._namedError",
+          "pos": {
+            "column": 14,
+            "line": 41
+          },
+          "severity": "error"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":94,\"line\":9},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":91,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":36},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":118,\"line\":39},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":65,\"line\":39},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nl2LeanCandidate.positive_nat_sum_distinct_powers_two`\",\"endPos\":{\"column\":67,\"line\":41},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_8c3df8be304f8baafef34065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":14,\"line\":41},\"severity\":\"error\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 161,
+    "completion_tokens": 337,
+    "generation_seconds": 16.74025466600051
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-28T09:33:23.000702+00:00"
+}

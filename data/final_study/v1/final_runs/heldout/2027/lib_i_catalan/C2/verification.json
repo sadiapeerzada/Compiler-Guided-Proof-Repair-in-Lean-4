@@ -1,0 +1,314 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Unknown constant `Fin.cases_on`",
+    "line 16: Unknown constant `Fin.cases_on`",
+    "line 16: Unknown constant `Fin.cases_on`",
+    "line 15: unsolved goals\nn : ℕ\nih : catalan (n + 1) = ∑ i, catalan ↑i * catalan (n - ↑i)\n⊢ ∑ x, catalan ↑x * ∑ x_1, catalan ↑x_1 * catalan (n - ↑x - ↑x_1) =\n    ∑ i, catalan ↑i * catalan (n - ↑i) + ∑ i, catalan ↑i * catalan (n - ↑i)",
+    "line 17: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  catalan (n + 1)\nin the target expression\n  catalan (n + 1 + 1) = ∑ i, catalan ↑i * catalan (n + 1 - ↑i)\n\ncase succ\nn : ℕ\nih : catalan (n + 1) = ∑ i, catalan ↑i * catalan (n - ↑i)\nthis : ∑ i, catalan ↑i * catalan (n - ↑i + 1) = ∑ i, catalan ↑i * catalan (n - ↑i) + catalan (n + 1) * catalan 0\n⊢ catalan (n + 1 + 1) = ∑ i, catalan ↑i * catalan (n + 1 - ↑i)"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.671,
+  "diagnostics_parsed": 17,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Unknown constant `Fin.cases_on`\nline 16: Unknown constant `Fin.cases_on`\nline 16: Unknown constant `Fin.cases_on`\nline 15: unsolved goals\nn : ℕ\nih : catalan (n + 1) = ∑ i, catalan ↑i * catalan (n - ↑i)\n⊢ ∑ x, catalan ↑x * ∑ x_1, catalan ↑x_1 * catalan (n - ↑x - ↑x_1) =\n    ∑ i, catalan ↑i * catalan (n - ↑i) + ∑ i, catalan ↑i * catalan (n - ↑i)\nline 17: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  catalan (n + 1)\nin the target expression\n  catalan (n + 1 + 1) = ∑ i, catalan ↑i * catalan (n + 1 - ↑i)\n\ncase succ\nn : ℕ\nih : catalan (n + 1) = ∑ i, catalan ↑i * catalan (n - ↑i)\nthis : ∑ i, catalan ↑i * catalan (n - ↑i + 1) = ∑ i, catalan ↑i * catalan (n - ↑i) + catalan (n + 1) * catalan 0\n⊢ catalan (n + 1 + 1) = ∑ i, catalan ↑i * catalan (n + 1 - ↑i)",
+  "candidate_sha256": "fbefe638ddbc43e2473e13aba0a954c4b39ca0d73eb9174b74b7bd3d62006f3a",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_i_catalan (n : ℕ) : catalan (n + 1) = ∑ i : Fin n.succ, catalan i * catalan (n - i) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_i_catalan (n : ℕ) : catalan (n + 1) = ∑ i : Fin (n + 1), catalan i * catalan (n - i) := by\n  induction' n with n ih\n  · simp [catalan, Fin.cases_on, catalan_zero, zero_add, zero_mul, add_zero]\n  · have : ∑ i : Fin (n + 2), catalan i * catalan (n - i + 1) = ∑ i : Fin (n + 1), catalan i * catalan (n - i) + catalan (n + 1) * catalan 0 := by\n      simp [catalan, Fin.cases_on, add_assoc, add_comm, add_zero, zero_add, zero_mul, zero_add, Fin.cases_on, catalan_succ]\n    rw [ih, this]\n    simp [catalan, Fin.cases_on, add_assoc, add_comm, add_zero, zero_add, zero_mul, zero_add, Fin.cases_on, catalan_succ]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_i_catalan = Nl2LeanCandidate.study_i_catalan := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_i_catalan\n",
+  "verification_source_sha256": "6da04fe38b5a3499f50feaed70e0b3959b083de634984b46a8ed3eee2ee562bc",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 23,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Fin.cases_on`",
+      "endPos": {
+        "column": 31,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 19,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Fin.cases_on`",
+      "endPos": {
+        "column": 33,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 21,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Fin.cases_on`",
+      "endPos": {
+        "column": 108,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 96,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\nn : ℕ\nih : catalan (n + 1) = ∑ i, catalan ↑i * catalan (n - ↑i)\n⊢ ∑ x, catalan ↑x * ∑ x_1, catalan ↑x_1 * catalan (n - ↑x - ↑x_1) =\n    ∑ i, catalan ↑i * catalan (n - ↑i) + ∑ i, catalan ↑i * catalan (n - ↑i)",
+      "endPos": {
+        "column": 123,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 144,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  catalan (n + 1)\nin the target expression\n  catalan (n + 1 + 1) = ∑ i, catalan ↑i * catalan (n + 1 - ↑i)\n\ncase succ\nn : ℕ\nih : catalan (n + 1) = ∑ i, catalan ↑i * catalan (n - ↑i)\nthis : ∑ i, catalan ↑i * catalan (n - ↑i + 1) = ∑ i, catalan ↑i * catalan (n - ↑i) + catalan (n + 1) * catalan 0\n⊢ catalan (n + 1 + 1) = ∑ i, catalan ↑i * catalan (n + 1 - ↑i)",
+      "endPos": {
+        "column": 10,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "This simp argument is unused:\n  catalan\n\nHint: Omit it from the simp argument list.\n  simp [c̵a̵t̵a̵l̵a̵n̵,̵ ̵Fin.cases_on, catalan_zero, zero_add, zero_mul, add_zero]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+      "endPos": {
+        "column": 17,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedSimpArgs",
+      "pos": {
+        "column": 10,
+        "line": 14
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "This simp argument is unused:\n  zero_mul\n\nHint: Omit it from the simp argument list.\n  simp [catalan, Fin.cases_on, catalan_zero, zero_add, z̵e̵r̵o̵_̵m̵u̵l̵,̵ ̵add_zero]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+      "endPos": {
+        "column": 65,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedSimpArgs",
+      "pos": {
+        "column": 57,
+        "line": 14
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "This simp argument is unused:\n  add_zero\n\nHint: Omit it from the simp argument list.\n  simp [catalan, Fin.cases_on, catalan_zero, zero_add, zero_mul,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+      "endPos": {
+        "column": 75,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedSimpArgs",
+      "pos": {
+        "column": 67,
+        "line": 14
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "This simp argument is unused:\n  catalan\n\nHint: Omit it from the simp argument list.\n  simp [c̵a̵t̵a̵l̵a̵n̵,̵ ̵Fin.cases_on, add_assoc, add_comm, add_zero, zero_add, zero_mul, zero_add, Fin.cases_on,\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+      "endPos": {
+        "column": 19,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedSimpArgs",
+      "pos": {
+        "column": 12,
+        "line": 16
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "This simp argument is unused:\n  add_assoc\n\nHint: Omit it from the simp argument list.\n  simp [catalan, Fin.cases_on, add_a̵s̵s̵o̵c,̵ ̵a̵d̵d̵_̵c̵omm, add_zero, zero_add, zero_mul, zero_add, Fin.cases_on,\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+      "endPos": {
+        "column": 44,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedSimpArgs",
+      "pos": {
+        "column": 35,
+        "line": 16
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "This simp argument is unused:\n  add_comm\n\nHint: Omit it from the simp argument list.\n  simp [catalan, Fin.cases_on, add_assoc, add_c̵o̵m̵m̵,̵ ̵a̵d̵d̵_̵zero, zero_add, zero_mul, zero_add, Fin.cases_on,\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+      "endPos": {
+        "column": 54,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedSimpArgs",
+      "pos": {
+        "column": 46,
+        "line": 16
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "This simp argument is unused:\n  add_zero\n\nHint: Omit it from the simp argument list.\n  simp [catalan, Fin.cases_on, add_assoc, add_comm, a̵d̵d̵_̵zero,̵ ̵z̵e̵r̵o̵_add, zero_mul, zero_add, Fin.cases_on,\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+      "endPos": {
+        "column": 64,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedSimpArgs",
+      "pos": {
+        "column": 56,
+        "line": 16
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "This simp argument is unused:\n  zero_add\n\nHint: Omit it from the simp argument list.\n  simp [catalan, Fin.cases_on, add_assoc, add_comm, add_zero, zero_a̵d̵d̵,̵ ̵z̵e̵r̵o̵_̵mul, zero_add, Fin.cases_on,\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+      "endPos": {
+        "column": 74,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedSimpArgs",
+      "pos": {
+        "column": 66,
+        "line": 16
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "This simp argument is unused:\n  zero_mul\n\nHint: Omit it from the simp argument list.\n  simp [catalan, Fin.cases_on, add_assoc, add_comm, add_zero, zero_add, zero_m̵u̵l̵,̵ ̵z̵e̵r̵o̵_̵add, Fin.cases_on,\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+      "endPos": {
+        "column": 84,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedSimpArgs",
+      "pos": {
+        "column": 76,
+        "line": 16
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "This simp argument is unused:\n  zero_add\n\nHint: Omit it from the simp argument list.\n  simp [catalan, Fin.cases_on, add_assoc, add_comm, add_zero, zero_add, zero_mul, z̵e̵r̵o̵_̵a̵d̵d̵,̵ ̵Fin.cases_on,\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+      "endPos": {
+        "column": 94,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedSimpArgs",
+      "pos": {
+        "column": 86,
+        "line": 16
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_i_catalan' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 23
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 23
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":23,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Fin.cases_on`\",\"endPos\":{\"column\":31,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":19,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Fin.cases_on`\",\"endPos\":{\"column\":33,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":21,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Fin.cases_on`\",\"endPos\":{\"column\":108,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":96,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nih : catalan (n + 1) = ∑ i, catalan ↑i * catalan (n - ↑i)\\n⊢ ∑ x, catalan ↑x * ∑ x_1, catalan ↑x_1 * catalan (n - ↑x - ↑x_1) =\\n    ∑ i, catalan ↑i * catalan (n - ↑i) + ∑ i, catalan ↑i * catalan (n - ↑i)\",\"endPos\":{\"column\":123,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":144,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  catalan (n + 1)\\nin the target expression\\n  catalan (n + 1 + 1) = ∑ i, catalan ↑i * catalan (n + 1 - ↑i)\\n\\ncase succ\\nn : ℕ\\nih : catalan (n + 1) = ∑ i, catalan ↑i * catalan (n - ↑i)\\nthis : ∑ i, catalan ↑i * catalan (n - ↑i + 1) = ∑ i, catalan ↑i * catalan (n - ↑i) + catalan (n + 1) * catalan 0\\n⊢ catalan (n + 1 + 1) = ∑ i, catalan ↑i * catalan (n + 1 - ↑i)\",\"endPos\":{\"column\":10,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"This simp argument is unused:\\n  catalan\\n\\nHint: Omit it from the simp argument list.\\n  simp [c̵a̵t̵a̵l̵a̵n̵,̵ ̵Fin.cases_on, catalan_zero, zero_add, zero_mul, add_zero]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\",\"endPos\":{\"column\":17,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedSimpArgs\",\"pos\":{\"column\":10,\"line\":14},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"This simp argument is unused:\\n  zero_mul\\n\\nHint: Omit it from the simp argument list.\\n  simp [catalan, Fin.cases_on, catalan_zero, zero_add, z̵e̵r̵o̵_̵m̵u̵l̵,̵ ̵add_zero]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\",\"endPos\":{\"column\":65,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedSimpArgs\",\"pos\":{\"column\":57,\"line\":14},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"This simp argument is unused:\\n  add_zero\\n\\nHint: Omit it from the simp argument list.\\n  simp [catalan, Fin.cases_on, catalan_zero, zero_add, zero_mul,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\",\"endPos\":{\"column\":75,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedSimpArgs\",\"pos\":{\"column\":67,\"line\":14},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"This simp argument is unused:\\n  catalan\\n\\nHint: Omit it from the simp argument list.\\n  simp [c̵a̵t̵a̵l̵a̵n̵,̵ ̵Fin.cases_on, add_assoc, add_comm, add_zero, zero_add, zero_mul, zero_add, Fin.cases_on,\\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\",\"endPos\":{\"column\":19,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedSimpArgs\",\"pos\":{\"column\":12,\"line\":16},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"This simp argument is unused:\\n  add_assoc\\n\\nHint: Omit it from the simp argument list.\\n  simp [catalan, Fin.cases_on, add_a̵s̵s̵o̵c,̵ ̵a̵d̵d̵_̵c̵omm, add_zero, zero_add, zero_mul, zero_add, Fin.cases_on,\\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\",\"endPos\":{\"column\":44,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedSimpArgs\",\"pos\":{\"column\":35,\"line\":16},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"This simp argument is unused:\\n  add_comm\\n\\nHint: Omit it from the simp argument list.\\n  simp [catalan, Fin.cases_on, add_assoc, add_c̵o̵m̵m̵,̵ ̵a̵d̵d̵_̵zero, zero_add, zero_mul, zero_add, Fin.cases_on,\\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\",\"endPos\":{\"column\":54,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedSimpArgs\",\"pos\":{\"column\":46,\"line\":16},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"This simp argument is unused:\\n  add_zero\\n\\nHint: Omit it from the simp argument list.\\n  simp [catalan, Fin.cases_on, add_assoc, add_comm, a̵d̵d̵_̵zero,̵ ̵z̵e̵r̵o̵_add, zero_mul, zero_add, Fin.cases_on,\\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\",\"endPos\":{\"column\":64,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedSimpArgs\",\"pos\":{\"column\":56,\"line\":16},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"This simp argument is unused:\\n  zero_add\\n\\nHint: Omit it from the simp argument list.\\n  simp [catalan, Fin.cases_on, add_assoc, add_comm, add_zero, zero_a̵d̵d̵,̵ ̵z̵e̵r̵o̵_̵mul, zero_add, Fin.cases_on,\\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\",\"endPos\":{\"column\":74,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedSimpArgs\",\"pos\":{\"column\":66,\"line\":16},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"This simp argument is unused:\\n  zero_mul\\n\\nHint: Omit it from the simp argument list.\\n  simp [catalan, Fin.cases_on, add_assoc, add_comm, add_zero, zero_add, zero_m̵u̵l̵,̵ ̵z̵e̵r̵o̵_̵add, Fin.cases_on,\\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\",\"endPos\":{\"column\":84,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedSimpArgs\",\"pos\":{\"column\":76,\"line\":16},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"This simp argument is unused:\\n  zero_add\\n\\nHint: Omit it from the simp argument list.\\n  simp [catalan, Fin.cases_on, add_assoc, add_comm, add_zero, zero_add, zero_mul, z̵e̵r̵o̵_̵a̵d̵d̵,̵ ̵Fin.cases_on,\\n  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲catalan_succ]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\",\"endPos\":{\"column\":94,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedSimpArgs\",\"pos\":{\"column\":86,\"line\":16},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_i_catalan' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":23},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_55e88067a838c3980aadf06a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":23},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

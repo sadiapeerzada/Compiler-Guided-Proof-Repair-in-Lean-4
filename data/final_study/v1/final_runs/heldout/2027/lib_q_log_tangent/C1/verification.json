@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b + ?b\nin the target expression\n  x - 1 - x + 1 ≤ Real.log x - (x - 1)\n\nx : ℝ\nhx : 0 < x\n⊢ x - 1 - x + 1 ≤ Real.log x - (x - 1)",
+    "line 18: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?a\nin the target expression\n  x - 1 - x + 1 ≤ Real.log x - (x - 1)\n\nx : ℝ\nhx : 0 < x\nh1 : x - 1 - x + 1 ≤ Real.log x - (x - 1)\n⊢ Real.log x ≤ x - 1"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.124,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b + ?b\nin the target expression\n  x - 1 - x + 1 ≤ Real.log x - (x - 1)\n\nx : ℝ\nhx : 0 < x\n⊢ x - 1 - x + 1 ≤ Real.log x - (x - 1)\nline 18: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?a\nin the target expression\n  x - 1 - x + 1 ≤ Real.log x - (x - 1)\n\nx : ℝ\nhx : 0 < x\nh1 : x - 1 - x + 1 ≤ Real.log x - (x - 1)\n⊢ Real.log x ≤ x - 1",
+  "candidate_sha256": "1ae6f1f17511782b75a31a2432cf87870240cdf5f01e837d3130c075814008bb",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_q_log_tangent (x : ℝ) (hx : 0 < x) : Real.log x ≤ x - 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_q_log_tangent (x : ℝ) (hx : 0 < x) : Real.log x ≤ x - 1\n:= by\n  have h1 : x - 1 - x + 1 ≤ Real.log x - (x - 1) := by\n    rw [sub_add_cancel]\n    apply sub_le_sub_right\n    apply Real.log_le_log_add_one\n    exact hx\n  rw [sub_self, zero_sub] at h1\n  exact h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_q_log_tangent = Nl2LeanCandidate.study_q_log_tangent := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_q_log_tangent\n",
+  "verification_source_sha256": "96970011f1546c6963984f807e380afee34c98f79325b622adc9be362d7ec2e0",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 27,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bc5ed4788512b96f9dd90da3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b + ?b\nin the target expression\n  x - 1 - x + 1 ≤ Real.log x - (x - 1)\n\nx : ℝ\nhx : 0 < x\n⊢ x - 1 - x + 1 ≤ Real.log x - (x - 1)",
+      "endPos": {
+        "column": 22,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bc5ed4788512b96f9dd90da3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?a\nin the target expression\n  x - 1 - x + 1 ≤ Real.log x - (x - 1)\n\nx : ℝ\nhx : 0 < x\nh1 : x - 1 - x + 1 ≤ Real.log x - (x - 1)\n⊢ Real.log x ≤ x - 1",
+      "endPos": {
+        "column": 14,
+        "line": 18
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bc5ed4788512b96f9dd90da3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 6,
+        "line": 18
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_q_log_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 24
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bc5ed4788512b96f9dd90da3.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 24
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bc5ed4788512b96f9dd90da3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b + ?b\\nin the target expression\\n  x - 1 - x + 1 ≤ Real.log x - (x - 1)\\n\\nx : ℝ\\nhx : 0 < x\\n⊢ x - 1 - x + 1 ≤ Real.log x - (x - 1)\",\"endPos\":{\"column\":22,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bc5ed4788512b96f9dd90da3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?a\\nin the target expression\\n  x - 1 - x + 1 ≤ Real.log x - (x - 1)\\n\\nx : ℝ\\nhx : 0 < x\\nh1 : x - 1 - x + 1 ≤ Real.log x - (x - 1)\\n⊢ Real.log x ≤ x - 1\",\"endPos\":{\"column\":14,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bc5ed4788512b96f9dd90da3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":6,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_q_log_tangent' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_bc5ed4788512b96f9dd90da3.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

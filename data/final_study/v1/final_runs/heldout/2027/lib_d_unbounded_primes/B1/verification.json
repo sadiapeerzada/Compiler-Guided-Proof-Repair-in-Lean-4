@@ -1,0 +1,126 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: Unknown constant `Nat.prime.exists_prime_gt`",
+    "line 15: No goals to be solved",
+    "line 12: unsolved goals\nn : ℕ\nthis : ∃ p, p > n\n⊢ ∃ p, n ≤ p ∧ Nat.Prime p",
+    "line 16: unexpected token 'then'; expected command"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 89.12,
+  "diagnostics_parsed": 6,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: Unknown constant `Nat.prime.exists_prime_gt`\nline 15: No goals to be solved\nline 12: unsolved goals\nn : ℕ\nthis : ∃ p, p > n\n⊢ ∃ p, n ≤ p ∧ Nat.Prime p\nline 16: unexpected token 'then'; expected command",
+  "candidate_sha256": "842ff4177e05c04b125dd0d0da10176b86c1e445363047551ae474e6f2a8cf6e",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_unbounded_primes (n : ℕ) : ∃ p : ℕ, n ≤ p ∧ p.Prime := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_unbounded_primes (n : ℕ) : ∃ p : ℕ, n ≤ p ∧ p.Prime\n:= by\n  have : ∃ p : ℕ, p > n := by\n    apply Nat.prime.exists_prime_gt\n    exact n\n  then obtain p where p_def : p > n := this.elim\n  have p_prime : p.Prime := by\n    apply Nat.prime.next_prime.prime\n    exact p_def\n  exact ⟨p, p_def, p_prime⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_unbounded_primes = Nl2LeanCandidate.study_d_unbounded_primes := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_unbounded_primes\n",
+  "verification_source_sha256": "0005a89454dfe563e2c12f386d5ba38a9da9e96b2b944cfd5be82b79b9b0c508",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 32,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.prime.exists_prime_gt`",
+      "endPos": {
+        "column": 35,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "No goals to be solved",
+      "endPos": {
+        "column": 11,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\nn : ℕ\nthis : ∃ p, p > n\n⊢ ∃ p, n ≤ p ∧ Nat.Prime p",
+      "endPos": {
+        "column": 11,
+        "line": 15
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 3,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token 'then'; expected command",
+      "endPos": {
+        "column": 6,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_unbounded_primes' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 25
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 25
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":32,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.prime.exists_prime_gt`\",\"endPos\":{\"column\":35,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":11,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nthis : ∃ p, p > n\\n⊢ ∃ p, n ≤ p ∧ Nat.Prime p\",\"endPos\":{\"column\":11,\"line\":15},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'then'; expected command\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_unbounded_primes' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_ced8cd9e6cf0b4fe206eeda5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

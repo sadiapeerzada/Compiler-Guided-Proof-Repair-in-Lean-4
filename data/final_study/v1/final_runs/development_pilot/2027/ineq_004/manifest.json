@@ -1,0 +1,654 @@
+{
+  "schema_version": 4,
+  "kind": "genuine_local_paired_proof_repair",
+  "phase": "development_pilot",
+  "seed": 2027,
+  "problem_id": "ineq_004",
+  "protocol_sha256": "a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317",
+  "dataset_sha256": "41e47f74ac50a30dbf34b1473c7b01b7727de05e7698480ed9db6255c710b56d",
+  "status": "completed",
+  "started_at": "2026-10-28T09:50:01.925243+00:00",
+  "conditions": {
+    "A": {
+      "success": false,
+      "repair_calls": 0,
+      "initial_candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661",
+      "status": "failed",
+      "milestones": {
+        "0": false
+      },
+      "attempts": []
+    },
+    "B": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "B1",
+          "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/B1/completion.json",
+          "completion_sha256": "d94c43ecee73d32351996a40a07005a44ceab859ca4de1439f70e0ded839132c",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/B1/verification.json",
+          "verification_sha256": "c90aefcc5c472a87540f1609d2cde81e392591d5ba44b05f06b5eae15c5199a8",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 36.192,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+            "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "769a417025a5bed37723cac13ac69926b90847d12051de5098b0244575422ad6",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cbf34989b3f21cf7bb6df99.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+                "endPos": {
+                  "column": 44,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cbf34989b3f21cf7bb6df99.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 33,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cbf34989b3f21cf7bb6df99.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cbf34989b3f21cf7bb6df99.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  zero_lt_one\\nhas type\\n  0 < 1\\nbut is expected to have type\\n  3 + ?m.30 < 7 + ?m.30\\nin the application\\n  lt_of_add_lt_add_right zero_lt_one\",\"endPos\":{\"column\":44,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cbf34989b3f21cf7bb6df99.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":33,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cbf34989b3f21cf7bb6df99.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 301,
+          "completion_tokens": 63,
+          "generation_seconds": 6.544042999999874,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B2",
+          "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/B2/completion.json",
+          "completion_sha256": "34c131f477d7db9610f2d249be6152eeac47cf27653b5615eb3cca97fb9928b7",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/B2/verification.json",
+          "verification_sha256": "ef390ec6c92660ebd3a4529e890f64db65e192d0a647bb0a205b4d6d2790f68c",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 47.586,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+            "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "769a417025a5bed37723cac13ac69926b90847d12051de5098b0244575422ad6",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_85475a145ccedc9bd77cd994.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+                "endPos": {
+                  "column": 44,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_85475a145ccedc9bd77cd994.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 33,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_85475a145ccedc9bd77cd994.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_85475a145ccedc9bd77cd994.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  zero_lt_one\\nhas type\\n  0 < 1\\nbut is expected to have type\\n  3 + ?m.30 < 7 + ?m.30\\nin the application\\n  lt_of_add_lt_add_right zero_lt_one\",\"endPos\":{\"column\":44,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_85475a145ccedc9bd77cd994.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":33,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_85475a145ccedc9bd77cd994.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 287,
+          "completion_tokens": 63,
+          "generation_seconds": 7.457546833999913,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "B3",
+          "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/B3/completion.json",
+          "completion_sha256": "f56be7e5a193d0f087cbb6e2bcc772caae5d04a8b2cde7cea9d2311052ac4e24",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/B3/verification.json",
+          "verification_sha256": "d997aff87715bbce637e7c503e074b7b3f48d5566365668692f0f6e8342a1ead",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 37.254,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+            "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "769a417025a5bed37723cac13ac69926b90847d12051de5098b0244575422ad6",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10f66fc890de2564586d6279.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+                "endPos": {
+                  "column": 44,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10f66fc890de2564586d6279.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 33,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10f66fc890de2564586d6279.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10f66fc890de2564586d6279.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  zero_lt_one\\nhas type\\n  0 < 1\\nbut is expected to have type\\n  3 + ?m.30 < 7 + ?m.30\\nin the application\\n  lt_of_add_lt_add_right zero_lt_one\",\"endPos\":{\"column\":44,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10f66fc890de2564586d6279.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":33,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_10f66fc890de2564586d6279.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 287,
+          "completion_tokens": 63,
+          "generation_seconds": 12.472729250000157,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ]
+    },
+    "C": {
+      "success": false,
+      "repair_calls": 3,
+      "initial_candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661",
+      "status": "repair_budget_exhausted",
+      "milestones": {
+        "0": false,
+        "1": false,
+        "2": false,
+        "3": false
+      },
+      "attempts": [
+        {
+          "key": "C1",
+          "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/C1/completion.json",
+          "completion_sha256": "8f735423e1475e2b4e726d9d0e67e4f20cf249792c1c052fd8f493138a24ea82",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/C1/verification.json",
+          "verification_sha256": "2eb85316021d9222aea37ed965457240f6002239350ef364306427d52ba4987e",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 39.186,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+            "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "29ab8cf9d7cc985d28ff29edca37b45188fae96007669ea56064abec7510a3c9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_33010a0a9c4bffff9107caa7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+                "endPos": {
+                  "column": 50,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_33010a0a9c4bffff9107caa7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 41,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_33010a0a9c4bffff9107caa7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_33010a0a9c4bffff9107caa7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\"endPos\":{\"column\":50,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_33010a0a9c4bffff9107caa7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":41,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_33010a0a9c4bffff9107caa7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 633,
+          "completion_tokens": 66,
+          "generation_seconds": 17.109594665998884,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown identifier `this`\",\n      \"endPos\": {\n        \"column\": 28,\n        \"line\": 12\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_36db70f42e237c0e6a081846.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 24,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 20\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_36db70f42e237c0e6a081846.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 20\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661"
+        },
+        {
+          "key": "C2",
+          "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/C2/completion.json",
+          "completion_sha256": "b97c1236bd9db27c26a8189afa1267b7ad47c41ac7083e7d98c8139a7ed13102",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/C2/verification.json",
+          "verification_sha256": "d01dd270b65ae69db922812669a21cf1262a388d6053d1b15faf0b204becea44",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 38.385,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+            "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "29ab8cf9d7cc985d28ff29edca37b45188fae96007669ea56064abec7510a3c9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_04394c1c5410653a396dc52a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+                "endPos": {
+                  "column": 50,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_04394c1c5410653a396dc52a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 41,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_04394c1c5410653a396dc52a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_04394c1c5410653a396dc52a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\"endPos\":{\"column\":50,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_04394c1c5410653a396dc52a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":41,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_04394c1c5410653a396dc52a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 677,
+          "completion_tokens": 66,
+          "generation_seconds": 13.56894212500083,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\n      \"endPos\": {\n        \"column\": 50,\n        \"line\": 11\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_33010a0a9c4bffff9107caa7.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 41,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 17\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_33010a0a9c4bffff9107caa7.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 17\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2"
+        },
+        {
+          "key": "C3",
+          "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n",
+          "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/C3/completion.json",
+          "completion_sha256": "7a058e515bf1545878c9fcea72c92c13aec6ba4a5548654fe042e0d32894177a",
+          "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/C3/verification.json",
+          "verification_sha256": "03ba7646f1c39482fc9523ebd411909c00268e734f3a6127caba46b52764d08a",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 38.324,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+            "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "29ab8cf9d7cc985d28ff29edca37b45188fae96007669ea56064abec7510a3c9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cf7ef70a04958e44580b24a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+                "endPos": {
+                  "column": 50,
+                  "line": 11
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cf7ef70a04958e44580b24a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 41,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cf7ef70a04958e44580b24a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cf7ef70a04958e44580b24a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\"endPos\":{\"column\":50,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cf7ef70a04958e44580b24a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":41,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_2cf7ef70a04958e44580b24a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "prompt_tokens": 685,
+          "completion_tokens": 66,
+          "generation_seconds": 16.940789917000075,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\n      \"endPos\": {\n        \"column\": 50,\n        \"line\": 11\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_04394c1c5410653a396dc52a.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 41,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 17\n      },\n      \"fileName\": \"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_04394c1c5410653a396dc52a.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 17\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2"
+        }
+      ]
+    }
+  },
+  "initial": {
+    "key": "initial",
+    "candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661",
+    "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by\n      rw [add_assoc] at this\n      exact this\n    )\n  exact add_lt_add_right h n",
+    "completion_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/initial/completion.json",
+    "completion_sha256": "f136611bcb9eb6006014803af936c13a73b5c26d67019128c75dc04b54d182ca",
+    "verification_path": "data/final_study/v1/final_runs/development_pilot/2027/ineq_004/initial/verification.json",
+    "verification_sha256": "0242062315a9dcddb3b03f82a10c058defc50c71ffc234f2d04b72cccea73701",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 12: Unknown identifier `this`"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 42.44,
+      "diagnostics_parsed": 3,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 12: Unknown identifier `this`",
+      "candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by\n      rw [add_assoc] at this\n      exact this\n    )\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+      "verification_source_sha256": "4ff865883f653e33eb69197891951b35cca3c2de121d7f55a512b228059ac9d3",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 30,
+            "line": 5
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_36db70f42e237c0e6a081846.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 5
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "Unknown identifier `this`",
+          "endPos": {
+            "column": 28,
+            "line": 12
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_36db70f42e237c0e6a081846.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "lean.unknownIdentifier._namedError",
+          "pos": {
+            "column": 24,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+          "endPos": {
+            "column": 6,
+            "line": 20
+          },
+          "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_36db70f42e237c0e6a081846.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 20
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_36db70f42e237c0e6a081846.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `this`\",\"endPos\":{\"column\":28,\"line\":12},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_36db70f42e237c0e6a081846.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":24,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_36db70f42e237c0e6a081846.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "prompt_tokens": 219,
+    "completion_tokens": 77,
+    "generation_seconds": 6.813946207999834
+  },
+  "local_generation_confirmed": true,
+  "supervisor_approval_provenance": "student_reported_not_independently_verified",
+  "finished_at": "2026-10-28T09:56:37.652921+00:00"
+}

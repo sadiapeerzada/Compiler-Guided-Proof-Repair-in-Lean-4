@@ -1,3 +1,21 @@
+# Current final-study claims and evidence
+
+The final manuscript is generated only from `data/final_study/v1/analysis/results.json` and validated raw held-out trajectories. `paper/generated/final_claims_manifest.json` binds quantitative claims to their source hashes; `final_result_validation.json` checks all raw prompts, candidates, diagnostics, budgets and provenance. These artifacts become available only after actual execution, never as placeholders.
+
+| Claim | Authoritative evidence | Scope |
+|---|---|---|
+| 15 development / 60 held-out eligible examples | `data/final_study/v1/freeze.json`, `dataset_validation.json` | Approved AI policy; no human-review claim |
+| Supervisor acceptance of AI review and MLX | `approvals/student_reported.json` | Student report dated 28 October; actual decision date/document unknown, not independently verified |
+| Exact primary model and controls | `configs/repair_experiment_local_v0.4.2.json`, model inventory, `heldout_launch.json` | Frozen before held-out generation, one seed |
+| Strict A/B/C success and paired statistics | Actual `analysis/results.json`, raw `final_runs/heldout/2027/` | Fixed English/reference target proof synthesis; no unrestricted translation or human semantic-accuracy estimate |
+| Tokens, latency and compiler outcomes | Native completions, durable intents, genuine raw verification JSON, rendered evidence | Shared initial counted once physically; reload overhead disclosed |
+| Five qualitative examples and repeated-output diagnostics | Actual selected raw trajectories and `analysis/selected_qualitative_examples.json` | Post-hoc descriptive selection; no extra confirmatory tests |
+| Compiled manuscript | `paper_build_manifest.json`, `paper/compiled_final_manuscript.pdf` | Actual build only; no venue acceptance claim |
+
+The automatically generated FINAL reports state actual completion and failures. No statistical advantage, significance or equivalence is assumed in advance.
+
+## Historical claims audits (superseded snapshots)
+
 # Paper claims-to-evidence audit
 
 This audit records what can be supported from the repository at the Phase 6

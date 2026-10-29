@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Unknown constant `Nat.gcd_eq_gcd_add_one`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.817,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Unknown constant `Nat.gcd_eq_gcd_add_one`",
+  "candidate_sha256": "dc7dbf28da9820f7ca58beac6ff11d00ccefac1a67e98bdb9bd760a889b2766f",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_coprime_successor (n : ℕ) : Nat.Coprime n (n + 1) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_coprime_successor (n : ℕ) : Nat.Coprime n (n + 1) := by\n  have h1 : Nat.gcd n (n + 1) = 1 := by\n    rw [Nat.gcd_eq_gcd_add_one]\n    rw [Nat.zero_mul, Nat.zero_mul]\n  exact h1\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_coprime_successor = Nl2LeanCandidate.study_d_coprime_successor := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_coprime_successor\n",
+  "verification_source_sha256": "1bd7d22194abcf2320dae932490d618287358d49f26415f14fc9b599f48c6914",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 33,
+        "line": 6
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_637eda6ac59fc5bf3d2dd7e9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.gcd_eq_gcd_add_one`",
+      "endPos": {
+        "column": 30,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_637eda6ac59fc5bf3d2dd7e9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_coprime_successor' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 20
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_637eda6ac59fc5bf3d2dd7e9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 20
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":33,\"line\":6},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_637eda6ac59fc5bf3d2dd7e9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.gcd_eq_gcd_add_one`\",\"endPos\":{\"column\":30,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_637eda6ac59fc5bf3d2dd7e9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_coprime_successor' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/study_637eda6ac59fc5bf3d2dd7e9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

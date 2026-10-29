@@ -1,3 +1,7 @@
+# Current final-study reproduction
+
+Use [the final local-study reproduction guide](FINAL_EXECUTION_REPRODUCIBILITY.md) for the approved AI-review dataset, frozen MLX protocol, actual execution/resume and reporting. The following historical Groq/preparation instructions are retained for provenance and do not describe the final study.
+
 # Reproducibility package
 
 ## Current evidence state
