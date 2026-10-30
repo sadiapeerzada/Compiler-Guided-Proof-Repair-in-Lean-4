@@ -1,0 +1,95 @@
+{
+  "protocol_version": "post_hoc_dev_placebo_v1",
+  "scope": "post_hoc_development_only",
+  "heldout_execution_allowed": false,
+  "phase": "post_hoc_dev_placebo_v1",
+  "base_seed": 2027,
+  "decoding": {
+    "temperature": 0.2,
+    "max_tokens": 2000,
+    "max_context_tokens": 8192,
+    "top_p": 1.0
+  },
+  "model": {
+    "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+    "snapshot_revision": "c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed",
+    "snapshot_home_relative": ".cache/huggingface/hub/models--mlx-community--Qwen2.5-7B-Instruct-4bit/snapshots/c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed",
+    "inventory_path": "data/local_model/20261027/model_inventory.json",
+    "inventory_sha256": "24d68abbe5e1434e5263ad123cca517c2c1799c7465e104e83f6cb02baeac4f9",
+    "quantization": {
+      "group_size": 64,
+      "bits": 4
+    },
+    "tokenizer_revision": "c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed",
+    "chat_template_sha256": "2e2d2512cfe46af53dc1eed45368ecaab26ac4461c480e6b69fe571cf0ceaa75",
+    "fallback": null
+  },
+  "lean_toolchain": "leanprover/lean4:v4.32.0",
+  "mathlib_revision": "81a5d257c8e410db227a6665ed08f64fea08e997",
+  "maximum_repairs": 3,
+  "maximum_calls_per_problem": 10,
+  "development_ids": [
+    "arith_005",
+    "div_012",
+    "ind_005",
+    "ind_006",
+    "ind_008",
+    "ind_009",
+    "ineq_004",
+    "lib_a_choose_symmetry",
+    "lib_d_bezout",
+    "lib_d_frobenius",
+    "lib_i_alternating_binomial",
+    "lib_i_vandermonde",
+    "lib_m_crt",
+    "lib_m_gcd_obstruction",
+    "mod_004"
+  ],
+  "conditions": {
+    "A": "One fresh shared initial; no repairs.",
+    "B": "blind_repair_1..3: previous own candidate and fixed generic blind feedback.",
+    "C": "real_repair_1..3: previous own candidate and normalized actual immediately preceding compiler diagnostics.",
+    "C_placebo": "placebo_repair_1..3: previous own candidate and a different problem/family genuine donor diagnostic payload."
+  },
+  "condition_order": [
+    "B",
+    "C",
+    "C_placebo"
+  ],
+  "shared_initial_key": "shared_initial",
+  "prompt_text": {
+    "initial": "Natural-language source statement:\n{nl_statement}\n\nWrite a complete Lean 4 proof of the fixed theorem below.\n\nOutput only the complete Lean theorem in a Lean code block. Do not change the\ntheorem statement, add axioms, or use sorry, sorryAx, or admit.\n\nFixed theorem:\n```lean\n{theorem_statement}\n```\n\nLean 4 syntax is mandatory: write `:= by` with indentation; never use Lean 3 `begin ... end` or comma-separated tactic blocks. For finite sums use `∑ k ∈ s, ...`, not `∑ k in s, ...`. Keep every binder and hypothesis exactly as given.\n",
+    "blind": "Repair the previous Lean proof for the fixed theorem below.\n\nOutput only the complete Lean theorem in a Lean code block. Do not change the\ntheorem statement, add axioms, or use sorry, sorryAx, or admit.\n\nUse this retry instruction: inspect your previous candidate, reconsider the\nproof, and make a focused correction. Use the feedback field below as given;\ndo not assume any information that it does not contain.\n\nFixed theorem:\n```lean\n{theorem_statement}\n```\n\nPrevious candidate:\n```lean\n{previous_candidate}\n```\n\nFeedback field:\n{feedback}\n\nLean 4 syntax is mandatory: write `:= by` with indentation; never use Lean 3 `begin ... end` or comma-separated tactic blocks. For finite sums use `∑ k ∈ s, ...`, not `∑ k in s, ...`. Keep every binder and hypothesis exactly as given.\n",
+    "guided": "Repair the previous Lean proof for the fixed theorem below.\n\nOutput only the complete Lean theorem in a Lean code block. Do not change the\ntheorem statement, add axioms, or use sorry, sorryAx, or admit.\n\nUse this retry instruction: inspect your previous candidate, reconsider the\nproof, and make a focused correction. Use the feedback field below as given;\ndo not assume any information that it does not contain.\n\nFixed theorem:\n```lean\n{theorem_statement}\n```\n\nPrevious candidate:\n```lean\n{previous_candidate}\n```\n\nFeedback field:\n{feedback}\n\nLean 4 syntax is mandatory: write `:= by` with indentation; never use Lean 3 `begin ... end` or comma-separated tactic blocks. For finite sums use `∑ k ∈ s, ...`, not `∑ k in s, ...`. Keep every binder and hypothesis exactly as given.\n"
+  },
+  "donor_pool_path": "outputs/post_hoc/dev_placebo/donor_pool.json",
+  "donor_pool_sha256": "6df8c6a327b249fe44630c5422859441a729c7cbbe08ba15c39a63e6cd3f4704",
+  "donor_pool_size": 60,
+  "donor_scope": "Only existing test shared-initial verification files, category and family; never reads repair outcomes or uses them to tune anything.",
+  "donor_rule": "Exclude same problem or family; prefer same frozen primary error category; minimize absolute normalized diagnostic-payload token-count difference to own current diagnostic payload; ties by SHA256(donor_id + colon + payload_sha256). Fall back to any eligible real diagnostic and log fallback if category has no matches; stop if no eligible donor. Apply again at every repair.",
+  "normalization_user_approved": true,
+  "normalization": "Deep-copy diagnostics in original order. Only fileName metadata becomes resolved repository-relative POSIX path. All actual message data, severity, kind, locations and every other field remain equal. No non-filename private content is edited; stop if it cannot be exported unchanged. Compiler JSON serialization may change whitespace only after filename normalization.",
+  "normalization_algorithm_file": "extensions/filename_normalization.py",
+  "normalization_sha256": "f90f037817543fc770ac04e1d6662e0ae8af6e02b2a58a4d16e8ffd9c0d95f52",
+  "pinned_implementation_files": {
+    "extensions/run_placebo.py": "356656e3e5f374ecb6c66ad8ed886277815e2c5774ac5bad008e8bcd10d9ba73",
+    "extensions/filename_normalization.py": "f90f037817543fc770ac04e1d6662e0ae8af6e02b2a58a4d16e8ffd9c0d95f52",
+    "extensions/donors.py": "ae89d0e16973f51f240b64f4f725a421b8de13fddb244cbd0028add4e5b2e959",
+    "extensions/build_placebo_protocol.py": "438d9c5f7b13e33342a3c0d6c0fe98da80253f62b5cbcdb2ca00c8809b0b8dfd",
+    "analysis/common.py": "1721e6ebef0bc653bcbef09e7875373dfa35f84dc3543f163dbe7d9d4ebf24dc",
+    "analysis/metrics.py": "c6d2017bd57825ad1932b5a26b83363b61f13155a514bb8e7057df6b87563e08",
+    "src/local_llm_client.py": "a3d3a68fea4d59184538fa518da2755cb756a6129d41d1332472db1bf2f8941e",
+    "src/verify.py": "d486db8f8b9fb749854af2d68ebbf93d4125eec57847f1a130af802fe0d3243a",
+    "src/model_client.py": "1db8406961c6abd746bea384fb0ff0eb94fd08674debbc870d3f847baaa9fe51",
+    "scripts/run_final_study.py": "e617f9e2262c723ee3d068ca1ed6cc208e295517d6038d1b2ece965d13934091"
+  },
+  "seed_policy": "sha256(base_seed:phase/seed/problem/step:prompt_sha256)_first_uint32; independent calls/KV and durable no-replay intents.",
+  "memory_schedule": "Release model/tokenizer references and Metal allocator cache after each completion and before Lean; next call rehashes/reloads the identical model. Per-context seed and independent KV policy unchanged.",
+  "resident_memory": "resource.getrusage(RUSAGE_SELF).ru_maxrss peak bytes (not instantaneous RSS) and native MLX peak_memory_gb when available.",
+  "stopping": "Verified success, three completed/consumed repair intents, preflight failure, missing generation, no genuine C diagnostics, or verifier infrastructure failure. No truncation, synthetic diagnostics, generation replay, or replacement of incomplete output. Complete outputs/verifications may be reused by durable checkpoints.",
+  "output_root": "outputs/post_hoc/dev_placebo",
+  "proof_policy": "Existing strict verifier, exact-type check and allowed axioms unmodified, timeout 180 seconds.",
+  "analysis_scope": "Exploratory n=15 one-seed counts, Wilson intervals and process metrics; no hypothesis-test or proof-of-content-use claims.",
+  "interpretation": "Findings may be consistent/inconsistent with diagnostic-content sensitivity; cannot prove use or nonuse. Donor matching itself reveals error category/length, and donor mathematical content can be indirectly helpful.",
+  "study2_execution": "Deferred pending separate approval; no new held-out execution."
+}
