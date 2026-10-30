@@ -1,7 +1,7 @@
 # Compiler-Guided Proof Repair in Lean 4: A Controlled Local-Model Pilot on Fixed Theorem Types
 
 <!-- POST_HOC_CURRENT -->
-The latest [post-hoc manuscript](outputs/post_hoc/manuscript/post_hoc_pilot.pdf) (15 pages) uses the title above. [Post-hoc results and caveats](outputs/post_hoc/SUMMARY.md) include original-data process analyses, calibrated uncertainty and a separately frozen development-only placebo control. The original held-out outcomes are unchanged; Study 2 model execution remains deferred.
+The latest [post-hoc manuscript](outputs/post_hoc/manuscript_named/post_hoc_pilot.pdf) (15 pages) uses the title above. [Post-hoc results and caveats](outputs/post_hoc/SUMMARY.md) include original-data process analyses, calibrated uncertainty and a separately frozen development-only placebo control. The original held-out outcomes are unchanged; Study 2 model execution remains deferred.
 <!-- POST_HOC_CURRENT -->
 
 
