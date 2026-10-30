@@ -34,3 +34,19 @@ Caveats: post hoc, multiple descriptive comparisons, one seed, 54 original/52 co
 The observed higher own-name removal and lower repetition under real diagnostics are consistent with diagnostic-content sensitivity. This exploratory one-seed pattern does not prove that the model uses diagnostic content.
 
 These results are exploratory and development-only. Fifteen problems in five families and one seed do not support a general claim of diagnostic-content use or nonuse. Study 2 model execution remains deferred.
+
+## Final completion checks
+
+Tasks 0–3 are complete. Reconciliation found zero mismatches. Existing-data reconciliation, process and calibrated-null JSON outputs reproduced byte-for-byte. The complete Python suite passed 316 tests and 28 subtests; the Lean build passed. The new anonymous manuscript has 15 pages and uses the requested title.
+
+The dev worker interruption and no-replay recovery are recorded separately from the original execution log. All genuine model responses, streams and normalized compiler records are retained. Original held-out records and the two unavailable C outcomes are unchanged. Study 2 model execution remains deferred.
+
+Development process counts (descriptive completed repairs, with separate name-eligible denominators):
+
+- B: identical 22/45; own-name removal 1/18.
+- C: identical 23/45; own-name removal 3/19.
+- C_placebo: identical 32/45; own-name removal 2/17.
+
+The observed higher own-name removal and lower repetition under real diagnostics are consistent with diagnostic-content sensitivity. This exploratory one-seed pattern does not prove that the model uses diagnostic content. No new verified success was observed in any arm.
+
+Not computable: the unavailable original C outcomes and response-level metrics for those absent responses; broader equivalence or proof of diagnostic use/nonuse. No number is imputed for these. Public exact-byte reproduction of original held-out prompt/token metrics requires the preserved private originals.

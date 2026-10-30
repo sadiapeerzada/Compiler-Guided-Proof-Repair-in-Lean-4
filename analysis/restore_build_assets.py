@@ -31,17 +31,29 @@ def main():
                 assert hashlib.sha256(data).hexdigest()==PINS[name]
                 (template/name).write_bytes(data)
     if not engine.exists():
-        release=json.loads(Path('/tmp/nl2lean-tectonic-release.json').read_text())
+        release_path=Path('/tmp/nl2lean-tectonic-release.json')
+        if not release_path.exists():
+            with urllib.request.urlopen('https://api.github.com/repos/tectonic-typesetting/tectonic/releases/tags/tectonic%400.17.0',context=tls,timeout=60) as response:
+                release_path.write_bytes(response.read())
+        release=json.loads(release_path.read_text())
         asset=next(a for a in release['assets'] if a['browser_download_url']==ENGINE_URL);size=asset['size'];parts=8
         folder=Path('/tmp/nl2lean-tectonic-pinned-parts');folder.mkdir(exist_ok=True)
         def fetch(index):
             start=size*index//parts;end=size*(index+1)//parts-1;path=folder/str(index)
-            if path.exists() and path.stat().st_size==end-start+1:return path
-            request=urllib.request.Request(ENGINE_URL+f'?verified-part={index}',headers={'Range':f'bytes={start}-{end}','User-Agent':'publication-build-asset-restore'})
-            with urllib.request.urlopen(request,context=tls,timeout=60) as response:
-                assert response.status==206 and response.headers['Content-Range']==f'bytes {start}-{end}/{size}'
-                with path.open('wb') as stream:
-                    while chunk:=response.read(65536):stream.write(chunk)
+            for attempt in range(4):
+                have=path.stat().st_size if path.exists() else 0
+                assert have<=end-start+1
+                if have==end-start+1:return path
+                offset=start+have
+                request=urllib.request.Request(ENGINE_URL+f'?verified-part={index}',headers={'Range':f'bytes={offset}-{end}','User-Agent':'publication-build-asset-restore'})
+                try:
+                    with urllib.request.urlopen(request,context=tls,timeout=90) as response:
+                        assert response.status==206 and response.headers['Content-Range']==f'bytes {offset}-{end}/{size}'
+                        with path.open('ab') as stream:
+                            while chunk:=response.read(65536):stream.write(chunk)
+                    break
+                except TimeoutError:
+                    if attempt==3:raise
             assert path.stat().st_size==end-start+1
             print('Pinned engine download part complete:',index+1,'/',parts,flush=True)
             return path
@@ -55,9 +67,12 @@ def main():
         assert hashlib.sha256(data).hexdigest()==PINS['tectonic']
         engine.parent.mkdir(exist_ok=True);engine.write_bytes(data);engine.chmod(0o755)
     assert hashlib.sha256(engine.read_bytes()).hexdigest()==PINS['tectonic']
-    write_json(OUT/'post_hoc_build_asset_restore.json',{'post_hoc':True,'all_match_prior_recorded_hashes':True,'sha256':PINS,
+    record={'post_hoc':True,'all_match_prior_recorded_hashes':True,'sha256':PINS,
         'official_engine_URL':ENGINE_URL,'official_template_URL':TEMPLATE_URL,'not_redistributed':True,
-        'scope':'Exact executable/class/bibliography-style bytes restored; original build manifests and experimental records remain unchanged.'})
+        'scope':'Exact executable/class/bibliography-style bytes restored; original build manifests and experimental records remain unchanged.'}
+    previous=OUT/'post_hoc_build_asset_restore.json'
+    if previous.exists():assert json.loads(previous.read_text())==record
+    else:write_json(previous,record)
     print('Exact pinned engine, Springer class and bibliography style restored.')
 
 

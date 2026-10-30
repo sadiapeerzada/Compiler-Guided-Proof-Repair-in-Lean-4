@@ -64,6 +64,7 @@ After the approved dev worker reaches its durable end marker, run:
 .venv/bin/python -m analysis.check_public_dev
 .venv/bin/python -m analysis.paper_additions
 .venv/bin/python -m analysis.update_paper
+.venv/bin/python -m analysis.restore_build_assets
 .venv/bin/python -m analysis.compile_paper
 ```
 

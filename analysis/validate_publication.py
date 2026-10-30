@@ -7,6 +7,7 @@ from pathlib import Path
 import subprocess
 import sys
 from .common import private_text,sanitize
+from .export_privacy import private_export_text
 
 
 def main(destination):
@@ -41,7 +42,7 @@ def main(destination):
             image=Image.open(path);text=json.dumps(image.info,default=str)+str(image.getexif())
         else:text=path.read_text()
         files_checked+=1
-        if private_text(text):findings.append(str(path.relative_to(public)))
+        if private_export_text(text):findings.append(str(path.relative_to(public)))
     if findings:raise ValueError('Public private-content scan failed: '+', '.join(findings))
     report={'post_hoc':True,'valid':True,'checks':results,'frozen_source_view_checks':pins,'whole_publication_files_scanned':files_checked,'PDFs_scanned':pdfs,
             'private_content_findings':[],'scope':'New public derivative unit tests and stored dev-record checks; existing public aggregate reanalysis; all publication text/PDF metadata scanning. Exact file/token checks follow in verify_payload.py.',

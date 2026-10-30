@@ -11,9 +11,12 @@ def main():
     reproduction={name:(OUT/name).read_bytes()==(OUT/'reproduced_run1'/name).read_bytes()
                   for name in ['reconciliation_summary.json','post_hoc_task1.json','post_hoc_calibrated_null.json']}
     assert all(reproduction.values())
+    dev_reproduction=read(OUT/'dev_reproduced_run1/post_hoc_dev_reproduction.json')['numeric_outputs_byte_identical']
+    assert all(dev_reproduction.values())
     record={'post_hoc':True,'tasks_0_to_3_complete':True,'reconciliation_mismatches':0,'Python_tests_passed':int(match[1]),
         'Python_subtests_passed':int(match[2] or 0),'Lean_build_exit_code':next(r['exit_code'] for r in checks['checks'] if r['check']=='lean_build'),
         'existing_data_reproduction_byte_identical':reproduction,'new_dev_responses':dev['physical_completed_model_responses'],
+        'development_numeric_reproduction_byte_identical':dev_reproduction,
         'new_dev_intents':dev['logical_intents'],'new_dev_successes_observed':{c:[r['verified_successes'],r['observed_problems']] for c,r in dev['conditions'].items()},
         'development_process_counts':{c:{f:{'sum':r['repair_metrics'][f]['sum'],'denominator':r['repair_metrics'][f]['n']} for f in ['identical','any_unknown_removed']} for c,r in dev['conditions'].items() if c!='A'},
         'new_paper_pages':paper['pages'],'new_paper_path':paper['pdf'],'heldout_model_calls':0,

@@ -7,6 +7,7 @@ import re
 import shutil
 import subprocess
 from .common import ROOT,OUT,read,private_text
+from .export_privacy import private_export_text
 
 
 def main(destination):
@@ -34,7 +35,7 @@ def main(destination):
                 text=text.replace(fixture,"('error at '+chr(47)+'Users'+chr(47)+'private_user/secret.lean')")
                 changes.append('Synthetic privacy-test path assembled in memory; identical synthetic test value.')
             content=text.encode()
-            if private_text(text):raise ValueError('Export still contains private content: '+relative)
+            if private_export_text(text):raise ValueError('Export still contains private content: '+relative)
         out=target/relative;out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(content)
         provenance.append({'source':str(path.relative_to(ROOT)),'release':'post_hoc/'+relative,'release_sha256':hashlib.sha256(content).hexdigest(),
                            'byte_identical_to_local':content==data,'transformations':changes})
