@@ -23,3 +23,14 @@ Power: the MDE sensitivity table varies an assumed discordance probability; it d
 Tasks 1–2 completed; development placebo execution follows only after its protocol, filename-only normalizer and code are committed and validation passes. Study 2 execution is deferred.
 
 Caveats: post hoc, multiple descriptive comparisons, one seed, 54 original/52 complete-pair families, B-before-C execution order, longer C prompts, two unavailable C outcomes, and correlated repair attempts. No existing missing outcome is imputed, replayed or replaced.
+
+## Completed exploratory development control
+
+- A: 0/15 observed verified outcomes; 0 unavailable; 0 completed repairs.
+- B: 0/15 observed verified outcomes; 0 unavailable; 45 completed repairs.
+- C: 0/15 observed verified outcomes; 0 unavailable; 45 completed repairs.
+- C_placebo: 0/15 observed verified outcomes; 0 unavailable; 45 completed repairs.
+
+The observed higher own-name removal and lower repetition under real diagnostics are consistent with diagnostic-content sensitivity. This exploratory one-seed pattern does not prove that the model uses diagnostic content.
+
+These results are exploratory and development-only. Fifteen problems in five families and one seed do not support a general claim of diagnostic-content use or nonuse. Study 2 model execution remains deferred.

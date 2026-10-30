@@ -1,0 +1,126 @@
+{
+  "success": false,
+  "errors": [
+    "line 19: unexpected token 'in'; expected ','",
+    "line 16: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  n - (n - k) = k\n\nn k : ℕ\nh h2 : k ≤ n\n⊢ n - (n - k) = k",
+    "line 18: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  n - (n - k)\nin the target expression\n  k ≤ n - k\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\n⊢ k ≤ n - k",
+    "line 13: unsolved goals\ncase h3\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : k ≤ n - k\n⊢ n.choose k = ∑ i, sorry\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : k ≤ n - k\nh3 : n.choose k = ∑ i, sorry\n⊢ n.choose k = n.choose (n - k)"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 68.776,
+  "diagnostics_parsed": 6,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 19: unexpected token 'in'; expected ','\nline 16: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  n - (n - k) = k\n\nn k : ℕ\nh h2 : k ≤ n\n⊢ n - (n - k) = k\nline 18: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  n - (n - k)\nin the target expression\n  k ≤ n - k\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\n⊢ k ≤ n - k\nline 13: unsolved goals\ncase h3\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : k ≤ n - k\n⊢ n.choose k = ∑ i, sorry\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : k ≤ n - k\nh3 : n.choose k = ∑ i, sorry\n⊢ n.choose k = n.choose (n - k)",
+  "candidate_sha256": "12a1eec01896e7aaed9f5e37f828be7a3afae3693e482093aa89ab04225080f4",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_choose_symmetry (n k : ℕ) (h : k ≤ n) : n.choose k = n.choose (n - k) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_a_choose_symmetry (n k : ℕ) (h : k ≤ n) : n.choose k = n.choose (n - k) :=\nby\n  have h1 : k ≤ n → n - (n - k) = k := by\n    intro h2\n    rw [sub_eq_add_neg, add_assoc, neg_add_cancel_right]\n  have h2 : k ≤ n - k := by\n    rw [h1 h]\n  have h3 : n.choose k = ∑ i in range (k + 1), (n.choose i) / ((i + 1) * (n - i).choose (k - i)) := by\n    rw [choose_eq_multiset_perm]\n  have h4 : n.choose (n - k) = ∑ i in range ((n - k) + 1), (n.choose i) / ((i + 1) * (n - i).choose ((n - k) - i)) := by\n    rw [choose_eq_multiset_perm]\n  have h5 : ∑ i in range (k + 1), (n.choose i) / ((i + 1) * (n - i).choose (k - i)) = ∑ i in range ((n - k) + 1), (n.choose (n - k - i)) / ((n - k - i + 1) * (n - (n - k - i)).choose (n - k - i - (n - k - i))) := by\n    simp only [h1 h, sub_eq_add_neg, add_assoc, neg_add_cancel_right]\n    congr\n    apply sum_congr\n    intro i\n    rw [choose_symmetry]\n  exact h3.trans h5.trans h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_choose_symmetry = Nl2LeanCandidate.study_a_choose_symmetry := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_choose_symmetry\n",
+  "verification_source_sha256": "86bad3a0f24d7e7105238d240672d05418ba84195e3b5ec8ca0bcc0b0d639f72",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 6
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token 'in'; expected ','",
+      "endPos": {
+        "column": 31,
+        "line": 19
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 28,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  n - (n - k) = k\n\nn k : ℕ\nh h2 : k ≤ n\n⊢ n - (n - k) = k",
+      "endPos": {
+        "column": 22,
+        "line": 16
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  n - (n - k)\nin the target expression\n  k ≤ n - k\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\n⊢ k ≤ n - k",
+      "endPos": {
+        "column": 12,
+        "line": 18
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 18
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\ncase h3\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : k ≤ n - k\n⊢ n.choose k = ∑ i, sorry\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : k ≤ n - k\nh3 : n.choose k = ∑ i, sorry\n⊢ n.choose k = n.choose (n - k)",
+      "endPos": {
+        "column": 28,
+        "line": 19
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 0,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_choose_symmetry' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 34
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 34
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":31,\"line\":19},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":28,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b\\nin the target expression\\n  n - (n - k) = k\\n\\nn k : ℕ\\nh h2 : k ≤ n\\n⊢ n - (n - k) = k\",\"endPos\":{\"column\":22,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  n - (n - k)\\nin the target expression\\n  k ≤ n - k\\n\\nn k : ℕ\\nh : k ≤ n\\nh1 : k ≤ n → n - (n - k) = k\\n⊢ k ≤ n - k\",\"endPos\":{\"column\":12,\"line\":18},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h3\\nn k : ℕ\\nh : k ≤ n\\nh1 : k ≤ n → n - (n - k) = k\\nh2 : k ≤ n - k\\n⊢ n.choose k = ∑ i, sorry\\n\\nn k : ℕ\\nh : k ≤ n\\nh1 : k ≤ n → n - (n - k) = k\\nh2 : k ≤ n - k\\nh3 : n.choose k = ∑ i, sorry\\n⊢ n.choose k = n.choose (n - k)\",\"endPos\":{\"column\":28,\"line\":19},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":0,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_choose_symmetry' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":34},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_3d9cca1594174f60b7843b2b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":34},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

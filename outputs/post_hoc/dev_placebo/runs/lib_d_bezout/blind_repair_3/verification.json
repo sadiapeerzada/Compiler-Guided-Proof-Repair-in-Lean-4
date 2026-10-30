@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 17: unexpected identifier; expected '['",
+    "line 13: Unknown constant `Int.bezout`",
+    "line 12: unsolved goals\na b x y : ℤ\nh : ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * x + b * y"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 35.682,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 17: unexpected identifier; expected '['\nline 13: Unknown constant `Int.bezout`\nline 12: unsolved goals\na b x y : ℤ\nh : ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * x + b * y",
+  "candidate_sha256": "1a43bef073db9cc61e98452a925c0d83f5719b5b3048e10950e0f86001b93bf6",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain ⟨x, y, h⟩ := h\n  existsi x\n  existsi y\n  rw h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+  "verification_source_sha256": "28df61fd6f17132ebb66aa3cfd9b859c6b787954fde17670a7e7b22bddfbeda1",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 6
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unexpected identifier; expected '['",
+      "endPos": {
+        "column": 6,
+        "line": 17
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Int.bezout`",
+      "endPos": {
+        "column": 69,
+        "line": 13
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 59,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\na b x y : ℤ\nh : ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * x + b * y",
+      "endPos": {
+        "column": 4,
+        "line": 17
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 3,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 22
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 22
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected '['\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":69,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":59,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b x y : ℤ\\nh : ↑(a.gcd b) = a * x + b * y\\n⊢ ↑(a.gcd b) = a * x + b * y\",\"endPos\":{\"column\":4,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

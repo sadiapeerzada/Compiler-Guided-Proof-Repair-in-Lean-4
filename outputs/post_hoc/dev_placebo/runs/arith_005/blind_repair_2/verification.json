@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 11: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this conjunction, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nn : ℕ\n⊢ n.choose 0 = 1 ∧ n.choose n = 1"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 31.744,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 11: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this conjunction, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nn : ℕ\n⊢ n.choose 0 = 1 ∧ n.choose n = 1",
+  "candidate_sha256": "d748f8a37eafced369131d8ab89b4c2efc39cefbc82cc72b56c39cf6a28886e4",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem choose_zero_and_self (n : ℕ) : Nat.choose n 0 = 1 ∧ Nat.choose n n = 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem choose_zero_and_self (n : ℕ) : Nat.choose n 0 = 1 ∧ Nat.choose n n = 1\n:= by\n  split\n  · rw [Nat.choose_zero]\n  · rw [Nat.choose_self]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.choose_zero_and_self = Nl2LeanCandidate.choose_zero_and_self := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.choose_zero_and_self\n",
+  "verification_source_sha256": "3dc6a1eaf0737278c270b6f09ff1375ca215e4a950dc253120f0cad03202e4c8",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 28,
+        "line": 5
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5e3db3d83efbf59936b31682.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this conjunction, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nn : ℕ\n⊢ n.choose 0 = 1 ∧ n.choose n = 1",
+      "endPos": {
+        "column": 7,
+        "line": 11
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5e3db3d83efbf59936b31682.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.choose_zero_and_self' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 18
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5e3db3d83efbf59936b31682.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 18
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5e3db3d83efbf59936b31682.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `split` failed: Could not split an `if` or `match` expression in the goal\\n\\nHint: If you meant to destruct this conjunction, use the `cases` tactic instead\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\nn : ℕ\\n⊢ n.choose 0 = 1 ∧ n.choose n = 1\",\"endPos\":{\"column\":7,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5e3db3d83efbf59936b31682.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.choose_zero_and_self' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5e3db3d83efbf59936b31682.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

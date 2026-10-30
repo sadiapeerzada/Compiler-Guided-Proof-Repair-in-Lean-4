@@ -50,6 +50,14 @@ def test_real_diagnostic_fallback_logged_and_no_eligible_donor_stops():
     with pytest.raises(ValueError):select_donor([donor('target','f1','parser',8)],'target','f1','parser',8)
 
 
+def test_equal_length_donor_tie_uses_frozen_hash_not_input_order():
+    pool=[donor('left','f2','parser',10,'real left'),donor('right','f3','parser',10,'real right')]
+    expected=min(pool,key=lambda p:hashlib.sha256((p['id']+':'+p['payload_sha256']).encode()).hexdigest())
+    for ordering in [pool,list(reversed(pool))]:
+        chosen,record=select_donor(ordering,'target','f1','parser',10)
+        assert chosen==expected and record['token_length_difference']==0
+
+
 def test_missing_intent_never_reexecutes_model(tmp_path):
     from extensions.run_placebo import completed_step,MissingGeneration
     folder=tmp_path/'run';(folder/'real_repair_1').mkdir(parents=True);(folder/'real_repair_1/intent.json').write_text('{}')

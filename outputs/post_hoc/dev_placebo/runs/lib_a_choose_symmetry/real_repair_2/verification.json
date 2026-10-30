@@ -1,0 +1,144 @@
+{
+  "success": false,
+  "errors": [
+    "line 20: unexpected token 'in'; expected ','",
+    "line 15: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  n - (n - k) = k\n\nn k : ℕ\nh h2 : k ≤ n\n⊢ n - (n - k) = k",
+    "line 17: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `sub_le_sub_right ?h\n  ?c` is a proof of\n  ?m.42 - ?c ≤ ?m.43 - ?c",
+    "line 19: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `sub_le_sub_right ?h\n  ?c` is a proof of\n  ?m.59 - ?c ≤ ?m.60 - ?c",
+    "line 13: unsolved goals\ncase h4\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : n - k ≤ n\nh3 : k ≤ n - k\n⊢ n.choose k = ∑ i, sorry\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : n - k ≤ n\nh3 : k ≤ n - k\nh4 : n.choose k = ∑ i, sorry\n⊢ n.choose k = n.choose (n - k)"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.707,
+  "diagnostics_parsed": 7,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 20: unexpected token 'in'; expected ','\nline 15: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  n - (n - k) = k\n\nn k : ℕ\nh h2 : k ≤ n\n⊢ n - (n - k) = k\nline 17: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `sub_le_sub_right ?h\n  ?c` is a proof of\n  ?m.42 - ?c ≤ ?m.43 - ?c\nline 19: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `sub_le_sub_right ?h\n  ?c` is a proof of\n  ?m.59 - ?c ≤ ?m.60 - ?c\nline 13: unsolved goals\ncase h4\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : n - k ≤ n\nh3 : k ≤ n - k\n⊢ n.choose k = ∑ i, sorry\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : n - k ≤ n\nh3 : k ≤ n - k\nh4 : n.choose k = ∑ i, sorry\n⊢ n.choose k = n.choose (n - k)",
+  "candidate_sha256": "96fc808cd3e912f03fa26b999d18d7c0121e71f0613c487658882c31d84a803f",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_choose_symmetry (n k : ℕ) (h : k ≤ n) : n.choose k = n.choose (n - k) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_a_choose_symmetry (n k : ℕ) (h : k ≤ n) : n.choose k = n.choose (n - k) :=\nby\n  have h1 : k ≤ n → n - (n - k) = k := fun h2 => by\n    rw [sub_eq_add_neg, add_assoc, neg_add_cancel_right]\n  have h2 : n - k ≤ n := by\n    rw [sub_le_sub_right] <;> assumption\n  have h3 : k ≤ n - k := by\n    rw [sub_le_sub_right] <;> assumption\n  have h4 : n.choose k = ∑ i in range (k + 1), (n.choose i) / ((i + 1) * (n - i).choose (k - i)) := by\n    rw [choose_eq_multiset_perm]\n  have h5 : n.choose (n - k) = ∑ i in range ((n - k) + 1), (n.choose i) / ((i + 1) * (n - i).choose ((n - k) - i)) := by\n    rw [choose_eq_multiset_perm]\n  have h6 : ∑ i in range (k + 1), (n.choose i) / ((i + 1) * (n - i).choose (k - i)) = ∑ i in range ((n - k) + 1), (n.choose (n - k - i)) / ((n - k - i + 1) * (n - (n - k - i)).choose (n - k - i - (n - k - i))) := by\n    rw [h1, h2, h3]\n    simp only [sub_eq_add_neg, add_assoc, neg_add_cancel_right]\n    congr\n    apply sum_congr\n    intro i\n    rw [choose_symmetry]\n  exact h4.trans h6.trans h5\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_choose_symmetry = Nl2LeanCandidate.study_a_choose_symmetry := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_choose_symmetry\n",
+  "verification_source_sha256": "5e805667d6a6c8b8bec1f91ed80d1f9213492ff776d0029bf804e71d92fc8a42",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 6
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token 'in'; expected ','",
+      "endPos": {
+        "column": 31,
+        "line": 20
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 28,
+        "line": 20
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  n - (n - k) = k\n\nn k : ℕ\nh h2 : k ≤ n\n⊢ n - (n - k) = k",
+      "endPos": {
+        "column": 22,
+        "line": 15
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid rewrite argument: Expected an equality or iff proof or definition name, but `sub_le_sub_right ?h\n  ?c` is a proof of\n  ?m.42 - ?c ≤ ?m.43 - ?c",
+      "endPos": {
+        "column": 24,
+        "line": 17
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Invalid rewrite argument: Expected an equality or iff proof or definition name, but `sub_le_sub_right ?h\n  ?c` is a proof of\n  ?m.59 - ?c ≤ ?m.60 - ?c",
+      "endPos": {
+        "column": 24,
+        "line": 19
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\ncase h4\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : n - k ≤ n\nh3 : k ≤ n - k\n⊢ n.choose k = ∑ i, sorry\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\nh2 : n - k ≤ n\nh3 : k ≤ n - k\nh4 : n.choose k = ∑ i, sorry\n⊢ n.choose k = n.choose (n - k)",
+      "endPos": {
+        "column": 28,
+        "line": 20
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 0,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_choose_symmetry' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 36
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 36
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'in'; expected ','\",\"endPos\":{\"column\":31,\"line\":20},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":28,\"line\":20},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b\\nin the target expression\\n  n - (n - k) = k\\n\\nn k : ℕ\\nh h2 : k ≤ n\\n⊢ n - (n - k) = k\",\"endPos\":{\"column\":22,\"line\":15},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: Expected an equality or iff proof or definition name, but `sub_le_sub_right ?h\\n  ?c` is a proof of\\n  ?m.42 - ?c ≤ ?m.43 - ?c\",\"endPos\":{\"column\":24,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid rewrite argument: Expected an equality or iff proof or definition name, but `sub_le_sub_right ?h\\n  ?c` is a proof of\\n  ?m.59 - ?c ≤ ?m.60 - ?c\",\"endPos\":{\"column\":24,\"line\":19},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase h4\\nn k : ℕ\\nh : k ≤ n\\nh1 : k ≤ n → n - (n - k) = k\\nh2 : n - k ≤ n\\nh3 : k ≤ n - k\\n⊢ n.choose k = ∑ i, sorry\\n\\nn k : ℕ\\nh : k ≤ n\\nh1 : k ≤ n → n - (n - k) = k\\nh2 : n - k ≤ n\\nh3 : k ≤ n - k\\nh4 : n.choose k = ∑ i, sorry\\n⊢ n.choose k = n.choose (n - k)\",\"endPos\":{\"column\":28,\"line\":20},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":0,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_choose_symmetry' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":36},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_54ce929b3393dac03be11060.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":36},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

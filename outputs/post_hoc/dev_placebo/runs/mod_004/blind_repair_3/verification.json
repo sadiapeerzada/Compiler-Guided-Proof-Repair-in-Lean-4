@@ -1,0 +1,162 @@
+{
+  "success": false,
+  "errors": [
+    "line 14: unexpected token '[ZMOD'; expected '['",
+    "line 11: Type mismatch\n  hab\nhas type\n  a ≡ b [ZMOD n]\nbut is expected to have type\n  a - b ≡ 0 [ZMOD n]",
+    "line 12: Type mismatch\n  hcd\nhas type\n  c ≡ d [ZMOD n]\nbut is expected to have type\n  c - d ≡ 0 [ZMOD n]",
+    "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (a - b) % n\nin the target expression\n  a - b + (c - d) ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a - b ≡ 0 [ZMOD n]\nh2 : c - d ≡ 0 [ZMOD n]\n⊢ a - b + (c - d) ≡ 0 [ZMOD n]",
+    "line 14: unsolved goals\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a - b ≡ 0 [ZMOD n]\nh2 : c - d ≡ 0 [ZMOD n]\nh3 : a - b + (c - d) ≡ 0 [ZMOD n]\n⊢ a + c - (b + d) ≡ 0 [ZMOD n]",
+    "line 10: unsolved goals\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a - b ≡ 0 [ZMOD n]\nh2 : c - d ≡ 0 [ZMOD n]\nh3 : a - b + (c - d) ≡ 0 [ZMOD n]\nh4 : a + c - (b + d) ≡ 0 [ZMOD n]\n⊢ a + c ≡ b + d [ZMOD n]"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.524,
+  "diagnostics_parsed": 8,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 14: unexpected token '[ZMOD'; expected '['\nline 11: Type mismatch\n  hab\nhas type\n  a ≡ b [ZMOD n]\nbut is expected to have type\n  a - b ≡ 0 [ZMOD n]\nline 12: Type mismatch\n  hcd\nhas type\n  c ≡ d [ZMOD n]\nbut is expected to have type\n  c - d ≡ 0 [ZMOD n]\nline 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (a - b) % n\nin the target expression\n  a - b + (c - d) ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a - b ≡ 0 [ZMOD n]\nh2 : c - d ≡ 0 [ZMOD n]\n⊢ a - b + (c - d) ≡ 0 [ZMOD n]\nline 14: unsolved goals\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a - b ≡ 0 [ZMOD n]\nh2 : c - d ≡ 0 [ZMOD n]\nh3 : a - b + (c - d) ≡ 0 [ZMOD n]\n⊢ a + c - (b + d) ≡ 0 [ZMOD n]\nline 10: unsolved goals\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a - b ≡ 0 [ZMOD n]\nh2 : c - d ≡ 0 [ZMOD n]\nh3 : a - b + (c - d) ≡ 0 [ZMOD n]\nh4 : a + c - (b + d) ≡ 0 [ZMOD n]\n⊢ a + c ≡ b + d [ZMOD n]",
+  "candidate_sha256": "c0abd14d4ab53ee76436b0b1a5d7ce1536a3a1357f3c9dea89827a0369d93185",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem modEq_add_two (a b c d n : ℤ) (_hn : 0 < n) (hab : a ≡ b [ZMOD n]) (hcd : c ≡ d [ZMOD n]) : a + c ≡ b + d [ZMOD n] := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem modEq_add_two (a b c d n : ℤ) (_hn : 0 < n) (hab : a ≡ b [ZMOD n]) (hcd : c ≡ d [ZMOD n]) : a + c ≡ b + d [ZMOD n] :=\nby\n  have h1 : a - b ≡ 0 [ZMOD n] := hab\n  have h2 : c - d ≡ 0 [ZMOD n] := hcd\n  have h3 : (a - b) + (c - d) ≡ 0 [ZMOD n] := by rw [h1, h2]\n  have h4 : a + c - (b + d) ≡ 0 [ZMOD n] := by rw [ZMOD.add_sub_add, h3]\n  exact h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.modEq_add_two = Nl2LeanCandidate.modEq_add_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.modEq_add_two\n",
+  "verification_source_sha256": "b20e11a473e4b92c38ef2407d3313fe3b7f548ba30d8c41285c36f6c82743acd",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 21,
+        "line": 5
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token '[ZMOD'; expected '['",
+      "endPos": {
+        "column": 55,
+        "line": 14
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 49,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  hab\nhas type\n  a ≡ b [ZMOD n]\nbut is expected to have type\n  a - b ≡ 0 [ZMOD n]",
+      "endPos": {
+        "column": 37,
+        "line": 11
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 34,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  hcd\nhas type\n  c ≡ d [ZMOD n]\nbut is expected to have type\n  c - d ≡ 0 [ZMOD n]",
+      "endPos": {
+        "column": 37,
+        "line": 12
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 34,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (a - b) % n\nin the target expression\n  a - b + (c - d) ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a - b ≡ 0 [ZMOD n]\nh2 : c - d ≡ 0 [ZMOD n]\n⊢ a - b + (c - d) ≡ 0 [ZMOD n]",
+      "endPos": {
+        "column": 55,
+        "line": 13
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 53,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a - b ≡ 0 [ZMOD n]\nh2 : c - d ≡ 0 [ZMOD n]\nh3 : a - b + (c - d) ≡ 0 [ZMOD n]\n⊢ a + c - (b + d) ≡ 0 [ZMOD n]",
+      "endPos": {
+        "column": 49,
+        "line": 14
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 44,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a - b ≡ 0 [ZMOD n]\nh2 : c - d ≡ 0 [ZMOD n]\nh3 : a - b + (c - d) ≡ 0 [ZMOD n]\nh4 : a + c - (b + d) ≡ 0 [ZMOD n]\n⊢ a + c ≡ b + d [ZMOD n]",
+      "endPos": {
+        "column": 49,
+        "line": 14
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 0,
+        "line": 10
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.modEq_add_two' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 20
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 20
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":21,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token '[ZMOD'; expected '['\",\"endPos\":{\"column\":55,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":49,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  hab\\nhas type\\n  a ≡ b [ZMOD n]\\nbut is expected to have type\\n  a - b ≡ 0 [ZMOD n]\",\"endPos\":{\"column\":37,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  hcd\\nhas type\\n  c ≡ d [ZMOD n]\\nbut is expected to have type\\n  c - d ≡ 0 [ZMOD n]\",\"endPos\":{\"column\":37,\"line\":12},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  (a - b) % n\\nin the target expression\\n  a - b + (c - d) ≡ 0 [ZMOD n]\\n\\na b c d n : ℤ\\n_hn : 0 < n\\nhab : a ≡ b [ZMOD n]\\nhcd : c ≡ d [ZMOD n]\\nh1 : a - b ≡ 0 [ZMOD n]\\nh2 : c - d ≡ 0 [ZMOD n]\\n⊢ a - b + (c - d) ≡ 0 [ZMOD n]\",\"endPos\":{\"column\":55,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":53,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b c d n : ℤ\\n_hn : 0 < n\\nhab : a ≡ b [ZMOD n]\\nhcd : c ≡ d [ZMOD n]\\nh1 : a - b ≡ 0 [ZMOD n]\\nh2 : c - d ≡ 0 [ZMOD n]\\nh3 : a - b + (c - d) ≡ 0 [ZMOD n]\\n⊢ a + c - (b + d) ≡ 0 [ZMOD n]\",\"endPos\":{\"column\":49,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":44,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b c d n : ℤ\\n_hn : 0 < n\\nhab : a ≡ b [ZMOD n]\\nhcd : c ≡ d [ZMOD n]\\nh1 : a - b ≡ 0 [ZMOD n]\\nh2 : c - d ≡ 0 [ZMOD n]\\nh3 : a - b + (c - d) ≡ 0 [ZMOD n]\\nh4 : a + c - (b + d) ≡ 0 [ZMOD n]\\n⊢ a + c ≡ b + d [ZMOD n]\",\"endPos\":{\"column\":49,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":0,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.modEq_add_two' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_a32c3f25aaea2dac78a750d9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

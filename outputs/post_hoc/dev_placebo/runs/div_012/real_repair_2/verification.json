@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this structure, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nx y : ℤ\n⊢ 6 * x + 10 * y = 32 ↔ ∃ k, x = 2 - 5 * k ∧ y = 2 + 3 * k"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 32.907,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this structure, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nx y : ℤ\n⊢ 6 * x + 10 * y = 32 ↔ ∃ k, x = 2 - 5 * k ∧ y = 2 + 3 * k",
+  "candidate_sha256": "66269122a97e9447e934bb16bfe2cf932ba54176486b366de8334563159367bb",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem diophantine_six_ten (x y : ℤ) :\n    6 * x + 10 * y = 32 ↔ ∃ k : ℤ, x = 2 - 5 * k ∧ y = 2 + 3 * k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem diophantine_six_ten (x y : ℤ) :\n    6 * x + 10 * y = 32 ↔ ∃ k : ℤ, x = 2 - 5 * k ∧ y = 2 + 3 * k\n:= by\n  split\n  intro h\n  obtain ⟨k, h1, h2⟩ := h\n  have h3 : 6 * (2 - 5 * k) + 10 * (2 + 3 * k) = 32 := by\n    rw [mul_add, add_mul, h1, h2]\n    ring\n  exact h3\n  intro k\n  have h4 : 6 * x + 10 * y = 6 * (2 - 5 * k) + 10 * (2 + 3 * k) := by\n    rw [h4, h1, h2]\n    ring\n  exact h4\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.diophantine_six_ten = Nl2LeanCandidate.diophantine_six_ten := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.diophantine_six_ten\n",
+  "verification_source_sha256": "481e0b54bd21b027e308bd2b937e04a3f6c13fb96e471275eaf58455da35516e",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 27,
+        "line": 5
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_46551d77621cb356ca37ed60.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this structure, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nx y : ℤ\n⊢ 6 * x + 10 * y = 32 ↔ ∃ k, x = 2 - 5 * k ∧ y = 2 + 3 * k",
+      "endPos": {
+        "column": 7,
+        "line": 13
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_46551d77621cb356ca37ed60.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.diophantine_six_ten' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 29
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_46551d77621cb356ca37ed60.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 29
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_46551d77621cb356ca37ed60.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `split` failed: Could not split an `if` or `match` expression in the goal\\n\\nHint: If you meant to destruct this structure, use the `cases` tactic instead\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\nx y : ℤ\\n⊢ 6 * x + 10 * y = 32 ↔ ∃ k, x = 2 - 5 * k ∧ y = 2 + 3 * k\",\"endPos\":{\"column\":7,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_46551d77621cb356ca37ed60.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.diophantine_six_ten' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":29},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_46551d77621cb356ca37ed60.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":29},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

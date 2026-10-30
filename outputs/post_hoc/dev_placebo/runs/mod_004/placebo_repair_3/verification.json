@@ -1,0 +1,144 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a % n\nin the target expression\n  a - b ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\n⊢ a - b ≡ 0 [ZMOD n]",
+    "line 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  c % n\nin the target expression\n  c - d ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\nh3 : a - b ≡ 0 [ZMOD n]\n⊢ c - d ≡ 0 [ZMOD n]",
+    "line 15: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (a - b) % n\nin the target expression\n  a - b + (c - d) ≡ 0 + 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\nh3 : a - b ≡ 0 [ZMOD n]\nh4 : c - d ≡ 0 [ZMOD n]\n⊢ a - b + (c - d) ≡ 0 + 0 [ZMOD n]",
+    "line 16: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (a - b + (c - d)) % n\nin the target expression\n  a + c - (b + d) ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\nh3 : a - b ≡ 0 [ZMOD n]\nh4 : c - d ≡ 0 [ZMOD n]\nh5 : a - b + (c - d) ≡ 0 + 0 [ZMOD n]\n⊢ a + c - (b + d) ≡ 0 [ZMOD n]",
+    "line 17: Type mismatch\n  h6\nhas type\n  a + c - (b + d) ≡ 0 [ZMOD n]\nbut is expected to have type\n  a + c ≡ b + d [ZMOD n]"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 32.68,
+  "diagnostics_parsed": 7,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a % n\nin the target expression\n  a - b ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\n⊢ a - b ≡ 0 [ZMOD n]\nline 14: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  c % n\nin the target expression\n  c - d ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\nh3 : a - b ≡ 0 [ZMOD n]\n⊢ c - d ≡ 0 [ZMOD n]\nline 15: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (a - b) % n\nin the target expression\n  a - b + (c - d) ≡ 0 + 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\nh3 : a - b ≡ 0 [ZMOD n]\nh4 : c - d ≡ 0 [ZMOD n]\n⊢ a - b + (c - d) ≡ 0 + 0 [ZMOD n]\nline 16: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (a - b + (c - d)) % n\nin the target expression\n  a + c - (b + d) ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\nh3 : a - b ≡ 0 [ZMOD n]\nh4 : c - d ≡ 0 [ZMOD n]\nh5 : a - b + (c - d) ≡ 0 + 0 [ZMOD n]\n⊢ a + c - (b + d) ≡ 0 [ZMOD n]\nline 17: Type mismatch\n  h6\nhas type\n  a + c - (b + d) ≡ 0 [ZMOD n]\nbut is expected to have type\n  a + c ≡ b + d [ZMOD n]",
+  "candidate_sha256": "5f98047483387ec303a98f067219ac9bbdeedd629debbf216b3fac6780fe7c8b",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem modEq_add_two (a b c d n : ℤ) (_hn : 0 < n) (hab : a ≡ b [ZMOD n]) (hcd : c ≡ d [ZMOD n]) : a + c ≡ b + d [ZMOD n] := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem modEq_add_two (a b c d n : ℤ) (_hn : 0 < n) (hab : a ≡ b [ZMOD n]) (hcd : c ≡ d [ZMOD n]) : a + c ≡ b + d [ZMOD n] :=\nby\n  have h1 : a ≡ b [ZMOD n] := hab\n  have h2 : c ≡ d [ZMOD n] := hcd\n  have h3 : a - b ≡ 0 [ZMOD n] := by rw [h1]\n  have h4 : c - d ≡ 0 [ZMOD n] := by rw [h2]\n  have h5 : (a - b) + (c - d) ≡ 0 + 0 [ZMOD n] := by rw [h3, h4]\n  have h6 : a + c - (b + d) ≡ 0 [ZMOD n] := by rw [h5]\n  exact h6\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.modEq_add_two = Nl2LeanCandidate.modEq_add_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.modEq_add_two\n",
+  "verification_source_sha256": "2bdff2b9546b3d6533dd77740130fdbe77bc1ac852b5d772969f64f0023bbba7",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 21,
+        "line": 5
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a % n\nin the target expression\n  a - b ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\n⊢ a - b ≡ 0 [ZMOD n]",
+      "endPos": {
+        "column": 43,
+        "line": 13
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 41,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  c % n\nin the target expression\n  c - d ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\nh3 : a - b ≡ 0 [ZMOD n]\n⊢ c - d ≡ 0 [ZMOD n]",
+      "endPos": {
+        "column": 43,
+        "line": 14
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 41,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (a - b) % n\nin the target expression\n  a - b + (c - d) ≡ 0 + 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\nh3 : a - b ≡ 0 [ZMOD n]\nh4 : c - d ≡ 0 [ZMOD n]\n⊢ a - b + (c - d) ≡ 0 + 0 [ZMOD n]",
+      "endPos": {
+        "column": 59,
+        "line": 15
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 57,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (a - b + (c - d)) % n\nin the target expression\n  a + c - (b + d) ≡ 0 [ZMOD n]\n\na b c d n : ℤ\n_hn : 0 < n\nhab : a ≡ b [ZMOD n]\nhcd : c ≡ d [ZMOD n]\nh1 : a ≡ b [ZMOD n]\nh2 : c ≡ d [ZMOD n]\nh3 : a - b ≡ 0 [ZMOD n]\nh4 : c - d ≡ 0 [ZMOD n]\nh5 : a - b + (c - d) ≡ 0 + 0 [ZMOD n]\n⊢ a + c - (b + d) ≡ 0 [ZMOD n]",
+      "endPos": {
+        "column": 53,
+        "line": 16
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 51,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  h6\nhas type\n  a + c - (b + d) ≡ 0 [ZMOD n]\nbut is expected to have type\n  a + c ≡ b + d [ZMOD n]",
+      "endPos": {
+        "column": 10,
+        "line": 17
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.modEq_add_two' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 22
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 22
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":21,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  a % n\\nin the target expression\\n  a - b ≡ 0 [ZMOD n]\\n\\na b c d n : ℤ\\n_hn : 0 < n\\nhab : a ≡ b [ZMOD n]\\nhcd : c ≡ d [ZMOD n]\\nh1 : a ≡ b [ZMOD n]\\nh2 : c ≡ d [ZMOD n]\\n⊢ a - b ≡ 0 [ZMOD n]\",\"endPos\":{\"column\":43,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":41,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  c % n\\nin the target expression\\n  c - d ≡ 0 [ZMOD n]\\n\\na b c d n : ℤ\\n_hn : 0 < n\\nhab : a ≡ b [ZMOD n]\\nhcd : c ≡ d [ZMOD n]\\nh1 : a ≡ b [ZMOD n]\\nh2 : c ≡ d [ZMOD n]\\nh3 : a - b ≡ 0 [ZMOD n]\\n⊢ c - d ≡ 0 [ZMOD n]\",\"endPos\":{\"column\":43,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":41,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  (a - b) % n\\nin the target expression\\n  a - b + (c - d) ≡ 0 + 0 [ZMOD n]\\n\\na b c d n : ℤ\\n_hn : 0 < n\\nhab : a ≡ b [ZMOD n]\\nhcd : c ≡ d [ZMOD n]\\nh1 : a ≡ b [ZMOD n]\\nh2 : c ≡ d [ZMOD n]\\nh3 : a - b ≡ 0 [ZMOD n]\\nh4 : c - d ≡ 0 [ZMOD n]\\n⊢ a - b + (c - d) ≡ 0 + 0 [ZMOD n]\",\"endPos\":{\"column\":59,\"line\":15},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":57,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  (a - b + (c - d)) % n\\nin the target expression\\n  a + c - (b + d) ≡ 0 [ZMOD n]\\n\\na b c d n : ℤ\\n_hn : 0 < n\\nhab : a ≡ b [ZMOD n]\\nhcd : c ≡ d [ZMOD n]\\nh1 : a ≡ b [ZMOD n]\\nh2 : c ≡ d [ZMOD n]\\nh3 : a - b ≡ 0 [ZMOD n]\\nh4 : c - d ≡ 0 [ZMOD n]\\nh5 : a - b + (c - d) ≡ 0 + 0 [ZMOD n]\\n⊢ a + c - (b + d) ≡ 0 [ZMOD n]\",\"endPos\":{\"column\":53,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":51,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  h6\\nhas type\\n  a + c - (b + d) ≡ 0 [ZMOD n]\\nbut is expected to have type\\n  a + c ≡ b + d [ZMOD n]\",\"endPos\":{\"column\":10,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.modEq_add_two' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_70e1be1715007e852019701e.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

@@ -1,0 +1,1070 @@
+{
+  "kind": "post_hoc_development_only_placebo",
+  "protocol_sha256": "53744d0f6e6b43a5aab7ed60b689444f1a4fd6ece4e33d5704329f47fd5bfcbc",
+  "phase": "post_hoc_dev_placebo_v1",
+  "problem_id": "ind_009",
+  "family": "binomial_identities",
+  "started_at": "2026-10-30T04:46:50.997432+00:00",
+  "status": "completed",
+  "initial": {
+    "key": "shared_initial",
+    "candidate": "theorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    have := by\n      simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n      rw [IH, Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this",
+    "candidate_sha256": "37c4a778998581a736a8fc48ac3d8ead5888ed9f4f349cd8926a2a1a19857eca",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 11: unknown tactic",
+        "line 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 32.794,
+      "diagnostics_parsed": 4,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 11: unknown tactic\nline 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+      "candidate_sha256": "37c4a778998581a736a8fc48ac3d8ead5888ed9f4f349cd8926a2a1a19857eca",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    have := by\n      simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n      rw [IH, Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.hockey_stick_binomial_identity = Nl2LeanCandidate.hockey_stick_binomial_identity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.hockey_stick_binomial_identity\n",
+      "verification_source_sha256": "696045dd5b683b9a9c63e12ce286dbec64cb9ff2bf01b13d07b5dc2a9bb01c2d",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 38,
+            "line": 5
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_5d94d4993c92e70bb3596eea.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 5
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "unknown tactic",
+          "endPos": null,
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_5d94d4993c92e70bb3596eea.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 20,
+            "line": 11
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+          "endPos": {
+            "column": 20,
+            "line": 11
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_5d94d4993c92e70bb3596eea.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "lean.inductionWithNoAlts._namedError",
+          "pos": {
+            "column": 14,
+            "line": 11
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+          "endPos": {
+            "column": 6,
+            "line": 22
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_5d94d4993c92e70bb3596eea.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 22
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":38,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5d94d4993c92e70bb3596eea.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5d94d4993c92e70bb3596eea.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5d94d4993c92e70bb3596eea.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5d94d4993c92e70bb3596eea.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_009/shared_initial/completion.json",
+    "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_009/shared_initial/verification.json",
+    "prompt_tokens": 235,
+    "completion_tokens": 134,
+    "generation_seconds": 7.595518625006662,
+    "selection": null
+  },
+  "conditions": {
+    "A": {
+      "success": false,
+      "attempts": [],
+      "status": "initial_only",
+      "initial_candidate_sha256": "37c4a778998581a736a8fc48ac3d8ead5888ed9f4f349cd8926a2a1a19857eca"
+    },
+    "B": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "blind_repair_1",
+          "candidate": "theorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    have := by\n      simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n      rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this",
+          "candidate_sha256": "761bd64917fde95f3ed1215ac35e3ff6a68534305b6b0df278e2e7e2c61be19b",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unknown tactic",
+              "line 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.242,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unknown tactic\nline 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+            "candidate_sha256": "761bd64917fde95f3ed1215ac35e3ff6a68534305b6b0df278e2e7e2c61be19b",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    have := by\n      simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n      rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.hockey_stick_binomial_identity = Nl2LeanCandidate.hockey_stick_binomial_identity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.hockey_stick_binomial_identity\n",
+            "verification_source_sha256": "e3eb16587ffd2ddd5bb27b66b0fc558b2a1c22c9afdf5cc96263b5d4f5f88075",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 38,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4feb526131ad90dcf672f56f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4feb526131ad90dcf672f56f.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4feb526131ad90dcf672f56f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4feb526131ad90dcf672f56f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":38,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4feb526131ad90dcf672f56f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4feb526131ad90dcf672f56f.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4feb526131ad90dcf672f56f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4feb526131ad90dcf672f56f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_009/blind_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_009/blind_repair_1/verification.json",
+          "prompt_tokens": 380,
+          "completion_tokens": 132,
+          "generation_seconds": 7.978728374990169,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "blind_repair_2",
+          "candidate": "theorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    have := by\n      simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n      rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this",
+          "candidate_sha256": "761bd64917fde95f3ed1215ac35e3ff6a68534305b6b0df278e2e7e2c61be19b",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unknown tactic",
+              "line 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.717,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unknown tactic\nline 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+            "candidate_sha256": "761bd64917fde95f3ed1215ac35e3ff6a68534305b6b0df278e2e7e2c61be19b",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    have := by\n      simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n      rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.hockey_stick_binomial_identity = Nl2LeanCandidate.hockey_stick_binomial_identity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.hockey_stick_binomial_identity\n",
+            "verification_source_sha256": "e3eb16587ffd2ddd5bb27b66b0fc558b2a1c22c9afdf5cc96263b5d4f5f88075",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 38,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_06e6cf99d42998c572728a48.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_06e6cf99d42998c572728a48.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_06e6cf99d42998c572728a48.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_06e6cf99d42998c572728a48.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":38,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_06e6cf99d42998c572728a48.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_06e6cf99d42998c572728a48.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_06e6cf99d42998c572728a48.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_06e6cf99d42998c572728a48.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_009/blind_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_009/blind_repair_2/verification.json",
+          "prompt_tokens": 378,
+          "completion_tokens": 132,
+          "generation_seconds": 8.255013000001782,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "blind_repair_3",
+          "candidate": "theorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    have := by\n      simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n      rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this",
+          "candidate_sha256": "761bd64917fde95f3ed1215ac35e3ff6a68534305b6b0df278e2e7e2c61be19b",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unknown tactic",
+              "line 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.738,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unknown tactic\nline 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+            "candidate_sha256": "761bd64917fde95f3ed1215ac35e3ff6a68534305b6b0df278e2e7e2c61be19b",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    have := by\n      simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n      rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.hockey_stick_binomial_identity = Nl2LeanCandidate.hockey_stick_binomial_identity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.hockey_stick_binomial_identity\n",
+            "verification_source_sha256": "e3eb16587ffd2ddd5bb27b66b0fc558b2a1c22c9afdf5cc96263b5d4f5f88075",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 38,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4dbebd0e1b00026b7f641763.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4dbebd0e1b00026b7f641763.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4dbebd0e1b00026b7f641763.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4dbebd0e1b00026b7f641763.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":38,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4dbebd0e1b00026b7f641763.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4dbebd0e1b00026b7f641763.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4dbebd0e1b00026b7f641763.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4dbebd0e1b00026b7f641763.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_009/blind_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_009/blind_repair_3/verification.json",
+          "prompt_tokens": 378,
+          "completion_tokens": 132,
+          "generation_seconds": 8.108061874998384,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "37c4a778998581a736a8fc48ac3d8ead5888ed9f4f349cd8926a2a1a19857eca"
+    },
+    "C": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "real_repair_1",
+          "candidate": "theorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this",
+          "candidate_sha256": "6cbad44efde508a04b4297c805695b510f2756fe85b86edea911ca203d1e2167",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unknown tactic",
+              "line 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.253,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unknown tactic\nline 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+            "candidate_sha256": "6cbad44efde508a04b4297c805695b510f2756fe85b86edea911ca203d1e2167",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.hockey_stick_binomial_identity = Nl2LeanCandidate.hockey_stick_binomial_identity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.hockey_stick_binomial_identity\n",
+            "verification_source_sha256": "2c35a710591fb055476b599629d73797356ba202d177af6a11723960037dc9f8",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 38,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_603d2665a6bd3cc53621d326.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_603d2665a6bd3cc53621d326.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_603d2665a6bd3cc53621d326.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_603d2665a6bd3cc53621d326.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":38,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_603d2665a6bd3cc53621d326.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_603d2665a6bd3cc53621d326.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_603d2665a6bd3cc53621d326.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_603d2665a6bd3cc53621d326.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_009/real_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_009/real_repair_1/verification.json",
+          "prompt_tokens": 842,
+          "completion_tokens": 127,
+          "generation_seconds": 10.428567708993796,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unknown tactic\",\n      \"endPos\": null,\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_5d94d4993c92e70bb3596eea.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_5d94d4993c92e70bb3596eea.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.inductionWithNoAlts._namedError\",\n      \"pos\": {\n        \"column\": 14,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 22\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_5d94d4993c92e70bb3596eea.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 22\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "37c4a778998581a736a8fc48ac3d8ead5888ed9f4f349cd8926a2a1a19857eca"
+        },
+        {
+          "key": "real_repair_2",
+          "candidate": "theorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left]\n    have := IH n\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    refl",
+          "candidate_sha256": "5f1a12564654bd41590ecb4bca1d31163714383dd617f478d3cf40331d89d1d3",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unknown tactic",
+              "line 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.677,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unknown tactic\nline 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+            "candidate_sha256": "5f1a12564654bd41590ecb4bca1d31163714383dd617f478d3cf40331d89d1d3",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left]\n    have := IH n\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.hockey_stick_binomial_identity = Nl2LeanCandidate.hockey_stick_binomial_identity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.hockey_stick_binomial_identity\n",
+            "verification_source_sha256": "f80f216cc8e83c7f5fd93620f4fc509bd346e3862f873eec879acde02bfce925",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 38,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_700686176e0b753acead177d.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_700686176e0b753acead177d.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_700686176e0b753acead177d.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_700686176e0b753acead177d.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":38,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_700686176e0b753acead177d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_700686176e0b753acead177d.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_700686176e0b753acead177d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_700686176e0b753acead177d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_009/real_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_009/real_repair_2/verification.json",
+          "prompt_tokens": 838,
+          "completion_tokens": 120,
+          "generation_seconds": 10.132843250001315,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unknown tactic\",\n      \"endPos\": null,\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_603d2665a6bd3cc53621d326.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_603d2665a6bd3cc53621d326.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.inductionWithNoAlts._namedError\",\n      \"pos\": {\n        \"column\": 14,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 21\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_603d2665a6bd3cc53621d326.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 21\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "6cbad44efde508a04b4297c805695b510f2756fe85b86edea911ca203d1e2167"
+        },
+        {
+          "key": "real_repair_3",
+          "candidate": "theorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left]\n    have h := IH n\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left] at h\n    refl",
+          "candidate_sha256": "bc636a4f4eb9df30bb5cf7f78f928ac2fb34c9bc9bf29e94c36bf9304ac2f110",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unknown tactic",
+              "line 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 85.636,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unknown tactic\nline 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+            "candidate_sha256": "bc636a4f4eb9df30bb5cf7f78f928ac2fb34c9bc9bf29e94c36bf9304ac2f110",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left]\n    have h := IH n\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left] at h\n    refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.hockey_stick_binomial_identity = Nl2LeanCandidate.hockey_stick_binomial_identity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.hockey_stick_binomial_identity\n",
+            "verification_source_sha256": "db0e912b9a691595da79c21d7319fb283de386857bc033877e24aaad07600b20",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 38,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_5a9eb142a30bcd8c494bed7d.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_5a9eb142a30bcd8c494bed7d.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_5a9eb142a30bcd8c494bed7d.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_5a9eb142a30bcd8c494bed7d.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":38,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a9eb142a30bcd8c494bed7d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a9eb142a30bcd8c494bed7d.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a9eb142a30bcd8c494bed7d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a9eb142a30bcd8c494bed7d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_009/real_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_009/real_repair_3/verification.json",
+          "prompt_tokens": 828,
+          "completion_tokens": 124,
+          "generation_seconds": 10.243116957994062,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unknown tactic\",\n      \"endPos\": null,\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_700686176e0b753acead177d.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_700686176e0b753acead177d.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.inductionWithNoAlts._namedError\",\n      \"pos\": {\n        \"column\": 14,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 21\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_700686176e0b753acead177d.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 21\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "5f1a12564654bd41590ecb4bca1d31163714383dd617f478d3cf40331d89d1d3"
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "37c4a778998581a736a8fc48ac3d8ead5888ed9f4f349cd8926a2a1a19857eca"
+    },
+    "C_placebo": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "placebo_repair_1",
+          "candidate": "theorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this",
+          "candidate_sha256": "6cbad44efde508a04b4297c805695b510f2756fe85b86edea911ca203d1e2167",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unknown tactic",
+              "line 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 32.605,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unknown tactic\nline 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+            "candidate_sha256": "6cbad44efde508a04b4297c805695b510f2756fe85b86edea911ca203d1e2167",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · have := IH n\n    simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact this\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.hockey_stick_binomial_identity = Nl2LeanCandidate.hockey_stick_binomial_identity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.hockey_stick_binomial_identity\n",
+            "verification_source_sha256": "2c35a710591fb055476b599629d73797356ba202d177af6a11723960037dc9f8",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 38,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4eabc2f47276e1601462a4c4.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4eabc2f47276e1601462a4c4.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4eabc2f47276e1601462a4c4.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_4eabc2f47276e1601462a4c4.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":38,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4eabc2f47276e1601462a4c4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4eabc2f47276e1601462a4c4.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4eabc2f47276e1601462a4c4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_4eabc2f47276e1601462a4c4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_009/placebo_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_009/placebo_repair_1/verification.json",
+          "prompt_tokens": 843,
+          "completion_tokens": 127,
+          "generation_seconds": 10.55927562501165,
+          "selection": {
+            "donor_id": "ind_007",
+            "donor_family": "sum_of_first_squares",
+            "donor_category": "syntax_or_parser",
+            "target_category": "syntax_or_parser",
+            "target_diagnostic_tokens": 474,
+            "donor_diagnostic_tokens": 475,
+            "token_length_difference": 1,
+            "category_fallback": false,
+            "donor_payload_sha256": "c9057a0612babad5647fd33c4ce9fd384135d650c121d7eb9db8a52779c87061",
+            "tie_break_sha256": "d7abce0d0807d59cf2d81ac650bb2114ed64c66bdb6bad3a955ec8904a48a279"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unknown tactic\",\n      \"endPos\": null,\n      \"fileName\": \"lean_project/generated/_scratch/study_1e940a541aeb86f85d6a0441.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `i`.\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_1e940a541aeb86f85d6a0441.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.inductionWithNoAlts._namedError\",\n      \"pos\": {\n        \"column\": 14,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.sum_squares_closed_form' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 21\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_1e940a541aeb86f85d6a0441.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 21\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "placebo_repair_2",
+          "candidate": "theorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact IH",
+          "candidate_sha256": "b26e2096788fbc5c7547e80d85d12aa66ec268b5e51e7acff717dae05743f3b3",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unknown tactic",
+              "line 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 83.225,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unknown tactic\nline 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+            "candidate_sha256": "b26e2096788fbc5c7547e80d85d12aa66ec268b5e51e7acff717dae05743f3b3",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact IH\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.hockey_stick_binomial_identity = Nl2LeanCandidate.hockey_stick_binomial_identity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.hockey_stick_binomial_identity\n",
+            "verification_source_sha256": "4113559718366a08e941f04c89d047a4c90598c7e4ed04b790642dc4ce42926f",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 38,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_5ab60528e9919ee33b6697d7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_5ab60528e9919ee33b6697d7.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_5ab60528e9919ee33b6697d7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 20
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_5ab60528e9919ee33b6697d7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 20
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":38,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5ab60528e9919ee33b6697d7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5ab60528e9919ee33b6697d7.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5ab60528e9919ee33b6697d7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5ab60528e9919ee33b6697d7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_009/placebo_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_009/placebo_repair_2/verification.json",
+          "prompt_tokens": 836,
+          "completion_tokens": 121,
+          "generation_seconds": 10.005649332990288,
+          "selection": {
+            "donor_id": "ind_007",
+            "donor_family": "sum_of_first_squares",
+            "donor_category": "syntax_or_parser",
+            "target_category": "syntax_or_parser",
+            "target_diagnostic_tokens": 477,
+            "donor_diagnostic_tokens": 475,
+            "token_length_difference": 2,
+            "category_fallback": false,
+            "donor_payload_sha256": "c9057a0612babad5647fd33c4ce9fd384135d650c121d7eb9db8a52779c87061",
+            "tie_break_sha256": "d7abce0d0807d59cf2d81ac650bb2114ed64c66bdb6bad3a955ec8904a48a279"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unknown tactic\",\n      \"endPos\": null,\n      \"fileName\": \"lean_project/generated/_scratch/study_1e940a541aeb86f85d6a0441.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `i`.\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_1e940a541aeb86f85d6a0441.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.inductionWithNoAlts._namedError\",\n      \"pos\": {\n        \"column\": 14,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.sum_squares_closed_form' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 21\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_1e940a541aeb86f85d6a0441.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 21\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "placebo_repair_3",
+          "candidate": "theorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact IH",
+          "candidate_sha256": "b26e2096788fbc5c7547e80d85d12aa66ec268b5e51e7acff717dae05743f3b3",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unknown tactic",
+              "line 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`."
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.224,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unknown tactic\nline 11: Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+            "candidate_sha256": "b26e2096788fbc5c7547e80d85d12aa66ec268b5e51e7acff717dae05743f3b3",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem hockey_stick_binomial_identity (n : ℕ) : (∑ k ∈ Finset.range (n + 1), Nat.choose (4 + k) k) = Nat.choose (5 + n) n\n:= by\n  induction n with n IH\n  · simp [Finset.range_zero, Nat.choose]\n  · simp [Finset.range_succ, Nat.choose_add_right, Nat.choose_add_left, Finset.sum_add_right]\n    rw [Finset.sum_range_add_one, Nat.choose_add_right, Nat.choose_add_left]\n    exact IH\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.hockey_stick_binomial_identity = Nl2LeanCandidate.hockey_stick_binomial_identity := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.hockey_stick_binomial_identity\n",
+            "verification_source_sha256": "4113559718366a08e941f04c89d047a4c90598c7e4ed04b790642dc4ce42926f",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 38,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_79869f63d3103197ee2559dd.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_79869f63d3103197ee2559dd.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.",
+                "endPos": {
+                  "column": 20,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_79869f63d3103197ee2559dd.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.inductionWithNoAlts._namedError",
+                "pos": {
+                  "column": 14,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 20
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_79869f63d3103197ee2559dd.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 20
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":38,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_79869f63d3103197ee2559dd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_79869f63d3103197ee2559dd.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":20,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `n`.\",\"endPos\":{\"column\":20,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_79869f63d3103197ee2559dd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.inductionWithNoAlts._namedError\",\"pos\":{\"column\":14,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.hockey_stick_binomial_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_79869f63d3103197ee2559dd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_009/placebo_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_009/placebo_repair_3/verification.json",
+          "prompt_tokens": 830,
+          "completion_tokens": 121,
+          "generation_seconds": 11.18337887499365,
+          "selection": {
+            "donor_id": "ind_007",
+            "donor_family": "sum_of_first_squares",
+            "donor_category": "syntax_or_parser",
+            "target_category": "syntax_or_parser",
+            "target_diagnostic_tokens": 477,
+            "donor_diagnostic_tokens": 475,
+            "token_length_difference": 2,
+            "category_fallback": false,
+            "donor_payload_sha256": "c9057a0612babad5647fd33c4ce9fd384135d650c121d7eb9db8a52779c87061",
+            "tie_break_sha256": "d7abce0d0807d59cf2d81ac650bb2114ed64c66bdb6bad3a955ec8904a48a279"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unknown tactic\",\n      \"endPos\": null,\n      \"fileName\": \"lean_project/generated/_scratch/study_1e940a541aeb86f85d6a0441.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid syntax for induction tactic: The `with` keyword must be followed by a tactic or by an alternative (e.g. `| zero =>`), but here it is followed by the identifier `i`.\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_1e940a541aeb86f85d6a0441.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.inductionWithNoAlts._namedError\",\n      \"pos\": {\n        \"column\": 14,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.sum_squares_closed_form' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 21\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_1e940a541aeb86f85d6a0441.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 21\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "37c4a778998581a736a8fc48ac3d8ead5888ed9f4f349cd8926a2a1a19857eca"
+    }
+  },
+  "finished_at": "2026-10-30T05:05:55.717597+00:00"
+}

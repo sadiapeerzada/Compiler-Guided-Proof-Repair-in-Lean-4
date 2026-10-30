@@ -3,8 +3,8 @@
 \usepackage{graphicx,booktabs,url,xurl}
 \setlength{\emergencystretch}{3em}
 \begin{document}
-\title{Compiler-Guided Repair for Natural-Language-to-Lean Formalization}\subtitle{A Fixed-Theorem Local-Model Pilot}
-\titlerunning{Compiler-Guided Lean Proof Repair}
+\title{Compiler-Guided Proof Repair in Lean 4: A Controlled Local-Model Pilot on Fixed Theorem Types}
+\titlerunning{Controlled Lean 4 Proof Repair Pilot}
 \author{Anonymous author}
 \authorrunning{Anonymous author}
 \institute{Author details withheld for publication-safety review}
@@ -189,25 +189,27 @@ They assume independent problem units; related family clusters limit that assump
 \subsection{Matched effects and uncertainty}
 On 58 complete pairs, B and C each succeed on the same single target,
 \texttt{lib\_a\_exp\_add}. The C--B risk difference is 0.00 percentage points,
-with zero discordant pairs. The frozen exact McNemar helper stores a null,
-non-informative result; the conventional numerical value is $p=1$. Neither
-convention supplies evidence of equivalence. Both problem and family-cluster
+with zero discordant pairs. The conventional exact two-sided McNemar value is $p=1.0$ with
+zero discordant pairs. This does not establish equivalence. Both problem and family-cluster
 bootstrap intervals are [0.00,0.00] points, conditional on those observed pairs.
 This degeneracy reflects identical observed outcomes, not high precision about
 a general feedback effect.
 
-\input{generated/review_v2/paired.tex}
+\input{../outputs/post_hoc/latex/post_hoc_paired_p1.tex}
 
 The revised paired point estimates, intervals and tests use the same complete
 cases for each contrast. For C--A this is 58 pairs (difference +1.72 points);
 for B--A it is 60 (+1.67 points). Both exact $p$ values and Holm-adjusted values
-are 1. The three planned comparisons remain in multiplicity accounting; the
-non-informative C--B slot is conservatively treated as 1 internally, but still
-reported as non-informative. Bootstrap sensitivity uses 10,000 resamples and
+are 1. The three planned comparisons remain in Holm multiplicity accounting,
+including the conventional $p=1.0$ for zero-discordance C--B. Bootstrap sensitivity uses 10,000 resamples and
 seed 20271021. The complete C contrasts have 52 represented family clusters;
 the full test cohort has 54. Resampling cases or families does not remove
 selection bias from unavailable outcomes. No statistically supported improvement
 is claimed; low success and only one solved target give limited power.
+
+% POST_HOC_CALIBRATION_BEGIN
+\paragraph{Post-hoc calibration.} A separately labeled analysis uses Newcombe's paired method 10~\cite{newcombe1998paired}: Wilson marginal score intervals with an adjusted phi coefficient. For the 58 C--B pairs this sensitivity interval is [-6.83, +6.83] percentage points. It assumes independent pairs and is not a replacement for family-cluster sensitivity; related families and unavailable outcomes limit inference. The degenerate empirical bootstrap does not rule out these larger effects. Full post-hoc method and power-assumption tables are provided separately.
+% POST_HOC_CALIBRATION_END
 
 \subsection{Unavailable outcomes and sensitivity}
 The frozen protocol explicitly planned both complete-pair inference and a
@@ -285,6 +287,26 @@ No compiler timeout was observed among the completed candidates; the context
 rejection is a generation resource failure, not a Lean error. Failed model
 outputs and their actual diagnostics remain retained, including repeated errors.
 
+% POST_HOC_PROCESS_BEGIN
+\subsection{Exploratory process diagnostics}
+The following measurements were defined after observing the original outcomes
+and do not alter the frozen success analysis. B repeated the immediately preceding
+candidate in 90/178 completed repairs, C in 70/172. Whole-family resampling,
+10,000 draws and seed 20271021, preserves repair and family dependence.
+The exploratory C--B repetition difference is -9.86 percentage points
+(95\% family-bootstrap interval [-19.77,-0.50]). This is one of several post-hoc
+contrasts, not a confirmatory diagnostic-use test or a proof-success improvement.
+At least one preceding unknown name disappears in B 12/76 eligible repairs and
+C 14/70; B's diagnostics are used by the analyst only. Syntactic name removal,
+edit distance, fewer messages and category transitions are not certified fixes.
+Character/token edits, grayscale transition matrices, prompt-length distributions,
+and assumption-based power calculations are provided as post-hoc supplementary
+artifacts. No new held-out inference, replay or outcome imputation occurs.
+% POST_HOC_DEV_BEGIN
+\paragraph{Exploratory development placebo.} A separately frozen post-hoc control used fresh shared initials on 15 development problems, one seed, three repair arms and only genuine different-problem/family donor diagnostics. Only diagnostic filename metadata was normalized consistently; compiler-message content remained unchanged. Observed verified outcomes were A: 0/15, B: 0/15, C: 0/15, C\_placebo: 0/15. Completed-repair counts were C repetition 23/45, own-name removal 3/19; C\_placebo repetition 32/45, own-name removal 2/17. The observed higher own-name removal and lower repetition under real diagnostics are consistent with diagnostic-content sensitivity. This exploratory one-seed pattern does not prove that the model uses diagnostic content. Five dev families, independent condition RNG streams, donor category/length matching and sequential execution limit inference; no hypothesis-test or proof-of-use claim is made.
+% POST_HOC_DEV_END
+% POST_HOC_PROCESS_END
+
 \section{Qualitative Repair Cases}
 Five authentic cases were selected post hoc for outcome, category and error
 coverage. There is only one distinct solved test target; five successes are not
@@ -361,7 +383,7 @@ public reproducibility limit, not a replacement or revision of the experiment.
 \section{Conclusion}
 This internally frozen, single-seed empirical pilot records a controlled local comparison of one-shot, blind and
 compiler-guided proof repair for 60 fixed theorem targets with shared initial
-candidates. The recorded experiment does not establish a robust advantage for compiler feedback; a non-significant or non-informative test is not evidence of equivalence. The contribution is the hash-committed paired evidence
+candidates. The recorded experiment does not establish a robust advantage for compiler feedback; a non-significant test is not evidence of equivalence. The contribution is the hash-committed paired evidence
 and its failure analysis under a clearly delimited low-resource configuration,
 not a claim of general superiority, equivalence, independent human semantic validation, or
 complete unconstrained natural-language formalization.

@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Unknown constant `Int.bezout`",
+    "line 14: `obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`",
+    "line 14: unexpected identifier; expected command"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 34.374,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Unknown constant `Int.bezout`\nline 14: `obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`\nline 14: unexpected identifier; expected command",
+  "candidate_sha256": "f9d0590b6046beb7f8602629c3bb5f6fe786b24a9b916384d2b04eb0532807ac",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain x y := h\n  exact x\n  exact y\n  refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+  "verification_source_sha256": "ae02787a2c0988601f47d08727f5f65894561d938f3bb68ed2d94e275f7c1e1d",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 6
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Int.bezout`",
+      "endPos": {
+        "column": 65,
+        "line": 13
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 55,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "`obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`",
+      "endPos": {
+        "column": 10,
+        "line": 14
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unexpected identifier; expected command",
+      "endPos": {
+        "column": 12,
+        "line": 14
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 11,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 22
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 22
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":65,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":55,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"`obtain` requires either an expected type or a value.\\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`\",\"endPos\":{\"column\":10,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected command\",\"endPos\":{\"column\":12,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":11,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

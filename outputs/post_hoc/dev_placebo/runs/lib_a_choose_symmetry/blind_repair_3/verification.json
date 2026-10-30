@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 16: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  n - (n - k) = k\n\nn k : ℕ\nh h2 : k ≤ n\n⊢ n - (n - k) = k",
+    "line 18: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  n - (n - k)\nin the target expression\n  k ≤ n - k\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\n⊢ k ≤ n - k",
+    "line 20: Unknown identifier `choose_symmetry`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 73.607,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 16: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  n - (n - k) = k\n\nn k : ℕ\nh h2 : k ≤ n\n⊢ n - (n - k) = k\nline 18: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  n - (n - k)\nin the target expression\n  k ≤ n - k\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\n⊢ k ≤ n - k\nline 20: Unknown identifier `choose_symmetry`",
+  "candidate_sha256": "5a3d6399b624cde944dab0665573b80cb89693a0770957d03dd114d270713133",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_a_choose_symmetry (n k : ℕ) (h : k ≤ n) : n.choose k = n.choose (n - k) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_a_choose_symmetry (n k : ℕ) (h : k ≤ n) : n.choose k = n.choose (n - k) :=\nby\n  have h1 : k ≤ n → n - (n - k) = k := by\n    intro h2\n    rw [sub_eq_add_neg, add_assoc, neg_add_cancel_right]\n  have h2 : k ≤ n - k := by\n    rw [h1 h]\n  have h3 : n.choose k = n.choose (n - k) := by\n    rw [choose_symmetry]\n  exact h3\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_a_choose_symmetry = Nl2LeanCandidate.study_a_choose_symmetry := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_a_choose_symmetry\n",
+  "verification_source_sha256": "f55ec3c3d3f8e4ba2d532d03f444cd5a0ad430af06441822075851dcf32501b1",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 6
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5172bb1ec36ddde986406c9d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a - ?b\nin the target expression\n  n - (n - k) = k\n\nn k : ℕ\nh h2 : k ≤ n\n⊢ n - (n - k) = k",
+      "endPos": {
+        "column": 22,
+        "line": 16
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5172bb1ec36ddde986406c9d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  n - (n - k)\nin the target expression\n  k ≤ n - k\n\nn k : ℕ\nh : k ≤ n\nh1 : k ≤ n → n - (n - k) = k\n⊢ k ≤ n - k",
+      "endPos": {
+        "column": 12,
+        "line": 18
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5172bb1ec36ddde986406c9d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 18
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `choose_symmetry`",
+      "endPos": {
+        "column": 23,
+        "line": 20
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5172bb1ec36ddde986406c9d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 20
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_a_choose_symmetry' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 26
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5172bb1ec36ddde986406c9d.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 26
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5172bb1ec36ddde986406c9d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a - ?b\\nin the target expression\\n  n - (n - k) = k\\n\\nn k : ℕ\\nh h2 : k ≤ n\\n⊢ n - (n - k) = k\",\"endPos\":{\"column\":22,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5172bb1ec36ddde986406c9d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  n - (n - k)\\nin the target expression\\n  k ≤ n - k\\n\\nn k : ℕ\\nh : k ≤ n\\nh1 : k ≤ n → n - (n - k) = k\\n⊢ k ≤ n - k\",\"endPos\":{\"column\":12,\"line\":18},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5172bb1ec36ddde986406c9d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `choose_symmetry`\",\"endPos\":{\"column\":23,\"line\":20},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5172bb1ec36ddde986406c9d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":20},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_a_choose_symmetry' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":26},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5172bb1ec36ddde986406c9d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":26},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

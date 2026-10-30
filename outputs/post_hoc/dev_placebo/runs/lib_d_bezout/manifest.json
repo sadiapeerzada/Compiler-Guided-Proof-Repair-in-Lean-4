@@ -1,0 +1,1190 @@
+{
+  "kind": "post_hoc_development_only_placebo",
+  "protocol_sha256": "53744d0f6e6b43a5aab7ed60b689444f1a4fd6ece4e33d5704329f47fd5bfcbc",
+  "phase": "post_hoc_dev_placebo_v1",
+  "problem_id": "lib_d_bezout",
+  "family": "linear_integer_solvability",
+  "started_at": "2026-10-30T05:33:50.899021+00:00",
+  "status": "completed",
+  "initial": {
+    "key": "shared_initial",
+    "candidate": "open scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  existsi h.1\n  existsi h.2\n  refl",
+    "candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 16: unknown tactic",
+        "line 13: Unknown constant `Int.bezout`",
+        "line 12: unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 45.139,
+      "diagnostics_parsed": 5,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 16: unknown tactic\nline 13: Unknown constant `Int.bezout`\nline 12: unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry",
+      "candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  existsi h.1\n  existsi h.2\n  refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+      "verification_source_sha256": "a02fca2e2d8c0d218d1db8e59256f2421f328afdf1e7b637ef161ff97f1c4f2a",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 22,
+            "line": 6
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 6
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "unknown tactic",
+          "endPos": null,
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 3,
+            "line": 16
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Unknown constant `Int.bezout`",
+          "endPos": {
+            "column": 69,
+            "line": 13
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "lean.unknownIdentifier._namedError",
+          "pos": {
+            "column": 59,
+            "line": 13
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry",
+          "endPos": {
+            "column": 6,
+            "line": 16
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "Tactic.unsolvedGoals",
+          "pos": {
+            "column": 3,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+          "endPos": {
+            "column": 6,
+            "line": 21
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 21
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":69,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":59,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b : ℤ\\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\\n⊢ ↑(a.gcd b) = a * sorry + b * sorry\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "completion_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/shared_initial/completion.json",
+    "verification_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/shared_initial/verification.json",
+    "prompt_tokens": 218,
+    "completion_tokens": 109,
+    "generation_seconds": 18.470818375004455,
+    "selection": null
+  },
+  "conditions": {
+    "A": {
+      "success": false,
+      "attempts": [],
+      "status": "initial_only",
+      "initial_candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94"
+    },
+    "B": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "blind_repair_1",
+          "candidate": "open scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain x y := h\n  existsi x\n  existsi y\n  refl",
+          "candidate_sha256": "b7a14ec039d14a5d725ef949a83092c77f6a7c4af26aab7824c47cd1bfccaa67",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: Unknown constant `Int.bezout`",
+              "line 14: `obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`",
+              "line 14: unexpected identifier; expected command"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 92.306,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: Unknown constant `Int.bezout`\nline 14: `obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`\nline 14: unexpected identifier; expected command",
+            "candidate_sha256": "b7a14ec039d14a5d725ef949a83092c77f6a7c4af26aab7824c47cd1bfccaa67",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain x y := h\n  existsi x\n  existsi y\n  refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+            "verification_source_sha256": "539bb857c64456f27761b299fb9883d6c504c6e0fca1d4f985e2905c6f84a651",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_94b5cb6644020e3b3475573c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Int.bezout`",
+                "endPos": {
+                  "column": 69,
+                  "line": 13
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_94b5cb6644020e3b3475573c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 59,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "`obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`",
+                "endPos": {
+                  "column": 10,
+                  "line": 14
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_94b5cb6644020e3b3475573c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected command",
+                "endPos": {
+                  "column": 12,
+                  "line": 14
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_94b5cb6644020e3b3475573c.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 11,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_94b5cb6644020e3b3475573c.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_94b5cb6644020e3b3475573c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":69,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_94b5cb6644020e3b3475573c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":59,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"`obtain` requires either an expected type or a value.\\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`\",\"endPos\":{\"column\":10,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_94b5cb6644020e3b3475573c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected command\",\"endPos\":{\"column\":12,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_94b5cb6644020e3b3475573c.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":11,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_94b5cb6644020e3b3475573c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/blind_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/blind_repair_1/verification.json",
+          "prompt_tokens": 356,
+          "completion_tokens": 112,
+          "generation_seconds": 19.41524849999405,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "blind_repair_2",
+          "candidate": "open scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain ⟨x, y, h⟩ := h\n  existsi x\n  existsi y\n  rw [h]",
+          "candidate_sha256": "61322dd16c73995863931e8b5fa63ef4d57be1b0cd6963336d71cf5cb778b45e",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: Unknown constant `Int.bezout`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 44.211,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: Unknown constant `Int.bezout`",
+            "candidate_sha256": "61322dd16c73995863931e8b5fa63ef4d57be1b0cd6963336d71cf5cb778b45e",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain ⟨x, y, h⟩ := h\n  existsi x\n  existsi y\n  rw [h]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+            "verification_source_sha256": "f9aae758bdbce9fcc7ada35bd763266aabe14678f4069aaa8378d3974045dcd9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_778b9c64b9760e4557e8f621.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Int.bezout`",
+                "endPos": {
+                  "column": 69,
+                  "line": 13
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_778b9c64b9760e4557e8f621.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 59,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_778b9c64b9760e4557e8f621.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_778b9c64b9760e4557e8f621.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":69,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_778b9c64b9760e4557e8f621.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":59,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_778b9c64b9760e4557e8f621.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/blind_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/blind_repair_2/verification.json",
+          "prompt_tokens": 359,
+          "completion_tokens": 119,
+          "generation_seconds": 21.934308750001946,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "blind_repair_3",
+          "candidate": "open scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain ⟨x, y, h⟩ := h\n  existsi x\n  existsi y\n  rw h",
+          "candidate_sha256": "1a43bef073db9cc61e98452a925c0d83f5719b5b3048e10950e0f86001b93bf6",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 17: unexpected identifier; expected '['",
+              "line 13: Unknown constant `Int.bezout`",
+              "line 12: unsolved goals\na b x y : ℤ\nh : ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * x + b * y"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.682,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 17: unexpected identifier; expected '['\nline 13: Unknown constant `Int.bezout`\nline 12: unsolved goals\na b x y : ℤ\nh : ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * x + b * y",
+            "candidate_sha256": "1a43bef073db9cc61e98452a925c0d83f5719b5b3048e10950e0f86001b93bf6",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain ⟨x, y, h⟩ := h\n  existsi x\n  existsi y\n  rw h\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+            "verification_source_sha256": "28df61fd6f17132ebb66aa3cfd9b859c6b787954fde17670a7e7b22bddfbeda1",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected '['",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 4,
+                  "line": 17
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Int.bezout`",
+                "endPos": {
+                  "column": 69,
+                  "line": 13
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 59,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\na b x y : ℤ\nh : ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * x + b * y",
+                "endPos": {
+                  "column": 4,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected '['\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":69,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":59,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b x y : ℤ\\nh : ↑(a.gcd b) = a * x + b * y\\n⊢ ↑(a.gcd b) = a * x + b * y\",\"endPos\":{\"column\":4,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0b2e9df3139955a8e9cf6a0b.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/blind_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/blind_repair_3/verification.json",
+          "prompt_tokens": 366,
+          "completion_tokens": 118,
+          "generation_seconds": 19.29956533398945,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94"
+    },
+    "C": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "real_repair_1",
+          "candidate": "open scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain x y := h\n  exact x\n  exact y\n  refl",
+          "candidate_sha256": "f9d0590b6046beb7f8602629c3bb5f6fe786b24a9b916384d2b04eb0532807ac",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 13: Unknown constant `Int.bezout`",
+              "line 14: `obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`",
+              "line 14: unexpected identifier; expected command"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.374,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 13: Unknown constant `Int.bezout`\nline 14: `obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`\nline 14: unexpected identifier; expected command",
+            "candidate_sha256": "f9d0590b6046beb7f8602629c3bb5f6fe786b24a9b916384d2b04eb0532807ac",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain x y := h\n  exact x\n  exact y\n  refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+            "verification_source_sha256": "ae02787a2c0988601f47d08727f5f65894561d938f3bb68ed2d94e275f7c1e1d",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Int.bezout`",
+                "endPos": {
+                  "column": 65,
+                  "line": 13
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 55,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "`obtain` requires either an expected type or a value.\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`",
+                "endPos": {
+                  "column": 10,
+                  "line": 14
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 2,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected command",
+                "endPos": {
+                  "column": 12,
+                  "line": 14
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 11,
+                  "line": 14
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":65,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":55,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"`obtain` requires either an expected type or a value.\\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`\",\"endPos\":{\"column\":10,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected command\",\"endPos\":{\"column\":12,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":11,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/real_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/real_repair_1/verification.json",
+          "prompt_tokens": 953,
+          "completion_tokens": 107,
+          "generation_seconds": 22.468637416997808,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unknown tactic\",\n      \"endPos\": null,\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 16\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Int.bezout`\",\n      \"endPos\": {\n        \"column\": 69,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 59,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\na b : ℤ\\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\\n⊢ ↑(a.gcd b) = a * sorry + b * sorry\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 16\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 21\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_c12c6cd7490e77173b9c1001.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 21\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94"
+        },
+        {
+          "key": "real_repair_2",
+          "candidate": "open scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain ⟨x, y⟩ := h\n  exact x\n  exact y\n  refl",
+          "candidate_sha256": "3e06ce56c62c62e30af411f20b92406f678285ffe68ca46ced7c2c82b41b4eca",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 17: unknown tactic",
+              "line 13: Unknown constant `Int.bezout`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 25.436,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 17: unknown tactic\nline 13: Unknown constant `Int.bezout`",
+            "candidate_sha256": "3e06ce56c62c62e30af411f20b92406f678285ffe68ca46ced7c2c82b41b4eca",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain ⟨x, y⟩ := h\n  exact x\n  exact y\n  refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+            "verification_source_sha256": "ffd97491ffa723b6ea4928d7608196c674b05d54f63760b1eced8859632b2321",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_565b51cf56178d2a6e1140cc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_565b51cf56178d2a6e1140cc.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 17
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Int.bezout`",
+                "endPos": {
+                  "column": 65,
+                  "line": 13
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_565b51cf56178d2a6e1140cc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 55,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_565b51cf56178d2a6e1140cc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_565b51cf56178d2a6e1140cc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_565b51cf56178d2a6e1140cc.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":65,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_565b51cf56178d2a6e1140cc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":55,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_565b51cf56178d2a6e1140cc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/real_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/real_repair_2/verification.json",
+          "prompt_tokens": 956,
+          "completion_tokens": 110,
+          "generation_seconds": 12.557883125002263,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Int.bezout`\",\n      \"endPos\": {\n        \"column\": 65,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 55,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"`obtain` requires either an expected type or a value.\\nusage: `obtain ⟨patt⟩? : type (:= val)?` or `obtain ⟨patt⟩? (: type)? := val`\",\n      \"endPos\": {\n        \"column\": 10,\n        \"line\": 14\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected identifier; expected command\",\n      \"endPos\": {\n        \"column\": 12,\n        \"line\": 14\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 11,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 22\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_342dc21fe903aeebc95f2b07.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 22\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "f9d0590b6046beb7f8602629c3bb5f6fe786b24a9b916384d2b04eb0532807ac"
+        },
+        {
+          "key": "real_repair_3",
+          "candidate": "open scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain ⟨x, y⟩ := h\n  exact x\n  exact y\n  refl",
+          "candidate_sha256": "3e06ce56c62c62e30af411f20b92406f678285ffe68ca46ced7c2c82b41b4eca",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 17: unknown tactic",
+              "line 13: Unknown constant `Int.bezout`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 25.01,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 17: unknown tactic\nline 13: Unknown constant `Int.bezout`",
+            "candidate_sha256": "3e06ce56c62c62e30af411f20b92406f678285ffe68ca46ced7c2c82b41b4eca",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  obtain ⟨x, y⟩ := h\n  exact x\n  exact y\n  refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+            "verification_source_sha256": "ffd97491ffa723b6ea4928d7608196c674b05d54f63760b1eced8859632b2321",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_bc471ce33621ca1455b0c462.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_bc471ce33621ca1455b0c462.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 17
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Int.bezout`",
+                "endPos": {
+                  "column": 65,
+                  "line": 13
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_bc471ce33621ca1455b0c462.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 55,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_bc471ce33621ca1455b0c462.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_bc471ce33621ca1455b0c462.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_bc471ce33621ca1455b0c462.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":65,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_bc471ce33621ca1455b0c462.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":55,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_bc471ce33621ca1455b0c462.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/real_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/real_repair_3/verification.json",
+          "prompt_tokens": 771,
+          "completion_tokens": 110,
+          "generation_seconds": 13.010684708002373,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unknown tactic\",\n      \"endPos\": null,\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_565b51cf56178d2a6e1140cc.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 17\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Int.bezout`\",\n      \"endPos\": {\n        \"column\": 65,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_565b51cf56178d2a6e1140cc.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 55,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 22\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_565b51cf56178d2a6e1140cc.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 22\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "3e06ce56c62c62e30af411f20b92406f678285ffe68ca46ced7c2c82b41b4eca"
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94"
+    },
+    "C_placebo": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "placebo_repair_1",
+          "candidate": "open scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  existsi h.1\n  existsi h.2\n  refl",
+          "candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 16: unknown tactic",
+              "line 13: Unknown constant `Int.bezout`",
+              "line 12: unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 113.946,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 16: unknown tactic\nline 13: Unknown constant `Int.bezout`\nline 12: unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry",
+            "candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  existsi h.1\n  existsi h.2\n  refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+            "verification_source_sha256": "a02fca2e2d8c0d218d1db8e59256f2421f328afdf1e7b637ef161ff97f1c4f2a",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fe2ac8d9e611d1a8bf5e49a4.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fe2ac8d9e611d1a8bf5e49a4.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 16
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Int.bezout`",
+                "endPos": {
+                  "column": 69,
+                  "line": 13
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fe2ac8d9e611d1a8bf5e49a4.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 59,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry",
+                "endPos": {
+                  "column": 6,
+                  "line": 16
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fe2ac8d9e611d1a8bf5e49a4.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fe2ac8d9e611d1a8bf5e49a4.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fe2ac8d9e611d1a8bf5e49a4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fe2ac8d9e611d1a8bf5e49a4.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":69,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fe2ac8d9e611d1a8bf5e49a4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":59,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b : ℤ\\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\\n⊢ ↑(a.gcd b) = a * sorry + b * sorry\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fe2ac8d9e611d1a8bf5e49a4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fe2ac8d9e611d1a8bf5e49a4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/placebo_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/placebo_repair_1/verification.json",
+          "prompt_tokens": 1013,
+          "completion_tokens": 109,
+          "generation_seconds": 25.95549912500428,
+          "selection": {
+            "donor_id": "lib_d_coprime_successor",
+            "donor_family": "consecutive_coprimality",
+            "donor_category": "unknown_identifier_or_name",
+            "target_category": "unknown_identifier_or_name",
+            "target_diagnostic_tokens": 609,
+            "donor_diagnostic_tokens": 669,
+            "token_length_difference": 60,
+            "category_fallback": false,
+            "donor_payload_sha256": "48c1c0993d926ec8e6105810c31248d4342caf5285dd69f9b4ae80b53676113a",
+            "tie_break_sha256": "e55d6e4194e2184b96cfa9f0eaecd3d4cfae4507f13eb4613c788eab0b92dd8d"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  0 * ?n\\nin the target expression\\n  n * 0 = 0\\n\\nn : ℕ\\n⊢ n * 0 = 0\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  0 * ?n\\nin the target expression\\n  (n + 1) * 0 = 0\\n\\nn : ℕ\\nh1 : n * 0 = 0\\n⊢ (n + 1) * 0 = 0\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 15\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Nat.gcd_eq_gcd_add_one`\",\n      \"endPos\": {\n        \"column\": 30,\n        \"line\": 17\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 17\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_d_coprime_successor' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 24\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 24\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "placebo_repair_2",
+          "candidate": "open scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  existsi h.1\n  existsi h.2\n  refl",
+          "candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 16: unknown tactic",
+              "line 13: Unknown constant `Int.bezout`",
+              "line 12: unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 68.231,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 16: unknown tactic\nline 13: Unknown constant `Int.bezout`\nline 12: unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry",
+            "candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  existsi h.1\n  existsi h.2\n  refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+            "verification_source_sha256": "a02fca2e2d8c0d218d1db8e59256f2421f328afdf1e7b637ef161ff97f1c4f2a",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_b52f4c07c011e5b190f04f8d.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_b52f4c07c011e5b190f04f8d.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 16
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Int.bezout`",
+                "endPos": {
+                  "column": 69,
+                  "line": 13
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_b52f4c07c011e5b190f04f8d.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 59,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry",
+                "endPos": {
+                  "column": 6,
+                  "line": 16
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_b52f4c07c011e5b190f04f8d.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_b52f4c07c011e5b190f04f8d.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_b52f4c07c011e5b190f04f8d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_b52f4c07c011e5b190f04f8d.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":69,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_b52f4c07c011e5b190f04f8d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":59,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b : ℤ\\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\\n⊢ ↑(a.gcd b) = a * sorry + b * sorry\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_b52f4c07c011e5b190f04f8d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_b52f4c07c011e5b190f04f8d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/placebo_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/placebo_repair_2/verification.json",
+          "prompt_tokens": 1013,
+          "completion_tokens": 109,
+          "generation_seconds": 26.625238915992668,
+          "selection": {
+            "donor_id": "lib_d_coprime_successor",
+            "donor_family": "consecutive_coprimality",
+            "donor_category": "unknown_identifier_or_name",
+            "target_category": "unknown_identifier_or_name",
+            "target_diagnostic_tokens": 601,
+            "donor_diagnostic_tokens": 669,
+            "token_length_difference": 68,
+            "category_fallback": false,
+            "donor_payload_sha256": "48c1c0993d926ec8e6105810c31248d4342caf5285dd69f9b4ae80b53676113a",
+            "tie_break_sha256": "e55d6e4194e2184b96cfa9f0eaecd3d4cfae4507f13eb4613c788eab0b92dd8d"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  0 * ?n\\nin the target expression\\n  n * 0 = 0\\n\\nn : ℕ\\n⊢ n * 0 = 0\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  0 * ?n\\nin the target expression\\n  (n + 1) * 0 = 0\\n\\nn : ℕ\\nh1 : n * 0 = 0\\n⊢ (n + 1) * 0 = 0\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 15\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Nat.gcd_eq_gcd_add_one`\",\n      \"endPos\": {\n        \"column\": 30,\n        \"line\": 17\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 17\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_d_coprime_successor' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 24\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 24\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "placebo_repair_3",
+          "candidate": "open scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  existsi h.1\n  existsi h.2\n  refl",
+          "candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 16: unknown tactic",
+              "line 13: Unknown constant `Int.bezout`",
+              "line 12: unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 58.607,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 16: unknown tactic\nline 13: Unknown constant `Int.bezout`\nline 12: unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry",
+            "candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_d_bezout (a b : ℤ) : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y\n:= by\n  have h : ∃ x y : ℤ, (Int.gcd a b : ℤ) = a * x + b * y := Int.bezout a b\n  existsi h.1\n  existsi h.2\n  refl\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_bezout = Nl2LeanCandidate.study_d_bezout := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_bezout\n",
+            "verification_source_sha256": "a02fca2e2d8c0d218d1db8e59256f2421f328afdf1e7b637ef161ff97f1c4f2a",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 22,
+                  "line": 6
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d65d167a0470e4f34a974dfc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 6
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unknown tactic",
+                "endPos": null,
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d65d167a0470e4f34a974dfc.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 3,
+                  "line": 16
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Unknown constant `Int.bezout`",
+                "endPos": {
+                  "column": 69,
+                  "line": 13
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d65d167a0470e4f34a974dfc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 59,
+                  "line": 13
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\na b : ℤ\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\n⊢ ↑(a.gcd b) = a * sorry + b * sorry",
+                "endPos": {
+                  "column": 6,
+                  "line": 16
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d65d167a0470e4f34a974dfc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 21
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d65d167a0470e4f34a974dfc.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 21
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d65d167a0470e4f34a974dfc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unknown tactic\",\"endPos\":null,\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d65d167a0470e4f34a974dfc.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":3,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.bezout`\",\"endPos\":{\"column\":69,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d65d167a0470e4f34a974dfc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":59,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\na b : ℤ\\nh : ∃ x y, ↑(a.gcd b) = a * x + b * y\\n⊢ ↑(a.gcd b) = a * sorry + b * sorry\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d65d167a0470e4f34a974dfc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_bezout' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":21},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d65d167a0470e4f34a974dfc.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":21},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/placebo_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/lib_d_bezout/placebo_repair_3/verification.json",
+          "prompt_tokens": 1013,
+          "completion_tokens": 109,
+          "generation_seconds": 29.647244499996305,
+          "selection": {
+            "donor_id": "lib_d_coprime_successor",
+            "donor_family": "consecutive_coprimality",
+            "donor_category": "unknown_identifier_or_name",
+            "target_category": "unknown_identifier_or_name",
+            "target_diagnostic_tokens": 613,
+            "donor_diagnostic_tokens": 669,
+            "token_length_difference": 56,
+            "category_fallback": false,
+            "donor_payload_sha256": "48c1c0993d926ec8e6105810c31248d4342caf5285dd69f9b4ae80b53676113a",
+            "tie_break_sha256": "e55d6e4194e2184b96cfa9f0eaecd3d4cfae4507f13eb4613c788eab0b92dd8d"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  0 * ?n\\nin the target expression\\n  n * 0 = 0\\n\\nn : ℕ\\n⊢ n * 0 = 0\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  0 * ?n\\nin the target expression\\n  (n + 1) * 0 = 0\\n\\nn : ℕ\\nh1 : n * 0 = 0\\n⊢ (n + 1) * 0 = 0\",\n      \"endPos\": {\n        \"column\": 20,\n        \"line\": 15\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown constant `Nat.gcd_eq_gcd_add_one`\",\n      \"endPos\": {\n        \"column\": 30,\n        \"line\": 17\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 17\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_d_coprime_successor' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 24\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_3bbfd0bf6cdfae9cd7ae9807.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 24\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "b3a9c1e689803677e4900f0b42b575dcd6789d22ed5045d99713f2de929fda94"
+    }
+  },
+  "finished_at": "2026-10-30T05:47:35.164521+00:00"
+}

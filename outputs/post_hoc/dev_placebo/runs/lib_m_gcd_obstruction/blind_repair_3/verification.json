@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 16: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a * x % m\nin the target expression\n  ↑(a.gcd m) ∣ a * x\n\na b m : ℤ\nh : ¬↑(a.gcd m) ∣ b\nx : ℤ\neq : a * x ≡ b [ZMOD m]\n⊢ ↑(a.gcd m) ∣ a * x",
+    "line 19: Unknown constant `Int.ModEq_def`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 19.926,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 16: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a * x % m\nin the target expression\n  ↑(a.gcd m) ∣ a * x\n\na b m : ℤ\nh : ¬↑(a.gcd m) ∣ b\nx : ℤ\neq : a * x ≡ b [ZMOD m]\n⊢ ↑(a.gcd m) ∣ a * x\nline 19: Unknown constant `Int.ModEq_def`",
+  "candidate_sha256": "8e5718be7f13a593639cc17392bc86cf325a7da1ce8b13703ab892e1d5bdebd0",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_gcd_obstruction (a b m : ℤ) (h : ¬ (Int.gcd a m : ℤ) ∣ b) : ¬ ∃ x : ℤ, Int.ModEq m (a * x) b := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_gcd_obstruction (a b m : ℤ) (h : ¬ (Int.gcd a m : ℤ) ∣ b) : ¬ ∃ x : ℤ, Int.ModEq m (a * x) b\n:= by\n  intro ex\n  obtain ⟨x, eq⟩ := ex\n  have h1 : (Int.gcd a m : ℤ) ∣ (a * x) := by\n    rw [eq]\n    exact Int.mul_div_self_right a x\n  have h2 : (Int.gcd a m : ℤ) ∣ b := by\n    rw [Int.ModEq_def] at eq\n    exact Int.divides_trans h1 h\n  contradiction\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_gcd_obstruction = Nl2LeanCandidate.study_m_gcd_obstruction := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_gcd_obstruction\n",
+  "verification_source_sha256": "bdefc00e98155e775ec943cc3278134dd326991fecc6d07a659e05a71ba99c25",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 6
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_99222edcd76b6fae022207af.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a * x % m\nin the target expression\n  ↑(a.gcd m) ∣ a * x\n\na b m : ℤ\nh : ¬↑(a.gcd m) ∣ b\nx : ℤ\neq : a * x ≡ b [ZMOD m]\n⊢ ↑(a.gcd m) ∣ a * x",
+      "endPos": {
+        "column": 10,
+        "line": 16
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_99222edcd76b6fae022207af.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Int.ModEq_def`",
+      "endPos": {
+        "column": 21,
+        "line": 19
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_99222edcd76b6fae022207af.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_gcd_obstruction' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 26
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_99222edcd76b6fae022207af.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 26
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_99222edcd76b6fae022207af.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  a * x % m\\nin the target expression\\n  ↑(a.gcd m) ∣ a * x\\n\\na b m : ℤ\\nh : ¬↑(a.gcd m) ∣ b\\nx : ℤ\\neq : a * x ≡ b [ZMOD m]\\n⊢ ↑(a.gcd m) ∣ a * x\",\"endPos\":{\"column\":10,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_99222edcd76b6fae022207af.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Int.ModEq_def`\",\"endPos\":{\"column\":21,\"line\":19},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_99222edcd76b6fae022207af.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_gcd_obstruction' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":26},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_99222edcd76b6fae022207af.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":26},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

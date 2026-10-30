@@ -1,4 +1,4 @@
-# Compiler-Guided Repair for Natural-Language-to-Lean Formalization
+# Compiler-Guided Proof Repair in Lean 4: A Controlled Local-Model Pilot on Fixed Theorem Types
 
 The [final submission review](docs/FINAL_M1_M7_COMPLIANCE_REPORT.md) maps the actual study to the professor’s supplied requirements. **Full-compliance submission: NO-GO** while M1/M2/M3 remain partial. The reduced fixed-theorem empirical pilot is prepared for supervisor review. M4/M5/M6 and the M7 empirical manuscript rewrite are complete in their documented scopes.
 

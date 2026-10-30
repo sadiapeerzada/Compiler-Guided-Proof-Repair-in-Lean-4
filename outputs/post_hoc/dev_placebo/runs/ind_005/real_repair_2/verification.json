@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: Type mismatch\n  ih\nhas type\n  ∑ k ∈ Finset.range (n + 1), n.choose k = 2 ^ n\nbut is expected to have type\n  ∑ k ∈ Finset.range (n + 2), (n + 1).choose k = 2 ^ (n + 1)",
+    "line 18: Unknown identifier `two_pow_succ`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.295,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: Type mismatch\n  ih\nhas type\n  ∑ k ∈ Finset.range (n + 1), n.choose k = 2 ^ n\nbut is expected to have type\n  ∑ k ∈ Finset.range (n + 2), (n + 1).choose k = 2 ^ (n + 1)\nline 18: Unknown identifier `two_pow_succ`",
+  "candidate_sha256": "d7007994942ada08c4cae5e4a619f748344917e86a2f9729f8dd9dca4eddfd37",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem pascal_row_sum (n : ℕ) : ∑ k ∈ Finset.range (n + 1), Nat.choose n k = 2 ^ n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem pascal_row_sum (n : ℕ) : ∑ k ∈ Finset.range (n + 1), Nat.choose n k = 2 ^ n\n:= by\n  induction n with\n  | zero =>\n    simp [Finset.range, Nat.choose]\n  | succ n ih =>\n    have : ∑ k ∈ Finset.range (n + 2), Nat.choose (n + 1) k = 2 ^ (n + 1) := ih\n    have : ∑ k ∈ Finset.range (n + 2), Nat.choose (n + 1) k = ∑ k ∈ Finset.range (n + 1), Nat.choose (n + 1) k + Nat.choose (n + 1) (n + 1) := by\n      rw [Finset.sum_range_succ]\n    rw [this, add_comm, two_pow_succ, add_assoc, ih, add_zero]\n    simp [Finset.range, Nat.choose]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.pascal_row_sum = Nl2LeanCandidate.pascal_row_sum := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.pascal_row_sum\n",
+  "verification_source_sha256": "4f3d1f3f0cf58888d31a14ad5359497d5800dd39955debd7b63d609d380f5939",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 5
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_c7fff32c2f8e2bba2a8ca8b9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  ih\nhas type\n  ∑ k ∈ Finset.range (n + 1), n.choose k = 2 ^ n\nbut is expected to have type\n  ∑ k ∈ Finset.range (n + 2), (n + 1).choose k = 2 ^ (n + 1)",
+      "endPos": {
+        "column": 79,
+        "line": 15
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_c7fff32c2f8e2bba2a8ca8b9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 77,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `two_pow_succ`",
+      "endPos": {
+        "column": 36,
+        "line": 18
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_c7fff32c2f8e2bba2a8ca8b9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 24,
+        "line": 18
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.pascal_row_sum' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 24
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_c7fff32c2f8e2bba2a8ca8b9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 24
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_c7fff32c2f8e2bba2a8ca8b9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  ih\\nhas type\\n  ∑ k ∈ Finset.range (n + 1), n.choose k = 2 ^ n\\nbut is expected to have type\\n  ∑ k ∈ Finset.range (n + 2), (n + 1).choose k = 2 ^ (n + 1)\",\"endPos\":{\"column\":79,\"line\":15},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_c7fff32c2f8e2bba2a8ca8b9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":77,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `two_pow_succ`\",\"endPos\":{\"column\":36,\"line\":18},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_c7fff32c2f8e2bba2a8ca8b9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":24,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.pascal_row_sum' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_c7fff32c2f8e2bba2a8ca8b9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

@@ -1,0 +1,1100 @@
+{
+  "kind": "post_hoc_development_only_placebo",
+  "protocol_sha256": "53744d0f6e6b43a5aab7ed60b689444f1a4fd6ece4e33d5704329f47fd5bfcbc",
+  "phase": "post_hoc_dev_placebo_v1",
+  "problem_id": "ind_006",
+  "family": "linear_integer_solvability",
+  "started_at": "2026-10-30T04:24:34.843705+00:00",
+  "status": "completed",
+  "initial": {
+    "key": "shared_initial",
+    "candidate": "theorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : 0 ≤ 5 * k, by linarith; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos h3 (nat.sub_nonpos_of_le h1));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * (k + 6) + 8 * 2 = n, by linarith [hnk];\n  exact ⟨k + 6, 2, h4⟩\nend",
+    "candidate_sha256": "945e60e2290f3815fda3255267eedf16fed3ed3257606bc49079e5a82ddb8165",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 9: unexpected identifier; expected ':=', 'where' or '|'",
+        "line 18: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 33.304,
+      "diagnostics_parsed": 4,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 9: unexpected identifier; expected ':=', 'where' or '|'\nline 18: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+      "candidate_sha256": "945e60e2290f3815fda3255267eedf16fed3ed3257606bc49079e5a82ddb8165",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : 0 ≤ 5 * k, by linarith; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos h3 (nat.sub_nonpos_of_le h1));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * (k + 6) + 8 * 2 = n, by linarith [hnk];\n  exact ⟨k + 6, 2, h4⟩\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.postage_representable_large = Nl2LeanCandidate.postage_representable_large := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.postage_representable_large\n",
+      "verification_source_sha256": "bff61c27fa10e44129ebc1b8cb68a196a1b90b60d88fea9a32e61b48b1d8d08a",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 35,
+            "line": 5
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_5e242988127e426f6e6a08de.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 5
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "unexpected identifier; expected ':=', 'where' or '|'",
+          "endPos": {
+            "column": 5,
+            "line": 10
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_5e242988127e426f6e6a08de.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 102,
+            "line": 9
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+          "endPos": {
+            "column": 3,
+            "line": 18
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_5e242988127e426f6e6a08de.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 18
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]",
+          "endPos": {
+            "column": 6,
+            "line": 23
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_5e242988127e426f6e6a08de.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 23
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5e242988127e426f6e6a08de.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected ':=', 'where' or '|'\",\"endPos\":{\"column\":5,\"line\":10},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5e242988127e426f6e6a08de.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":102,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":18},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5e242988127e426f6e6a08de.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":23},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5e242988127e426f6e6a08de.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":23},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_006/shared_initial/completion.json",
+    "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_006/shared_initial/verification.json",
+    "prompt_tokens": 220,
+    "completion_tokens": 206,
+    "generation_seconds": 10.045348624989856,
+    "selection": null
+  },
+  "conditions": {
+    "A": {
+      "success": false,
+      "attempts": [],
+      "status": "initial_only",
+      "initial_candidate_sha256": "945e60e2290f3815fda3255267eedf16fed3ed3257606bc49079e5a82ddb8165"
+    },
+    "B": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "blind_repair_1",
+          "candidate": "theorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : 0 ≤ 5 * k, by linarith; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos h3 (nat.sub_nonpos_of_le h1));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * k + 8 * 4 = n, by linarith [hnk];\n  exact ⟨k, 4, h4⟩\nend",
+          "candidate_sha256": "218e19cbe9fd8a3b57fcca65f47cd2ee5ae81408ff664e5d1bff1cc1c0081290",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected identifier; expected ':=', 'where' or '|'",
+              "line 18: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 31.572,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected identifier; expected ':=', 'where' or '|'\nline 18: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+            "candidate_sha256": "218e19cbe9fd8a3b57fcca65f47cd2ee5ae81408ff664e5d1bff1cc1c0081290",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : 0 ≤ 5 * k, by linarith; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos h3 (nat.sub_nonpos_of_le h1));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * k + 8 * 4 = n, by linarith [hnk];\n  exact ⟨k, 4, h4⟩\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.postage_representable_large = Nl2LeanCandidate.postage_representable_large := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.postage_representable_large\n",
+            "verification_source_sha256": "8456905167efbf30eb4b46110a3c60f2edf3e739e0997eff8b908d023960d735",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 35,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_127e7db55e6efd42fb0447a4.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected ':=', 'where' or '|'",
+                "endPos": {
+                  "column": 5,
+                  "line": 10
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_127e7db55e6efd42fb0447a4.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 102,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 18
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_127e7db55e6efd42fb0447a4.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 23
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_127e7db55e6efd42fb0447a4.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 23
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_127e7db55e6efd42fb0447a4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected ':=', 'where' or '|'\",\"endPos\":{\"column\":5,\"line\":10},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_127e7db55e6efd42fb0447a4.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":102,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":18},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_127e7db55e6efd42fb0447a4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":23},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_127e7db55e6efd42fb0447a4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":23},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_006/blind_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_006/blind_repair_1/verification.json",
+          "prompt_tokens": 447,
+          "completion_tokens": 198,
+          "generation_seconds": 10.913782791001722,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "blind_repair_2",
+          "candidate": "theorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : ∃ k : ℕ, n - 28 = 5 * k, by exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos (λ k, by linarith [hn]));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * k + 8 * (n - 28) / 5 = n, by linarith [hnk];\n  exact ⟨k, (n - 28) / 5, h4⟩\nend",
+          "candidate_sha256": "a1dbe3e0303c11c3af452e9a5826e2cda8959613c53e3b8be6f7946c5a3979dc",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected identifier; expected ':=', 'where' or '|'",
+              "line 17: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 31.978,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected identifier; expected ':=', 'where' or '|'\nline 17: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+            "candidate_sha256": "a1dbe3e0303c11c3af452e9a5826e2cda8959613c53e3b8be6f7946c5a3979dc",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : ∃ k : ℕ, n - 28 = 5 * k, by exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos (λ k, by linarith [hn]));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * k + 8 * (n - 28) / 5 = n, by linarith [hnk];\n  exact ⟨k, (n - 28) / 5, h4⟩\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.postage_representable_large = Nl2LeanCandidate.postage_representable_large := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.postage_representable_large\n",
+            "verification_source_sha256": "37f8c813cd7d34ffc80563345f4ce804da5252833c0cfd318c3370b96224ce03",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 35,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_3e76dc1fa00e1765677bd8d7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected ':=', 'where' or '|'",
+                "endPos": {
+                  "column": 5,
+                  "line": 10
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_3e76dc1fa00e1765677bd8d7.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 102,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_3e76dc1fa00e1765677bd8d7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_3e76dc1fa00e1765677bd8d7.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_3e76dc1fa00e1765677bd8d7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected ':=', 'where' or '|'\",\"endPos\":{\"column\":5,\"line\":10},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_3e76dc1fa00e1765677bd8d7.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":102,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_3e76dc1fa00e1765677bd8d7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_3e76dc1fa00e1765677bd8d7.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_006/blind_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_006/blind_repair_2/verification.json",
+          "prompt_tokens": 439,
+          "completion_tokens": 216,
+          "generation_seconds": 11.631340125008137,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "blind_repair_3",
+          "candidate": "theorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : ∃ k : ℕ, n - 28 = 5 * k, by exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos (λ k, by linarith [hn]));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * k + 8 * (n - 28) / 5 = n, by linarith [hnk];\n  have h5 : (n - 28) / 5 ≤ n / 5, by linarith;\n  have h6 : (n - 28) / 5 ≥ 0, by linarith [hn, h5];\n  obtain eight, h8 : (n - 28) / 5 = eight, from nat.exists_of_nonneg h6 (nat.exists_of_nonpos (λ eight, by linarith [h5]));\n  exact ⟨k, eight, h4⟩\nend",
+          "candidate_sha256": "f3809bfb990b80fdcdcdb15daf196e5309af7f758d977109784e587d9141b7ca",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected identifier; expected ':=', 'where' or '|'",
+              "line 20: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.012,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected identifier; expected ':=', 'where' or '|'\nline 20: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+            "candidate_sha256": "f3809bfb990b80fdcdcdb15daf196e5309af7f758d977109784e587d9141b7ca",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : ∃ k : ℕ, n - 28 = 5 * k, by exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos (λ k, by linarith [hn]));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * k + 8 * (n - 28) / 5 = n, by linarith [hnk];\n  have h5 : (n - 28) / 5 ≤ n / 5, by linarith;\n  have h6 : (n - 28) / 5 ≥ 0, by linarith [hn, h5];\n  obtain eight, h8 : (n - 28) / 5 = eight, from nat.exists_of_nonneg h6 (nat.exists_of_nonpos (λ eight, by linarith [h5]));\n  exact ⟨k, eight, h4⟩\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.postage_representable_large = Nl2LeanCandidate.postage_representable_large := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.postage_representable_large\n",
+            "verification_source_sha256": "453bd545d96fd0ae024a917a84a103c26c4bfdfe6f4598c75473ae4e7de7340b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 35,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_165ce1f711cebd52cc6d57df.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected ':=', 'where' or '|'",
+                "endPos": {
+                  "column": 5,
+                  "line": 10
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_165ce1f711cebd52cc6d57df.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 102,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 20
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_165ce1f711cebd52cc6d57df.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 20
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 25
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_165ce1f711cebd52cc6d57df.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 25
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_165ce1f711cebd52cc6d57df.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected ':=', 'where' or '|'\",\"endPos\":{\"column\":5,\"line\":10},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_165ce1f711cebd52cc6d57df.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":102,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":20},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_165ce1f711cebd52cc6d57df.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":25},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_165ce1f711cebd52cc6d57df.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":25},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_006/blind_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_006/blind_repair_3/verification.json",
+          "prompt_tokens": 457,
+          "completion_tokens": 305,
+          "generation_seconds": 15.312997624991112,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "945e60e2290f3815fda3255267eedf16fed3ed3257606bc49079e5a82ddb8165"
+    },
+    "C": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "real_repair_1",
+          "candidate": "theorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : 0 ≤ 5 * k, by linarith; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos h3 (nat.sub_nonpos_of_le h1));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h4⟩\nend",
+          "candidate_sha256": "f57c597b005d5f2f8149e686399422a8a279a45a5d51697934706e99f72dca0e",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected identifier; expected ':=', 'where' or '|'",
+              "line 18: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.477,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected identifier; expected ':=', 'where' or '|'\nline 18: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+            "candidate_sha256": "f57c597b005d5f2f8149e686399422a8a279a45a5d51697934706e99f72dca0e",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : 0 ≤ 5 * k, by linarith; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos h3 (nat.sub_nonpos_of_le h1));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h4⟩\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.postage_representable_large = Nl2LeanCandidate.postage_representable_large := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.postage_representable_large\n",
+            "verification_source_sha256": "23de54631f0bb5b99f874a0495f7df0e287058c4497e500b234a111e4b34d447",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 35,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d15e4e4420eea5b8850a33d2.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected ':=', 'where' or '|'",
+                "endPos": {
+                  "column": 5,
+                  "line": 10
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d15e4e4420eea5b8850a33d2.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 102,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 18
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d15e4e4420eea5b8850a33d2.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 23
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d15e4e4420eea5b8850a33d2.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 23
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d15e4e4420eea5b8850a33d2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected ':=', 'where' or '|'\",\"endPos\":{\"column\":5,\"line\":10},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d15e4e4420eea5b8850a33d2.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":102,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":18},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d15e4e4420eea5b8850a33d2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":23},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d15e4e4420eea5b8850a33d2.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":23},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_006/real_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_006/real_repair_1/verification.json",
+          "prompt_tokens": 968,
+          "completion_tokens": 206,
+          "generation_seconds": 14.021102875005454,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected identifier; expected ':=', 'where' or '|'\",\n      \"endPos\": {\n        \"column\": 5,\n        \"line\": 10\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_5e242988127e426f6e6a08de.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 102,\n        \"line\": 9\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\n      \"endPos\": {\n        \"column\": 3,\n        \"line\": 18\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_5e242988127e426f6e6a08de.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 18\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 23\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_5e242988127e426f6e6a08de.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 23\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "945e60e2290f3815fda3255267eedf16fed3ed3257606bc49079e5a82ddb8165"
+        },
+        {
+          "key": "real_repair_2",
+          "candidate": "theorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : 0 ≤ 5 * k, by linarith; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos h3 (nat.sub_nonpos_of_le h1));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h4⟩\nend",
+          "candidate_sha256": "f57c597b005d5f2f8149e686399422a8a279a45a5d51697934706e99f72dca0e",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected identifier; expected ':=', 'where' or '|'",
+              "line 18: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 32.98,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected identifier; expected ':=', 'where' or '|'\nline 18: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+            "candidate_sha256": "f57c597b005d5f2f8149e686399422a8a279a45a5d51697934706e99f72dca0e",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : 0 ≤ 5 * k, by linarith; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos h3 (nat.sub_nonpos_of_le h1));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h4⟩\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.postage_representable_large = Nl2LeanCandidate.postage_representable_large := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.postage_representable_large\n",
+            "verification_source_sha256": "23de54631f0bb5b99f874a0495f7df0e287058c4497e500b234a111e4b34d447",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 35,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_881018f0591dec90392fc8cb.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected ':=', 'where' or '|'",
+                "endPos": {
+                  "column": 5,
+                  "line": 10
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_881018f0591dec90392fc8cb.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 102,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 18
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_881018f0591dec90392fc8cb.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 23
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_881018f0591dec90392fc8cb.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 23
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_881018f0591dec90392fc8cb.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected ':=', 'where' or '|'\",\"endPos\":{\"column\":5,\"line\":10},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_881018f0591dec90392fc8cb.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":102,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":18},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_881018f0591dec90392fc8cb.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":23},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_881018f0591dec90392fc8cb.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":23},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_006/real_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_006/real_repair_2/verification.json",
+          "prompt_tokens": 962,
+          "completion_tokens": 206,
+          "generation_seconds": 14.057950625006924,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected identifier; expected ':=', 'where' or '|'\",\n      \"endPos\": {\n        \"column\": 5,\n        \"line\": 10\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_d15e4e4420eea5b8850a33d2.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 102,\n        \"line\": 9\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\n      \"endPos\": {\n        \"column\": 3,\n        \"line\": 18\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_d15e4e4420eea5b8850a33d2.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 18\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 23\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_d15e4e4420eea5b8850a33d2.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 23\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "f57c597b005d5f2f8149e686399422a8a279a45a5d51697934706e99f72dca0e"
+        },
+        {
+          "key": "real_repair_3",
+          "candidate": "theorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : 0 ≤ 5 * k, by linarith; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos h3 (nat.sub_nonpos_of_le h1));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h4⟩\nend",
+          "candidate_sha256": "f57c597b005d5f2f8149e686399422a8a279a45a5d51697934706e99f72dca0e",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected identifier; expected ':=', 'where' or '|'",
+              "line 18: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.899,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected identifier; expected ':=', 'where' or '|'\nline 18: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+            "candidate_sha256": "f57c597b005d5f2f8149e686399422a8a279a45a5d51697934706e99f72dca0e",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    have h3 : 0 ≤ 5 * k, by linarith; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos h3 (nat.sub_nonpos_of_le h1));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h4⟩\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.postage_representable_large = Nl2LeanCandidate.postage_representable_large := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.postage_representable_large\n",
+            "verification_source_sha256": "23de54631f0bb5b99f874a0495f7df0e287058c4497e500b234a111e4b34d447",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 35,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_311554d877d771e2a7689f9a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected ':=', 'where' or '|'",
+                "endPos": {
+                  "column": 5,
+                  "line": 10
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_311554d877d771e2a7689f9a.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 102,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 18
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_311554d877d771e2a7689f9a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 18
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 23
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_311554d877d771e2a7689f9a.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 23
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_311554d877d771e2a7689f9a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected ':=', 'where' or '|'\",\"endPos\":{\"column\":5,\"line\":10},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_311554d877d771e2a7689f9a.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":102,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":18},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_311554d877d771e2a7689f9a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":23},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_311554d877d771e2a7689f9a.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":23},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_006/real_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_006/real_repair_3/verification.json",
+          "prompt_tokens": 959,
+          "completion_tokens": 206,
+          "generation_seconds": 14.37197587499395,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected identifier; expected ':=', 'where' or '|'\",\n      \"endPos\": {\n        \"column\": 5,\n        \"line\": 10\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_881018f0591dec90392fc8cb.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 102,\n        \"line\": 9\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\n      \"endPos\": {\n        \"column\": 3,\n        \"line\": 18\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_881018f0591dec90392fc8cb.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 18\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 23\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_881018f0591dec90392fc8cb.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 23\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "f57c597b005d5f2f8149e686399422a8a279a45a5d51697934706e99f72dca0e"
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "945e60e2290f3815fda3255267eedf16fed3ed3257606bc49079e5a82ddb8165"
+    },
+    "C_placebo": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "placebo_repair_1",
+          "candidate": "theorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos (nat.sub_nonpos_of_le h2) (nat.zero_le _));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h4⟩\nend",
+          "candidate_sha256": "f46ed6087f3c70dcb832527dd512db185c22c1255a22729094b6004b7d8c52d9",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected identifier; expected ':=', 'where' or '|'",
+              "line 17: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.026,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected identifier; expected ':=', 'where' or '|'\nline 17: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+            "candidate_sha256": "f46ed6087f3c70dcb832527dd512db185c22c1255a22729094b6004b7d8c52d9",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos (nat.sub_nonpos_of_le h2) (nat.zero_le _));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h4 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h4⟩\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.postage_representable_large = Nl2LeanCandidate.postage_representable_large := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.postage_representable_large\n",
+            "verification_source_sha256": "7e4481c02a67aff0b0115a2dc9d7eb38ffdfa7fb080ccb1323a673cd0af0f50b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 35,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_63e9bf4c0da33c3b705addd5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected ':=', 'where' or '|'",
+                "endPos": {
+                  "column": 5,
+                  "line": 10
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_63e9bf4c0da33c3b705addd5.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 102,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_63e9bf4c0da33c3b705addd5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_63e9bf4c0da33c3b705addd5.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_63e9bf4c0da33c3b705addd5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected ':=', 'where' or '|'\",\"endPos\":{\"column\":5,\"line\":10},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_63e9bf4c0da33c3b705addd5.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":102,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_63e9bf4c0da33c3b705addd5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_63e9bf4c0da33c3b705addd5.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_006/placebo_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_006/placebo_repair_1/verification.json",
+          "prompt_tokens": 1154,
+          "completion_tokens": 192,
+          "generation_seconds": 14.518810292007402,
+          "selection": {
+            "donor_id": "lib_a_euclidean",
+            "donor_family": "integer_euclidean_reconstruction",
+            "donor_category": "other_compiler_error",
+            "target_category": "other_compiler_error",
+            "target_diagnostic_tokens": 533,
+            "donor_diagnostic_tokens": 719,
+            "token_length_difference": 186,
+            "category_fallback": false,
+            "donor_payload_sha256": "2ba9690363d076aa9b0d57d79e6701b5352e006ea2c1d02df200e56fc0d3f071",
+            "tie_break_sha256": "3c2f8fefc3c4d11b1119037b1f963d21e22dac117aff2f650b6a0ffdd12ed78b"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\",\n      \"endPos\": {\n        \"column\": 11,\n        \"line\": 18\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\",\n      \"endPos\": {\n        \"column\": 11,\n        \"line\": 23\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 19\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `ofNat` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `negSucc` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 28\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 28\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "placebo_repair_2",
+          "candidate": "theorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos (nat.sub_nonpos_of_le h2) (nat.zero_le _));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h3 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h3⟩\nend",
+          "candidate_sha256": "4e38504ccf171d10e9a3e6ecb17f5897b8a320157d8696d32d2ca98617de627b",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected identifier; expected ':=', 'where' or '|'",
+              "line 17: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.482,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected identifier; expected ':=', 'where' or '|'\nline 17: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+            "candidate_sha256": "4e38504ccf171d10e9a3e6ecb17f5897b8a320157d8696d32d2ca98617de627b",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos (nat.sub_nonpos_of_le h2) (nat.zero_le _));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h3 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h3⟩\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.postage_representable_large = Nl2LeanCandidate.postage_representable_large := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.postage_representable_large\n",
+            "verification_source_sha256": "ea180a4b1128d0a0f7f7d87bf155871433a2afb16a95b9da844df62abada025a",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 35,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d19c4ce58a9b4e807eb688e8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected ':=', 'where' or '|'",
+                "endPos": {
+                  "column": 5,
+                  "line": 10
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d19c4ce58a9b4e807eb688e8.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 102,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d19c4ce58a9b4e807eb688e8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_d19c4ce58a9b4e807eb688e8.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d19c4ce58a9b4e807eb688e8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected ':=', 'where' or '|'\",\"endPos\":{\"column\":5,\"line\":10},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d19c4ce58a9b4e807eb688e8.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":102,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d19c4ce58a9b4e807eb688e8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_d19c4ce58a9b4e807eb688e8.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_006/placebo_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_006/placebo_repair_2/verification.json",
+          "prompt_tokens": 1140,
+          "completion_tokens": 192,
+          "generation_seconds": 14.336468875000719,
+          "selection": {
+            "donor_id": "lib_a_euclidean",
+            "donor_family": "integer_euclidean_reconstruction",
+            "donor_category": "other_compiler_error",
+            "target_category": "other_compiler_error",
+            "target_diagnostic_tokens": 524,
+            "donor_diagnostic_tokens": 719,
+            "token_length_difference": 195,
+            "category_fallback": false,
+            "donor_payload_sha256": "2ba9690363d076aa9b0d57d79e6701b5352e006ea2c1d02df200e56fc0d3f071",
+            "tie_break_sha256": "3c2f8fefc3c4d11b1119037b1f963d21e22dac117aff2f650b6a0ffdd12ed78b"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\",\n      \"endPos\": {\n        \"column\": 11,\n        \"line\": 18\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\",\n      \"endPos\": {\n        \"column\": 11,\n        \"line\": 23\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 19\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `ofNat` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `negSucc` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 28\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 28\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "placebo_repair_3",
+          "candidate": "theorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos (nat.sub_nonpos_of_le h2) (nat.zero_le _));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h3 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h3⟩\nend",
+          "candidate_sha256": "4e38504ccf171d10e9a3e6ecb17f5897b8a320157d8696d32d2ca98617de627b",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 9: unexpected identifier; expected ':=', 'where' or '|'",
+              "line 17: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.473,
+            "diagnostics_parsed": 4,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 9: unexpected identifier; expected ':=', 'where' or '|'\nline 17: Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+            "candidate_sha256": "4e38504ccf171d10e9a3e6ecb17f5897b8a320157d8696d32d2ca98617de627b",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem postage_representable_large (n : ℕ) (hn : 28 ≤ n) : ∃ five eight : ℕ, 5 * five + 8 * eight = n\nproof\n  have h1 : ∃ k : ℕ, n - 28 = 5 * k, by\n    have h2 : 0 ≤ n - 28, by linarith [hn]; \n    exact nat.exists_of_nonneg h2 (nat.exists_of_nonpos (nat.sub_nonpos_of_le h2) (nat.zero_le _));\n  obtain k, hnk : n - 28 = 5 * k, from h1;\n  have h3 : 5 * (k + 5) + 8 * 1 = n, by linarith [hnk];\n  exact ⟨k + 5, 1, h3⟩\nend\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.postage_representable_large = Nl2LeanCandidate.postage_representable_large := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.postage_representable_large\n",
+            "verification_source_sha256": "ea180a4b1128d0a0f7f7d87bf155871433a2afb16a95b9da844df62abada025a",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 35,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_6b33906200a2bc0f39baf690.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected identifier; expected ':=', 'where' or '|'",
+                "endPos": {
+                  "column": 5,
+                  "line": 10
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_6b33906200a2bc0f39baf690.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 102,
+                  "line": 9
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\n\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲",
+                "endPos": {
+                  "column": 3,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_6b33906200a2bc0f39baf690.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 22
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_6b33906200a2bc0f39baf690.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 22
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":35,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_6b33906200a2bc0f39baf690.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected identifier; expected ':=', 'where' or '|'\",\"endPos\":{\"column\":5,\"line\":10},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_6b33906200a2bc0f39baf690.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":102,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Missing name after `end`: Expected the current scope name `Nl2LeanCandidate`\\n\\nHint: To end the current scope `Nl2LeanCandidate`, specify its name:\\n  end ̲N̲l̲2̲L̲e̲a̲n̲C̲a̲n̲d̲i̲d̲a̲t̲e̲\",\"endPos\":{\"column\":3,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_6b33906200a2bc0f39baf690.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.postage_representable_large' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_6b33906200a2bc0f39baf690.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":22},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_006/placebo_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_006/placebo_repair_3/verification.json",
+          "prompt_tokens": 1140,
+          "completion_tokens": 192,
+          "generation_seconds": 30.74604804199771,
+          "selection": {
+            "donor_id": "lib_a_euclidean",
+            "donor_family": "integer_euclidean_reconstruction",
+            "donor_category": "other_compiler_error",
+            "target_category": "other_compiler_error",
+            "target_diagnostic_tokens": 527,
+            "donor_diagnostic_tokens": 719,
+            "token_length_difference": 192,
+            "category_fallback": false,
+            "donor_payload_sha256": "2ba9690363d076aa9b0d57d79e6701b5352e006ea2c1d02df200e56fc0d3f071",
+            "tie_break_sha256": "3c2f8fefc3c4d11b1119037b1f963d21e22dac117aff2f650b6a0ffdd12ed78b"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid alternative name `zero`: Expected `ofNat` or `negSucc`\",\n      \"endPos\": {\n        \"column\": 11,\n        \"line\": 18\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Invalid alternative name `nonZero`: Expected `ofNat` or `negSucc`\",\n      \"endPos\": {\n        \"column\": 11,\n        \"line\": 23\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 19\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `ofNat` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `negSucc` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_a_euclidean' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 28\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_09a16eacbea7b01dda1cb342.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 28\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "945e60e2290f3815fda3255267eedf16fed3ed3257606bc49079e5a82ddb8165"
+    }
+  },
+  "finished_at": "2026-10-30T04:34:17.478624+00:00"
+}

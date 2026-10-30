@@ -54,3 +54,41 @@ completed repairs or observed failures. Synthetic tests are isolated under
 The separate dev-only extension is documented under `extensions/`; no existing
 held-out condition can be replayed by these scripts. Study 2 model execution is
 explicitly deferred until separately approved.
+
+After the approved dev worker reaches its durable end marker, run:
+
+```sh
+.venv/bin/python -m analysis.validate_dev
+.venv/bin/python -m analysis.dev_placebo
+.venv/bin/python -m analysis.dev_figures
+.venv/bin/python -m analysis.check_public_dev
+.venv/bin/python -m analysis.paper_additions
+.venv/bin/python -m analysis.update_paper
+.venv/bin/python -m analysis.compile_paper
+```
+
+The dev analyzer writes explicit completed-repair denominators, category/index
+repetition groups, transitions, donor ancestry, physical-call resources and
+descriptive success intervals. Its nominal Wilson intervals treat problems as
+independent and are labeled accordingly; only five dev families exist. It makes
+no hypothesis-test claim. The new manuscript goes to
+`outputs/post_hoc/manuscript/post_hoc_pilot.pdf`; existing PDFs are retained.
+These commands do not regenerate model responses. Do not rerun an analyzer into
+an existing output path; preserve its first outputs and use a fresh location for
+any subsequent reproduction.
+
+`analysis.check_public_dev` is a non-inference, non-tokenizer check that can also
+run from the reviewed public source view. It checks stored response/journal and
+candidate bindings, seeds/budgets, shared initials, reported success denominators
+and deterministic donor selection using recorded token counts. It does not claim
+fresh kernel verification, original-donor authenticity, or tokenizer recomputation.
+
+Reproduce the completed dev analysis/plots into a fresh directory, referencing
+the original new dev records through a relative read-only-use link:
+
+```sh
+.venv/bin/python -m analysis.reproduce_dev --output outputs/post_hoc/dev_reproduced_run1
+```
+
+This checks numerical JSON/CSV outputs byte-for-byte. PDF metadata timestamps
+are not claimed identical. It never reruns inference or overwrites a record.

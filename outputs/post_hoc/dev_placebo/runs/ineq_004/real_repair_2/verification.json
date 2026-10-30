@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 73.75,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+  "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+  "verification_source_sha256": "29ab8cf9d7cc985d28ff29edca37b45188fae96007669ea56064abec7510a3c9",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 30,
+        "line": 5
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+      "endPos": {
+        "column": 50,
+        "line": 11
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 41,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 17
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 17
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\"endPos\":{\"column\":50,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":41,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

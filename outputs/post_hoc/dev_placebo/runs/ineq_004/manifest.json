@@ -1,0 +1,920 @@
+{
+  "kind": "post_hoc_development_only_placebo",
+  "protocol_sha256": "53744d0f6e6b43a5aab7ed60b689444f1a4fd6ece4e33d5704329f47fd5bfcbc",
+  "phase": "post_hoc_dev_placebo_v1",
+  "problem_id": "ineq_004",
+  "family": "linear_inequality_by_induction",
+  "started_at": "2026-10-30T05:05:55.724790+00:00",
+  "status": "completed",
+  "initial": {
+    "key": "shared_initial",
+    "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by\n      rw [add_assoc] at this\n      exact this\n    )\n  exact add_lt_add_right h n",
+    "candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 12: Unknown identifier `this`"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 85.591,
+      "diagnostics_parsed": 3,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 12: Unknown identifier `this`",
+      "candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by\n      rw [add_assoc] at this\n      exact this\n    )\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+      "verification_source_sha256": "4ff865883f653e33eb69197891951b35cca3c2de121d7f55a512b228059ac9d3",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 30,
+            "line": 5
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_2bd20e6a2afe8b59d19cdb2d.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 5
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "Unknown identifier `this`",
+          "endPos": {
+            "column": 28,
+            "line": 12
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_2bd20e6a2afe8b59d19cdb2d.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "lean.unknownIdentifier._namedError",
+          "pos": {
+            "column": 24,
+            "line": 12
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+          "endPos": {
+            "column": 6,
+            "line": 20
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_2bd20e6a2afe8b59d19cdb2d.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 20
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2bd20e6a2afe8b59d19cdb2d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `this`\",\"endPos\":{\"column\":28,\"line\":12},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2bd20e6a2afe8b59d19cdb2d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":24,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2bd20e6a2afe8b59d19cdb2d.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "completion_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/shared_initial/completion.json",
+    "verification_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/shared_initial/verification.json",
+    "prompt_tokens": 219,
+    "completion_tokens": 77,
+    "generation_seconds": 4.886286207998637,
+    "selection": null
+  },
+  "conditions": {
+    "A": {
+      "success": false,
+      "attempts": [],
+      "status": "initial_only",
+      "initial_candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661"
+    },
+    "B": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "blind_repair_1",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n",
+          "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 55.454,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+            "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "769a417025a5bed37723cac13ac69926b90847d12051de5098b0244575422ad6",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_9a5e7bf65e988fd7fb158b05.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+                "endPos": {
+                  "column": 44,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_9a5e7bf65e988fd7fb158b05.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 33,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_9a5e7bf65e988fd7fb158b05.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_9a5e7bf65e988fd7fb158b05.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  zero_lt_one\\nhas type\\n  0 < 1\\nbut is expected to have type\\n  3 + ?m.30 < 7 + ?m.30\\nin the application\\n  lt_of_add_lt_add_right zero_lt_one\",\"endPos\":{\"column\":44,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_9a5e7bf65e988fd7fb158b05.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":33,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_9a5e7bf65e988fd7fb158b05.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/blind_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/blind_repair_1/verification.json",
+          "prompt_tokens": 301,
+          "completion_tokens": 63,
+          "generation_seconds": 9.12826604100701,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "blind_repair_2",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n",
+          "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 36.746,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+            "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "769a417025a5bed37723cac13ac69926b90847d12051de5098b0244575422ad6",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+                "endPos": {
+                  "column": 44,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 33,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  zero_lt_one\\nhas type\\n  0 < 1\\nbut is expected to have type\\n  3 + ?m.30 < 7 + ?m.30\\nin the application\\n  lt_of_add_lt_add_right zero_lt_one\",\"endPos\":{\"column\":44,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":33,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/blind_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/blind_repair_2/verification.json",
+          "prompt_tokens": 287,
+          "completion_tokens": 63,
+          "generation_seconds": 8.172609415996703,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "blind_repair_3",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n",
+          "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.348,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+            "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "769a417025a5bed37723cac13ac69926b90847d12051de5098b0244575422ad6",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fcc85c8589c415226d08fa36.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+                "endPos": {
+                  "column": 44,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fcc85c8589c415226d08fa36.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 33,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fcc85c8589c415226d08fa36.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fcc85c8589c415226d08fa36.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  zero_lt_one\\nhas type\\n  0 < 1\\nbut is expected to have type\\n  3 + ?m.30 < 7 + ?m.30\\nin the application\\n  lt_of_add_lt_add_right zero_lt_one\",\"endPos\":{\"column\":44,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fcc85c8589c415226d08fa36.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":33,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fcc85c8589c415226d08fa36.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/blind_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/blind_repair_3/verification.json",
+          "prompt_tokens": 287,
+          "completion_tokens": 63,
+          "generation_seconds": 10.655192042002454,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661"
+    },
+    "C": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "real_repair_1",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n",
+          "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 46.627,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+            "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "29ab8cf9d7cc985d28ff29edca37b45188fae96007669ea56064abec7510a3c9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_079ebb9fad3a086e4bfc2972.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+                "endPos": {
+                  "column": 50,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_079ebb9fad3a086e4bfc2972.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 41,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_079ebb9fad3a086e4bfc2972.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_079ebb9fad3a086e4bfc2972.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\"endPos\":{\"column\":50,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_079ebb9fad3a086e4bfc2972.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":41,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_079ebb9fad3a086e4bfc2972.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/real_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/real_repair_1/verification.json",
+          "prompt_tokens": 595,
+          "completion_tokens": 66,
+          "generation_seconds": 13.398485332989367,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown identifier `this`\",\n      \"endPos\": {\n        \"column\": 28,\n        \"line\": 12\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_2bd20e6a2afe8b59d19cdb2d.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 24,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 20\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_2bd20e6a2afe8b59d19cdb2d.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 20\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661"
+        },
+        {
+          "key": "real_repair_2",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n",
+          "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 73.75,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+            "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "29ab8cf9d7cc985d28ff29edca37b45188fae96007669ea56064abec7510a3c9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+                "endPos": {
+                  "column": 50,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 41,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\"endPos\":{\"column\":50,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":41,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/real_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/real_repair_2/verification.json",
+          "prompt_tokens": 647,
+          "completion_tokens": 66,
+          "generation_seconds": 17.16751449998992,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\n      \"endPos\": {\n        \"column\": 50,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_079ebb9fad3a086e4bfc2972.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 41,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 17\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_079ebb9fad3a086e4bfc2972.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 17\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2"
+        },
+        {
+          "key": "real_repair_3",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n",
+          "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 29.174,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+            "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "29ab8cf9d7cc985d28ff29edca37b45188fae96007669ea56064abec7510a3c9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_38d417be2b5127c28bb647d1.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+                "endPos": {
+                  "column": 50,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_38d417be2b5127c28bb647d1.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 41,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_38d417be2b5127c28bb647d1.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_38d417be2b5127c28bb647d1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\"endPos\":{\"column\":50,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_38d417be2b5127c28bb647d1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":41,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_38d417be2b5127c28bb647d1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/real_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/real_repair_3/verification.json",
+          "prompt_tokens": 651,
+          "completion_tokens": 66,
+          "generation_seconds": 10.436867625001469,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\n      \"endPos\": {\n        \"column\": 50,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 41,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 17\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_510dd1e15b6db8652ca55573.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 17\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2"
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661"
+    },
+    "C_placebo": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "placebo_repair_1",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by\n      rw [add_assoc] at this\n      exact this\n    )\n  exact add_lt_add_right h n",
+          "candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 12: Unknown identifier `this`"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.174,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 12: Unknown identifier `this`",
+            "candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by\n      rw [add_assoc] at this\n      exact this\n    )\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "4ff865883f653e33eb69197891951b35cca3c2de121d7f55a512b228059ac9d3",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_db396d63ab7d6aa6ab939725.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Unknown identifier `this`",
+                "endPos": {
+                  "column": 28,
+                  "line": 12
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_db396d63ab7d6aa6ab939725.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 24,
+                  "line": 12
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 20
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_db396d63ab7d6aa6ab939725.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 20
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_db396d63ab7d6aa6ab939725.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `this`\",\"endPos\":{\"column\":28,\"line\":12},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_db396d63ab7d6aa6ab939725.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":24,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_db396d63ab7d6aa6ab939725.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/placebo_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/placebo_repair_1/verification.json",
+          "prompt_tokens": 596,
+          "completion_tokens": 115,
+          "generation_seconds": 9.43890841701068,
+          "selection": {
+            "donor_id": "div_010",
+            "donor_family": "integer_divisibility_closure",
+            "donor_category": "unknown_identifier_or_name",
+            "target_category": "unknown_identifier_or_name",
+            "target_diagnostic_tokens": 306,
+            "donor_diagnostic_tokens": 307,
+            "token_length_difference": 1,
+            "category_fallback": false,
+            "donor_payload_sha256": "298e4e8ea038084ef70cf67310b94bf768cf482c2f2e824e8650f40748e0c96e",
+            "tie_break_sha256": "1572f4b7db8a4adaa3a298112be6267bd8fb0e0a9fe36b1ffd5eca2ac77e8f07"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown identifier `int.mul_right_dvd`\",\n      \"endPos\": {\n        \"column\": 25,\n        \"line\": 12\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_93fa86559e079178bf6f7efb.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.dvd_mul_right_int' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 17\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_93fa86559e079178bf6f7efb.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 17\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "placebo_repair_2",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n",
+          "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 69.451,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+            "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "29ab8cf9d7cc985d28ff29edca37b45188fae96007669ea56064abec7510a3c9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_e9c9996f1a0548c3d51c7d6f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+                "endPos": {
+                  "column": 50,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_e9c9996f1a0548c3d51c7d6f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 41,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_e9c9996f1a0548c3d51c7d6f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e9c9996f1a0548c3d51c7d6f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\"endPos\":{\"column\":50,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e9c9996f1a0548c3d51c7d6f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":41,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e9c9996f1a0548c3d51c7d6f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/placebo_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/placebo_repair_2/verification.json",
+          "prompt_tokens": 596,
+          "completion_tokens": 66,
+          "generation_seconds": 12.858922458006418,
+          "selection": {
+            "donor_id": "div_010",
+            "donor_family": "integer_divisibility_closure",
+            "donor_category": "unknown_identifier_or_name",
+            "target_category": "unknown_identifier_or_name",
+            "target_diagnostic_tokens": 306,
+            "donor_diagnostic_tokens": 307,
+            "token_length_difference": 1,
+            "category_fallback": false,
+            "donor_payload_sha256": "298e4e8ea038084ef70cf67310b94bf768cf482c2f2e824e8650f40748e0c96e",
+            "tie_break_sha256": "1572f4b7db8a4adaa3a298112be6267bd8fb0e0a9fe36b1ffd5eca2ac77e8f07"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Unknown identifier `int.mul_right_dvd`\",\n      \"endPos\": {\n        \"column\": 25,\n        \"line\": 12\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_93fa86559e079178bf6f7efb.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"lean.unknownIdentifier._namedError\",\n      \"pos\": {\n        \"column\": 8,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.dvd_mul_right_int' depends on axioms: [sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 17\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_93fa86559e079178bf6f7efb.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 17\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "placebo_repair_3",
+          "candidate": "theorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n",
+          "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.271,
+            "diagnostics_parsed": 3,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+            "candidate_sha256": "33a3512abf6427ea580d2734da40c81d8e0f672c71b9bfe2bde46a8616492df2",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right (by rw [add_assoc])\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+            "verification_source_sha256": "29ab8cf9d7cc985d28ff29edca37b45188fae96007669ea56064abec7510a3c9",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 30,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_af980e27f339c6a439203456.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a + ?b + ?c\nin the target expression\n  3 + ?m.30 < 7 + ?m.30\n\nn : ℕ\n⊢ 3 + ?m.30 < 7 + ?m.30",
+                "endPos": {
+                  "column": 50,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_af980e27f339c6a439203456.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 41,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+                "endPos": {
+                  "column": 6,
+                  "line": 17
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_af980e27f339c6a439203456.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 17
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_af980e27f339c6a439203456.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  ?a + ?b + ?c\\nin the target expression\\n  3 + ?m.30 < 7 + ?m.30\\n\\nn : ℕ\\n⊢ 3 + ?m.30 < 7 + ?m.30\",\"endPos\":{\"column\":50,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_af980e27f339c6a439203456.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":41,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_af980e27f339c6a439203456.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/placebo_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ineq_004/placebo_repair_3/verification.json",
+          "prompt_tokens": 668,
+          "completion_tokens": 66,
+          "generation_seconds": 16.987181958989822,
+          "selection": {
+            "donor_id": "lib_d_coprime_power",
+            "donor_family": "coprimality_power_invariance",
+            "donor_category": "tactic_or_unsolved_goal",
+            "target_category": "tactic_or_unsolved_goal",
+            "target_diagnostic_tokens": 377,
+            "donor_diagnostic_tokens": 390,
+            "token_length_difference": 13,
+            "category_fallback": false,
+            "donor_payload_sha256": "f03bc67b4742308532f13af6a700dbd6309f1295040bfab899e32f3a622bed23",
+            "tie_break_sha256": "01feaf80fe7e49675650f566727145533bf2e494461e38913dc54758a8033f4b"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"Tactic `split` failed: Could not split an `if` or `match` expression in the goal\\n\\nHint: If you meant to destruct this structure, use the `cases` tactic instead\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\na b n : ℕ\\nhn : 0 < n\\n⊢ (a ^ n).Coprime b ↔ a.Coprime b\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_8a8887c09d91138e6127ec75.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_d_coprime_power' depends on axioms: [propext, sorryAx]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 38\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_8a8887c09d91138e6127ec75.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 38\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "71348882d292c29f5645d2784c6282bc62c09cad62c31cc7d2859de128c3a661"
+    }
+  },
+  "finished_at": "2026-10-30T05:17:07.185508+00:00"
+}

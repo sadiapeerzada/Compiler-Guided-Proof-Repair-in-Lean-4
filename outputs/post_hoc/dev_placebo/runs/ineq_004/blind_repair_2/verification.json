@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "errors": [
+    "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.746,
+  "diagnostics_parsed": 3,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 11: Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+  "candidate_sha256": "9780d614ce509a803b747697f3aed5a0e684697cb7aa3a3e5ffa1f96b3806460",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem add_three_lt_add_seven (n : ℕ) : n + 3 < n + 7 := by\n  have h : 3 < 7 := by\n    exact lt_of_add_lt_add_right zero_lt_one\n  exact add_lt_add_right h n\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.add_three_lt_add_seven = Nl2LeanCandidate.add_three_lt_add_seven := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.add_three_lt_add_seven\n",
+  "verification_source_sha256": "769a417025a5bed37723cac13ac69926b90847d12051de5098b0244575422ad6",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 30,
+        "line": 5
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Application type mismatch: The argument\n  zero_lt_one\nhas type\n  0 < 1\nbut is expected to have type\n  3 + ?m.30 < 7 + ?m.30\nin the application\n  lt_of_add_lt_add_right zero_lt_one",
+      "endPos": {
+        "column": 44,
+        "line": 11
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 33,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 17
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 17
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":30,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  zero_lt_one\\nhas type\\n  0 < 1\\nbut is expected to have type\\n  3 + ?m.30 < 7 + ?m.30\\nin the application\\n  lt_of_add_lt_add_right zero_lt_one\",\"endPos\":{\"column\":44,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":33,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.add_three_lt_add_seven' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e2e795cef38421a65a081972.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

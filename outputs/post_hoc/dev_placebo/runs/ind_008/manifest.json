@@ -1,0 +1,1280 @@
+{
+  "kind": "post_hoc_development_only_placebo",
+  "protocol_sha256": "53744d0f6e6b43a5aab7ed60b689444f1a4fd6ece4e33d5704329f47fd5bfcbc",
+  "phase": "post_hoc_dev_placebo_v1",
+  "problem_id": "ind_008",
+  "family": "binary_representation_by_distinct_powers",
+  "started_at": "2026-10-30T04:34:17.485309+00:00",
+  "status": "completed",
+  "initial": {
+    "key": "shared_initial",
+    "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2",
+    "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+    "verification": {
+      "success": false,
+      "errors": [
+        "line 11: unexpected token 'from'; expected '}'",
+        "line 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+        "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 31.659,
+      "diagnostics_parsed": 5,
+      "axiom_dependencies": null,
+      "failure_kind": "compiler_error",
+      "diagnostic_text": "line 11: unexpected token 'from'; expected '}'\nline 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+      "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+      "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+      "verification_source_sha256": "374ba052f22a756e8907054ce8615b4c777ee691923c7678cecbdd28c9f09b3f",
+      "diagnostics": [
+        {
+          "caption": "",
+          "data": "declaration uses `sorry`",
+          "endPos": {
+            "column": 44,
+            "line": 5
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "hasSorry",
+          "pos": {
+            "column": 8,
+            "line": 5
+          },
+          "severity": "warning"
+        },
+        {
+          "caption": "",
+          "data": "unexpected token 'from'; expected '}'",
+          "endPos": {
+            "column": 30,
+            "line": 11
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean",
+          "isSilent": false,
+          "keepFullRange": true,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 25,
+            "line": 11
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+          "endPos": {
+            "column": 25,
+            "line": 11
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "Tactic.unsolvedGoals",
+          "pos": {
+            "column": 24,
+            "line": 11
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+          "endPos": {
+            "column": 25,
+            "line": 11
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "Tactic.unsolvedGoals",
+          "pos": {
+            "column": 3,
+            "line": 10
+          },
+          "severity": "error"
+        },
+        {
+          "caption": "",
+          "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+          "endPos": {
+            "column": 6,
+            "line": 27
+          },
+          "fileName": "lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean",
+          "isSilent": false,
+          "keepFullRange": false,
+          "kind": "[anonymous]",
+          "pos": {
+            "column": 0,
+            "line": 27
+          },
+          "severity": "information"
+        }
+      ],
+      "malformed_diagnostics": [],
+      "diagnostic_state": "available",
+      "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'from'; expected '}'\",\"endPos\":{\"column\":30,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":25,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":24,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+      "compiler_stderr": ""
+    },
+    "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_008/shared_initial/completion.json",
+    "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_008/shared_initial/verification.json",
+    "prompt_tokens": 222,
+    "completion_tokens": 324,
+    "generation_seconds": 14.595119250006974,
+    "selection": null
+  },
+  "conditions": {
+    "A": {
+      "success": false,
+      "attempts": [],
+      "status": "initial_only",
+      "initial_candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620"
+    },
+    "B": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "blind_repair_1",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert n\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ n + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ n + ∑ k in s, 2 ^ k = n + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2",
+          "candidate_sha256": "16f944a6b8f7bb93545d22cd8c27379808878f672ea15ad1e22424293716b4c3",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unexpected token 'from'; expected '}'",
+              "line 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.15,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unexpected token 'from'; expected '}'\nline 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "16f944a6b8f7bb93545d22cd8c27379808878f672ea15ad1e22424293716b4c3",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert n\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ n + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ n + ∑ k in s, 2 ^ k = n + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "ba3f4213798563fe52f16231c2238603e17154295ee67cc9f9ca9ceb87a2ddec",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_dd83b306fd37c529bb75d437.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'from'; expected '}'",
+                "endPos": {
+                  "column": 30,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_dd83b306fd37c529bb75d437.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_dd83b306fd37c529bb75d437.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 24,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_dd83b306fd37c529bb75d437.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_dd83b306fd37c529bb75d437.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_dd83b306fd37c529bb75d437.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'from'; expected '}'\",\"endPos\":{\"column\":30,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_dd83b306fd37c529bb75d437.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":25,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_dd83b306fd37c529bb75d437.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":24,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_dd83b306fd37c529bb75d437.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_dd83b306fd37c529bb75d437.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_008/blind_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_008/blind_repair_1/verification.json",
+          "prompt_tokens": 569,
+          "completion_tokens": 320,
+          "generation_seconds": 16.79998570799944,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "blind_repair_2",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert n\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ n + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ n + ∑ k in s, 2 ^ k = n + ∑ k in s, 2 ^ k := by { rw [add_assoc, hs, add_zero] }\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2",
+          "candidate_sha256": "962b4118aa7fee94c02332ab3251fce21a868030a7f237a8f1cfdf38670f92ff",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unexpected token 'from'; expected '}'",
+              "line 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.487,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unexpected token 'from'; expected '}'\nline 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "962b4118aa7fee94c02332ab3251fce21a868030a7f237a8f1cfdf38670f92ff",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert n\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ n + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ n + ∑ k in s, 2 ^ k = n + ∑ k in s, 2 ^ k := by { rw [add_assoc, hs, add_zero] }\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "5ffc2a043bb102115b7693fd07f37a9f111126e7b1d54ba87a3de2b8a2b0731b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_b31ca6e88785e72717071134.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'from'; expected '}'",
+                "endPos": {
+                  "column": 30,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_b31ca6e88785e72717071134.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_b31ca6e88785e72717071134.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 24,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_b31ca6e88785e72717071134.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_b31ca6e88785e72717071134.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_b31ca6e88785e72717071134.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'from'; expected '}'\",\"endPos\":{\"column\":30,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_b31ca6e88785e72717071134.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":25,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_b31ca6e88785e72717071134.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":24,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_b31ca6e88785e72717071134.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_b31ca6e88785e72717071134.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_008/blind_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_008/blind_repair_2/verification.json",
+          "prompt_tokens": 565,
+          "completion_tokens": 330,
+          "generation_seconds": 17.004228332996718,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "blind_repair_3",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert n\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ n + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ n + ∑ k in s, 2 ^ k = n + ∑ k in s, 2 ^ k := by { rw [add_assoc, hs, add_zero] }\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2",
+          "candidate_sha256": "962b4118aa7fee94c02332ab3251fce21a868030a7f237a8f1cfdf38670f92ff",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unexpected token 'from'; expected '}'",
+              "line 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.906,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unexpected token 'from'; expected '}'\nline 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "962b4118aa7fee94c02332ab3251fce21a868030a7f237a8f1cfdf38670f92ff",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert n\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ n + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ n + ∑ k in s, 2 ^ k = n + ∑ k in s, 2 ^ k := by { rw [add_assoc, hs, add_zero] }\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "5ffc2a043bb102115b7693fd07f37a9f111126e7b1d54ba87a3de2b8a2b0731b",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_ca834ec03b6e3ff4c9a088cd.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'from'; expected '}'",
+                "endPos": {
+                  "column": 30,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_ca834ec03b6e3ff4c9a088cd.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_ca834ec03b6e3ff4c9a088cd.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 24,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_ca834ec03b6e3ff4c9a088cd.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_ca834ec03b6e3ff4c9a088cd.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_ca834ec03b6e3ff4c9a088cd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'from'; expected '}'\",\"endPos\":{\"column\":30,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_ca834ec03b6e3ff4c9a088cd.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":25,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_ca834ec03b6e3ff4c9a088cd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":24,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_ca834ec03b6e3ff4c9a088cd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_ca834ec03b6e3ff4c9a088cd.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_008/blind_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_008/blind_repair_3/verification.json",
+          "prompt_tokens": 575,
+          "completion_tokens": 330,
+          "generation_seconds": 16.83920470799785,
+          "selection": null,
+          "feedback_payload": "No compiler diagnostics are provided in the blind-retry condition.",
+          "feedback_source_candidate_sha256": null
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620"
+    },
+    "C": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "real_repair_1",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2",
+          "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unexpected token 'from'; expected '}'",
+              "line 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.066,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unexpected token 'from'; expected '}'\nline 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "374ba052f22a756e8907054ce8615b4c777ee691923c7678cecbdd28c9f09b3f",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'from'; expected '}'",
+                "endPos": {
+                  "column": 30,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 24,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'from'; expected '}'\",\"endPos\":{\"column\":30,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":25,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":24,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_008/real_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_008/real_repair_1/verification.json",
+          "prompt_tokens": 1213,
+          "completion_tokens": 324,
+          "generation_seconds": 25.892371624999214,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'from'; expected '}'\",\n      \"endPos\": {\n        \"column\": 30,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 25,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\n      \"endPos\": {\n        \"column\": 25,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 24,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\n      \"endPos\": {\n        \"column\": 25,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 10\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 27\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_0d3b44325d467e54d1775e2f.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 27\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620"
+        },
+        {
+          "key": "real_repair_2",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2",
+          "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unexpected token 'from'; expected '}'",
+              "line 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 36.566,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unexpected token 'from'; expected '}'\nline 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "374ba052f22a756e8907054ce8615b4c777ee691923c7678cecbdd28c9f09b3f",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'from'; expected '}'",
+                "endPos": {
+                  "column": 30,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 24,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'from'; expected '}'\",\"endPos\":{\"column\":30,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":25,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":24,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_008/real_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_008/real_repair_2/verification.json",
+          "prompt_tokens": 1205,
+          "completion_tokens": 324,
+          "generation_seconds": 20.400844208998024,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'from'; expected '}'\",\n      \"endPos\": {\n        \"column\": 30,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 25,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\n      \"endPos\": {\n        \"column\": 25,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 24,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\n      \"endPos\": {\n        \"column\": 25,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 10\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 27\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_62fef6589808707956443392.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 27\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620"
+        },
+        {
+          "key": "real_repair_3",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2",
+          "candidate_sha256": "a51c390098fb3b6fd0b75ec54d4a12704c578cafc662593ffba5d6506e92230d",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unexpected token 'from'; expected '}'",
+              "line 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 33.694,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unexpected token 'from'; expected '}'\nline 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "a51c390098fb3b6fd0b75ec54d4a12704c578cafc662593ffba5d6506e92230d",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "4ad5488164c988df7f3ab8199a9e79b1c76e7207e7afdc2ad28c8ba51d3c2632",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_dddd15d59bb5babc162025ff.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'from'; expected '}'",
+                "endPos": {
+                  "column": 30,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_dddd15d59bb5babc162025ff.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_dddd15d59bb5babc162025ff.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 24,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_dddd15d59bb5babc162025ff.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_dddd15d59bb5babc162025ff.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_dddd15d59bb5babc162025ff.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'from'; expected '}'\",\"endPos\":{\"column\":30,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_dddd15d59bb5babc162025ff.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":25,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_dddd15d59bb5babc162025ff.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":24,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_dddd15d59bb5babc162025ff.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_dddd15d59bb5babc162025ff.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_008/real_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_008/real_repair_3/verification.json",
+          "prompt_tokens": 1193,
+          "completion_tokens": 324,
+          "generation_seconds": 21.35986141700414,
+          "selection": null,
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token 'from'; expected '}'\",\n      \"endPos\": {\n        \"column\": 30,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 25,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\n      \"endPos\": {\n        \"column\": 25,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 24,\n        \"line\": 11\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\n      \"endPos\": {\n        \"column\": 25,\n        \"line\": 11\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 10\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 27\n      },\n      \"fileName\": \"lean_project/generated/_scratch/posthoc_dev_e2953ccbec9f1514bd503d1f.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 27\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620"
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620"
+    },
+    "C_placebo": {
+      "success": false,
+      "attempts": [
+        {
+          "key": "placebo_repair_1",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2",
+          "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unexpected token 'from'; expected '}'",
+              "line 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 31.649,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unexpected token 'from'; expected '}'\nline 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "374ba052f22a756e8907054ce8615b4c777ee691923c7678cecbdd28c9f09b3f",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_456a8d9e6f103529f5350f42.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'from'; expected '}'",
+                "endPos": {
+                  "column": 30,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_456a8d9e6f103529f5350f42.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_456a8d9e6f103529f5350f42.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 24,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_456a8d9e6f103529f5350f42.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_456a8d9e6f103529f5350f42.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_456a8d9e6f103529f5350f42.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'from'; expected '}'\",\"endPos\":{\"column\":30,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_456a8d9e6f103529f5350f42.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":25,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_456a8d9e6f103529f5350f42.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":24,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_456a8d9e6f103529f5350f42.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_456a8d9e6f103529f5350f42.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_008/placebo_repair_1/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_008/placebo_repair_1/verification.json",
+          "prompt_tokens": 1210,
+          "completion_tokens": 324,
+          "generation_seconds": 20.17754837499524,
+          "selection": {
+            "donor_id": "lib_q_sine",
+            "donor_family": "sine_linear_bound",
+            "donor_category": "syntax_or_parser",
+            "target_category": "syntax_or_parser",
+            "target_diagnostic_tokens": 656,
+            "donor_diagnostic_tokens": 653,
+            "token_length_difference": 3,
+            "category_fallback": false,
+            "donor_payload_sha256": "14f3aacb1144a5b78761e69d3a19a958043c7cdd919eceb93dc45b4884891a51",
+            "tie_break_sha256": "f92db66b6438022669c45cb8897c19fcb29638d77dbd0434f6651d499bd22114"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"'calc' expression has type\\n  (y ≤ y + y * y) = (y ≤ y + y * y)\\nbut is expected to have type\\n  y ≤ y + y * y\",\n      \"endPos\": {\n        \"column\": 18,\n        \"line\": 14\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 14,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nx : ℝ\\nhx : 0 ≤ x\\nkey_ineq : ∀ (y : ℝ), y ≤ y + y * y\\n⊢ Real.sin x ≤ x\",\n      \"endPos\": {\n        \"column\": 17,\n        \"line\": 15\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token ':'; expected command\",\n      \"endPos\": {\n        \"column\": 19,\n        \"line\": 15\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 18,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_sine' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 44\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 44\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "placebo_repair_2",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2",
+          "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unexpected token 'from'; expected '}'",
+              "line 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 34.745,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unexpected token 'from'; expected '}'\nline 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "374ba052f22a756e8907054ce8615b4c777ee691923c7678cecbdd28c9f09b3f",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fe4fbad4f3484b5441029c61.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'from'; expected '}'",
+                "endPos": {
+                  "column": 30,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fe4fbad4f3484b5441029c61.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fe4fbad4f3484b5441029c61.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 24,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fe4fbad4f3484b5441029c61.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_fe4fbad4f3484b5441029c61.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fe4fbad4f3484b5441029c61.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'from'; expected '}'\",\"endPos\":{\"column\":30,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fe4fbad4f3484b5441029c61.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":25,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fe4fbad4f3484b5441029c61.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":24,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fe4fbad4f3484b5441029c61.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_fe4fbad4f3484b5441029c61.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_008/placebo_repair_2/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_008/placebo_repair_2/verification.json",
+          "prompt_tokens": 1210,
+          "completion_tokens": 324,
+          "generation_seconds": 20.141411541000707,
+          "selection": {
+            "donor_id": "lib_q_sine",
+            "donor_family": "sine_linear_bound",
+            "donor_category": "syntax_or_parser",
+            "target_category": "syntax_or_parser",
+            "target_diagnostic_tokens": 656,
+            "donor_diagnostic_tokens": 653,
+            "token_length_difference": 3,
+            "category_fallback": false,
+            "donor_payload_sha256": "14f3aacb1144a5b78761e69d3a19a958043c7cdd919eceb93dc45b4884891a51",
+            "tie_break_sha256": "f92db66b6438022669c45cb8897c19fcb29638d77dbd0434f6651d499bd22114"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"'calc' expression has type\\n  (y ≤ y + y * y) = (y ≤ y + y * y)\\nbut is expected to have type\\n  y ≤ y + y * y\",\n      \"endPos\": {\n        \"column\": 18,\n        \"line\": 14\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 14,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unsolved goals\\nx : ℝ\\nhx : 0 ≤ x\\nkey_ineq : ∀ (y : ℝ), y ≤ y + y * y\\n⊢ Real.sin x ≤ x\",\n      \"endPos\": {\n        \"column\": 17,\n        \"line\": 15\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"Tactic.unsolvedGoals\",\n      \"pos\": {\n        \"column\": 3,\n        \"line\": 12\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token ':'; expected command\",\n      \"endPos\": {\n        \"column\": 19,\n        \"line\": 15\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 18,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_q_sine' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 44\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_2927c83ace84300f5cc96307.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 44\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        },
+        {
+          "key": "placebo_repair_3",
+          "candidate": "theorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2",
+          "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+          "verification": {
+            "success": false,
+            "errors": [
+              "line 11: unexpected token 'from'; expected '}'",
+              "line 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+              "line 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k"
+            ],
+            "exit_code": 1,
+            "elapsed_seconds": 35.2,
+            "diagnostics_parsed": 5,
+            "axiom_dependencies": null,
+            "failure_kind": "compiler_error",
+            "diagnostic_text": "line 11: unexpected token 'from'; expected '}'\nline 11: unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n\nline 10: unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+            "candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620",
+            "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem positive_nat_sum_distinct_powers_two (n : ℕ) (hn : 1 ≤ n) : ∃ s : Finset ℕ, n = ∑ k ∈ s, 2 ^ k\n:= by\n  have h1 : 0 < n := by { from lt_of_le_of_ne hn (ne_of_gt hn) }\n  have h2 : ∃ s : Finset ℕ, n = ∑ k in s, 2 ^ k := by\n    classical\n    induction n with n ih\n    · exact ⟨∅, by simp⟩\n    · obtain ⟨s, hs⟩ := ih (n - 1) (by { from le_of_lt (lt_of_le_of_ne (le_of_lt h1) (ne_of_gt h1)) })\n      let s' := s.insert 0\n      have hss : s'.card = s.card + 1 := by { unfold Finset.card; simp [Finset.insert] }\n      have hsum : ∑ k in s', 2 ^ k = 2 ^ 0 + ∑ k in s, 2 ^ k := by { unfold Finset.sum; simp [Finset.insert] }\n      have hsum' : 2 ^ 0 + ∑ k in s, 2 ^ k = 1 + ∑ k in s, 2 ^ k := by simp\n      exact ⟨s', by { rw [hsum, hsum'], simp [hss] }⟩\n  exact h2\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.positive_nat_sum_distinct_powers_two = Nl2LeanCandidate.positive_nat_sum_distinct_powers_two := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.positive_nat_sum_distinct_powers_two\n",
+            "verification_source_sha256": "374ba052f22a756e8907054ce8615b4c777ee691923c7678cecbdd28c9f09b3f",
+            "diagnostics": [
+              {
+                "caption": "",
+                "data": "declaration uses `sorry`",
+                "endPos": {
+                  "column": 44,
+                  "line": 5
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_8e19b56944531f06c794d823.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "hasSorry",
+                "pos": {
+                  "column": 8,
+                  "line": 5
+                },
+                "severity": "warning"
+              },
+              {
+                "caption": "",
+                "data": "unexpected token 'from'; expected '}'",
+                "endPos": {
+                  "column": 30,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_8e19b56944531f06c794d823.lean",
+                "isSilent": false,
+                "keepFullRange": true,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\n⊢ 0 < n",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_8e19b56944531f06c794d823.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 24,
+                  "line": 11
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "unsolved goals\nn : ℕ\nhn : 1 ≤ n\nh1 : 0 < n\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k",
+                "endPos": {
+                  "column": 25,
+                  "line": 11
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_8e19b56944531f06c794d823.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "Tactic.unsolvedGoals",
+                "pos": {
+                  "column": 3,
+                  "line": 10
+                },
+                "severity": "error"
+              },
+              {
+                "caption": "",
+                "data": "'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]",
+                "endPos": {
+                  "column": 6,
+                  "line": 27
+                },
+                "fileName": "lean_project/generated/_scratch/posthoc_dev_8e19b56944531f06c794d823.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "[anonymous]",
+                "pos": {
+                  "column": 0,
+                  "line": 27
+                },
+                "severity": "information"
+              }
+            ],
+            "malformed_diagnostics": [],
+            "diagnostic_state": "available",
+            "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":44,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_8e19b56944531f06c794d823.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'from'; expected '}'\",\"endPos\":{\"column\":30,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_8e19b56944531f06c794d823.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":25,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\n⊢ 0 < n\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_8e19b56944531f06c794d823.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":24,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\nn : ℕ\\nhn : 1 ≤ n\\nh1 : 0 < n\\n⊢ ∃ s, n = ∑ k ∈ s, 2 ^ k\",\"endPos\":{\"column\":25,\"line\":11},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_8e19b56944531f06c794d823.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":3,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.positive_nat_sum_distinct_powers_two' depends on axioms: [propext, sorryAx, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":27},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_8e19b56944531f06c794d823.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":27},\"severity\":\"information\"}\n",
+            "compiler_stderr": ""
+          },
+          "completion_path": "outputs/post_hoc/dev_placebo/runs/ind_008/placebo_repair_3/completion.json",
+          "verification_path": "outputs/post_hoc/dev_placebo/runs/ind_008/placebo_repair_3/verification.json",
+          "prompt_tokens": 1197,
+          "completion_tokens": 324,
+          "generation_seconds": 20.72235779200855,
+          "selection": {
+            "donor_id": "lib_a_min_max",
+            "donor_family": "lattice_min_max_sum",
+            "donor_category": "syntax_or_parser",
+            "target_category": "syntax_or_parser",
+            "target_diagnostic_tokens": 640,
+            "donor_diagnostic_tokens": 640,
+            "token_length_difference": 0,
+            "category_fallback": false,
+            "donor_payload_sha256": "0bead77fbd01433ac7edba748d60c35eb56624c18f0b7521ee067f601b0bf3ad",
+            "tie_break_sha256": "8f20dc8e7b7514da56b09cd3ba7a735893af0801463b497000b56181f35066bf"
+          },
+          "feedback_payload": "{\n  \"diagnostic_state\": \"available\",\n  \"diagnostics\": [\n    {\n      \"caption\": \"\",\n      \"data\": \"'calc' expression has type\\n  (min x y + max x y = x + y) = (min x y + max x y = x + y)\\nbut is expected to have type\\n  min x y + max x y = x + y\",\n      \"endPos\": {\n        \"column\": 17,\n        \"line\": 14\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_8413c42f217714f2b1c02e85.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 13,\n        \"line\": 14\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"Alternative `inr` has not been provided\",\n      \"endPos\": {\n        \"column\": 7,\n        \"line\": 13\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_8413c42f217714f2b1c02e85.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 2,\n        \"line\": 13\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"unexpected token ':'; expected command\",\n      \"endPos\": {\n        \"column\": 31,\n        \"line\": 15\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_8413c42f217714f2b1c02e85.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": true,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 30,\n        \"line\": 15\n      },\n      \"severity\": \"error\"\n    },\n    {\n      \"caption\": \"\",\n      \"data\": \"'Nl2LeanCandidate.study_a_min_max' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\n      \"endPos\": {\n        \"column\": 6,\n        \"line\": 22\n      },\n      \"fileName\": \"lean_project/generated/_scratch/study_8413c42f217714f2b1c02e85.lean\",\n      \"isSilent\": false,\n      \"keepFullRange\": false,\n      \"kind\": \"[anonymous]\",\n      \"pos\": {\n        \"column\": 0,\n        \"line\": 22\n      },\n      \"severity\": \"information\"\n    }\n  ]\n}",
+          "feedback_source_candidate_sha256": null
+        }
+      ],
+      "status": "repair_budget_exhausted",
+      "initial_candidate_sha256": "409afcc6af6aaac6c22b92dd4971ef27caf6a46f254c559a0aa2d67d16e27620"
+    }
+  },
+  "finished_at": "2026-10-30T04:46:50.989711+00:00"
+}

@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 12: Unknown constant `Nat.choose_zero`",
+    "line 13: unsolved goals\ncase succ\nn✝ : ℕ\n⊢ (n✝ + 1).choose 0 = 1 ∧ 1 = 1"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.965,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 12: Unknown constant `Nat.choose_zero`\nline 13: unsolved goals\ncase succ\nn✝ : ℕ\n⊢ (n✝ + 1).choose 0 = 1 ∧ 1 = 1",
+  "candidate_sha256": "941272aab51f45fda8fc99efff78421475f6c58e1a213441c1b0a46c85607dee",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem choose_zero_and_self (n : ℕ) : Nat.choose n 0 = 1 ∧ Nat.choose n n = 1 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem choose_zero_and_self (n : ℕ) : Nat.choose n 0 = 1 ∧ Nat.choose n n = 1\n:= by\n  cases n\n  · rw [Nat.choose_zero]\n  · rw [Nat.choose_self]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.choose_zero_and_self = Nl2LeanCandidate.choose_zero_and_self := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.choose_zero_and_self\n",
+  "verification_source_sha256": "71537b30469ed19e01842c545d7acce82ddf8353676b4e292d0ee2e2d6e0225d",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 28,
+        "line": 5
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_8cfb6244eda6f61a8e93e870.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.choose_zero`",
+      "endPos": {
+        "column": 23,
+        "line": 12
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_8cfb6244eda6f61a8e93e870.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 8,
+        "line": 12
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unsolved goals\ncase succ\nn✝ : ℕ\n⊢ (n✝ + 1).choose 0 = 1 ∧ 1 = 1",
+      "endPos": {
+        "column": 24,
+        "line": 13
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_8cfb6244eda6f61a8e93e870.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "Tactic.unsolvedGoals",
+      "pos": {
+        "column": 2,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.choose_zero_and_self' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 18
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_8cfb6244eda6f61a8e93e870.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 18
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":28,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_8cfb6244eda6f61a8e93e870.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.choose_zero`\",\"endPos\":{\"column\":23,\"line\":12},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_8cfb6244eda6f61a8e93e870.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":8,\"line\":12},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unsolved goals\\ncase succ\\nn✝ : ℕ\\n⊢ (n✝ + 1).choose 0 = 1 ∧ 1 = 1\",\"endPos\":{\"column\":24,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_8cfb6244eda6f61a8e93e870.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.choose_zero_and_self' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_8cfb6244eda6f61a8e93e870.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

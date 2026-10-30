@@ -1,4 +1,4 @@
-# Revised Springer empirical pilot
+# Compiler-Guided Proof Repair in Lean 4: A Controlled Local-Model Pilot on Fixed Theorem Types
 
 Current source: `paper/main.tex`; current compiled PDF: `paper/compiled_final_review_v2.pdf` (14 pages). The original `compiled_final_manuscript.pdf` and pre-results PDF remain historical artifacts. Current quantitative claims are bound to `data/final_review/20261029_v2/analysis_verified/results.json` by `manuscript_claims.json` and the actual `paper_build_manifest.json`.
 

@@ -1,0 +1,180 @@
+{
+  "success": false,
+  "errors": [
+    "line 17: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  m * a + n * b\nin the target expression\n  m * a = m * n - n * b\n\nm n a b : ℕ\nh : m.Coprime n\nha : a ≠ 0\nhb : b ≠ 0\ncontra h1 : m * a + n * b = m * n\n⊢ m * a = m * n - n * b",
+    "line 19: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  m * a\nin the target expression\n  m * (a - n) = 0\n\nm n a b : ℕ\nh : m.Coprime n\nha : a ≠ 0\nhb : b ≠ 0\ncontra h1 : m * a + n * b = m * n\nh2 : m * a = m * n - n * b\n⊢ m * (a - n) = 0",
+    "line 22: Unknown constant `Nat.mul_left_inj.mpr`",
+    "line 24: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a - n\nin the target expression\n  a = n\n\nm n a b : ℕ\nh : m.Coprime n\nha : a ≠ 0\nhb : b ≠ 0\ncontra h1 : m * a + n * b = m * n\nh2 : m * a = m * n - n * b\nh3 : m * (a - n) = 0\nh4 : a - n = 0\n⊢ a = n",
+    "line 27: Application type mismatch: The argument\n  hb\nhas type\n  b ≠ 0\nbut is expected to have type\n  b = 0\nin the application\n  ⟨h5, hb⟩",
+    "line 29: Type mismatch\n  h6 contra\nhas type\n  a = n ∧ b = 0\nbut is expected to have type\n  ¬(a ≠ 0 ∧ b ≠ 0)",
+    "line 30: Type mismatch\n  h7\nhas type\n  ¬(a ≠ 0 ∧ b ≠ 0)\nbut is expected to have type\n  False"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 35.593,
+  "diagnostics_parsed": 9,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 17: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  m * a + n * b\nin the target expression\n  m * a = m * n - n * b\n\nm n a b : ℕ\nh : m.Coprime n\nha : a ≠ 0\nhb : b ≠ 0\ncontra h1 : m * a + n * b = m * n\n⊢ m * a = m * n - n * b\nline 19: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  m * a\nin the target expression\n  m * (a - n) = 0\n\nm n a b : ℕ\nh : m.Coprime n\nha : a ≠ 0\nhb : b ≠ 0\ncontra h1 : m * a + n * b = m * n\nh2 : m * a = m * n - n * b\n⊢ m * (a - n) = 0\nline 22: Unknown constant `Nat.mul_left_inj.mpr`\nline 24: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a - n\nin the target expression\n  a = n\n\nm n a b : ℕ\nh : m.Coprime n\nha : a ≠ 0\nhb : b ≠ 0\ncontra h1 : m * a + n * b = m * n\nh2 : m * a = m * n - n * b\nh3 : m * (a - n) = 0\nh4 : a - n = 0\n⊢ a = n\nline 27: Application type mismatch: The argument\n  hb\nhas type\n  b ≠ 0\nbut is expected to have type\n  b = 0\nin the application\n  ⟨h5, hb⟩\nline 29: Type mismatch\n  h6 contra\nhas type\n  a = n ∧ b = 0\nbut is expected to have type\n  ¬(a ≠ 0 ∧ b ≠ 0)\nline 30: Type mismatch\n  h7\nhas type\n  ¬(a ≠ 0 ∧ b ≠ 0)\nbut is expected to have type\n  False",
+  "candidate_sha256": "07453ccfd8e1fddc2bd13a3a8d815353fdabd1591e5f304887cd09c30d7e62c3",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_d_frobenius (m n a b : ℕ) (h : Nat.Coprime m n) (ha : a ≠ 0) (hb : b ≠ 0) : m * a + n * b ≠ m * n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_d_frobenius (m n a b : ℕ) (h : Nat.Coprime m n) (ha : a ≠ 0) (hb : b ≠ 0) : m * a + n * b ≠ m * n\n:= by\n  intro contra\n  have h1 : m * a + n * b = m * n := contra\n  have h2 : m * a = m * n - n * b := by\n    rw [h1]\n  have h3 : m * (a - n) = 0 := by\n    rw [h2, sub_add_cancel]\n  have h4 : a - n = 0 := by\n    rw [h3] at h3\n    exact Nat.mul_left_inj.mpr ha\n  have h5 : a = n := by\n    rw [h4]\n  have h6 : m * a + n * b = m * n → a = n ∧ b = 0 := by\n    intro\n    exact ⟨h5, hb⟩\n  have h7 : ¬(a ≠ 0 ∧ b ≠ 0) := by\n    exact h6 contra\n  exact h7\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_d_frobenius = Nl2LeanCandidate.study_d_frobenius := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_d_frobenius\n",
+  "verification_source_sha256": "a90a19aec220326a72121309eab1f4445820ad2a67f0812e2c5f63702f5bb6e4",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 25,
+        "line": 6
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  m * a + n * b\nin the target expression\n  m * a = m * n - n * b\n\nm n a b : ℕ\nh : m.Coprime n\nha : a ≠ 0\nhb : b ≠ 0\ncontra h1 : m * a + n * b = m * n\n⊢ m * a = m * n - n * b",
+      "endPos": {
+        "column": 10,
+        "line": 17
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  m * a\nin the target expression\n  m * (a - n) = 0\n\nm n a b : ℕ\nh : m.Coprime n\nha : a ≠ 0\nhb : b ≠ 0\ncontra h1 : m * a + n * b = m * n\nh2 : m * a = m * n - n * b\n⊢ m * (a - n) = 0",
+      "endPos": {
+        "column": 10,
+        "line": 19
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 19
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown constant `Nat.mul_left_inj.mpr`",
+      "endPos": {
+        "column": 30,
+        "line": 22
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 22
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  a - n\nin the target expression\n  a = n\n\nm n a b : ℕ\nh : m.Coprime n\nha : a ≠ 0\nhb : b ≠ 0\ncontra h1 : m * a + n * b = m * n\nh2 : m * a = m * n - n * b\nh3 : m * (a - n) = 0\nh4 : a - n = 0\n⊢ a = n",
+      "endPos": {
+        "column": 10,
+        "line": 24
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 8,
+        "line": 24
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Application type mismatch: The argument\n  hb\nhas type\n  b ≠ 0\nbut is expected to have type\n  b = 0\nin the application\n  ⟨h5, hb⟩",
+      "endPos": {
+        "column": 17,
+        "line": 27
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 15,
+        "line": 27
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  h6 contra\nhas type\n  a = n ∧ b = 0\nbut is expected to have type\n  ¬(a ≠ 0 ∧ b ≠ 0)",
+      "endPos": {
+        "column": 19,
+        "line": 29
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 29
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  h7\nhas type\n  ¬(a ≠ 0 ∧ b ≠ 0)\nbut is expected to have type\n  False",
+      "endPos": {
+        "column": 10,
+        "line": 30
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 30
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_d_frobenius' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 35
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 35
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":25,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  m * a + n * b\\nin the target expression\\n  m * a = m * n - n * b\\n\\nm n a b : ℕ\\nh : m.Coprime n\\nha : a ≠ 0\\nhb : b ≠ 0\\ncontra h1 : m * a + n * b = m * n\\n⊢ m * a = m * n - n * b\",\"endPos\":{\"column\":10,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  m * a\\nin the target expression\\n  m * (a - n) = 0\\n\\nm n a b : ℕ\\nh : m.Coprime n\\nha : a ≠ 0\\nhb : b ≠ 0\\ncontra h1 : m * a + n * b = m * n\\nh2 : m * a = m * n - n * b\\n⊢ m * (a - n) = 0\",\"endPos\":{\"column\":10,\"line\":19},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":19},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown constant `Nat.mul_left_inj.mpr`\",\"endPos\":{\"column\":30,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":22},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  a - n\\nin the target expression\\n  a = n\\n\\nm n a b : ℕ\\nh : m.Coprime n\\nha : a ≠ 0\\nhb : b ≠ 0\\ncontra h1 : m * a + n * b = m * n\\nh2 : m * a = m * n - n * b\\nh3 : m * (a - n) = 0\\nh4 : a - n = 0\\n⊢ a = n\",\"endPos\":{\"column\":10,\"line\":24},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":8,\"line\":24},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Application type mismatch: The argument\\n  hb\\nhas type\\n  b ≠ 0\\nbut is expected to have type\\n  b = 0\\nin the application\\n  ⟨h5, hb⟩\",\"endPos\":{\"column\":17,\"line\":27},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":15,\"line\":27},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  h6 contra\\nhas type\\n  a = n ∧ b = 0\\nbut is expected to have type\\n  ¬(a ≠ 0 ∧ b ≠ 0)\",\"endPos\":{\"column\":19,\"line\":29},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":29},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  h7\\nhas type\\n  ¬(a ≠ 0 ∧ b ≠ 0)\\nbut is expected to have type\\n  False\",\"endPos\":{\"column\":10,\"line\":30},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":30},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_d_frobenius' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":35},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_f43b3869c6ed52c93adb0895.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":35},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

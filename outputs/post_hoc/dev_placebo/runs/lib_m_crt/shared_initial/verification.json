@@ -1,0 +1,108 @@
+{
+  "success": false,
+  "errors": [
+    "line 10: unexpected token '`'; expected command",
+    "line 120: unexpected token 'end'; expected term",
+    "line 14: Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 36.354,
+  "diagnostics_parsed": 5,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 10: unexpected token '`'; expected command\nline 120: unexpected token 'end'; expected term\nline 14: Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided",
+  "candidate_sha256": "b6c46adb68a144780a9ef8c4f46753814f1a512d8bd3116c136aa3e32ac2bc23",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_crt (a b n m : ℕ) (h : Nat.ModEq (Nat.gcd n m) a b) : ∃ k : ℕ, Nat.ModEq n k a ∧ Nat.ModEq m k b := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\n```lean\nopen scoped BigOperators\ntheorem study_m_crt (a b n m : ℕ) (h : Nat.ModEq (Nat.gcd n m) a b) : ∃ k : ℕ, Nat.ModEq n k a ∧ Nat.ModEq m k b\n:= by\n  let ⟨c, h1⟩ := h\n  have h2 : ∃ k : ℤ, a = k * n + c := by\n    use [c / n, by rw [Nat.div_mod_eq, h1, Nat.mul_add]]; norm_num\n  have h3 : ∃ k : ℤ, b = k * m + c := by\n    use [b / m, by rw [Nat.div_mod_eq, h1, Nat.mul_add]]; norm_num\n  obtain ⟨k1, h4⟩ := h2\n  obtain ⟨k2, h5⟩ := h3\n  have h6 : k1 * n + c = k2 * m + c := by\n    rw [h4, h5]\n  have h7 : k1 * n = k2 * m := by\n    rw [h6, Nat.add_left_cancel h5]\n  have h8 : ∃ k : ℤ, k1 = k * (m / (Nat.gcd n m)) := by\n    use [k1 / (m / (Nat.gcd n m)), by rw [Nat.div_mul_eq_div_gcd, h7, Nat.gcd_eq_gcd]]\n  obtain ⟨k3, h9⟩ := h8\n  have h10 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h9, Nat.mul_assoc, h7]\n  have h11 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h10]\n  have h12 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h11]\n  have h13 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h12]\n  have h14 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h13]\n  have h15 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h14]\n  have h16 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h15]\n  have h17 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h16]\n  have h18 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h17]\n  have h19 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h18]\n  have h20 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h19]\n  have h21 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h20]\n  have h22 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h21]\n  have h23 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h22]\n  have h24 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h23]\n  have h25 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h24]\n  have h26 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h25]\n  have h27 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h26]\n  have h28 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h27]\n  have h29 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h28]\n  have h30 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h29]\n  have h31 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h30]\n  have h32 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h31]\n  have h33 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h32]\n  have h34 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h33]\n  have h35 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h34]\n  have h36 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h35]\n  have h37 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h36]\n  have h38 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h37]\n  have h39 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h38]\n  have h40 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h39]\n  have h41 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h40]\n  have h42 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h41]\n  have h43 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h42]\n  have h44 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h43]\n  have h45 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h44]\n  have h46 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h45]\n  have h47 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h46]\n  have h48 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h47]\n  have h49 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h48]\n  have h50 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h49]\n  have h51 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h50]\n  have h52 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h51]\n  have h53 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h52]\n  have h54 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h53]\n  have h55 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h54]\n  have h56 :\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_crt = Nl2LeanCandidate.study_m_crt := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_crt\n",
+  "verification_source_sha256": "32ffe9ce3816fdf11ce2ef34a62ae6d34500413ae77870024c78e3b0948858d8",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 19,
+        "line": 6
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_ce9f414b0b1b80264c28491c.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token '`'; expected command",
+      "endPos": {
+        "column": 1,
+        "line": 10
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_ce9f414b0b1b80264c28491c.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 10
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "unexpected token 'end'; expected term",
+      "endPos": {
+        "column": 3,
+        "line": 121
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_ce9f414b0b1b80264c28491c.lean",
+      "isSilent": false,
+      "keepFullRange": true,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 12,
+        "line": 120
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided",
+      "endPos": {
+        "column": 13,
+        "line": 14
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_ce9f414b0b1b80264c28491c.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 6,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_crt' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 125
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_ce9f414b0b1b80264c28491c.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 125
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":19,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_ce9f414b0b1b80264c28491c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"unexpected token '`'; expected command\",\"endPos\":{\"column\":1,\"line\":10},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_ce9f414b0b1b80264c28491c.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":10},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"unexpected token 'end'; expected term\",\"endPos\":{\"column\":3,\"line\":121},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_ce9f414b0b1b80264c28491c.lean\",\"isSilent\":false,\"keepFullRange\":true,\"kind\":\"[anonymous]\",\"pos\":{\"column\":12,\"line\":120},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided\",\"endPos\":{\"column\":13,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_ce9f414b0b1b80264c28491c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":6,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_crt' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":125},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_ce9f414b0b1b80264c28491c.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":125},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

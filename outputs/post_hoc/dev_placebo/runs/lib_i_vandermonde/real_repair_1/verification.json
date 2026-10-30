@@ -1,0 +1,162 @@
+{
+  "success": false,
+  "errors": [
+    "line 17: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this conjunction, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nm n : ℕ\n⊢ (m + n).choose 0 = 1 ∧ ∑ i ∈ Finset.range 1, m.choose i * n.choose (0 - i) = 1",
+    "line 20: Type mismatch\n  this\nhas type\n  (m + n).choose 0 = 1 ∧ ∑ i ∈ Finset.range 1, m.choose i * n.choose (0 - i) = 1\nbut is expected to have type\n  (m + n).choose 0 = ∑ i ∈ Finset.range (0 + 1), m.choose i * n.choose (0 - i)",
+    "line 22: Unknown identifier `succ`",
+    "line 22: Unknown identifier `succ`",
+    "line 22: Unknown identifier `succ`",
+    "line 23: Unknown identifier `choose_add_left`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 96.979,
+  "diagnostics_parsed": 8,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 17: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this conjunction, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nm n : ℕ\n⊢ (m + n).choose 0 = 1 ∧ ∑ i ∈ Finset.range 1, m.choose i * n.choose (0 - i) = 1\nline 20: Type mismatch\n  this\nhas type\n  (m + n).choose 0 = 1 ∧ ∑ i ∈ Finset.range 1, m.choose i * n.choose (0 - i) = 1\nbut is expected to have type\n  (m + n).choose 0 = ∑ i ∈ Finset.range (0 + 1), m.choose i * n.choose (0 - i)\nline 22: Unknown identifier `succ`\nline 22: Unknown identifier `succ`\nline 22: Unknown identifier `succ`\nline 23: Unknown identifier `choose_add_left`",
+  "candidate_sha256": "8032a837273a621b408a754a840bcc6762a38c50869f87ce9370b88cf46fe5c2",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_i_vandermonde (m n k : ℕ) : (m + n).choose k = ∑ i ∈ Finset.range (k + 1), m.choose i * n.choose (k - i) := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\n\ntheorem study_i_vandermonde (m n k : ℕ) : (m + n).choose k = ∑ i ∈ Finset.range (k + 1), m.choose i * n.choose (k - i) :=\nby\n  induction k with\n  | zero =>\n    have : (m + n).choose 0 = 1 ∧ ∑ i ∈ Finset.range 1, m.choose i * n.choose (0 - i) = 1 := by\n      split\n      · exact choose_zero_right\n      · simp [Finset.range_one, zero_sub]\n    exact this\n  | succ k ih =>\n    have : (m + n).choose (succ k) = ∑ i ∈ Finset.range (succ k + 1), m.choose i * n.choose (succ k - i) := by\n      rw [choose_add_left]\n      simp [Finset.range_add_one, ih]\n    exact this\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_i_vandermonde = Nl2LeanCandidate.study_i_vandermonde := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_i_vandermonde\n",
+  "verification_source_sha256": "c367d63d06684f77ac806cffdc9646987029103d2c3e89680ac4a640372fb8c8",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 27,
+        "line": 6
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Tactic `split` failed: Could not split an `if` or `match` expression in the goal\n\nHint: If you meant to destruct this conjunction, use the `cases` tactic instead\n\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\n\nm n : ℕ\n⊢ (m + n).choose 0 = 1 ∧ ∑ i ∈ Finset.range 1, m.choose i * n.choose (0 - i) = 1",
+      "endPos": {
+        "column": 11,
+        "line": 17
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 6,
+        "line": 17
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  this\nhas type\n  (m + n).choose 0 = 1 ∧ ∑ i ∈ Finset.range 1, m.choose i * n.choose (0 - i) = 1\nbut is expected to have type\n  (m + n).choose 0 = ∑ i ∈ Finset.range (0 + 1), m.choose i * n.choose (0 - i)",
+      "endPos": {
+        "column": 14,
+        "line": 20
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 4,
+        "line": 20
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 31,
+        "line": 22
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 27,
+        "line": 22
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 61,
+        "line": 22
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 57,
+        "line": 22
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 97,
+        "line": 22
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 93,
+        "line": 22
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `choose_add_left`",
+      "endPos": {
+        "column": 25,
+        "line": 23
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 10,
+        "line": 23
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_i_vandermonde' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 30
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 30
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":27,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Tactic `split` failed: Could not split an `if` or `match` expression in the goal\\n\\nHint: If you meant to destruct this conjunction, use the `cases` tactic instead\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\nm n : ℕ\\n⊢ (m + n).choose 0 = 1 ∧ ∑ i ∈ Finset.range 1, m.choose i * n.choose (0 - i) = 1\",\"endPos\":{\"column\":11,\"line\":17},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":6,\"line\":17},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  this\\nhas type\\n  (m + n).choose 0 = 1 ∧ ∑ i ∈ Finset.range 1, m.choose i * n.choose (0 - i) = 1\\nbut is expected to have type\\n  (m + n).choose 0 = ∑ i ∈ Finset.range (0 + 1), m.choose i * n.choose (0 - i)\",\"endPos\":{\"column\":14,\"line\":20},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":4,\"line\":20},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":31,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":27,\"line\":22},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":61,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":57,\"line\":22},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":97,\"line\":22},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":93,\"line\":22},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `choose_add_left`\",\"endPos\":{\"column\":25,\"line\":23},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":10,\"line\":23},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_i_vandermonde' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":30},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_5a055a512b1a6ce5b61898d0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":30},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

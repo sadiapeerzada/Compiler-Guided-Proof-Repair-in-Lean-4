@@ -1,0 +1,216 @@
+{
+  "success": false,
+  "errors": [
+    "line 15: Unknown identifier `succ`",
+    "line 15: Unknown identifier `succ`",
+    "line 15: Unknown identifier `succ`",
+    "line 16: Unknown identifier `succ`",
+    "line 16: Unknown identifier `succ`",
+    "line 16: Unknown identifier `succ`",
+    "line 16: Unknown identifier `succ`",
+    "line 16: Unknown identifier `succ`",
+    "line 16: Unknown identifier `succ`"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 33.931,
+  "diagnostics_parsed": 11,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 15: Unknown identifier `succ`\nline 15: Unknown identifier `succ`\nline 15: Unknown identifier `succ`\nline 16: Unknown identifier `succ`\nline 16: Unknown identifier `succ`\nline 16: Unknown identifier `succ`\nline 16: Unknown identifier `succ`\nline 16: Unknown identifier `succ`\nline 16: Unknown identifier `succ`",
+  "candidate_sha256": "691add99c1302262b779b6325bc8acec95105146e83473931f5bb55fdf9f625d",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\ntheorem pascal_row_sum (n : ℕ) : ∑ k ∈ Finset.range (n + 1), Nat.choose n k = 2 ^ n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem pascal_row_sum (n : ℕ) : ∑ k ∈ Finset.range (n + 1), Nat.choose n k = 2 ^ n\n:= by\n  induction n with\n  | zero =>\n    simp [Finset.range, Nat.choose]\n  | succ n ih =>\n    have : ∑ k ∈ Finset.range (succ n + 1), Nat.choose (succ n) k = 2 ^ (succ n) := ih\n    have : ∑ k ∈ Finset.range (succ n + 1), Nat.choose (succ n) k = ∑ k ∈ Finset.range (succ n), Nat.choose (succ n) k + Nat.choose (succ n) (succ n) := by\n      rw [Finset.sum_range_succ]\n    rw [this, add_comm, two_pow_succ, add_assoc, ih, add_zero]\n    simp [Finset.range, Nat.choose]\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.pascal_row_sum = Nl2LeanCandidate.pascal_row_sum := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.pascal_row_sum\n",
+  "verification_source_sha256": "5c200674d3b3141550b8f8d143e717eb5275b0d629544838677d8376c91122be",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 5
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 5
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 35,
+        "line": 15
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 31,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 60,
+        "line": 15
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 56,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 77,
+        "line": 15
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 73,
+        "line": 15
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 35,
+        "line": 16
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 31,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 60,
+        "line": 16
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 56,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 92,
+        "line": 16
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 88,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 113,
+        "line": 16
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 109,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 137,
+        "line": 16
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 133,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `succ`",
+      "endPos": {
+        "column": 146,
+        "line": 16
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 142,
+        "line": 16
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.pascal_row_sum' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 24
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 24
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":5},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":5},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":35,\"line\":15},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":31,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":60,\"line\":15},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":56,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":77,\"line\":15},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":73,\"line\":15},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":35,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":31,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":60,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":56,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":92,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":88,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":113,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":109,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":137,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":133,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `succ`\",\"endPos\":{\"column\":146,\"line\":16},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":142,\"line\":16},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.pascal_row_sum' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":24},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_2070f09f48f35bc792024305.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":24},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}

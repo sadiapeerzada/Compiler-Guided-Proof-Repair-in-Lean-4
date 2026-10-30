@@ -1,0 +1,90 @@
+{
+  "success": false,
+  "errors": [
+    "line 13: Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided",
+    "line 14: No goals to be solved"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 56.986,
+  "diagnostics_parsed": 4,
+  "axiom_dependencies": null,
+  "failure_kind": "compiler_error",
+  "diagnostic_text": "line 13: Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided\nline 14: No goals to be solved",
+  "candidate_sha256": "afb8359261513e9dd00ed06bd8f944a3939e971e98c3323f3ea54951b5d44d46",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\nopen scoped BigOperators\nopen scoped BigOperators\ntheorem study_m_crt (a b n m : ℕ) (h : Nat.ModEq (Nat.gcd n m) a b) : ∃ k : ℕ, Nat.ModEq n k a ∧ Nat.ModEq m k b := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\nopen scoped BigOperators\ntheorem study_m_crt (a b n m : ℕ) (h : Nat.ModEq (Nat.gcd n m) a b) : ∃ k : ℕ, Nat.ModEq n k a ∧ Nat.ModEq m k b\n:= by\n  let ⟨c, h1⟩ := h\n  have h2 : ∃ k : ℤ, a = k * n + c := by\n    use [c / n, by rw [Nat.div_mod_eq, h1, Nat.mul_add]]; norm_num\n  have h3 : ∃ k : ℤ, b = k * m + c := by\n    use [c / m, by rw [Nat.div_mod_eq, h1, Nat.mul_add]]; norm_num\n  obtain ⟨k1, h4⟩ := h2\n  obtain ⟨k2, h5⟩ := h3\n  have h6 : k1 * n + c = k2 * m + c := by\n    rw [h4, h5]\n  have h7 : k1 * n = k2 * m := by\n    rw [h6, Nat.add_left_cancel h5]\n  have h8 : ∃ k : ℤ, k1 = k * (m / (Nat.gcd n m)) := by\n    use [k1 / (m / (Nat.gcd n m)), by rw [Nat.div_mul_eq_div_gcd, h7, Nat.gcd_eq_gcd]]\n  obtain ⟨k3, h9⟩ := h8\n  have h10 : k3 * (m / (Nat.gcd n m)) * n = k1 * n := by\n    rw [h9, Nat.mul_assoc, h7]\n  have h11 : ∃ k : ℕ, k3 * (m / (Nat.gcd n m)) = k1 := by\n    use [k3, by rw [h10]]\n  obtain ⟨k, h12⟩ := h11\n  exact ⟨k, by rw [h4, h12], by rw [h5, h12]⟩\nend Nl2LeanCandidate\n\nexample : Nl2LeanExpected.study_m_crt = Nl2LeanCandidate.study_m_crt := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.study_m_crt\n",
+  "verification_source_sha256": "ffe0657b2031565dbc4d5fc962c86d3a106bd1a402364a92c2fbe894a7a27366",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 19,
+        "line": 6
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_02c78b8bbef8d39b645cafa9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 6
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided",
+      "endPos": {
+        "column": 13,
+        "line": 13
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_02c78b8bbef8d39b645cafa9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 6,
+        "line": 13
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "No goals to be solved",
+      "endPos": {
+        "column": 6,
+        "line": 14
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_02c78b8bbef8d39b645cafa9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 2,
+        "line": 14
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.study_m_crt' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 37
+      },
+      "fileName": "lean_project/generated/_scratch/posthoc_dev_02c78b8bbef8d39b645cafa9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 37
+      },
+      "severity": "information"
+    }
+  ],
+  "malformed_diagnostics": [],
+  "diagnostic_state": "available",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":19,\"line\":6},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_02c78b8bbef8d39b645cafa9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":6},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Insufficient number of fields for `⟨...⟩` constructor: Constructor `Eq.refl` does not have explicit fields, but 2 were provided\",\"endPos\":{\"column\":13,\"line\":13},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_02c78b8bbef8d39b645cafa9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":6,\"line\":13},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"No goals to be solved\",\"endPos\":{\"column\":6,\"line\":14},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_02c78b8bbef8d39b645cafa9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.study_m_crt' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":37},\"fileName\":\"lean_project/generated/_scratch/posthoc_dev_02c78b8bbef8d39b645cafa9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":37},\"severity\":\"information\"}\n",
+  "compiler_stderr": ""
+}
