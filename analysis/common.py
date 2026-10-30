@@ -12,6 +12,7 @@ STUDY=ROOT/'data/final_study/v1'
 OUT=ROOT/'outputs/post_hoc'
 sys.path.insert(0,str(ROOT/'eval'))
 from paired_analysis import classify_compiler_error as frozen_classifier
+from .metrics import completed_repair_pairs
 
 
 def read(path):return json.loads(Path(path).read_text())
@@ -65,13 +66,9 @@ def load_originals():
         c={'id':row['id'],'family':family,'initial_category':category(initial['verification']),
            'outcomes':{n:m['conditions'][n]['success'] for n in ['A','B','C']},'manifest':m,'folder':folder,'row':row,
            'intents':list(folder.glob('*/intent.json'))}
-        for condition in ['B','C']:
-            prior=initial
-            for index,after in enumerate(m['conditions'][condition]['attempts'],1):
-                if prior['verification']['success']:raise ValueError('Completed repair after success: '+row['id'])
-                repairs.append({'id':row['id'],'family':family,'condition':condition,'repair_index':index,
-                                'initial_category':c['initial_category'],'before':prior,'after':after,'folder':folder})
-                prior=after
+        for condition,index,prior,after in completed_repair_pairs(m):
+            repairs.append({'id':row['id'],'family':family,'condition':condition,'repair_index':index,
+                            'initial_category':c['initial_category'],'before':prior,'after':after,'folder':folder})
         steps=[initial]+[a for n in ['B','C'] for a in m['conditions'][n]['attempts']]
         for step in steps:
             cp=ROOT/step['completion_path'];vp=ROOT/step['verification_path']
