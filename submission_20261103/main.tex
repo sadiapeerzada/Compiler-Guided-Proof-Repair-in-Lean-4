@@ -174,6 +174,70 @@ Count & 58 & 7 & 2 & 1 \\
 \bottomrule\end{tabular}
 \end{table}
 
+\subsection{What Changes Before a Proof Verifies?}
+The constructed follow-up also records 1,006 repair transitions across the
+five post-initial arms. These are \emph{calls}, not independent theorem trials:
+once a condition verifies its theorem it stops, so successful conditions
+usually have fewer opportunities to repeat a candidate. A byte-identical
+candidate is an easily checked indication of ineffective rewriting, but a
+new candidate may remain invalid. Table~\ref{tab:process} shows both
+features separately. Guided feedback produced six successful repair
+transitions among 197 calls; shuffled feedback produced five among 200.
+Neutral and token-matched retry each yielded one additional verified
+transition despite 203 and 204 calls. Independent resampling repeated fewer
+candidate strings, but verified only one new proof. Neither the frequency
+of changed strings nor compiler-error transitions identifies the causal
+contribution of the correct diagnostic, because instructions, available
+input tokens, sampling paths, and previously failed candidates differ.
+
+\begin{table}[t]\centering\small
+\caption{V7 repair-call behavior after initial generation. Counts are calls,
+not success probabilities per independent theorem. ``New verified'' excludes
+four cases already correct at the initial attempt.}
+\label{tab:process}
+\begin{tabular}{lrrr}\toprule
+Condition & Repair calls & Byte-identical retries & New verified \\
+\midrule
+B: neutral &203&147&1\\
+C: correct diagnostics &197&111&6\\
+D: shuffled diagnostics &200&116&5\\
+E: token matched &204&158&1\\
+R: resampling &202&65&1\\
+\bottomrule\end{tabular}
+\end{table}
+
+This process-level discrepancy echoes Study~1: that pilot's guided
+condition changed the next candidate string more often than blind retry,
+but strict proof acceptance did not improve. In the V7 constructed
+follow-up, only four initial candidates verified immediately; the remaining
+68 were classified predominantly as syntax failures (58), followed by
+elaboration/type failures (7), unknown identifiers (2), and another compiler
+failure (1). Error labels are heuristic summaries of real verifier output,
+not mathematical difficulty judgments. An apparent shift from syntax to
+type elaboration does not imply that the candidate is closer to a proof.
+
+Input-cost matching is also imperfect even with an explicit token-matched
+arm. For example, V7 records mean input-prompt sizes of about 199.5 tokens
+per neutral repair call and 273.3 for genuine-feedback calls; shuffled
+feedback averaged 281.4 and token-matched neutral 275.1. Comparable
+aggregate token counts do not imply identical information or repair histories.
+Thus the estimated rate contrast C--B can reflect several factors in
+addition to useful diagnostic content, while the near-matched C--D contrast
+is the more relevant, albeit still underpowered, mechanism check.
+
+\subsection{Why the Two Studies Cannot Be Pooled}
+The original study used source-attributed fixed theorem types and an
+English/Lean pair for each target; the follow-up instead provided short,
+author-constructed Lean identities with placeholder English descriptions.
+The import profile was also narrower in Study~2. Consequently, the
+one-model 60-type pilot, base-model 72-cell follow-up, and later Coder
+72-cell follow-up test different evidence questions. Combining their
+numerators into one pass rate or treating cross-study comparisons as a
+randomized model effect would be misleading. V9 was run only on development:
+its equality of 5/12 with the earlier guided condition is a useful stop
+signal, not a new result on a hidden test set. This separation is part of
+the reproducibility claim, not an optional statistical adjustment.
+
 \section{Benchmark Validity and Threats}
 All 24 constructed reference proofs passed fresh strict Lean screening;
 40 frozen V8 evidence entries passed the local SHA-256 manifest check.
