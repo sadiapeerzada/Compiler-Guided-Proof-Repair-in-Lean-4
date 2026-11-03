@@ -1,0 +1,14 @@
+| group | contrast | status | historical_interval |
+| --- | --- | --- | --- |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2027 | C_real_minus_B_neutral | exact match: counts, historical family CI and McNemar | [0.0, 0.0] |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2027 | C_real_minus_D_shuffled | exact match: counts, historical family CI and McNemar | [0.0, 0.0] |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2027 | C_real_minus_E_token_matched | exact match: counts, historical family CI and McNemar | [0.0, 0.0] |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2027 | C_real_minus_R_resample | exact match: counts, historical family CI and McNemar | [0.0, 0.0] |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2028 | C_real_minus_B_neutral | exact match: counts, historical family CI and McNemar | [0.0, 0.0] |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2028 | C_real_minus_D_shuffled | exact match: counts, historical family CI and McNemar | [0.0, 0.0] |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2028 | C_real_minus_E_token_matched | exact match: counts, historical family CI and McNemar | [0.0, 0.0] |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2028 | C_real_minus_R_resample | exact match: counts, historical family CI and McNemar | [-0.125, 0.0] |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2029 | C_real_minus_B_neutral | exact match: counts, historical family CI and McNemar | [0.0, 0.0] |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2029 | C_real_minus_D_shuffled | exact match: counts, historical family CI and McNemar | [0.0, 0.0] |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2029 | C_real_minus_E_token_matched | exact match: counts, historical family CI and McNemar | [0.0, 0.0] |
+| mlx-community/Qwen2.5-Coder-7B-Instruct-4bit / 2029 | C_real_minus_R_resample | exact match: counts, historical family CI and McNemar | [-0.2, 0.0] |

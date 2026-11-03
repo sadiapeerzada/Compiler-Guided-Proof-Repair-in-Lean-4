@@ -1,0 +1,8 @@
+| arm | calls | input_tokens | output_tokens | verified_evaluations | recorded_input_tokens_per_final_verified_evaluation | initial_plus_repair_input_per_verified_evaluation | repair_input_per_new_verified_evaluation |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| A | 72 | 9501 | 4701 | 4 | 2375.25 | 2375.25 | None |
+| B_neutral | 203 | 40492 | 17312 | 5 | 8098.4 | 9998.6 | 40492.0 |
+| C_real | 197 | 53838 | 14256 | 10 | 5383.8 | 6333.9 | 8973.0 |
+| D_shuffled | 200 | 56277 | 15744 | 9 | 6253.0 | 7308.666666666667 | 11255.4 |
+| E_token_matched | 204 | 56111 | 16924 | 5 | 11222.2 | 13122.4 | 56111.0 |
+| R_resample | 202 | 29792 | 21121 | 5 | 5958.4 | 7858.6 | 29792.0 |
