@@ -1,6 +1,6 @@
 # Compiler-Guided Proof Repair in Lean 4: A Controlled Local-Model Pilot on Fixed Theorem Types
 
-The latest [post-hoc manuscript](post_hoc/outputs/post_hoc/manuscript/post_hoc_pilot.pdf)
+The latest [post-hoc manuscript](paper/post_hoc_pilot.pdf)
 and [exploratory results](post_hoc/outputs/post_hoc/SUMMARY.md) extend the original
 fixed-theorem study with process analyses, calibrated uncertainty and a separately
 frozen 15-development-problem placebo control. Exact McNemar p=1.0 at zero
