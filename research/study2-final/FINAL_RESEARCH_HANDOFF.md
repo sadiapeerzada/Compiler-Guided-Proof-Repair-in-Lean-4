@@ -38,7 +38,7 @@ See `BENCHMARK_ADJUDICATION_NOTES.md`, `PROPOSED_VALIDATION_DECISIONS.csv`, and 
 | 18–19 abstract/motivation | **Revised in new draft** | Editorial approval |
 | 20–21 related work/novelty | **Revised with restrained claims** | Independent primary-paper citation verification |
 | 22 reproducibility | **Partial** | Public processed records, but not full private raw model/reviewer trajectories |
-| 23–26 figures/tables/interpretation | **Revised in new five-page draft** | Supervisor/venue review; post-hoc analyses labelled |
+| 23–26 figures/tables/interpretation | **Revised in new six-page draft** | Supervisor/venue review; post-hoc analyses labelled |
 | 27 code/evidence archive | **Partial** | V7 script/results public; V8 lock report documents local uncommitted raw evidence |
 | 28 citations | **Review required** | Not all final bibliography entries independently verified in this handoff |
 | 29 venue formatting/submission | **Draft build passed** | Editorial, anonymity, supervisor and category approval pending |
