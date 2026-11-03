@@ -13,7 +13,7 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdfinfo main.pdf | grep Pages
 ```
 
-**Observed at creation: 5 A4 pages**, no overfull-box or unresolved-reference messages in the second build. This is a local build check, not venue or supervisor approval. The compiled PDF was delivered separately to the requester; this GitHub branch stores the editable LaTeX source, not a new binary PDF.
+**Observed at creation: 6 A4 pages**, no overfull-box or unresolved-reference messages in the second build. This is a local build check, not venue or supervisor approval. The compiled PDF was delivered separately to the requester; this GitHub branch stores the editable LaTeX source, not a new binary PDF.
 
 ## What the paper reports
 
