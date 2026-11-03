@@ -11,23 +11,22 @@
 \maketitle
 
 \begin{abstract}
-We compare no-repair generation (A), blind retry (B), and Lean-compiler-guided
-repair (C) for English statements paired with fixed reviewed theorem types.
-B and C start from identical failed candidates, use one hash-pinned 4-bit
-Qwen2.5-7B instruction model, and allow at most three repair calls under common
-context/output caps. Of 60 held-out statements, A verifies 0/60 and B 1/60;
-C verifies 1/58 observed outcomes, with two unavailable outcomes. On the 58
-complete paired trajectories, B and C each verify 1/58 (1.72\%): the paired
-difference is 0.00 percentage points, with no discordant pairs. A degenerate
-conditional bootstrap interval does not establish equivalence or account for
-missingness. Full-cohort identification bounds are 0 to +3.33 points for C--B.
-Counting unavailable C outcomes as failures yields the separately planned
-1/60 sensitivity estimate. We report genuine outputs, compiler errors, resource
-usage and failure cases rather than a demonstrated feedback benefit. One seed,
-a three-case development pilot, low success, related families, author-assisted
-AI review and privacy-limited public replay restrict the conclusions. The task
-is fixed-type proof synthesis; autonomous NL-to-statement and end-to-end accuracy
-are not measured.
+We compare one-shot generation (A), blind retry (B), and compiler-guided
+repair (C) as proof synthesis for fixed AI-reviewed Lean 4 theorem types,
+not autonomous statement translation. The same local hash-pinned 4-bit
+instruction model generates shared initial candidates for B/C, with up to
+three repairs. Of 60 held-out targets, A verifies 0/60 and B 1/60; C verifies
+1/58 observed outcomes, with two unavailable. Across 58 complete B/C pairs,
+both verify 1/58; the exact McNemar $p=1.0$ with no discordance is
+non-informative for equivalence. Exploratorily, compiler diagnostics were
+associated with fewer byte-identical retries (70/172 = 40.7\% versus
+90/178 = 50.6\%), and a separate 15-problem development placebo pointed
+in the same direction, but neither comparison yielded more verified proofs.
+The association is suggestive, not proof of diagnostic use. This internally
+frozen one-seed pilot is limited by correlated families, sparse successes,
+AI-assisted semantic screening without independent human labels, and
+privacy-limited replay. The three-case pre-test protocol pilot is distinct
+from the later 15-problem post-hoc placebo.
 \keywords{Lean 4 \and proof repair \and compiler diagnostics \and local inference \and negative results}
 \end{abstract}
 
@@ -50,6 +49,10 @@ The evaluated stage receives both English and a fixed AI-reviewed Lean type.
 It therefore tests proof synthesis and repair within an NL-to-Lean workflow.
 It does not measure unconstrained English-to-theorem translation, independent
 semantic-review accuracy, or state-of-the-art mathematical problem solving.
+
+Our contributions are a bounded controlled fixed-theorem proof-synthesis
+pilot with shared starting candidates, auditable missingness and resource
+accounting, and explicitly post-hoc process diagnostics.
 
 \section{Related Work}
 Lean 4 provides a dependently typed language and kernel-checked proof
@@ -95,50 +98,16 @@ errors. C stops if genuine candidate diagnostics are unavailable;
 it is never supplied an invented compiler message. Timeouts, context-limit
 failures and interrupted calls remain explicit missing/incomplete outcomes.
 
-\section{Dataset, Provenance and Semantic Audit}
-Starting from 96 prepared candidates, we exclude one exact duplicate and 20
-nonduplicate records lacking adequate item-level provenance. The resulting 75
-records comprise 16 textbook-derived statements~\cite{levin2021dmoi} and 59
-adaptations of pinned formal-library statements. Citations, original source
-bytes, license notices and item-level attribution are retained. Textbook
-adaptations retain CC BY-SA 4.0 attribution; formal-library material retains
-Apache-2.0 notices. These are evidence-based AI-assisted source assessments,
-not invented publisher permissions or independent legal clearance.
-
-Two original records were corrected: a positive-modulus premise was restored,
-and ambiguous summation endpoints were made explicit. Both proofs were
-reverified and both pairs were reviewed again with a separate Phi-4 model.
-They remain excluded for source-provenance reasons; corrections were not used
-to inflate eligible counts. Original records and before/after histories remain
-available.
-
-\input{generated/review_v2/table1.tex}
-
-The approved replacement policy uses explicit AI adjudication of quantifiers,
-domains, assumptions, strength, endpoints and equivalent encodings. Phi-3.5 and
-Phi-4 audit responses are retained, including schema failures and unsupported
-objections. The authoring coding assistant adjudicated the exact selected pairs
-using candidate-specific mathematical comparisons and reference evidence. It
-is not author-independent human review. An uncertain or unfaithful final
-adjudication is inadmissible; unreliable raw AI output is not a faithful vote.
-
-The independent reviewer models were demonstrably fallible: for example, one
-claimed that $1(1+1)$ was odd. Exact arithmetic refutes that alleged
-counterexample. Generic placeholders, hallucinated hypotheses and proof-method
-confusion were separately flagged. All 96 original reference types have strict
-Lean evidence; handwritten bounded probes cover 26,467 accepted finite
-assignments, with 88 exact predicates and eight approximate numerical probes.
-These checks supplement, rather than establish, English equivalence.
-
-Whole binomial, linear-solvability and modular-power families were grouped before
-primary-model test access. No curated family crosses splits. The 15 development
-statements occupy five conservative family clusters; the 60 test statements
-occupy 54. These are not claimed to be 75 independent topic families.
-All texts were accessed for authorized curation, but no held-out primary-model
-proof outcome was used to select prompts or settings. Ordered IDs and exact
-dataset bytes were frozen with cryptographic hashes. The source commit and local
-launch record precede held-out inference. No evidence establishes public publication
-of the IDs/hash before testing; this is an internal freeze, not external preregistration.
+\section{Dataset and Validity}
+The internally frozen source- and provenance-screened dataset contains
+75 fixed English/theorem-type pairs: 15 development cases in five
+families and 60 held-out targets in 54 families, without curated-family
+overlap. AI-assisted reference review did not provide independent
+human-gold labels; targets are fixed, not autonomously translated.
+Dataset acquisition, licenses, corrections, semantic audit, and
+composition appear in Appendix~\ref{app:dataset}.
+The source and split were internally frozen before held-out inference,
+not externally preregistered.
 
 \section{Frozen Experimental Design}
 The primary model is \texttt{mlx-community/Qwen2.5-7B-Instruct-4bit}, run
@@ -166,9 +135,10 @@ memory cost. Before any held-out generation, the final protocol added the same
 explicit Lean 4 syntax instruction to all three conditions and fixed the memory
 schedule. This was syntax/implementation development, not test-outcome tuning;
 the format diagnostic still failed mathematical verification. Prototypes are
-preserved and excluded from study estimates. The final pilot covers only three of the fifteen development cases and passed
+preserved and excluded from study estimates. The pre-test protocol pilot covers only three of the fifteen development cases and passed
 the provenance/control audit, and an actual resume invocation generated no new
 calls. No model, prompt, dataset or budget changed after held-out execution began.
+This three-case protocol pilot is separate from the 15-problem post-hoc placebo.
 
 Conditions execute B before C rather than in randomized order. Each call has a
 durable intent, raw response and token stream; each verification and branch
@@ -190,7 +160,7 @@ They assume independent problem units; related family clusters limit that assump
 On 58 complete pairs, B and C each succeed on the same single target,
 \texttt{lib\_a\_exp\_add}. The C--B risk difference is 0.00 percentage points,
 with zero discordant pairs. The conventional exact two-sided McNemar value is $p=1.0$ with
-zero discordant pairs. This does not establish equivalence. Both problem and family-cluster
+zero discordant pairs, non-informative for equivalence. Both problem and family-cluster
 bootstrap intervals are [0.00,0.00] points, conditional on those observed pairs.
 This degeneracy reflects identical observed outcomes, not high precision about
 a general feedback effect.
@@ -248,8 +218,21 @@ initial once: 362,035 input tokens, 130,401 output tokens and 11,233.6 native
 generation seconds. Counterfactual condition rows each include their initial.
 No unavailable response tokens or duration are invented.
 
+\begin{table}[tbp]
+\caption{Known completed-response resource distributions. Loading
+is included in wall time, and missing response costs are not imputed.}
+\label{tab:resource-distributions}
+\centering\small
 \input{generated/review_v2/resources.tex}
+\end{table}
+
+\begin{table}[tbp]
+\caption{Resource costs per theorem on the same 58 complete pairs,
+including shared initials; B-before-C order prevents causal timing claims.}
+\label{tab:matched-resources}
+\centering\small
 \input{generated/review_v2/matched_resources.tex}
+\end{table}
 
 Call wall time includes model loading; native generation time excludes it.
 The table reports completed-response costs only, not unknown full-run costs.
@@ -287,25 +270,75 @@ No compiler timeout was observed among the completed candidates; the context
 rejection is a generation resource failure, not a Lean error. Failed model
 outputs and their actual diagnostics remain retained, including repeated errors.
 
-% POST_HOC_PROCESS_BEGIN
-\subsection{Exploratory process diagnostics}
-The following measurements were defined after observing the original outcomes
-and do not alter the frozen success analysis. B repeated the immediately preceding
-candidate in 90/178 completed repairs, C in 70/172. Whole-family resampling,
-10,000 draws and seed 20271021, preserves repair and family dependence.
-The exploratory C--B repetition difference is -9.86 percentage points
-(95\% family-bootstrap interval [-19.77,-0.50]). This is one of several post-hoc
-contrasts, not a confirmatory diagnostic-use test or a proof-success improvement.
-At least one preceding unknown name disappears in B 12/76 eligible repairs and
-C 14/70; B's diagnostics are used by the analyst only. Syntactic name removal,
-edit distance, fewer messages and category transitions are not certified fixes.
-Character/token edits, grayscale transition matrices, prompt-length distributions,
-and assumption-based power calculations are provided as post-hoc supplementary
-artifacts. No new held-out inference, replay or outcome imputation occurs.
-% POST_HOC_DEV_BEGIN
-\paragraph{Exploratory development placebo.} A separately frozen post-hoc control used fresh shared initials on 15 development problems, one seed, three repair arms and only genuine different-problem/family donor diagnostics. Only diagnostic filename metadata was normalized consistently; compiler-message content remained unchanged. Observed verified outcomes were A: 0/15, B: 0/15, C: 0/15, C\_placebo: 0/15. Completed-repair counts were C repetition 23/45, own-name removal 3/19; C\_placebo repetition 32/45, own-name removal 2/17. The observed higher own-name removal and lower repetition under real diagnostics are consistent with diagnostic-content sensitivity. This exploratory one-seed pattern does not prove that the model uses diagnostic content. Five dev families, independent condition RNG streams, donor category/length matching and sequential execution limit inference; no hypothesis-test or proof-of-use claim is made.
-% POST_HOC_DEV_END
-% POST_HOC_PROCESS_END
+\section{Do Compiler Diagnostics Change Model Behavior? Exploratory Process Analysis}
+\label{sec:process}
+\noindent\textbf{Exploratory, defined after observing outcomes.}
+This analysis is post hoc; it does not change the frozen success study,
+establish diagnostic-content use, or demonstrate verified-proof benefit.
+
+\paragraph{Byte-identical repetitions.}
+On the held-out test set B repeated the preceding candidate in 90/178
+completed repairs (50.6\%) and C in 70/172 (40.7\%). The exploratory
+repair-weighted C-minus-B difference is $-9.86$ percentage points
+(95\% whole-family bootstrap CI [$-19.77$,$-0.50$], 10,000 resamples,
+seed 20271021). This is suggestive: the CI's upper limit barely
+excludes zero, it is one of several post-hoc contrasts, and no
+multiplicity adjustment was applied.
+
+On first repair, the only step where B and C have the identical shared
+initial candidate, B repeated 17/60 (28.3\%) and C repeated 10/58
+(17.2\%). The exploratory C-minus-B difference is $-11.09$ points
+(95\% whole-family bootstrap CI [$-22.00$,$-0.86$], same procedure).
+Two unavailable C first repairs are excluded from C's denominator.
+For pooled repairs 2--3, B repeated 73/118 (61.9\%) and C 60/114
+(52.6\%). Later repairs compare different preceding candidates in
+each branch, so the pooled association depends partly on divergent
+repair histories and cannot identify a causal diagnostic-content effect.
+
+\paragraph{Unknown-name disappearance is not diagnostic-use evidence.}
+At least one preceding unknown name disappeared in 12/76 eligible B
+repairs and 14/70 C repairs. B never saw compiler diagnostics;
+analysts used these messages only to measure a chance baseline.
+Name disappearance, edit distance, error categories and fewer
+compiler messages are not certified mathematical corrections.
+
+\paragraph{Exploratory development placebo.}
+This later post-hoc control is separate from the earlier three-case
+pre-test protocol pilot. It used 15 development problems, five
+families, one seed, and genuine different-problem/family diagnostic
+donors, with only filename metadata normalized. Verified proof
+outcomes remained A 0/15, B 0/15, C 0/15 and C\_placebo 0/15.
+Byte-identical repetition was B 22/45 (48.9\%), C 23/45 (51.1\%),
+and C\_placebo 32/45 (71.1\%). Since B is well below placebo,
+mismatched diagnostics may increase copying; the placebo cannot
+distinguish ignored feedback from confusion by irrelevant feedback.
+Dev C did not repeat less than blind B. Name removal was B 1/18
+(analyst-only; B never saw diagnostics), C 3/19 and C\_placebo
+2/17; the C/placebo comparison is a one-event difference, not
+evidence of diagnostic use. Only the lower repetition for real
+than mismatched diagnostics is consistent with possible diagnostic-
+content sensitivity, and this remains suggestive.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=.90\linewidth]{../post_hoc/outputs/post_hoc/figures/post_hoc_length_repetition.pdf}
+\caption{Exploratory C byte-identical retries by diagnostic-length
+quartile using the archived post-hoc figure. Completed repairs per bin are
+44, 42, 43 and 43. Bins are descriptive, and ties or problem characteristics
+can affect their sizes and rates; no causal length effect is claimed.}
+\label{fig:c-length}
+\end{figure}
+
+\paragraph{Limitations.}
+Figure~\ref{fig:c-length} displays a separate descriptive view of C
+repetition by diagnostic length; it does not test whether the model uses
+diagnostic content. The placebo is descriptive (15 problems, five families, one seed,
+no hypothesis test). Correlated repairs, independent random
+streams, donor matching, different prompt lengths, branch order
+and post-hoc selection preclude causal inference. There were
+two unavailable held-out C outcomes, with no replay, imputation,
+or new model calls. Exploratory edit and message metrics do not
+certify progress.
 
 \section{Qualitative Repair Cases}
 Five authentic cases were selected post hoc for outcome, category and error
@@ -318,7 +351,8 @@ full original candidate bytes and hashes remain in the evidence. A byte-identica
 retry is a genuine observed non-change, not a manufactured repair.
 \input{generated/review_v2/qualitative.tex}
 \section{Semantic Faithfulness and Threats to Validity}
-\input{generated/review_v2/table4.tex}
+Table~\ref{tab:semantic} is given in Appendix~\ref{app:semantic-audit};
+its labels are AI-assisted, not independent human judgments.
 Historical coding-AI assessments label 94 original references faithful, one
 not faithful, and one uncertain. The unfaithful example, \texttt{mod\_001},
 omits the English positive-modulus restriction in Lean; the uncertain example,
@@ -349,7 +383,91 @@ caps can stop repair without exhausting mathematical possibilities. These
 limits preclude broad claims about compiler feedback, larger models or
 unrestricted NL-to-formal translation.
 
-\section{Reproducibility and Authorization Provenance}
+\section{Reproducibility and Authorization Boundary}
+All outcomes derive from an internal freeze, not external
+preregistration; full authorization and replay details appear
+in Appendix~\ref{app:repro}. Protocol SHA-256:
+\path{a032110d7afbc367c2daa820bd17511c6ff5dba2d1164e0130ea5d1c4b693317};
+dataset-freeze SHA-256:
+\path{de0850197b821ca4c519737c4cffb16d78e2a329d15be6c7f3c6a7f5487db67f};
+model-inventory SHA-256:
+\path{24d68abbe5e1434e5263ad123cca517c2c1799c7465e104e83f6cb02baeac4f9}.
+Public evidence is privacy-redacted; exact-byte replay requires the
+preserved originals. Reference screening used AI assistance without
+independent human labels.
+
+\section{Conclusion}
+This internally frozen one-seed pilot compares one-shot, blind, and
+compiler-guided proof synthesis on fixed Lean 4 types using shared
+initial candidates. On 58 complete paired test trajectories, B and
+C each verified 1/58, with no robust verified-success advantage
+or equivalence established. Exploratorily, C was associated with
+fewer byte-identical retries than B (70/172, 40.7\%, versus 90/178,
+50.6\%; C-minus-B $-9.86$ percentage points, whole-family
+95\% bootstrap CI [$-19.77$,$-0.50$]); the development placebo
+also had lower repetition under real than mismatched diagnostics,
+but neither produced more verified proofs. The suggestive,
+multiplicity-unadjusted post-hoc pattern is not evidence that
+the model used diagnostic content: blind retries can remove unknown
+names, and mismatched feedback may increase copying. Our contribution
+is auditable paired evidence and failure analysis for fixed-theorem
+synthesis, not autonomous NL-to-statement accuracy or independent
+human semantic validation.
+
+\appendix
+\section{Dataset Provenance and Semantic Audit Details}
+\label{app:dataset}
+Starting from 96 prepared candidates, we exclude one exact duplicate and 20
+nonduplicate records lacking adequate item-level provenance. The resulting 75
+records comprise 16 textbook-derived statements~\cite{levin2021dmoi} and 59
+adaptations of pinned formal-library statements. Citations, original source
+bytes, license notices and item-level attribution are retained. Textbook
+adaptations retain CC BY-SA 4.0 attribution; formal-library material retains
+Apache-2.0 notices. These are evidence-based AI-assisted source assessments,
+not invented publisher permissions or independent legal clearance.
+
+Two original records were corrected: a positive-modulus premise was restored,
+and ambiguous summation endpoints were made explicit. Both proofs were
+reverified and both pairs were reviewed again with a separate Phi-4 model.
+They remain excluded for source-provenance reasons; corrections were not used
+to inflate eligible counts. Original records and before/after histories remain
+available.
+
+\input{generated/review_v2/table1.tex}
+
+The approved replacement policy uses explicit AI adjudication of quantifiers,
+domains, assumptions, strength, endpoints and equivalent encodings. Phi-3.5 and
+Phi-4 audit responses are retained, including schema failures and unsupported
+objections. The authoring coding assistant adjudicated the exact selected pairs
+using candidate-specific mathematical comparisons and reference evidence. It
+is not author-independent human review. An uncertain or unfaithful final
+adjudication is inadmissible; unreliable raw AI output is not a faithful vote.
+
+The independent reviewer models were demonstrably fallible: for example, one
+claimed that $1(1+1)$ was odd. Exact arithmetic refutes that alleged
+counterexample. Generic placeholders, hallucinated hypotheses and proof-method
+confusion were separately flagged. All 96 original reference types have strict
+Lean evidence; handwritten bounded probes cover 26,467 accepted finite
+assignments, with 88 exact predicates and eight approximate numerical probes.
+These checks supplement, rather than establish, English equivalence.
+
+Whole binomial, linear-solvability and modular-power families were grouped before
+primary-model test access. No curated family crosses splits. The 15 development
+statements occupy five conservative family clusters; the 60 test statements
+occupy 54. These are not claimed to be 75 independent topic families.
+All texts were accessed for authorized curation, but no held-out primary-model
+proof outcome was used to select prompts or settings. Ordered IDs and exact
+dataset bytes were frozen with cryptographic hashes. The source commit and local
+launch record precede held-out inference. No evidence establishes public publication
+of the IDs/hash before testing; this is an internal freeze, not external preregistration.
+
+
+\section{Reference-Faithfulness Audit Table}
+\label{app:semantic-audit}
+\input{generated/review_v2/table4.tex}
+
+\section{Reproducibility and Authorization Provenance Detail}
+\label{app:repro}
 All results derive from the frozen protocol and ordered dataset, with durable
 raw generations, compiler JSON, exact sources, token counts, timings, failures
 and resume checkpoints. Protocol SHA-256 is
@@ -380,14 +498,10 @@ were identical. Aggregate reanalysis is public; exact prompt replay and complete
 source-evidence validation require the preserved originals. This is a disclosed
 public reproducibility limit, not a replacement or revision of the experiment.
 
-\section{Conclusion}
-This internally frozen, single-seed empirical pilot records a controlled local comparison of one-shot, blind and
-compiler-guided proof repair for 60 fixed theorem targets with shared initial
-candidates. The recorded experiment does not establish a robust advantage for compiler feedback; a non-significant test is not evidence of equivalence. The contribution is the hash-committed paired evidence
-and its failure analysis under a clearly delimited low-resource configuration,
-not a claim of general superiority, equivalence, independent human semantic validation, or
-complete unconstrained natural-language formalization.
-
+% Bibliography intentionally comes after the complete appendix.
+% Flush any outstanding appendix floats before starting the reference list.
+\clearpage
 \bibliographystyle{splncs04}
 \bibliography{references}
+
 \end{document}
