@@ -11,6 +11,7 @@ ROOT=HERE.parents[1]
 STATUS='PENDING_INDEPENDENT_HUMAN_ADJUDICATION'
 
 def canonical(value):return json.dumps(value,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()
+def text_hash(text):return hashlib.sha256(text.encode()).hexdigest()
 def content_hash(value):return hashlib.sha256(canonical(value)).hexdigest()
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def ensure(condition,message):

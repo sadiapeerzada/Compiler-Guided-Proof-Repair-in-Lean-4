@@ -9,7 +9,7 @@ import re
 import subprocess
 from collections import defaultdict
 from pathlib import Path
-from common import ROOT,HERE,STATUS,sha,content_hash,read,dump,csv_write,source_rows,normalize,clean
+from common import ROOT,HERE,STATUS,sha,text_hash,content_hash,read,dump,csv_write,source_rows,normalize,clean
 
 
 def reference_view(record):
@@ -70,7 +70,7 @@ def main():
         split=elig.get('split',cur.get('split','historical/proposed; review required'))
         dependencies=sorted(set(re.findall(r'\b(?:Nat|Int|Real|Finset|BigOperators)\.[A-Za-z_][\w.]*',proof)))
         if r.get('recorded_library_dependency'):dependencies.append(r['recorded_library_dependency'])
-        row=dict(inventory_key=key,id=r['id'],natural_language=nl,formal_statement=theorem,statement_sha256=content_hash(theorem),reference_proof=proof,reference_script_specification=r.get('reference_script_specification',''),reference_source=proof_source,reference_verifier_status=clean(status),category=r.get('category','unknown'),difficulty=r.get('difficulty','unassessed'),difficulty_status='Recorded/provisional, not a measured model difficulty',source_provenance='; '.join(sorted(item['sources'])),source_url=cur.get('source_url','unavailable/author-constructed'),license=cur.get('source_license','UNASSESSED'),family=family,split=split,library_dependency_screen='; '.join(dependencies),library_dependency_caveat='Identifier screen only; not complete logical dependencies',existing_exposure=exposure,independent_review=STATUS,automated_semantic_flags='; '.join(flags),record_sha256=content_hash(r))
+        row=dict(inventory_key=key,id=r['id'],natural_language=nl,formal_statement=theorem,statement_sha256=text_hash(theorem),reference_proof=proof,reference_script_specification=r.get('reference_script_specification',''),reference_source=proof_source,reference_verifier_status=clean(status),category=r.get('category','unknown'),difficulty=r.get('difficulty','unassessed'),difficulty_status='Recorded/provisional, not a measured model difficulty',source_provenance='; '.join(sorted(item['sources'])),source_url=cur.get('source_url','unavailable/author-constructed'),license=cur.get('source_license','UNASSESSED'),family=family,split=split,library_dependency_screen='; '.join(dependencies),library_dependency_caveat='Identifier screen only; not complete logical dependencies',existing_exposure=exposure,independent_review=STATUS,automated_semantic_flags='; '.join(flags),record_sha256=content_hash(r))
         inventory.append(row)
         semantic.append(dict(inventory_key=key,id=r['id'],natural_language=nl,formal_statement=theorem,automated_flags=flags,independent_status=STATUS,review_fields={k:None for k in ['quantifiers','domains','assumptions','boundary_conditions','operators','missing_premises','ambiguity','strengthening_or_weakening','semantic_gold_label','reviewer_name','independence_statement','evidence_artifact','signed_date']}))
     csv_write(HERE/'benchmark_inventory.csv',inventory)
