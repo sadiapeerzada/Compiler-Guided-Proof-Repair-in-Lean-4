@@ -134,6 +134,23 @@ def audit():
         status_path=folder/('status_v2.json' if stage.startswith('v3_review') else 'status.json')
         if stage in ('development_initial','development_repairs'):status_path=run_root()/'development_experiment/status.json'
         stages[stage]=dict(charged=len(ledger),completed=completed,unknown_or_unavailable=len(ledger)-completed,input_tokens_observed=input_sum,output_tokens_observed=output_sum,max_calls=spec['max_calls'],phase_status=read(status_path)['status'] if status_path.exists() else 'NOT_STARTED' if not ledger else 'IN_PROGRESS_OR_INTERRUPTED')
+        if 'review' in stage:
+            v3=stage.startswith('v3_');subject_path=run_root()/('v3_input.json' if v3 else 'fresh_verified.json');subjects={c['id']:c for c in read(subject_path)} if subject_path.exists() else {}
+            for review in rows(folder/'reviews.jsonl'):
+                c=subjects.get(review['id']);check(c is not None and review['subject_sha256']==subject_hash(c),'all_review_rows_bind_frozen_mathematical_subjects')
+                if 'record' not in review:
+                    check(review['decision']=='UNCERTAIN' and bool(review.get('parse_error')),'unissued_review_never_becomes_acceptance');continue
+                call=HERE/review['source_call'];intent=read(call/'intent.json');check(intent['key']['stage']==stage and intent['key']['key']['id']==review['id'] and intent['key']['key']['subject_sha256']==review['subject_sha256'],'review_intent_real_stage_and_subject_binding')
+                record=review['record'];check(review['model']==protocol()['models'][spec['model_key']],'review_row_actual_approved_model_identity')
+                if record['status']!='completed':check(review['decision']=='UNCERTAIN','unavailable_review_never_accepted');continue
+                check(read(call/'completion.json')==record and review['response_sha256']==text_hash(record['content']),'all_review_rows_backed_by_exact_actual_completions')
+                if v3:
+                    from review_protocol import parse_review
+                else:
+                    from fresh_review import parse_review
+                try:
+                    parsed=parse_review(record);check(review.get('review')==parsed and review['decision']==parsed['decision'] and not review.get('parse_error'),'qualified_review_reproduces_original_frozen_schema')
+                except (ValueError,KeyError,TypeError):check(review['decision']=='UNCERTAIN' and bool(review.get('parse_error')),'invalid_original_review_contract_remains_unresolved')
     check(total<=1084,'consolidated_development_call_cap')
     check(len(cde_configs)<=1,'same_CDE_model_decoding_runtime_and_chat_template')
     transition=run_root()/'reference_repair/prompt_v4_transition.json'
@@ -165,6 +182,7 @@ def audit():
     for prefix,review_stages in (('v3_ai',('v3_review_1','v3_review_2')),('development_ai',('development_review_1','development_review_2'))):
         path=run_root()/(prefix+'_accepted_candidates.json')
         for c in read(path) if path.exists() else []:
+            check(c['status']=='AI_SCREENED_FORMALLY_VERIFIED','accepted_subject_status_explicitly_AI_only')
             for stage in review_stages:
                 record=next((r for r in rows(run_root()/stage/'reviews.jsonl') if r['id']==c['id']),None)
                 check(record is not None,'accepted_subject_has_both_real_reviews')

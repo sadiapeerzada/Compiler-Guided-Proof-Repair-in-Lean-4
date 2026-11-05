@@ -1,0 +1,15 @@
+by
+  induction l with
+  | nil => simp trivial
+  | cons x xs ih =>
+    have h1 : x ≤ l.head := le_refl x
+    have h2 : List.filter (fun y => y ≤ x) (List.nil) = List.nil := trivial
+    have h3 : List.filter (fun y => y ≤ x) (xs ++ List.nil) = List.filter (fun y => y ≤ x) xs := trivial
+    have h4 : List.filter (fun y => y ≤ x) xs ≤ List.length xs := trivial
+      simp [List.filter_le_length]
+    have h5 : List.length (xs ++ List.nil) = List.length xs := trivial
+    have h6 : List.filter (fun y => y ≤ x) (l ++ List.nil) = List.filter (fun y => y ≤ x) l := trivial
+    have h7 : List.length (List.filter (fun y => y ≤ x) l) ≤ List.length l := trivial
+      simp [ih, h5, h6]
+    exact h7
+END BY.

@@ -1,0 +1,21 @@
+................F.                                                       [100%]
+=================================== FAILURES ===================================
+__________ ValidationTests.test_provenance_counts_and_read_only_scope __________
+
+self = <test_validation.ValidationTests testMethod=test_provenance_counts_and_read_only_scope>
+
+    def test_provenance_counts_and_read_only_scope(self):
+        p=self.results['provenance']
+        self.assertEqual(p['archive_members_verified'],4736)
+        self.assertEqual(p['frozen_lock_entries'],40)
+        self.assertEqual((p['privacy_warning_records'],p['privacy_path_occurrences']),(1220,22882))
+        self.assertTrue(p['privacy_manual_review_required'])
+        self.assertTrue(all(x['status']=='matches frozen plan' for x in p['v7_source_files']))
+        changed=subprocess.check_output(['git','diff','--name-only',v.BASE,'--','research/','publication/','paper/','submission_20261103/','*.tex','*.bib','*.pdf'],cwd=v.ROOT,text=True)
+>       self.assertEqual(changed,'')
+E       AssertionError: 'research/ai-confirmatory-study/.gitignore[471563 chars]on\n' != ''
+
+analysis/taimma_final_professor_validation/test_validation.py:91: AssertionError
+=========================== short test summary info ============================
+FAILED analysis/taimma_final_professor_validation/test_validation.py::ValidationTests::test_provenance_counts_and_read_only_scope
+1 failed, 17 passed in 0.14s

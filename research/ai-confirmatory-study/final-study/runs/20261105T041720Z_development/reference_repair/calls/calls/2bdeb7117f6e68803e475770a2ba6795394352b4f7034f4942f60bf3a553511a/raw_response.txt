@@ -1,0 +1,12 @@
+by
+  induction m with m ih
+  · have : n^3 ≤ n^3 := trivial
+    exact this
+  · have : (m + 1) * (m + 1) * (m + 1) ≥ n * n * n := 
+      rw [mul_assoc, mul_comm (m + 1) (m + 1), mul_comm (m + 1)]
+      have : (m + 1) * (m + 1) ≥ n * n := 
+        rw [← add_one_mul, add_le_add h ih, add_le_add_left h 0]
+        exact le_refl (m + 1)
+      exact mul_le_mul_left this (by norm_num)
+    exact le_trans (mul_le_mul_left this (m + 1)) (by norm_num)
+END BY
