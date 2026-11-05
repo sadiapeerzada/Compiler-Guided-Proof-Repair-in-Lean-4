@@ -1,0 +1,13 @@
+STATEMENT: For any list of natural numbers `l`, the sum of the list obtained by recursively applying the function `f` to each element of `l` is equal to the product of the sum of the original list and the sum of the list obtained by applying `f` to each element of `l`.
+
+LEAN:
+```lean
+theorem final_dev_0093 (l : List Nat) (f : Nat → Nat) : 
+  List.sum (l.map f) * List.sum l = List.sum (l.map (fun x => List.sum (l.map f))) := by
+  induction l with
+  | nil => simp [List.map, List.sum]
+  | cons x xs ih =>
+    simp [List.map, List.sum, ih]
+```
+
+FAMILY: List Sum and Product Transformation

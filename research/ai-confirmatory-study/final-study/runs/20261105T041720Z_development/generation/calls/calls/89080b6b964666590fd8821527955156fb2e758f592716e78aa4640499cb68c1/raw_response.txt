@@ -1,0 +1,14 @@
+STATEMENT: For any finite sets \(A\) and \(B\), the cardinality of the set difference \(A \setminus B\) is equal to the cardinality of \(A\) minus the cardinality of the intersection of \(A\) and \(B\).
+
+LEAN:
+```lean
+theorem final_dev_0059 {α : Type _} {A B : Set α} (hA : Fintype A) (hB : Fintype B) : 
+  fintype.card (A \ B) = fintype.card A - fintype.card (A ∩ B) := by
+  have hAB : fintype.card (A ∪ B) = fintype.card A + fintype.card B - fintype.card (A ∩ B) := by
+    rw [fintype.card_union_disjoint, fintype.card_disjoint, fintype.card_inter, fintype.card_empty]
+  have hAB_diff : fintype.card (A \ B) = fintype.card A - fintype.card (A ∩ B) := by
+    rw [fintype.card_diff, hAB]
+  exact hAB_diff
+```
+
+FAMILY: Cardinality Relations for Set Operations

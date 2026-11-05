@@ -1,0 +1,13 @@
+STATEMENT: For any integers \(a\) and \(b\), if \(a^4 - b^4\) is divisible by 5, then \(a^4 \equiv b^4 \pmod{5}\).
+
+LEAN:
+```lean
+theorem final_dev_0097 (a b : ℤ) (h : 5 ∣ (a^4 - b^4)) : a^4 ≡ b^4 [mod 5] := by
+  have h1 : a^4 - b^4 = 0 := by
+    rw [h, Int.mk_zero]
+  have h2 : a^4 = b^4 := by
+    rw [h1]
+  exact congr_mod5 h2
+```
+
+FAMILY: Congruence relations modulo 5

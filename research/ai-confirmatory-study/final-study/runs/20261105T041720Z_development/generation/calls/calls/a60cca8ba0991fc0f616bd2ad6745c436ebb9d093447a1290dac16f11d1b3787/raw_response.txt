@@ -1,0 +1,51 @@
+STATEMENT: For any real numbers \(a\), \(b\), and \(c\) such that \(a \neq 0\), the inequality \(ax^2 + bx + c > 0\) holds for all \(x\) in the interval \((x_1, x_2)\) if and only if \(a > 0\) and the discriminant \(b^2 - 4ac < 0\), where \(x_1\) and \(x_2\) are the roots of the quadratic equation \(ax^2 + bx + c = 0\).
+
+LEAN:
+```lean
+theorem final_dev_0114 (a b c : ℝ) (h_a_ne_0 : a ≠ 0) (x1 x2 : ℝ) (hx1 : x1 < x2) : 
+  (∀ x ∈ (x1, x2), a * x^2 + b * x + c > 0) ↔ (a > 0 ∧ b^2 - 4 * a * c < 0) := by
+  split
+  · intro h_pos
+    have h_discr : b^2 - 4 * a * c < 0 := by
+      have h_pos2 : a * x1^2 + b * x1 + c > 0 := h_pos x1
+      have h_pos2 : a * x2^2 + b * x2 + c > 0 := h_pos x2
+      have h_mid : a * x^2 + b * x + c > 0 for x : ℝ where x1 < x ∧ x < x2 := by
+        have h_mid1 : a * x1^2 + b * x1 + c > 0 := h_pos x1
+        have h_mid2 : a * x2^2 + b * x2 + c > 0 := h_pos x2
+        have h_mid3 : a * x^2 + b * x + c > 0 := by
+          have h_mid4 : a * x^2 + b * x + c = a * (x - x1) * (x - x2) + (a * x1^2 + b * x1 + c) + (a * x2^2 + b * x2 + c) - (a * x1^2 + b * x1 + c) - (a * x2^2 + b * x2 + c) := by
+            ring
+          have h_mid5 : a * x^2 + b * x + c > 0 := by
+            have h_mid6 : a * (x - x1) * (x - x2) > 0 := by
+              have h_mid7 : x - x1 > 0 ∧ x - x2 < 0 := by
+                have h_mid8 : x1 < x ∧ x < x2 := by assumption
+                have h_mid9 : x - x1 > 0 := by linarith
+                have h_mid10 : x - x2 < 0 := by linarith
+                exact h_mid8
+              exact h_mid7
+            exact h_mid6
+          exact h_mid5
+        exact h_mid3
+      exact h_mid
+    exact h_discr
+  · intro h_discr
+    have h_pos : ∀ x ∈ (x1, x2), a * x^2 + b * x + c > 0 := by
+      intro x hx
+      have h_mid : a * x^2 + b * x + c > 0 := by
+        have h_mid1 : a * x^2 + b * x + c = a * (x - x1) * (x - x2) + (a * x1^2 + b * x1 + c) + (a * x2^2 + b * x2 + c) - (a * x1^2 + b * x1 + c) - (a * x2^2 + b * x2 + c) := by
+          ring
+        have h_mid2 : a * x^2 + b * x + c > 0 := by
+          have h_mid3 : a * (x - x1) * (x - x2) > 0 := by
+            have h_mid4 : x - x1 > 0 ∧ x - x2 < 0 := by
+              have h_mid5 : x1 < x ∧ x < x2 := by assumption
+              have h_mid6 : x - x1 > 0 := by linarith
+              have h_mid7 : x - x2 < 0 := by linarith
+              exact h_mid5
+            exact h_mid4
+          exact h_mid3
+        exact h_mid2
+      exact h_mid
+    exact h_pos
+```
+
+FAMILY: Quadratic Inequality Analysis

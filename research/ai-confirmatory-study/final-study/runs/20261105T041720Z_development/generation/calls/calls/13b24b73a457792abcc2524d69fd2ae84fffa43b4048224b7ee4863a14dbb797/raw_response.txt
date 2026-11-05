@@ -1,0 +1,30 @@
+STATEMENT: For any finite sets \(A\) and \(B\), the cardinality of the set \(A \setminus (A \setminus B)\) is equal to the cardinality of the set \(B \cap A\).
+
+LEAN:
+```lean
+theorem final_dev_0107 {α : Type*} (A B : Set α) : card (A \ (A \ B)) = card (B ∩ A) := by
+  have h1 : A \ (A \ B) = B ∩ A := by
+    ext x
+    split
+    · intro h
+      have h2 : x ∈ A := by
+        exact h
+      have h3 : x ∉ A \ B := by
+        intro h4
+        have h5 : x ∈ A := by
+          exact h2
+        have h6 : x ∉ B := by
+          exact h4
+        contradiction
+      exact h2
+      
+    · intro h
+      have h2 : x ∈ B := by
+        exact h
+      have h3 : x ∈ A := by
+        exact h
+      exact h2
+  exact card_eq_of_subsets h1
+```
+
+FAMILY: Set Difference and Intersection Cardinality Relations

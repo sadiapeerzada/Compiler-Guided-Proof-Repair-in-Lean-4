@@ -1,0 +1,13 @@
+STATEMENT: For any lists \(a\) and \(b\), the concatenation of \(a\) reversed with \(b\) reversed is the reverse of the concatenation of \(b\) with \(a\).
+
+LEAN:
+```lean
+theorem final_dev_0104 (a b : List Nat) : (a.reverse ++ b.reverse).reverse = (b ++ a).reverse := by
+  induction a with
+  | nil =>
+    rfl
+  | cons a_head a_tail ih =>
+    simp [List.reverse, List.append, ih]
+```
+
+FAMILY: List Reversal and Concatenation

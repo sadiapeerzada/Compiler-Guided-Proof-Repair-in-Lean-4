@@ -1,0 +1,39 @@
+STATEMENT: For any integers \(a\) and \(b\), if \(a^4 - b^4 = 16\), then \(a = 2\) and \(b = 0\).
+
+LEAN:
+```lean
+theorem final_dev_0217 (a b : ℤ) : a^4 - b^4 = 16 → a = 2 ∧ b = 0 := by
+  intro h
+  have h1 : (a^2 + b^2) * (a^2 - b^2) = 16 := by
+    rw [h, mul_comm, sub_add_distrib, sub_self, zero_mul]
+  have h2 : a^2 + b^2 > 0 := by
+    rw [h1]
+    linarith
+  have h3 : a^2 - b^2 = 1 ∨ a^2 - b^2 = -1 ∨ a^2 - b^2 = 4 ∨ a^2 - b^2 = -4 := by
+    rw [h1]
+    linarith
+  have h4 : a^2 - b^2 = 4 := by
+    cases h3 with
+    | inl h5 => 
+      have h6 : a^2 + b^2 = 4 := by
+        rw [h5]
+        linarith
+      have h7 : a^2 = 2 ∧ b^2 = 0 := by
+        rw [h6]
+        linarith
+      exact h7
+    | inr h5 => 
+      have h6 : a^2 + b^2 = -4 := by
+        rw [h5]
+        linarith
+      have h7 : a^2 = 0 ∧ b^2 = 0 := by
+        rw [h6]
+        linarith
+      exact h7
+  have h8 : a = 2 ∧ b = 0 := by
+    rw [h4]
+    linarith
+  exact h8
+```
+
+FAMILY: Integer Solutions to Polynomial Equations

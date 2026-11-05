@@ -1,0 +1,15 @@
+STATEMENT: For any finite sequence of arithmetic progressions \(a_1, a_2, \ldots, a_n\) with common differences \(d_1, d_2, \ldots, d_n\) and initial terms \(a_1, a_2, \ldots, a_n\), the sum of the sums of these progressions is equal to the sum of the initial terms plus the sum of the products of the initial terms and the common differences.
+
+LEAN:
+```lean
+theorem final_dev_0054 (n : Nat) (a : Nat → Nat) (d : Nat → Nat) (h : n ≠ 0) : 
+  ∑ i in Finset.range n, ∑ j in Finset.range (i + 1), a j + d j = ∑ i in Finset.range n, a i + ∑ i in Finset.range n, a i * d i := by
+  induction n with i ih
+  · simp [Finset.range_zero, Finset.sum_empty, Finset.sum_insert, Finset.sum_singleton, Finset.sum_insert, Finset.sum_eq_zero]
+    
+  · simp [Finset.range_succ, Finset.sum_insert, Finset.sum_range_succ, ih, Finset.sum_range, Finset.sum_add_distrib, Finset.sum_mul_distrib, Finset.sum_eq_zero, Finset.sum_eq_zero, Finset.sum_eq_zero, Finset.sum_eq_zero, Finset.sum_eq_zero, Finset.sum_eq_zero]
+    rw [Finset.sum_range, Finset.sum_add_distrib, Finset.sum_mul_distrib, Finset.sum_eq_zero, Finset.sum_eq_zero, Finset.sum_eq_zero, Finset.sum_eq_zero, Finset.sum_eq_zero, Finset.sum_eq_zero]
+    ring
+```
+
+FAMILY: Sum of Arithmetic Progressions

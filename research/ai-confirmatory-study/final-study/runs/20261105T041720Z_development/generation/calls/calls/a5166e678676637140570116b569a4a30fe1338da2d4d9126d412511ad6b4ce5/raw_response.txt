@@ -1,0 +1,38 @@
+STATEMENT: For any finite set \( S \) and any finite sequence of elements \( a : \prod_{i \in S} \mathbb{Z} \), the reindexing of \( a \) by any bijection \( f : S \to S \) results in the same sequence.
+
+LEAN:
+```lean
+theorem final_dev_0236 {S : Type _} [Fintype S] (a : Π (i : S), ℤ) (f : S → S) (hf : bijection f) : 
+  a = a ∘ f :=
+by
+  have hbij : ∀ x : S, f x ∈ S := by
+    rw [bijection_def, hf]
+    exact λ x, by
+      split
+      · exact mem_range_self _
+      · exact mem_range_self _
+  have hinv : ∀ x : S, f (f⁻¹ x) = x := by
+    rw [bijection_def, hf]
+    exact λ x, by
+      split
+      · exact eq_self_of_idempotent (f x)
+      · exact eq_self_of_idempotent (f x)
+  have hcomp : ∀ x : S, (a ∘ f) x = a (f x) := by
+    simp only [function.comp_app]
+  have hinv_app : ∀ x : S, (f ∘ f⁻¹) x = x := by
+    simp only [function.comp_app, hinv]
+  have hinv_id : f ∘ f⁻¹ = id := by
+    ext
+    exact hinv_app
+  have h_id : id = id := by
+    refl
+  have h_same : ∀ x : S, a x = a (f (f⁻¹ x)) := by
+    simp only [hcomp, hinv_app]
+  have h_reindex : a = a ∘ f := by
+    ext x
+    rw [h_same x, hinv_id x]
+    exact h_id
+  exact h_reindex
+```
+
+FAMILY: Bijection and Reindexing of Finite Sequences

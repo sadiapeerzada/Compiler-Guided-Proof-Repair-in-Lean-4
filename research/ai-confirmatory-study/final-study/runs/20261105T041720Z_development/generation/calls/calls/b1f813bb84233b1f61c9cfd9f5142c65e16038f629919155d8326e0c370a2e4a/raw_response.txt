@@ -1,0 +1,16 @@
+STATEMENT: For any natural number \( n \) and any real number \( a \), the sum of the first \( n \) terms of a geometric series with the first term \( a \) and common ratio \( 2 \) is given by \( S_n = a \cdot (2^n - 1) \).
+
+LEAN:
+```lean
+theorem final_dev_0175 (n : Nat) (a : Real) : a * (2^n - 1) = ∑ i in Finset.range n, a * (2 ^ i) := by
+  induction n with
+  | zero =>
+    simp [Finset.range_zero, sum_empty, zero_sub]
+  | succ n ih =>
+    have : Finset.range (succ n) = Finset.insert (succ (Finset.choose (succ n))) (Finset.range n) := by
+      simp [Finset.range_succ, Finset.choose_succ]
+    rw [this]
+    simp [sum_insert, ih, pow_add, one_mul]
+```
+
+FAMILY: Geometric Series Sum Formula

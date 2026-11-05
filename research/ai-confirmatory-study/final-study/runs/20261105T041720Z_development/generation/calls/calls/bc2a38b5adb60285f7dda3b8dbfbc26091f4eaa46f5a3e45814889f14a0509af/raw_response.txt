@@ -1,0 +1,13 @@
+STATEMENT: If \(A\) and \(B\) are finite sets and \(f: A \to B\) is a function, then the image of the union of any two subsets of \(A\) is a subset of the union of their images under \(f\).
+
+LEAN:
+```lean
+theorem final_dev_0108 {α β : Type*} {f : α → β} {A B C : Set α} (hA : finite A) (hB : finite B) : 
+  f '' (A ∪ B) ⊆ f '' A ∪ f '' B := by
+  have hAB : A ∪ B = (A ∪ B) := by simp
+  have hAUB : f '' (A ∪ B) = f '' A ∪ f '' B := by
+    rw [image_union, hAB]
+  exact hAUB
+```
+
+FAMILY: Image and Union of Sets

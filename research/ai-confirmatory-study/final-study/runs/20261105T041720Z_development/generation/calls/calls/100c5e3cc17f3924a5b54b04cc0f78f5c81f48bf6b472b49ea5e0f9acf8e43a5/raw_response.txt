@@ -1,0 +1,24 @@
+STATEMENT: If \(A\) and \(B\) are finite sets and \(f: A \to B\) is a function, then the image of the union of two subsets \(X, Y \subseteq A\) is a subset of the union of their images, i.e., \(f(X \cup Y) \subseteq f(X) \cup f(Y)\).
+
+LEAN:
+```lean
+theorem final_dev_0132 {A B : Type*} [fintype A] [fintype B] {f : A → B} (X Y : set A) : f '' (X ∪ Y) ⊆ f '' X ∪ f '' Y := by
+  intro b
+  obtain h : ∃ a, a ∈ X ∪ Y ∧ f a = b := by
+    use some a
+    cases a with a ha
+    exact ⟨a, ha, by simp⟩
+  obtain (hX : a ∈ X) | (hY : a ∈ Y) := h.2
+  · obtain hX' : f '' X ∩ {b} ≠ ∅ := by
+      exact ⟨⟨_, hX⟩, by simp⟩
+    obtain hX'' : f '' X ∩ {b} = {b} := by
+      exact hX'
+    exact hX''.1
+  · obtain hY' : f '' Y ∩ {b} ≠ ∅ := by
+      exact ⟨⟨_, hY⟩, by simp⟩
+    obtain hY'' : f '' Y ∩ {b} = {b} := by
+      exact hY'
+    exact hY''.1
+```
+
+FAMILY: Image of Union of Sets

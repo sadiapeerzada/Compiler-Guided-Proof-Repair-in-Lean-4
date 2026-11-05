@@ -1,0 +1,14 @@
+STATEMENT: For any positive integer \( n \) and any real number \( a \), the sum of the first \( n \) terms of a geometric series with the first term \( a \) and common ratio \( a \) is given by \( \frac{a(1 - a^n)}{1 - a} \) if \( a \neq 1 \).
+
+LEAN:
+```lean
+theorem final_dev_0103 (n : Nat) (a : Real) (h : a ≠ 1) : ∑ i in Finset.range n, a ^ i = a * (1 - a ^ n) / (1 - a) := by
+  induction' n with i hi
+  · simp [Finset.range_zero, a_pow_zero, one_sub_one_eq_zero, zero_div]
+    
+  · have h1 : a ^ i + a * (1 - a ^ i) / (1 - a) = a * (1 - a ^ (i + 1)) / (1 - a) := by
+      ring
+    simp [hi, h1]
+```
+
+FAMILY: Geometric Series Sum Formula

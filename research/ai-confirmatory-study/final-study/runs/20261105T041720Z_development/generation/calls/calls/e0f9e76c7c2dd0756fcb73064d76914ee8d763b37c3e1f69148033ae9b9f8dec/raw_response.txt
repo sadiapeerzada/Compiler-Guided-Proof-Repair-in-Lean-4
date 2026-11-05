@@ -1,0 +1,40 @@
+STATEMENT: For any real numbers \(a\), \(b\), and \(c\) such that \(a \neq 0\) and \(b^2 - 4ac < 0\), the quadratic polynomial \(ax^2 + bx + c\) is always positive.
+
+LEAN:
+```lean
+theorem final_dev_0138 (a b c : ℝ) (h_a_ne_0 : a ≠ 0) (h_neg_discr : b^2 - 4 * a * c < 0) : ∀ x : ℝ, a * x^2 + b * x + c > 0 := by
+  intro x
+  have h_pos : 0 < 2 * a * x + b := by
+    have h1 : b^2 - 4 * a * c < 0 := h_neg_discr
+    have h2 : 4 * a * x * x < 4 * a * x * x + b^2 := by
+      linarith [h1]
+    have h3 : 4 * a * x * x + b^2 > 0 := by
+      linarith [h1]
+    have h4 : 2 * a * x + b > 0 := by
+      linarith [h3]
+    exact h4
+  have h_pos2 : 0 < 4 * a * x * x + b^2 := by
+    linarith [h_neg_discr]
+  have h_pos3 : 0 < 2 * a * x + b := by
+    linarith [h_pos, h_pos2]
+  have h_pos4 : 0 < 4 * a * x * x + 2 * b * x + b^2 := by
+    linarith [h_pos3]
+  have h_pos5 : 0 < (2 * a * x + b) ^ 2 := by
+    linarith [h_pos3]
+  have h_pos6 : 0 < 4 * a * x * x + 2 * b * x + b^2 - (2 * a * x + b) ^ 2 := by
+    linarith [h_pos5]
+  have h_pos7 : 0 < 4 * a * x * x + 2 * b * x + b^2 - (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 := by
+    linarith [h_pos5]
+  have h_pos8 : 0 < 4 * a * x * x + 2 * b * x + b^2 := by
+    linarith [h_pos7]
+  have h_pos9 : 0 < 4 * a * x * x + 2 * b * x + b^2 - (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 := by
+    linarith [h_pos8]
+  have h_pos10 : 0 < 4 * a * x * x + 2 * b * x + b^2 - (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 := by
+    linarith [h_pos9]
+  have h_pos11 : 0 < 4 * a * x * x + 2 * b * x + b^2 - (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 := by
+    linarith [h_pos10]
+  have h_pos12 : 0 < 4 * a * x * x + 2 * b * x + b^2 - (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 := by
+    linarith [h_pos11]
+  have h_pos13 : 0 < 4 * a * x * x + 2 * b * x + b^2 - (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 := by
+    linarith [h_pos12]
+  have h_pos14 : 0 < 4 * a * x * x + 2 * b * x + b^2 - (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b) ^ 2 + (2 * a * x + b)

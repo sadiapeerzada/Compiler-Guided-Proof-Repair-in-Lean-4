@@ -1,0 +1,17 @@
+STATEMENT: For any finite sets \(A\) and \(B\), the cardinality of the union of \(A\) and \(B\) is equal to the sum of the cardinalities of \(A\) and \(B\) minus the cardinality of their intersection.
+
+LEAN:
+```lean
+theorem final_dev_0203 {α : Type _} (A B : Set α) : card (A ∪ B) = card A + card B - card (A ∩ B) := by
+  classical
+  have h1 : card (A ∪ B) = card A + card (B \ A) := by
+    rw [Set.union_eq_add_diff_inter]
+  have h2 : card (B \ A) = card B - card (A ∩ B) := by
+    rw [Set.diff_eq_sub, Set.inter_eq_self_of_subset, Set.subset_def, Set.mem_diff, Set.mem_inter, Set.mem_singleton]
+    exact fun x => by
+      cases x
+      exact Set.mem_singleton_self x
+  rw [h1, h2]
+```
+
+FAMILY: Cardinality of Set Union and Intersection

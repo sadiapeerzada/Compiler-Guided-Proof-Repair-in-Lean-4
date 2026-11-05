@@ -1,0 +1,23 @@
+STATEMENT: For any finite set \(A\) and any finite set \(B\), and for any function \(f: A \times B \to \mathbb{Z}\), reindexing the product relation does not change the sum of the function values. That is, for any bijection \(\sigma: A \to A\) and any bijection \(\tau: B \to B\), the following holds:
+\[
+\sum_{(a, b) \in A \times B} f(a, b) = \sum_{(a', b') \in A \times B} f(\sigma(a'), \tau(b'))
+\]
+
+LEAN:
+```lean
+theorem final_dev_0092 {A B : Type*} [Fintype A] [Fintype B] {f : A × B → ℤ} : 
+  ∀ (σ : A → A) (τ : B → B) (hσ : bijection σ) (hτ : bijection τ), 
+  ∑ (a, b) in set.univ × set.univ, f (a, b) = ∑ (a', b') in set.univ × set.univ, f (σ a', τ b')
+:= by
+  have h : set.univ × set.univ = set.univ × set.univ := by
+    ext; simp [set.univ_eq_univ]
+  rw [h]
+  have h' : bijection (σ × τ) := by
+    refine bijection.prod (hσ) (hτ)
+  have h'' : ∑ (a, b) in set.univ × set.univ, f (a, b) = ∑ (a, b) in set.univ × set.univ, f (σ a, τ b) := by
+    apply aesop_sum_bijection; exact h'
+  rw [h'']
+  exact h''
+```
+
+FAMILY: Finite Product Relations Under Reindexing

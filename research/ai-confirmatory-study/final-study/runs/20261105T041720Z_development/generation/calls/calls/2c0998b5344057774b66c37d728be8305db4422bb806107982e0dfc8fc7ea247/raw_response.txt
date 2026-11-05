@@ -1,0 +1,32 @@
+STATEMENT: For any finite set \(A\) and any finite sequence of elements \(x_1, x_2, \ldots, x_n\) in \(A\), the product of the sequence is equal to the product of the sequence reindexed by any bijection \(f\) from \(\{1, 2, \ldots, n\}\) to itself.
+
+LEAN:
+```lean
+theorem final_dev_0212 {A : Type _} [CommMonoid A] {n : ℕ} (a : A) (f : Fin n → Fin n) (h : Function.bijective f) : 
+  ∏ i in Finset.range n, a = ∏ i in Finset.range n, a := by
+  have h1 : ∀ i, i < n → ∃ j, f j = i := by
+    intro i hi
+    obtain j | j := h.left hi
+    · exact ⟨j, by rw [f.injective.eq_of_apply_eq hi]⟩
+    · exact ⟨j, by rw [f.injective.eq_of_apply_eq hi.symm]⟩
+  have h2 : ∀ i, i < n → ∃ j, f j = i ∧ i < n := by
+    intro i hi
+    obtain j | j := h.left hi
+    · exact ⟨j, by rw [f.injective.eq_of_apply_eq hi], by linarith⟩
+    · exact ⟨j, by rw [f.injective.eq_of_apply_eq hi.symm], by linarith⟩
+  have h3 : ∀ i, i < n → ∃ j, f j = i ∧ i < n ∧ j < n := by
+    intro i hi
+    obtain j | j := h.left hi
+    · exact ⟨j, by rw [f.injective.eq_of_apply_eq hi], by linarith, by linarith⟩
+    · exact ⟨j, by rw [f.injective.eq_of_apply_eq hi.symm], by linarith, by linarith⟩
+  have h4 : ∀ i, i < n → ∃ j, f j = i ∧ i < n ∧ j < n ∧ i = f j := by
+    intro i hi
+    obtain j | j := h.left hi
+    · exact ⟨j, by rw [f.injective.eq_of_apply_eq hi], by linarith, by linarith, by rw [f.apply_symm_apply j]⟩
+    · exact ⟨j, by rw [f.injective.eq_of_apply_eq hi.symm], by linarith, by linarith, by rw [f.apply_symm_apply j]⟩
+  have h5 : ∏ i in Finset.range n, a = ∏ i in Finset.range n, a := by
+    rw [Finset.prod_eq_of_bijective h4]
+  exact h5
+```
+
+FAMILY: Finite Product Reindexing

@@ -1,0 +1,20 @@
+STATEMENT: For any positive real numbers \(a\) and \(b\) such that \(a^2 + b^2 < 2ab\), the polynomial \(P(x) = x^2 - 2ax + b^2\) has no real roots.
+
+LEAN:
+```lean
+theorem final_dev_0137 (a b : ℝ) (h : a^2 + b^2 < 2 * a * b) : ¬(∃ x : ℝ, P x = 0) where
+  P x := x^2 - 2 * a * x + b^2
+  := by
+    intro x hx
+    have h1 : 0 < (a - b) * (a - b) by
+      rw [h, sub_self a, sub_self b, mul_one, two_mul, sub_add_cancel]
+      rw [mul_comm a b, mul_comm (a - b) (a - b)]
+      rw [mul_assoc, sub_add_cancel, sub_sub_cancel, sub_self (a - b), zero_mul]
+      linarith
+    have h2 : (a - b) * (a - b) = (a^2 - 2 * a * b + b^2) by
+      rw [sub_sub, sub_self, sub_self, h, zero_mul, sub_self (a - b)]
+    rw [h2, P x] at hx
+    linarith
+```
+
+FAMILY: Quadratic Polynomials and Discriminants

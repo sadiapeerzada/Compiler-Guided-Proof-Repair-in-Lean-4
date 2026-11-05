@@ -1,0 +1,35 @@
+STATEMENT: For any positive real numbers \(a\), \(b\), and \(c\) such that \(b^2 - 4ac < 0\), the expression \(ax^2 + bx + c\) is always positive for all real numbers \(x\).
+
+LEAN:
+```lean
+theorem final_dev_0185 (a b c : ℝ) (h : 0 < a) (h' : b^2 - 4 * a * c < 0) (x : ℝ) : a * x^2 + b * x + c > 0 := by
+  have h1 : 0 < 4 * a * c := by
+    rw [mul_comm, h', zero_lt_add] at h ; 
+    exact mul_pos h h
+  have h2 : b^2 < 4 * a * c := by
+    rw [h'] at h' ; 
+    exact lt_of_lt_of_le h' (le_of_eq (eq_of_sub_eq_zero h'))
+  have h3 : b^2 - 2 * b * x + x^2 < 4 * a * c - 2 * b * x + x^2 := by
+    rw [h2, sub_add_cancel, sub_add_cancel, sub_self, zero_lt_add] at h' ; 
+    exact lt_of_lt_of_le h' (by simp [mul_comm, h1, h])
+  have h4 : (b - x)^2 < 4 * a * c - 2 * b * x + x^2 := by
+    rw [h3, sub_self, zero_lt_add] at h' ; 
+    exact lt_of_lt_of_le h' (by simp [mul_comm, h1, h])
+  have h5 : (b - x)^2 > 0 := by
+    rw [lt_sub_self, h4, zero_lt_add] at h' ; 
+    exact lt_of_lt_of_le h' (by simp [mul_comm, h1, h])
+  have h6 : 4 * a * c - 2 * b * x + x^2 > 0 := by
+    rw [h4, zero_lt_add] at h' ; 
+    exact lt_of_lt_of_le h' (by simp [mul_comm, h1, h])
+  have h7 : (b - x)^2 / (4 * a * c - 2 * b * x + x^2) > 0 := by
+    exact div_pos h5 h6
+  have h8 : (b - x)^2 / (4 * a * c - 2 * b * x + x^2) * (4 * a * c - 2 * b * x + x^2) > 0 := by
+    rw [mul_comm, h7, zero_lt_add] at h' ; 
+    exact mul_pos h' (by simp [mul_comm, h1, h])
+  have h9 : a * x^2 + b * x + c > 0 := by
+    rw [b * x + c, sub_add_cancel, sub_add_cancel, sub_self, zero_lt_add] at h' ; 
+    exact lt_of_lt_of_le h' (by simp [mul_comm, h1, h, h8])
+  exact h9
+```
+
+FAMILY: Quadratic Inequalities

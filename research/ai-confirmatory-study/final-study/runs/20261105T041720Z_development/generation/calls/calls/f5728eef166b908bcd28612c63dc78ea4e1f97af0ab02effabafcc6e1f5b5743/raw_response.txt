@@ -1,0 +1,12 @@
+STATEMENT: For any natural number \( n \) and any real number \( a \), the sum of the first \( n \) terms of a geometric series with the first term \( a \) and common ratio \( 1 \) is equal to \( n \cdot a \).
+
+LEAN:
+```lean
+theorem final_dev_0151 (n : Nat) (a : Real) : ∑ i in Finset.range n, a = n * a := by
+  induction n with
+  | zero => simp [Finset.range_zero]
+  | succ n ih => 
+    simp [Finset.range_succ, add_comm, ih, mul_add]
+```
+
+FAMILY: Geometric Series Sum

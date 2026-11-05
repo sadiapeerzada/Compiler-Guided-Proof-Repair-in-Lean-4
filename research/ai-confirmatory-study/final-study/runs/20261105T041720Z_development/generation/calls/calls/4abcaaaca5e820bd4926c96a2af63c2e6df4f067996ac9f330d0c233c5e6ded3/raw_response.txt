@@ -1,0 +1,15 @@
+STATEMENT: For all natural numbers \(a\), \(b\), and \(c\), if \(a + b = c\) and \(a \geq b\), then \(a \geq \frac{c}{2}\).
+
+LEAN:
+```lean
+theorem final_dev_0195 (a b c : Nat) (h1 : a + b = c) (h2 : a ≥ b) : a ≥ c / 2 := by
+  have h3 : a + b ≥ b + b := by
+    rw [h1]; exact le_refl (b + b)
+  have h4 : a ≥ b + b / 2 := by
+    linarith [h3, h2]
+  have h5 : b + b / 2 ≥ c / 2 := by
+    rw [h1]; linarith
+  exact le_trans h4 h5
+```
+
+FAMILY: Inequality Relations

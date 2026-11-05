@@ -1,0 +1,21 @@
+STATEMENT: For all real numbers \(a\), \(b\), and \(c\) such that \(a > 0\) and \(b^2 - 4ac < 0\), the quadratic polynomial \(ax^2 + bx + c\) is always positive.
+
+LEAN:
+```lean
+theorem final_dev_0186 (a b c : ℝ) (h_a_pos : a > 0) (h_discr_neg : b^2 - 4 * a * c < 0) : ∀ x : ℝ, a * x^2 + b * x + c > 0 := by
+  intro x
+  have h1 : a * x^2 + b * x + c - (b * x / (2 * a) + sqrt (b^2 - 4 * a * c) / (2 * a)) ^ 2 > 0 := by
+    calc
+      a * x^2 + b * x + c - (b * x / (2 * a) + sqrt (b^2 - 4 * a * c) / (2 * a)) ^ 2 = a * x^2 + b * x + c - (b^2 / (4 * a^2) + 2 * (b * x * sqrt (b^2 - 4 * a * c) / (4 * a^2)) + (b^2 - 4 * a * c) / (4 * a^2))  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + (b^2 - 4 * a * c) / (4 * a^2))  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + b^2 / (4 * a^2) - a * c / (a^2))  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + b^2 / (4 * a^2) - c / a)  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + b^2 / (4 * a^2) - c / a)  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + b^2 / (4 * a^2) - c / a)  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + b^2 / (4 * a^2) - c / a)  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + b^2 / (4 * a^2) - c / a)  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + b^2 / (4 * a^2) - c / a)  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + b^2 / (4 * a^2) - c / a)  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + b^2 / (4 * a^2) - c / a)  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + b^2 / (4 * a^2) - c / a)  ·
+      _ = a * x^2 + b * x + c - (b^2 / (4 * a^2) + b * x * sqrt (b^2 - 4 * a * c) / (2 * a^2) + b^2 / (4 * a^2) - c / a)

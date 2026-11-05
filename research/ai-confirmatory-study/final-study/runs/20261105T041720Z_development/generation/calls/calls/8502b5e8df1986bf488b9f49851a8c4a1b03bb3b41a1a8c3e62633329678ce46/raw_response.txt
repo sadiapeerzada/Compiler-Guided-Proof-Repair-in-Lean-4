@@ -1,0 +1,22 @@
+STATEMENT: For any list of natural numbers `l`, the length of the list after filtering out elements greater than or equal to 5 is at most the length of the original list.
+
+LEAN:
+```lean
+theorem final_dev_0226 {l : List Nat} : List.length (List.filter (fun x => x < 5) l) ≤ List.length l := by
+  induction l with
+  | nil => simp [List.filter]
+  | cons x xs ih =>
+    have h1 : x < 5 ∨ x ≥ 5 := by
+      left; exact Nat.lt_of_le_of_ne (Nat.le_refl x) (Nat.ne_of_gt (Nat.zero_le x))
+    have h2 : List.filter (fun x => x < 5) (x :: xs) = if x < 5 then x :: xs.filter (fun x => x < 5) else xs.filter (fun x => x < 5) := by
+      simp [List.filter, if_pos h1]
+    have h3 : List.length (if x < 5 then x :: xs.filter (fun x => x < 5) else xs.filter (fun x => x < 5)) ≤ List.length (x :: xs) := by
+      simp [h2]
+    have h4 : List.length (x :: xs) = 1 + List.length xs := by
+      simp [List.length, List.cons]
+    have h5 : 1 + List.length xs ≤ List.length xs + 1 := by
+      linarith
+    exact h3.trans h5
+```
+
+FAMILY: List Filtering and Length Preservation

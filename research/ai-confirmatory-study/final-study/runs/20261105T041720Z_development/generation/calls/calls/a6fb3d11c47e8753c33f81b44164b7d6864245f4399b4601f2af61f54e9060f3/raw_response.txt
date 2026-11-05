@@ -1,0 +1,12 @@
+STATEMENT: For any finite sequence of arithmetic progressions \(a_1, a_2, \ldots, a_n\) where each \(a_i\) is an arithmetic progression of the form \(a_i = b_i + c_i \cdot i\) for some constants \(b_i\) and \(c_i\), the sum of the first \(m\) terms of the sequence of the sums of these arithmetic progressions is equal to the sum of the first \(m\) terms of the sequence of the sums of the first \(m\) terms of each individual arithmetic progression.
+
+LEAN:
+```lean
+theorem final_dev_0150 (m : Nat) (a : Nat → Nat) : 
+  ∑ i in Fin m, a i = ∑ i in Fin m, ∑ j in Fin (i + 1), a j := by
+  induction m with n hn
+  · simp [Fin.zero_eq_zero, Fin.sum_zero]
+  · simp [Fin.sum_succ, Fin.sum_range, Fin.sum_range, add_comm, add_assoc, add_zero, hn]
+```
+
+FAMILY: Sum of Arithmetic Progressions

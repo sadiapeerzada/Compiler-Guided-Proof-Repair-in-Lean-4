@@ -1,0 +1,12 @@
+STATEMENT: For any finite set \(A\) and any finite set \(B\), and for any function \(f: A \times B \to \mathbb{Z}\), the sum of the sums of \(f\) over all elements of \(A\) is equal to the sum of the sums of \(f\) over all elements of \(B\), after reindexing the sums.
+
+LEAN:
+```lean
+theorem final_dev_0188 {A B : Type*} [Fintype A] [Fintype B] {f : A × B → ℤ} :
+  (∑ a in A, ∑ b in B, f (a, b)) = (∑ b in B, ∑ a in A, f (a, b)) := by
+  have h1 : ∑ a in A, ∑ b in B, f (a, b) = ∑ b in B, ∑ a in A, f (a, b) := by
+    rw [Finset.sum_comm]
+  exact h1
+```
+
+FAMILY: Summation over Cartesian Product

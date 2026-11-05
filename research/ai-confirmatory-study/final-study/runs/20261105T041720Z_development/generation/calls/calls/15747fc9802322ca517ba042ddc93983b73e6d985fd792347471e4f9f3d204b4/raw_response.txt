@@ -1,0 +1,11 @@
+STATEMENT: For any finite sets \(A\) and \(B\), the cardinality of the symmetric difference of \(A\) and \(B\) is equal to the sum of the cardinalities of the symmetric differences of \(A\) and \(B\) with their intersection and the intersection with their complements, i.e., \(\left|A \Delta B\right| = \left|A \Delta (A \cap B)\right| + \left|(A \cap B) \Delta (A \cup B)\right| + \left|(A \cup B) \Delta (A \cup B)\right|\).
+
+LEAN:
+```lean
+theorem final_dev_0179 (A B : Set α) : 
+  card (A Δ B) = card (A Δ (A ∩ B)) + card ((A ∩ B) Δ (A ∪ B)) + card (A ∪ B Δ A ∪ B) := by
+  simp only [card_symmdiff, symmdiff_eq, card_empty, card_eq_zero, union_eq_self, inter_eq_self, diff_empty, diff_self]
+  ring
+```
+
+FAMILY: Symmetric Difference and Cardinality Relations

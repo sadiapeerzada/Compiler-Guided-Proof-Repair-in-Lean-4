@@ -1,0 +1,20 @@
+STATEMENT: For all natural numbers \(a\) and \(b\), if \(a \geq b + 2\), then \(a^2 > (b+1)^2\).
+
+LEAN:
+```lean
+theorem final_dev_0182 (a b : Nat) (h : a ≥ b + 2) : a^2 > (b + 1)^2 := by
+  have h1 : a * a > (b + 1) * (b + 1) := by
+    rw [Nat.mul_add, Nat.mul_add] at h 
+    have h2 : a * (b + 2) > (b + 1) * (b + 1) := by
+      rw [Nat.add_assoc, Nat.add_assoc] at h 
+      have h3 : b + 2 > b + 1 := by
+        rw [Nat.add_right_comm] 
+        exact Nat.pos_of_add_pos_left (Nat.add_pos_of_pos h.1)
+      have h4 : a * (b + 2) > (b + 1) * (b + 1) := by
+        rw [Nat.mul_add, Nat.mul_add] at h 
+        exact Nat.mul_lt_mul_left h3 
+    exact h2 
+  exact h1 
+```
+
+FAMILY: Inequality Relations

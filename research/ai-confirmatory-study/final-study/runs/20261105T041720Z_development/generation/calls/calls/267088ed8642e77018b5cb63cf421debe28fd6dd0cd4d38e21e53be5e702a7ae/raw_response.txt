@@ -1,0 +1,29 @@
+STATEMENT: For all natural numbers \(a\), \(b\), and \(c\), if \(a \leq b + c\) and \(b \leq a + c\), then \(a \leq b\).
+
+LEAN:
+```lean
+theorem final_dev_0099 (a b c : Nat) (h1 : a ≤ b + c) (h2 : b ≤ a + c) : a ≤ b := by
+  have h3 : a + b ≤ b + c + a + c by
+    rw [add_assoc, add_comm c a, add_assoc, add_comm b c]
+    exact le_add_of_nonneg_right (le_add_of_nonneg_left h1.le)
+  have h4 : b + a ≤ a + c + b + c by
+    rw [add_assoc, add_comm a c, add_assoc, add_comm b c]
+    exact le_add_of_nonneg_right (le_add_of_nonneg_left h2.le)
+  have h5 : a + b ≤ b + a by
+    rw [add_comm a b]
+    exact le_refl (a + b)
+  have h6 : b + a ≤ a + b by
+    rw [add_comm a b]
+    exact le_refl (b + a)
+  have h7 : a + b = b + a by
+    rw [h5, h6]
+  have h8 : a + b ≤ a + b by
+    rw [h7]
+    exact le_refl (a + b)
+  have h9 : a ≤ b by
+    rw [h8]
+    exact le_add_of_nonneg_left h3
+  exact h9
+```
+
+FAMILY: Inequality Relations

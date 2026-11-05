@@ -1,0 +1,33 @@
+STATEMENT: For any integers \(a\) and \(b\), if \(a^5 - b^5 = 120\), then \(a - b = 1\).
+
+LEAN:
+```lean
+theorem final_dev_0145 (a b : ℤ) (h : a^5 - b^5 = 120) : a - b = 1 := by
+  have h1 : a^5 = b^5 + 120 := by rw [h]
+  have h2 : (a - b) * (a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4) = 120 := by
+    rw [h1]; ring
+  have h3 : a - b ≠ 0 := by
+    intro contra
+    have h4 : a^5 = b^5 := by rw [contra]
+    have h5 : 120 = 0 := by rw [h4]; ring
+    contradiction
+  have h6 : a - b = 1 ∨ a - b = -1 := by
+    rw [← h3]; linarith
+  have h7 : a - b = 1 := by
+    have h8 : 1 * (a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4) = 120 := by
+      rw [h6]; exact h2
+    have h9 : a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4 > 0 := by
+      linarith
+    have h10 : 1 * (a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4) > 0 := by
+      linarith
+    have h11 : 120 > 0 := by
+      norm_num
+    have h12 : 120 = 1 * (a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4) ∧ 120 > 0 := by
+      exact ⟨h8, h11⟩
+    have h13 : a - b = 1 := by
+      rw [h6]; exact h12
+    exact h13
+  exact h7
+```
+
+FAMILY: Integer Factorization of Differences of Powers

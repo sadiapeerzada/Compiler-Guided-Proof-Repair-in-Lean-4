@@ -1,0 +1,20 @@
+STATEMENT: If \(A\) and \(B\) are finite sets and \(f: A \to B\) is a function, then the image of the union of \(A\) and \(B\) under \(f\) is the union of the images of \(A\) and \(B\), i.e., \(f(A \cup B) = f(A) \cup f(B)\).
+
+LEAN:
+```lean
+theorem final_dev_0084 {α β : Type*} {f : α → β} {A B : Set α} (hA : A.finite) (hB : B.finite) : f '' (A ∪ B) = f '' A ∪ f '' B := by
+  ext y
+  constructor
+  · intro h
+    obtain ⟨a, ha⟩ := hA.exists_mem h
+    obtain ⟨b, hb⟩ := hB.exists_mem h
+    obtain (⟨a, ha⟩ | ⟨b, hb⟩) := classical.em (a ∈ A)
+    · exact Union_insert_left ha
+    · exact Union_insert_right hb
+  · intro ⟨a, ha⟩
+    exact Union_insert_left ha
+  · intro ⟨b, hb⟩
+    exact Union_insert_right hb
+```
+
+FAMILY: Union of Images under Function

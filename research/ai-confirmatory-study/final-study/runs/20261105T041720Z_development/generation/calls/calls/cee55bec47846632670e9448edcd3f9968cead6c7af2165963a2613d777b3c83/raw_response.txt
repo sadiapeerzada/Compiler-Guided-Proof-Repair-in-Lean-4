@@ -1,0 +1,28 @@
+STATEMENT: For any integers \(a\) and \(b\), if \(a^5 - b^5\) is divisible by 5, then \(a \equiv b \pmod{5}\).
+
+LEAN:
+```lean
+theorem final_dev_0049 (a b : ℤ) (h : 5 ∣ (a^5 - b^5)) : a ≡ b % 5 := by
+  have h1 : a^5 - b^5 = (a - b) * (a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4) := by
+    ring
+  have h2 : 5 ∣ (a - b) ∨ 5 ∣ (a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4) := by
+    rw [h1]
+    exact Nat.dvd_add_right h
+  have h3 : 5 ∣ (a - b) := by
+    { 
+      contrapose! h2
+      have h4 : ¬(5 ∣ (a - b)) := by
+        assume h5 : 5 ∣ (a - b)
+        exact h5
+      have h5 : ¬(5 ∣ (a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4)) := by
+        assume h6 : 5 ∣ (a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4)
+        exact h6
+      have h6 : 5 ∣ (a^5 - b^5) := by
+        rw [h1]
+        exact h5
+      exact h6 h
+    }
+  exact h3
+```
+
+FAMILY: Divisibility of Differences of Powers

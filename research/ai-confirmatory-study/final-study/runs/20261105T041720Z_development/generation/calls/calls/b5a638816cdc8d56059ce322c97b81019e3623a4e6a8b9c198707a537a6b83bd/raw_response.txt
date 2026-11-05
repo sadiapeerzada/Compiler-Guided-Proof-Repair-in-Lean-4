@@ -1,0 +1,17 @@
+STATEMENT: For any integer \( n \), if \( n \) is odd, then \( n^2 \) is odd.
+
+LEAN:
+```lean
+theorem final_dev_0183 (n : Int) (h : n % 2 = 1) : n^2 % 2 = 1 := by
+  have h1 : n = 2 * (n / 2) + 1 := by
+    rw [Int.mod_add_div n 2, h]
+  have h2 : n^2 = (2 * (n / 2) + 1)^2 := by
+    rw [h1]
+  have h3 : n^2 = 4 * (n / 2) * (n / 2) + 4 * (n / 2) + 1 := by
+    rw [h2]; ring
+  have h4 : n^2 % 2 = 1 := by
+    rw [h3]; ring
+  exact h4
+```
+
+FAMILY: Parity and Squares

@@ -1,0 +1,20 @@
+STATEMENT: For all natural numbers \(a\) and \(b\), if \(a \geq b\) and \(b \geq 1\), then \(a^3 \geq b^3\).
+
+LEAN:
+```lean
+theorem final_dev_0158 (a b : Nat) (h1 : a ≥ b) (h2 : b ≥ 1) : a^3 ≥ b^3 := by
+  induction a with
+  | zero =>
+    have : 0^3 ≥ b^3 := by
+      rw [Nat.zero_pow 3]; 
+      linarith [h2]
+    exact this
+  | succ a' ih =>
+    have : a^3 = (succ a')^3 := by
+      rw [Nat.succ_mul, Nat.mul_assoc, Nat.pow_add, Nat.pow_one, ih]
+    have : (succ a')^3 ≥ b^3 := by
+      linarith [h1, this]
+    exact this
+```
+
+FAMILY: Cubic Inequality Relation
