@@ -70,6 +70,16 @@ def main():
         group=[r for r in data if r['family']==family];eligible=[r for r in group if r['initial_success'] is False]
         per_family.append(dict(family=family,types=len({r['id'] for r in group}),seeds=len(group),initial_verified=sum(r['initial_success'] is True for r in group),initial_unknown=sum(r['initial_success'] is None for r in group),known_initial_failures=len(eligible),**{a:dict(verified=sum(r[a] is True for r in eligible),unknown=sum(r[a] is None for r in eligible)) for a in ('C','D','E')}))
     dump(out/'development_per_family.json',per_family);dump(out/'development_paired_analysis.json',analysis)
+    def rates(values):
+        n=len(values);success=sum(v is True for v in values);failed=sum(v is False for v in values);unknown=n-success-failed
+        return dict(planned_or_eligible=n,verified=success,unverified=failed,unknown=unknown,known_outcome_rate=success/(success+failed) if success+failed else None,all_unit_identification_bounds=[success/n,(success+unknown)/n] if n else None,interpretation='Known-outcome rate is conditional; bounds allow all unknowns to fail or succeed, and are not confidence intervals')
+    eligible=[r for r in data if r['initial_success'] is False]
+    dump(out/'development_rates.json',dict(initial=rates([r['initial_success'] for r in data]),repairs={arm:rates([r[arm] for r in eligible]) for arm in ('C','D','E')},initial_successes_are_not_repairs=True))
+    orders=Counter()
+    for path in (out/'development_experiment/cases').glob('*/matching.json'):
+        match=read(path)
+        if match['valid']:orders[''.join(match['order'])]+=1
+    dump(out/'development_actual_orders.json',dict(valid_case_orders=dict(orders),caveat='Orders were counterbalanced prospectively over all planned theorem-seed units. The subset with known failed initials and valid donors/matching need not be exactly balanced.'))
     dump(out/'confirmatory_not_started.json',dict(status='NOT_STARTED',gate='NO_GO_RESOURCES',actual_calls=0,actual_test_types=0,reason='The researcher authorized only phases1–6 of the consolidated compute proposal; no fresh confirmatory construction, review or evaluation was authorized',future_requirement='Separate explicit confirmatory compute allocation plus prospectively frozen scientifically defensible untouched-family benchmark; no development examples or equivalents may be reused'))
     print('Derived evidence projections saved; no inference executed')
 

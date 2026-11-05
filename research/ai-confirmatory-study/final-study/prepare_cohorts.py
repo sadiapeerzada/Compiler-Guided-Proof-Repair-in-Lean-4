@@ -25,8 +25,10 @@ def fresh_review_input():
         seen[normalized]=c['id'];row=dict(c);row['generated_family_label']=row['family'];row['family']=row['canonical_family'];row['status']='FORMALLY_VERIFIED_PENDING_AI_REVIEW';kept.append(row)
     path=run_root()/'fresh_verified.json';dump(path,kept,exclusive=True);dump(run_root()/'pre_review_exclusions.json',excluded,exclusive=True)
     base=read(HERE/'freezes/review_v2.json');lock=dict(base['files'])
-    for f in ('fresh_review.py','prepare_cohorts.py','families.py','strict_verifier.py','rigid_verifier.py','reference_construction_v2.py','overlap.py'):lock[str((HERE/f).relative_to(ROOT))]=sha(HERE/f)
+    for f in ('fresh_review.py','adjudication.py','prepare_cohorts.py','families.py','strict_verifier.py','rigid_verifier.py','reference_construction_v2.py','overlap.py'):lock[str((HERE/f).relative_to(ROOT))]=sha(HERE/f)
     for p in (path,run_root()/'pre_review_exclusions.json',run_root()/'fresh_verified_raw.json',run_root()/'expanded_historical_exposure.json'):lock[str(p.relative_to(ROOT))]=sha(p)
+    concerns=run_root()/'assistant_audit_concerns.json'
+    if concerns.exists():lock[str(concerns.relative_to(ROOT))]=sha(concerns)
     dump(HERE/'freezes/fresh_review_v1.json',dict(status='FROZEN_BEFORE_FRESH_AI_REVIEWS',files=lock,old_V3_review_outcomes_not_reparsed=True,schema='explicit boolean check polarity, explicit relation enums, full rationale, confidence heuristic0.8, two blinded acceptances required'),exclusive=True)
     print('Fresh verified review subjects:',len(kept),'; prereview exclusions:',len(excluded))
 

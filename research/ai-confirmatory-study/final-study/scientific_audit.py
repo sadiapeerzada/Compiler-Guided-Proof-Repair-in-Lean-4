@@ -80,7 +80,10 @@ def audit():
             checked.add(used[stage])
         completed=0;input_sum=0;output_sum=0
         for event in ledger:
-            call=folder/'calls/calls'/content_hash(event['key']);intent=read(call/'intent.json');prompt=actual_prompt(stage,event['key'])
+            call=folder/'calls/calls'/content_hash(event['key'])
+            if not (call/'intent.json').exists():
+                warnings.append('Charged reservation without durable intent: '+str(call.relative_to(HERE)));continue
+            intent=read(call/'intent.json');prompt=actual_prompt(stage,event['key'])
             check(content_hash(intent)==event['intent_sha256'],'durable_intent_hashes')
             check(text_hash(prompt)==intent['prompt_sha256'],'exact_prompt_hashes')
             rendered=tokenizer.apply_chat_template([{'role':'user','content':prompt}],tokenize=False,add_generation_prompt=True)
@@ -114,6 +117,14 @@ def audit():
     for stage in ('confirmatory_generation','confirmatory_review_1','confirmatory_review_2','confirmatory_initial','confirmatory_repairs','test'):
         check(not (run_root()/stage).exists(),'no_unauthorized_confirmatory_phase')
     formal=rows(run_root()/'strict_reference_verification.jsonl')
+    for r in formal:
+        folder=HERE/r['record_path'];vp=folder/'verification.json';intent=read(folder/'verification_intent.json')
+        if not vp.exists() and r['result'].get('success') is None:warnings.append('Consumed formal intent without durable outcome: '+r['record_path'])
+        else:check(vp.exists() and read(vp)==r['result'],'formal_log_matches_actual_verification_checkpoint')
+        check(intent==dict(candidate_sha256=r['source_sha256'],target_sha256=r['target_sha256']),'formal_intent_exact_source_target_binding')
+        result=r['result']
+        if 'verification_source_text' in result:check(text_hash(result['verification_source_text'])==result['verification_source_sha256'],'actual_compiled_harness_text_hash')
+        if result.get('success') is True:check(result.get('candidate_sha256')==r['source_sha256'] and result.get('exit_code')==0,'actual_formal_success_source_and_exit_code')
     for name in ('fresh_verified_raw_v2.json','fresh_verified.json'):
         for c in read(run_root()/name) if (run_root()/name).exists() else []:
             check(text_hash(c['reference_proof'])==c['proof_sha256'],'curated_reference_exact_source_hash')

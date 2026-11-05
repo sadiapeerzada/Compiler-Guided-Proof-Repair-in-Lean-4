@@ -22,7 +22,7 @@ def main():
     dump(run_root()/'independently_regenerated_rows.json',data);dump(run_root()/'independently_regenerated_analysis.json',analysis);dump(run_root()/'actual_evidence_counts.json',counts)
     stage_table=['| Phase | Verdict | Charged / cap | Durable completions | Unknown/unavailable |','|---|---|---:|---:|---:|']
     for stage,c in evidence['stages'].items():
-        verdict='COMPLETE' if c['phase_status']=='finished' else 'PARTIAL' if c['charged'] else 'BLOCKED' if stage.startswith('development_') and gate_status['status'].startswith('NO_GO') else 'NOT_STARTED'
+        verdict='COMPLETE (execution)' if c['phase_status']=='finished' and c['charged'] else 'PARTIAL' if c['charged'] else 'BLOCKED' if stage.startswith('development_') and gate_status['status'].startswith('NO_GO') else 'NOT_STARTED (no inference)'
         stage_table.append(f"| {stage} | {verdict} | {c['charged']} / {c['max_calls']} | {c['completed']} | {c['unknown_or_unavailable']} |")
     stage_table.append('| Confirmatory construction and evaluation (phases 7–9) | NOT_STARTED — NO_GO_RESOURCES | 0 | 0 | 0 |')
     contrasts=[]
@@ -55,6 +55,8 @@ The versioned construction path extracted only supplied theorem headers and supp
 Pre-review duplicate/exposure exclusions: **{counts['prereview_exclusions']}**. Fresh blinded review subjects: **{len(reviewed)}**; two-reviewer qualified AI acceptances: **{len(accepted)}**; quarantines: **{len(quarantined)}**. Quarantine reason counts: `{dict(reasons)}`. The original four V3 review responses said ACCEPT in raw text but failed their frozen typed schema and remain UNCERTAIN; they were not reparsed into approvals. Fresh review used a prospectively explicit Boolean schema, not a retrospective rescue of those responses.
 
 The frozen evaluation cohort contains **{len(selected)} theorem types / {counts['selected_families']} declared families**, versus the planning target of20, each with the three fixed seeds {protocol()['seeds']}. Seed repetitions do not increase the independent theorem count. Broad controller family labels, exact/alias/alpha exclusion and bounded AI relationship judgments do not prove mathematical independence. All generated/repaired/reviewed subjects, including rejected ones and mathematical equivalents, are development-exposed and ineligible for future untouched test construction.
+
+Development cohort target verdict: **{'COMPLETE at the planning count, subject to the stated validity limitations' if len(selected)>=20 else 'PARTIAL — target count not reached'}**. Execution completion in the table means the permitted finite call queue finished; it does not imply candidate acceptance, fulfillment of the cohort target, or successful research findings. A phase with zero actual inference is not labeled complete merely because its worker exited normally.
 
 ## Development evaluation
 
