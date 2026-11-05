@@ -23,7 +23,7 @@ def prepare(scope):
     old=next(c for c in read(OLD/'runs/20261105T041720Z_development/development_ai_accepted_candidates.json') if c['id']=='final_dev_0146')
     dump(out/'fresh_verified.json',kept,exclusive=True);dump(out/'v3_input.json',[old] if scope=='development' else [],exclusive=True);dump(out/'exclusions.json',excluded,exclusive=True)
     dump(out/'formal_checks_snapshot.json',[r for r in rows(RUN/'formal_checks.jsonl') if r['id'] in {c['id'] for c in kept}],exclusive=True)
-    paths=[HERE/x for x in ('sprint_common.py','reviews.py','resource_authorization.json','proposal_options.json','COMPUTE_PROPOSAL.md')]+[OLD/'fresh_review.py',OLD/'review_protocol.py',OLD/'study_common.py',ROOT/'src/local_llm_client.py',LEGACY/'checkpoint.py',LEGACY/'common.py',out/'fresh_verified.json',out/'v3_input.json',out/'exclusions.json',HERE/('exposure_index.json' if scope=='development' else 'test_exposure_index.json'),RUN/(scope+'_verified.json'),out/'formal_checks_snapshot.json']
+    paths=[HERE/x for x in ('sprint_common.py','reviews.py','resource_authorization.json','proposal_options.json','COMPUTE_PROPOSAL.md','mathematical_concerns.json')]+[OLD/'fresh_review.py',OLD/'review_protocol.py',OLD/'study_common.py',ROOT/'src/local_llm_client.py',LEGACY/'checkpoint.py',LEGACY/'common.py',out/'fresh_verified.json',out/'v3_input.json',out/'exclusions.json',HERE/('exposure_index.json' if scope=='development' else 'test_exposure_index.json'),RUN/(scope+'_verified.json'),out/'formal_checks_snapshot.json']
     view=OLD/'model_views/ac1c269cb4222a4e136a3d09edad301056c1f36a.json'
     paths.append(view)
     freeze(scope+'_reviews.json',paths,status='FROZEN_BEFORE_BOTH_REVIEWERS',policy='Unchanged prospective Boolean schema; two valid blinded acceptances, no critical concerns',subjects=len(kept));print(scope,'review subjects',len(kept),flush=True)
@@ -60,7 +60,11 @@ def review(scope,reviewer):
 def adjudicate(scope):
     frozen(scope+'_reviews.json');subjects=read(RUN/(scope+'_review_input/fresh_verified.json'));maps=[{r['id']:r for r in rows(RUN/f'{scope}_review_{i}/reviews.jsonl')} for i in (1,2)];accepted=[];excluded=[]
     for c in subjects:
-        reasons=[];ensure(evidence(scope,c),'Rigid reference evidence changed')
+        reasons=[]
+        for concern in read(HERE/'mathematical_concerns.json')['items']:
+            if concern['id']==c['id']:
+                ensure(concern['subject_sha256']==subject_hash(c),'Concern subject changed');reasons.append('source_bound_assistant_semantic_concern')
+        ensure(evidence(scope,c),'Rigid reference evidence changed')
         for i,mapping in enumerate(maps,1):
             r=mapping.get(c['id'])
             if not r or r['decision']!='ACCEPT' or r.get('parse_error'):reasons.append(f'review_{i}_not_qualified_ACCEPT');continue

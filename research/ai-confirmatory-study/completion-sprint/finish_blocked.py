@@ -26,6 +26,7 @@ def main():
     stages=result['stages'];calls=result['actual_charged_calls'];inputs=sum(s['input_tokens_observed'] for s in stages.values());outputs=sum(s['output_tokens_observed'] for s in stages.values())
     table='\n'.join(f"| {k} | {v['charged']} | {v['completed']} | {v['unknown']} | {v['max_calls']} |" for k,v in stages.items())
     families=len({c['canonical_family'] for c in selected})
+    latency=sum(v['observed_call_latency_seconds'] for v in stages.values());peaks=[v['reported_max_mlx_peak_memory_gb'] for v in stages.values() if v['reported_max_mlx_peak_memory_gb'] is not None];peak=max(peaks) if peaks else None
     model_lines='\n'.join(f"- {k}: `{m['id']}` at `{m['revision']}`." for k,m in read(HERE/'resource_authorization.json')['models'].items())
     report=f'''# Final C/D/E completion sprint: PARTIAL, data gate BLOCKED
 
@@ -62,9 +63,11 @@ Reference-proof repair calls were not authorized for this sprint and none ran.
 
 Total actual charged calls: **{calls}**. Observed prompt tokens: **{inputs}**;
 completion tokens: **{outputs}**. Per-call ceilings were 4,096/1,200 tokens.
-Original phase clocks and call start/finish timestamps are retained in the run;
-no deadline was restarted. This report does not invent peak-memory measurements
-or claim summed call time is wall-clock phase duration.
+Summed observed model-call latency: **{latency:.1f} seconds**; maximum reported
+MLX peak memory: **{peak} GB** (allocator-reported, not whole-machine RSS).
+Original phase clocks, actual per-phase call spans, and call start/finish
+timestamps are retained in the audit and run; no deadline was restarted. Summed
+model-call latency is not wall-clock phase duration and excludes Lean checks.
 
 ## Scientific interpretation and rejection evidence
 
@@ -84,6 +87,10 @@ compiler-verified reference still required two qualified blinded reviews under
 the unchanged Boolean policy; invalid or uncertain reviews were quarantined.
 See the raw review records for substantive rejection reasons rather than
 interpreting all review failures as the same mathematical defect.
+`completion-sprint/mathematical_concerns.json` records exact-subject assistant
+concerns: two verified interval-product references describe shifted intervals
+in English but prove an endpoint splitting identity. They remain ineligible
+even if an AI reviewer accepts; this is an exclusion, not human approval.
 
 Models used or reserved by the approved proposal:
 
