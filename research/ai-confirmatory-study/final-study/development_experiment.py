@@ -7,6 +7,13 @@ from runtime_v2 import PhaseModelV2
 from backend import RenderedTokenizer
 from lean_adapter import live_environment
 
+def available_diagnostic(record,candidate):
+    # An interrupted verification has no candidate-bound compiler diagnostic.
+    # It stays unknown and cannot become a shuffled-feedback donor.
+    if record.get('success') is not False or record.get('failure_kind')!='compiler_error':return None
+    from matching import diagnostic_payload
+    return diagnostic_payload(record,candidate)
+
 def gate():
     try:
         authorize('development_initial');authorize('development_repairs');frozen('development_CDE_v1.json')
@@ -76,7 +83,7 @@ def worker():
         result=original(row,*args,**kwargs)
         if result['valid'] and any(row['reference_proof'] in item['prompt'] for item in result['conditions'].values()):return dict(valid=False,reason='reference_proof_leak_excluded',conditions={})
         return result
-    core.matched_conditions=matched
+    core.matched_conditions=matched;core.diagnostic_payload=available_diagnostic
     permit=dict(phase='development',protocol=p,protocol_sha256=sha(run_root()/'development_protocol.json'),source_lock_sha256=sha(HERE/'freezes/development_CDE_v1.json'),records=state['records'],authorization=dict(actor_kind='researcher_resource_authority',source='actual consolidated phases1–6 approval; not human mathematical adjudication',resource_limits=dict(max_calls=240,max_runtime_seconds=64800)),manifest={'development':{'sha256':state['manifest']['dataset_sha256']}})
     backend=Backend()
     try:core.run_core(permit,backend,CDEVerifier(),out,out)

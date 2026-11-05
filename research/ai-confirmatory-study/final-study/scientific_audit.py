@@ -20,8 +20,11 @@ def actual_prompt(stage,key):
         records=rows(run_root()/stage/'records.jsonl')
         matches=[r['prompt'] for r in records if r['index']==key['key']['index'] and 'prompt' in r]
         if matches:return matches[0]
-        from generation_prompts import repair_prompt
         original=next(r for r in read(run_root()/'reference_candidate_pool_v2.json') if r['index']==key['key']['index'])
+        if key['key'].get('prompt_version')=='v4':
+            from reference_repair_v4 import prompt
+            return prompt(original['candidate'],original['verification'])
+        from generation_prompts import repair_prompt
         return repair_prompt(original['candidate'],original['verification'])
     if 'review' in stage:
         v3=stage.startswith('v3_');subjects=read(run_root()/('v3_input.json' if v3 else 'fresh_verified.json'))
@@ -62,7 +65,7 @@ def audit():
         metadata,path=entry.split(b'\t',1);rel=path.decode();original=subprocess.check_output(['git','show',baseline['baseline']+':'+rel],cwd=ROOT).decode()
         check((ROOT/rel).is_symlink() and os.readlink(ROOT/rel)==original,'historical_symlink_targets_unchanged')
     used={'generation':'generation_v1.json','v3_review_1':'review_v2.json','v3_review_2':'review_v2.json','reference_repair':'reference_construction_v3.json','development_review_1':'fresh_review_v1.json','development_review_2':'fresh_review_v1.json','development_initial':'development_CDE_v1.json','development_repairs':'development_CDE_v1.json'}
-    checked=set();total=0
+    checked=set();total=0;cde_configs=set()
     for stage,spec in read(HERE/'resource_authorization.json')['stages'].items():
         authorize(stage);folder=run_root()/stage;ledger=rows(folder/'calls/budget.jsonl');total+=len(ledger)
         check(len(ledger)<=spec['max_calls'],'per_phase_call_caps')
@@ -106,6 +109,8 @@ def audit():
             check(m['prompt_sha256']==text_hash(prompt),'model_prompt_hash_binding')
             check(m['rendered_chat_text']==rendered and m['rendered_chat_sha256']==text_hash(rendered),'actual_rendered_chat_matches_pinned_tokenizer')
             check(m['model']==model['id'] and m['snapshot_revision']==model['revision'],'actual_model_identity')
+            check(m['temperature']==.2 and m['top_p']==1.0,'actual_fixed_decoding_configuration')
+            if stage in ('development_initial','development_repairs'):cde_configs.add((m['model'],m['snapshot_revision'],m['temperature'],m['top_p'],m['max_completion_tokens'],m['mlx_version'],m['mlx_lm_version'],m['chat_template_sha256']))
             check(m['prompt_tokens']<=4096 and m['completion_tokens']<=1200 and m['max_completion_tokens']==1200,'actual_token_caps')
             if stage=='development_repairs':check(m['prompt_tokens']==4096,'actual_CDE_inputs_exactly_4096_tokens')
             check(m['logical_generations']==1 and not m['retry_events'],'one_actual_generation_per_charged_completion')
@@ -120,6 +125,7 @@ def audit():
         if stage in ('development_initial','development_repairs'):status_path=run_root()/'development_experiment/status.json'
         stages[stage]=dict(charged=len(ledger),completed=completed,unknown_or_unavailable=len(ledger)-completed,input_tokens_observed=input_sum,output_tokens_observed=output_sum,max_calls=spec['max_calls'],phase_status=read(status_path)['status'] if status_path.exists() else 'NOT_STARTED' if not ledger else 'IN_PROGRESS_OR_INTERRUPTED')
     check(total<=1084,'consolidated_development_call_cap')
+    check(len(cde_configs)<=1,'same_CDE_model_decoding_runtime_and_chat_template')
     transition=run_root()/'reference_repair/prompt_v4_transition.json'
     if transition.exists():
         t=read(transition);current=rows(run_root()/'reference_repair/calls/budget.jsonl')
@@ -135,7 +141,8 @@ def audit():
         else:check(vp.exists() and read(vp)==r['result'],'formal_log_matches_actual_verification_checkpoint')
         check(intent==dict(candidate_sha256=r['source_sha256'],target_sha256=r['target_sha256']),'formal_intent_exact_source_target_binding')
         result=r['result']
-        if 'verification_source_text' in result:check(text_hash(result['verification_source_text'])==result['verification_source_sha256'],'actual_compiled_harness_text_hash')
+        if isinstance(result.get('verification_source_text'),str):check(text_hash(result['verification_source_text'])==result['verification_source_sha256'],'actual_compiled_harness_text_hash')
+        elif result.get('success') is True:check(False,'successful_formal_check_has_saved_compiled_source')
         if result.get('success') is True:check(result.get('candidate_sha256')==r['source_sha256'] and result.get('exit_code')==0,'actual_formal_success_source_and_exit_code')
     for name in ('fresh_verified_raw_v2.json','fresh_verified.json'):
         for c in read(run_root()/name) if (run_root()/name).exists() else []:
@@ -160,7 +167,8 @@ def audit():
         g=gate();check(g['status'] in ('READY_FOR_DEVELOPMENT','NO_GO_DATA'),'development_gate_actual_source_bound_evidence')
         if g['status']=='READY_FOR_DEVELOPMENT':
             data,analysis=recorded_analysis();p=permit();core=load_core();root=run_root()/'development_experiment';byid={r['id']:r for r in p['records']}
-            from matching import diagnostic_payload,repair_prompt,NEUTRAL,donor_order,planned_orders
+            from matching import repair_prompt,NEUTRAL,donor_order,planned_orders
+            from development_experiment import available_diagnostic as diagnostic_payload
             orders=planned_orders(p['records'],p['protocol']['seeds'],p['protocol']['order_seed'])
             initial_finishes=[];repair_starts=[]
             for stage,bag in (('development_initial',initial_finishes),('development_repairs',repair_starts)):
@@ -170,6 +178,13 @@ def audit():
             if repair_starts:check(len(initial_finishes)==len(data) and max(initial_finishes)<=min(repair_starts),'all_initial_completions_frozen_before_any_repair')
             for r in data:
                 row=byid[r['id']];seed=r['seed'];case=root/'cases'/content_hash([row['id'],seed])/'matching.json'
+                for arm in ('A','C','D','E'):
+                    folder=root/'calls'/content_hash(core.key_for(p,row,seed,arm));vp=folder/'verification.json'
+                    if not vp.exists():continue
+                    verification=read(vp)
+                    if verification.get('success') is True:
+                        check(verification.get('harness_variant')=='rigid_declaration_type_and_universe_v1' and verification.get('rigid_variant_source_sha256')==sha(HERE/'rigid_verifier.py'),'actual_CDE_success_uses_rigid_verifier')
+                        source=core.extract(read(folder/'completion.json')['content']);check(verification['candidate_sha256']==text_hash(source),'actual_CDE_success_exact_candidate_hash')
                 if not case.exists() or not read(case)['valid']:continue
                 match=read(case);donor=byid[match['donor_id']];check(donor['family']!=row['family'],'donor_mathematical_family_disjoint')
                 def call(arm,theorem=row):return root/'calls'/content_hash(core.key_for(p,theorem,seed,arm))

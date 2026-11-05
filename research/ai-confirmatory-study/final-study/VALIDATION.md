@@ -20,8 +20,10 @@ checked independently. The two actual Lean tests were run separately:
 .venv/bin/python -m pytest tests/test_verify.py -q -k real_lean
 ```
 
-Result: **2 passed,29 deselected in252.74s**. The final-study tests alone passed
-**22 tests**. A mistakenly unscoped pytest invocation also collected archived
+Result: **2 passed,29 deselected in252.74s**. After adding the unknown-donor
+controls, the same scoped regression command passed **367 tests and28 subtests**,
+with three deselections, in11.66s; final-study tests alone passed **24 tests**.
+A mistakenly unscoped pytest invocation also collected archived
 publication snapshots and failed collection with missing snapshot dependencies
 and duplicate module names. The explicit working-suite command above avoids
 those archived copies; historical files were not altered to hide their state.
@@ -39,6 +41,9 @@ Actual versioned Lean/parser fixture artifacts are under
   rejection of the same universe specialization. Rigid source/fixture hashes
   were frozen before reference-repair inference. All newly admitted references
   must have a successful actual check with this stronger variant.
+- `reference_prompt_v4_syntax_fixture.json`: the `True`/`trivial` format example
+  passed an additional actual rigid Lean check before V4 repair inference. It is
+  a development-exposed syntax example, not a generated evaluation subject.
 - `header_parser_fixture_checks_v2/`: four native Lean parser cases passed.
   Invalid tactic bodies may supply an exact header for later compiler-guided
   repair, but are not considered verified. The actual invalid-body kernel

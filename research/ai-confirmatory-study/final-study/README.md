@@ -13,8 +13,16 @@ checks four baseline symlink targets against Git. New manifests under `freezes/`
 bind the sources and inputs before each affected phase. Old manifests and failed
 prototype diagnostics remain present. `reference_construction_v2.json` was
 superseded **before any repair inference** by `reference_construction_v3.json`.
-Only the latter governs the repair worker. The active generation freeze remains
-unchanged; its initial proof passes are preliminary until rigid revalidation.
+The latter governs base reference construction. After actual malformed repair
+outputs, `reference_prompt_v4.json` adds a prospectively frozen Lean4 format
+example for unconsumed candidates. The same original ledger,120-call total and
+12-hour clock remain in force; no candidate is called twice. New V4 intent keys
+additionally contain the V4 freeze hash while the base RunStore binding remains
+unchanged. The transition snapshot retains the original ledger prefix, failed
+worker status and interrupted charged intent. `reference_repair_v4.py` reconciles
+that intent without inference before continuing unconsumed work. The generation
+freeze remains unchanged; all31 preliminary passes subsequently passed rigid
+revalidation, which still does not constitute AI acceptance.
 
 The working run is `runs/20261105T041720Z_development/`. Never reset its phase
 clocks, delete reservations or replay a consumed intent. `progress.py` is
@@ -33,6 +41,12 @@ The unchanged local client rejects Python-containing snapshots and uses installe
 MLX code with `trust_remote_code=False`; no remote model Python is executed and no
 model bytes are downloaded. View provenance is under `model_views/`.
 
+The V4 format example is `True` proved by `trivial`, a real rigid Lean fixture,
+not a generated benchmark subject. Its exposure is added to the expanded index
+before affected calls; it is ineligible for evaluation. Assistant source concerns
+are bound to raw responses and frozen before fresh review, with known concerns
+excluded before spending reviewer calls.
+
 From the repository root, use the project's existing `.venv`:
 
 ```sh
@@ -44,11 +58,19 @@ An already running generation or continuation worker must not be launched again.
 Only when no worker is active, resume permitted unconsumed work within original
 limits with the corresponding controller. A `worker_failed` status requires
 diagnosis; the continuation script deliberately refuses to advance past it.
+Never rerun generation after its recorded status is `finished`. The following
+are individual phase launch commands, not a command to restart the whole study.
 
 ```sh
 .venv/bin/python research/ai-confirmatory-study/final-study/run_stage.py generation
 .venv/bin/python research/ai-confirmatory-study/final-study/continue_development.py --wait-generation
 ```
+
+For the recorded V4 repair-prompt transition, use `reference_repair_v4.py run`
+only when that worker is not active and unconsumed work remains within its
+original deadline. After it finishes, `continue_development.py` skips the finished
+repair phase and advances to the separately authorized reviews/data gate. The
+transition is not permission to reset clocks or repeat unknown calls.
 
 After the authorized workers stop, regenerate evidence projections and reports,
 then run the audit in its own process:
@@ -65,6 +87,13 @@ The audit fails on recorded integrity violations. Its PASS concerns internal
 consistency, not human mathematical review, exhaustive novelty or completion of
 unapproved phases. `FINAL_COMPLETED_EXPERIMENTS.md` and
 `FINAL_SCIENTIFIC_INTEGRITY_AUDIT.md` live one directory above this file.
+
+`verification_error_taxonomy.jsonl` locates actual errors in the saved trusted
+expected-target block, separating target-elaboration errors from other failed
+checks. Absence of such an error does not establish a statement's truth or
+semantic fidelity. The family/exposure registries retain all extractable current
+proposals and explicitly mark unextractable statements unknown; rejected raw
+responses remain development exposures.
 
 The two initial V3 candidates received four actual AI reviews, but all four failed
 the original typed output contract. They remain unresolved. The fresh review

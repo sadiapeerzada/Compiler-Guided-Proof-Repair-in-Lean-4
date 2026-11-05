@@ -10,6 +10,13 @@ def csv_(path,records,fields):
     with Path(path).open('w',newline='') as f:
         w=csv.DictWriter(f,fieldnames=fields,lineterminator='\n');w.writeheader();w.writerows(records)
 
+def verification_taxonomy(result):
+    """Locate actual errors in the trusted expected-target block, not guessed truth."""
+    lines=(result.get('verification_source_text') or '').splitlines();start=next((i+1 for i,l in enumerate(lines) if l=='namespace Nl2LeanExpected'),None);end=next((i+1 for i,l in enumerate(lines) if l=='end Nl2LeanExpected'),None)
+    errors=[d for d in (result.get('diagnostics') or []) if d.get('severity')=='error']
+    target_errors=[d for d in errors if start is not None and end is not None and type(d.get('pos',{}).get('line')) is int and start<d['pos']['line']<end]
+    return dict(success=result.get('success'),failure_kind=result.get('failure_kind'),target_status='RECORDED_TARGET_ELABORATION_ERRORS' if target_errors else 'NO_RECORDED_TARGET_ELABORATION_ERRORS' if start is not None and end is not None else 'TARGET_NOT_CLASSIFIABLE_FROM_SAVED_HARNESS',target_errors=target_errors,interpretation='A well-typed target may still be false or semantically unfaithful; absence of a target error is not a mathematical truth judgment')
+
 def usage(stages):
     result={}
     for stage in stages:
@@ -32,8 +39,11 @@ def main():
     jsonl(out/'candidate_exclusions.jsonl',exclusions);csv_(out/'candidate_exclusion_registry.csv',[{k:r[k] for k in ('id','stage','reason')} for r in exclusions],['id','stage','reason'])
     reviews=[r for stage in ('v3_review_1','v3_review_2','development_review_1','development_review_2') for r in rows(out/stage/'reviews.jsonl')]
     jsonl(out/'ai_semantic_review.jsonl',reviews)
+    taxonomy=[dict(index=r['index'],stage='generation',**verification_taxonomy(r['verification'])) for r in g if 'verification' in r]+[dict(index=r['index'],stage='reference_repair',version=r.get('version'),**verification_taxonomy(r['verification'])) for r in repairs if 'verification' in r]
+    jsonl(out/'verification_error_taxonomy.jsonl',taxonomy);dump(out/'verification_error_summary.json',dict(counts={stage:dict(Counter(r['target_status'] for r in taxonomy if r['stage']==stage)) for stage in ('generation','reference_repair')},no_inference_performed=True,not_a_classification_of_unproved_statements_as_false=True))
     if not (out/'reference_repair_attempts.jsonl').exists():jsonl(out/'reference_repair_attempts.jsonl',[])
     dump(out/'generation_manifest.json',dict(status='RECORDED_DEVELOPMENT_ONLY',run_id=protocol()['run_id'],baseline=protocol()['baseline'],planning_target=20,generation_pool_cap=240,recorded_generation_responses=len(g),original_structural_parse_passes=sum('candidate' in r for r in g),rigid_verified_references=len(verified),original_generation_freeze_sha256=sha(HERE/'freezes/generation_v1.json'),reference_construction_freeze_sha256=sha(HERE/'freezes/reference_construction_v3.json'),authorization_sha256=sha(HERE/'resource_authorization.json'),models=protocol()['models'],source_raw='generation/records.jsonl plus phase-local calls/streams',no_confirmatory_generation=True))
+    if (HERE/'freezes/reference_prompt_v4.json').exists():dump(out/'reference_prompt_versions.json',dict(base_freeze_sha256=sha(HERE/'freezes/reference_construction_v3.json'),additional_v4_freeze_sha256=sha(HERE/'freezes/reference_prompt_v4.json'),actual_charged_calls=dict(Counter(e['key']['key'].get('prompt_version','v3') for e in rows(out/'reference_repair/calls/budget.jsonl'))),original_clock_unchanged=read(out/'reference_repair/phase_clock.json')==read(out/'reference_repair/prompt_v4_transition.json')['original_phase_clock'],same_phase_cap=120,interrupted_intent_not_replayed=True))
     dump(out/'generation_resource_usage.json',usage(('generation','reference_repair','v3_review_1','v3_review_2','development_review_1','development_review_2')))
     audit_rows=[]
     for name in ('v3_ai_overlap_screen.csv','development_ai_overlap_screen.csv'):
