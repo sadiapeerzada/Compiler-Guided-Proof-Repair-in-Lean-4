@@ -15,8 +15,12 @@ def fresh_review_input():
     ensure(all(c.get('reference_validation_variant')=='rigid_declaration_type_and_universe_v1' for c in verified),'NO_GO_VALIDATION: every fresh reference needs rigid type/universe validation before review')
     from overlap import fingerprint
     seen={fingerprint(c['expected_lean_statement']):c['id'] for c in exposed};kept=[];excluded=[]
+    concerns={r['id']:r for r in read(run_root()/'assistant_audit_concerns.json')} if (run_root()/'assistant_audit_concerns.json').exists() else {}
     for c in sorted(verified,key=lambda r:content_hash(['prospective-duplicate-representative',r['id']])):
         from overlap import flags,fingerprint
+        if c['id'] in concerns:
+            ensure(concerns[c['id']]['raw_response_sha256']==c['generation_provenance']['raw_response_sha256'],'Concern belongs to different raw response')
+            excluded.append(dict(id=c['id'],reason='unresolved_assistant_source_audit: '+concerns[c['id']]['reason'],not_AI_reviewer_decision=True));continue
         exposure_flags=flags(c)
         if exposure_flags:excluded.append(dict(id=c['id'],reason='; '.join(exposure_flags)));continue
         normalized=fingerprint(c['expected_lean_statement'])
@@ -25,8 +29,12 @@ def fresh_review_input():
         seen[normalized]=c['id'];row=dict(c);row['generated_family_label']=row['family'];row['family']=row['canonical_family'];row['status']='FORMALLY_VERIFIED_PENDING_AI_REVIEW';kept.append(row)
     path=run_root()/'fresh_verified.json';dump(path,kept,exclusive=True);dump(run_root()/'pre_review_exclusions.json',excluded,exclusive=True)
     base=read(HERE/'freezes/review_v2.json');lock=dict(base['files'])
-    for f in ('fresh_review.py','prepare_cohorts.py','families.py','strict_verifier.py','rigid_verifier.py','reference_construction_v2.py','overlap.py'):lock[str((HERE/f).relative_to(ROOT))]=sha(HERE/f)
+    for f in ('fresh_review.py','adjudication.py','prepare_cohorts.py','families.py','strict_verifier.py','rigid_verifier.py','reference_construction_v2.py','overlap.py'):lock[str((HERE/f).relative_to(ROOT))]=sha(HERE/f)
     for p in (path,run_root()/'pre_review_exclusions.json',run_root()/'fresh_verified_raw.json',run_root()/'expanded_historical_exposure.json'):lock[str(p.relative_to(ROOT))]=sha(p)
+    concerns=run_root()/'assistant_audit_concerns.json'
+    if concerns.exists():lock[str(concerns.relative_to(ROOT))]=sha(concerns)
+    for p in (HERE/'reference_repair_v4.py',HERE/'freezes/reference_prompt_v4.json',run_root()/'reference_prompt_exposure.json',run_root()/'reference_repair/records.jsonl',run_root()/'strict_reference_verification.jsonl'):
+        if p.exists():lock[str(p.relative_to(ROOT))]=sha(p)
     dump(HERE/'freezes/fresh_review_v1.json',dict(status='FROZEN_BEFORE_FRESH_AI_REVIEWS',files=lock,old_V3_review_outcomes_not_reparsed=True,schema='explicit boolean check polarity, explicit relation enums, full rationale, confidence heuristic0.8, two blinded acceptances required'),exclusive=True)
     print('Fresh verified review subjects:',len(kept),'; prereview exclusions:',len(excluded))
 
@@ -44,8 +52,11 @@ def development():
     dump(run_root()/'accepted_development.json',selected,exclusive=True)
     manifest=dict(status='AI_SCREENED_EXPLORATORY_DEVELOPMENT_ONLY',count=len(selected),independent_type_count=len(selected),canonical_family_count=len(families),ids=[c['id'] for c in selected],families=families,dataset_sha256=sha(run_root()/'accepted_development.json'),selection='hashed whole-family order, at most20 families, one hashed representative per canonical family, frozen before any CDE outcomes',seeds=protocol()['seeds'],test_count=0,confirmatory_authorized=False)
     dump(run_root()/'development_dataset_freeze.json',manifest,exclusive=True)
-    registry={c['id']:dict(generated_label=c.get('generated_family_label',c['family']),canonical_family=c.get('canonical_family',V3_GROUPS.get(c['id'],c['family'])),scope='development_exposed') for c in read(run_root()/'v3_input.json')+read(run_root()/'fresh_verified_raw.json')}
+    initial=rows(run_root()/'generation/records.jsonl');pool=read(run_root()/'reference_candidate_pool_v2.json') if (run_root()/'reference_candidate_pool_v2.json').exists() else []
+    exposed=read(run_root()/'v3_input.json')+[r['candidate'] for r in initial if r.get('candidate')]+[r['candidate'] for r in pool]+read(run_root()/'fresh_verified_raw.json')
+    registry={c['id']:dict(generated_label=c.get('generated_family_label',c['family']),canonical_family=c.get('canonical_family',V3_GROUPS.get(c['id'],c['family'])),expected_lean_statement=c['expected_lean_statement'],scope='development_exposed_never_untouched_test') for c in exposed}
     dump(run_root()/'mathematical_family_registry.json',dict(definitions=dict(FAMILIES),assignments=registry,not_exhaustive_equivalence_certification=True))
+    dump(run_root()/'all_development_exposure_registry.json',dict(scope='All generation outputs, including rejected/unextractable responses, are development-exposed. Unextractable statements remain unknown; do not infer absence of overlap.',responses=[dict(id=f"final_dev_{r['index']:04d}",raw_response_sha256=text_hash(r['record']['content']) if r.get('record',{}).get('status')=='completed' else None,provided_target=registry.get(f"final_dev_{r['index']:04d}",{}).get('expected_lean_statement'),intake_status=r['status'],canonical_grouping_hypothesis=FAMILIES[r['index']%len(FAMILIES)][0],never_untouched_test=True) for r in initial],additional_format_example=read(run_root()/'reference_prompt_exposure.json') if (run_root()/'reference_prompt_exposure.json').exists() else None))
     (run_root()/'cross_partition_leakage_report.md').write_text('# Exposure and partition audit\n\nAll V3 and fresh generated proposals are development-exposed, including rejected proposals. No confirmatory stream is authorized or created. The frozen development cohort uses one representative per declared canonical family. Exact/alpha and bounded AI relationship checks do not establish exhaustive mathematical independence or absence of pretraining contamination. All these subjects and their mathematical equivalents/specializations must be excluded from future untouched test construction.\n')
     print('Frozen development types/families:',len(selected))
 

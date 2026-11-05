@@ -1,0 +1,26 @@
+STATEMENT: For any integers \(a\), \(b\), and \(c\), if \(\gcd(a, b) = 1\) and \(c\) divides both \(a\) and \(b\), then \(c\) must be 1.
+
+LEAN:
+```lean
+theorem final_dev_0088 (a b c : ℤ) (h1 : gcd a b = 1) (h2 : c ∣ a) (h3 : c ∣ b) : c = 1 := by
+  have h4 : ∃ x y : ℤ, a = x * b + y * a := by
+    rw [h1] at h1 
+    exact int.exists_linear_combination_of_gcd_one h1
+  obtain ⟨x, y, h5⟩ := h4
+  have h6 : c ∣ x * b := by
+    rw [h5]; exact int.dvd_mul_right h3
+  have h7 : c ∣ y * a := by
+    rw [h5]; exact int.dvd_mul_right h2
+  have h8 : c ∣ b := by
+    exact int.dvd_of_dvd_mul_right h6 h3
+  have h9 : c ∣ a := by
+    exact int.dvd_of_dvd_mul_right h7 h2
+  have h10 : c ∣ 1 := by
+    rw [int.dvd_one] at h8 h9 
+    exact int.dvd_of_dvd_sub h8 h9
+  have h11 : 1 ∣ c := by
+    exact int.dvd_refl
+  exact int.eq_of_dvd_of_dvd h10 h11
+```
+
+FAMILY: GCD and Divisibility Relations

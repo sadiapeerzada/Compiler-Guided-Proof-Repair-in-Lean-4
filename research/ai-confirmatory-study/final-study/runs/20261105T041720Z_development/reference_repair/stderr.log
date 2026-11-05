@@ -1,0 +1,31 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] This model config has set a `rope_parameters['original_max_position_embeddings']` field, to be used together with `max_position_embeddings` to determine a scaling factor. Please set the `factor` field of `rope_parameters`with this ratio instead -- we recommend the use of this field over `original_max_position_embeddings`, as it is compatible with most model architectures.
+Traceback (most recent call last):
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/research/ai-confirmatory-study/final-study/reference_construction_v2.py", line 104, in <module>
+    p=argparse.ArgumentParser();p.add_argument('stage');execute(p.parse_args().stage)
+                                                        ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/research/ai-confirmatory-study/final-study/reference_construction_v2.py", line 83, in execute
+    try:record,folder=model.call(text,dict(index=index,id=c['id']),protocol()['base_seed'])
+                      ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/research/ai-confirmatory-study/final-study/local_runtime.py", line 34, in call
+    record,folder=self.store.call_once(call_key,prompt,count,1200,'initial',invoke)
+                  ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/research/confirmatory-study/checkpoint.py", line 71, in call_once
+    completion=generate(prompt,folder)
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/research/ai-confirmatory-study/final-study/local_runtime.py", line 31, in invoke
+    result=self.client(text,max_tokens=1200,temperature=.2,generation_context='final-study/'+content_hash(call_key),retries=1)
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/src/local_llm_client.py", line 122, in __call__
+    for response in stream_generate(self._model, self._tokenizer, prompt=token_ids,
+                    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            max_tokens=max_tokens, sampler=make_sampler(temp=temperature, top_p=1.0)):
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/.venv/lib/python3.13/site-packages/mlx_lm/generate.py", line 734, in stream_generate
+    for n, (token, logprobs, from_draft) in enumerate(token_generator):
+                                            ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/.venv/lib/python3.13/site-packages/mlx_lm/generate.py", line 722, in <genexpr>
+    (token, logprobs, False) for token, logprobs in token_generator
+                                                    ^^^^^^^^^^^^^^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/.venv/lib/python3.13/site-packages/mlx_lm/generate.py", line 472, in generate_step
+    mx.async_eval(next_y, next_logprobs)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

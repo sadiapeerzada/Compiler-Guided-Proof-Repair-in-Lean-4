@@ -1,0 +1,11 @@
+STATEMENT: For all integers \(a\) and \(b\), the composition of the function \(f(x) = x + 1\) with itself \(n\) times, where \(n\) is a non-negative integer, is equal to adding \(n\) to the input.
+
+LEAN:
+```lean
+theorem final_dev_0181 (a b : ℤ) (n : ℕ) : (fun x => x + 1)^[n] a = a + n := by
+  induction n with n ih
+  · simp
+  · rw [fun_pow_succ, ih, add_assoc]
+```
+
+FAMILY: Function Composition and Iteration

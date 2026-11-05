@@ -1,0 +1,18 @@
+STATEMENT: For any integer \( n \), if \( n^2 \) is divisible by 4, then \( n \) is even.
+
+LEAN:
+```lean
+theorem final_dev_0231 (n : Int) (h : 4 ∣ n^2) : 2 ∣ n := by
+  have h1 : ∃ k, n^2 = 4 * k := by
+    rw [h] at h ; exact h
+  obtain ⟨k, hk⟩ := h1
+  have h2 : n * n = 4 * k := by
+    rw [hk]
+  have h3 : n * n = 2 * (2 * k) := by
+    rw [h2]
+  have h4 : 2 ∣ (n * n) := by
+    rw [h3] ; exact Int.mul_divisible_right 2 (2 * k)
+  exact h4
+```
+
+FAMILY: Divisibility by Powers of Two

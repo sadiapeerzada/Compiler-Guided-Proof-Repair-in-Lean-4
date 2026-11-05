@@ -1,0 +1,21 @@
+STATEMENT: For all natural numbers \(a\), \(b\), and \(c\), if \(a \geq b + c\), then \(a^2 \geq (b + c)^2\).
+
+LEAN:
+```lean
+theorem final_dev_0051 (a b c : Nat) (h : a ≥ b + c) : a^2 ≥ (b + c)^2 := by
+  have h1 : a * a ≥ (b + c) * (b + c) := by
+    rw [Nat.mul_add, Nat.mul_add] at h 
+    have h2 : a * 1 ≥ (b + c) * 1 := by
+      rw [Nat.add_comm b c] at h 
+      exact h 
+    have h3 : a * (b + c) ≥ (b + c) * (b + c) := by
+      rw [Nat.add_comm b c] at h2 
+      exact h2 
+    have h4 : a * a ≥ (b + c) * (b + c) := by
+      rw [Nat.add_comm b c] at h3 
+      exact h3 
+    exact h4 
+  exact h1 
+```
+
+FAMILY: Inequality Preservation under Squaring

@@ -1,0 +1,11 @@
+STATEMENT: For any lists \(a\), \(b\), and \(c\), the reversal of the concatenation of \(a\) and \(b\) followed by \(c\) is equal to the concatenation of the reversals of \(b\) and \(c\) followed by the reversal of \(a\).
+
+LEAN:
+```lean
+theorem final_dev_0080 (a b c : List α) : (a ++ b) ++ c = (c.reverse ++ b.reverse).reverse ++ a.reverse := by
+  induction a with x xs ih
+  · simp [List.reverse_cons, List.append_assoc, List.reverse_append]
+  · simp [List.append_assoc, ih, List.reverse_append, List.reverse_cons, List.append_assoc, List.reverse_append]
+```
+
+FAMILY: List Reversal and Concatenation

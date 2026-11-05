@@ -1,0 +1,16 @@
+STATEMENT: For any list `l` of natural numbers, the length of the list after filtering out elements that are greater than or equal to a given natural number `n` is less than or equal to the original length of the list.
+
+LEAN:
+```lean
+theorem final_dev_0082 {α : Type _} (l : List α) (n : Nat) : 
+  List.length (List.filter (fun x => x < n) l) ≤ List.length l := by
+  induction l with
+  | nil => simp
+  | cons x xs ih =>
+    have h1 : x < n ∨ x ≥ n := by exactI Or.inr (Nat.le_refl x)
+    split
+    · exactI ih
+    · exactI Nat.le_of_lt_of_le (Nat.lt_of_le_of_not_le (Nat.le_refl x) h1) (Nat.le_refl x)
+```
+
+FAMILY: List Filtering and Length Bound

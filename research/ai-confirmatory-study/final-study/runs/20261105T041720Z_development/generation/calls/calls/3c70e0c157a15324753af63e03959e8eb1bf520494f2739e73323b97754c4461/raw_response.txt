@@ -1,0 +1,12 @@
+STATEMENT: For any finite sequence of arithmetic progressions \(a_1, a_2, \ldots, a_n\) with common differences \(d_1, d_2, \ldots, d_n\) and initial terms \(a_{1,1}, a_{2,1}, \ldots, a_{n,1}\), the sum of the \(k\)-th terms of these progressions is equal to the \(k\)-th term of the arithmetic progression with initial term \(a_{1,1} + a_{2,1} + \ldots + a_{n,1}\) and common difference \(d_1 + d_2 + \ldots + d_n\).
+
+LEAN:
+```lean
+theorem final_dev_0198 (n : Nat) (d : Nat → Nat) (a : Nat → Nat) (k : Nat) : 
+  ∑ i in Fin n, a i + d i * (k - 1) = a 0 + d 0 * (k - 1) + ∑ i in Fin (n - 1), d (i + 1) * (k - 1) := by
+  induction' n with i ih
+  · simp [Fin.sum_zero, add_zero, zero_add, zero_mul]
+  · simp [Fin.sum_succ, add_assoc, ih, add_comm i, add_assoc, zero_add, zero_mul, add_zero, add_assoc, mul_add, add_assoc, add_comm]
+```
+
+FAMILY: Summation of Arithmetic Progressions

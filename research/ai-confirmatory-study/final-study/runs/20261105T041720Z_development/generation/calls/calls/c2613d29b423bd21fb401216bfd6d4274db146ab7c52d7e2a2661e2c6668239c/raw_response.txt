@@ -1,0 +1,14 @@
+STATEMENT: For any natural numbers \(a\), \(b\), \(c\), and \(d\), if \(a\) divides \(b\) and \(c\) divides \(d\), then \(ac\) divides \(bd\).
+
+LEAN:
+```lean
+theorem final_dev_0197 (a b c d : Nat) (h1 : a ∣ b) (h2 : c ∣ d) : a * c ∣ b * d := by
+  obtain ⟨k, hk1⟩ := h1
+  obtain ⟨l, hk2⟩ := h2
+  have : b * d = (k * d) * (l * c) := by
+    rw [hk1, hk2]
+    ring
+  exact this ▸ Nat.mul_div_mul_left (Nat.mul_comm d k) (Nat.mul_comm c l)
+```
+
+FAMILY: Divisibility

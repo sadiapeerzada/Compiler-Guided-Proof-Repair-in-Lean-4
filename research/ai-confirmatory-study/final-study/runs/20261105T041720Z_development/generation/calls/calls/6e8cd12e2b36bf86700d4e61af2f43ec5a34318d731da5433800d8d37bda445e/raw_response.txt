@@ -1,0 +1,16 @@
+STATEMENT: For any list `l` of natural numbers, the length of the list after filtering out elements that are greater than or equal to 5 is less than or equal to the length of the original list.
+
+LEAN:
+```lean
+theorem final_dev_0202 {l : List Nat} : List.length (List.filter (fun x => x < 5) l) ≤ List.length l := by
+  induction l with
+  | nil => simp
+  | cons x xs =>
+    have h1 : List.length (List.filter (fun x => x < 5) xs) ≤ List.length xs := by
+      apply final_dev_0202
+    have h2 : List.length (List.filter (fun x => x < 5) (x::xs)) ≤ List.length (x::xs) := by
+      simp [List.filter_cons, List.length_cons, List.filter_empty, List.filter_cons, h1]
+    exact h2
+```
+
+FAMILY: List Filtering and Length Preservation

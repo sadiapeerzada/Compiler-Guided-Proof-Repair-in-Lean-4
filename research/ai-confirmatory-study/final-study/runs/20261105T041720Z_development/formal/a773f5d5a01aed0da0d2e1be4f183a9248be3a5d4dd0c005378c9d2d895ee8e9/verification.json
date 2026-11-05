@@ -1,0 +1,74 @@
+{
+  "axiom_dependencies": null,
+  "candidate_sha256": "e67c4aaf0114d3268afa8c04d7de61b710f34d0a3f293f11806070e61ec47153",
+  "compiler_stderr": "",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":4},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_a773f5d5a01aed0da0d2e1be4f183a9248be3a5d4dd0c005378c9d2d895ee8e9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":4},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  Nat.mod_lt b ?m.20\\nhas type\\n  b % ?m.19 < ?m.19\\nbut is expected to have type\\n  a.mod b < b\",\"endPos\":{\"column\":48,\"line\":9},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_a773f5d5a01aed0da0d2e1be4f183a9248be3a5d4dd0c005378c9d2d895ee8e9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":34,\"line\":9},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.final_dev_0046' depends on axioms: [sorryAx]\",\"endPos\":{\"column\":6,\"line\":28},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_a773f5d5a01aed0da0d2e1be4f183a9248be3a5d4dd0c005378c9d2d895ee8e9.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":28},\"severity\":\"information\"}\n",
+  "diagnostic_state": "available",
+  "diagnostic_text": "line 9: Type mismatch\n  Nat.mod_lt b ?m.20\nhas type\n  b % ?m.19 < ?m.19\nbut is expected to have type\n  a.mod b < b",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 4
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_a773f5d5a01aed0da0d2e1be4f183a9248be3a5d4dd0c005378c9d2d895ee8e9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 4
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  Nat.mod_lt b ?m.20\nhas type\n  b % ?m.19 < ?m.19\nbut is expected to have type\n  a.mod b < b",
+      "endPos": {
+        "column": 48,
+        "line": 9
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_a773f5d5a01aed0da0d2e1be4f183a9248be3a5d4dd0c005378c9d2d895ee8e9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 34,
+        "line": 9
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.final_dev_0046' depends on axioms: [sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 28
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_a773f5d5a01aed0da0d2e1be4f183a9248be3a5d4dd0c005378c9d2d895ee8e9.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 28
+      },
+      "severity": "information"
+    }
+  ],
+  "diagnostics_parsed": 3,
+  "elapsed_seconds": 59.238,
+  "errors": [
+    "line 9: Type mismatch\n  Nat.mod_lt b ?m.20\nhas type\n  b % ?m.19 < ?m.19\nbut is expected to have type\n  a.mod b < b"
+  ],
+  "exit_code": 1,
+  "failure_kind": "compiler_error",
+  "harness_variant": "explicit_all_arguments_v1",
+  "malformed_diagnostics": [],
+  "success": false,
+  "variant_source_sha256": "8ad8ab76d7d2c0a19cb2c598c70932519188b1098c02eb808db58ec2a2df88e7",
+  "verification_source_sha256": "b906e418d1556693a7b8960dae16456306db92b4071e077433df829b7a1f88e3",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\ntheorem final_dev_0046 (a b : Nat) (q : Nat) (h : a = b * q + Nat.mod a b) : q ≤ a / b := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem final_dev_0046 (a b : Nat) (q : Nat) (h : a = b * q + Nat.mod a b) : q ≤ a / b := by\n  have h_mod : Nat.mod a b < b := Nat.mod_lt b h\n  have h_div : a = b * q + Nat.mod a b := by rw [h]\n  have h_div_pos : b * q + Nat.mod a b > 0 := by\n    rw [h_div]\n    exact Nat.pos_of_add_pos_of_pos_left (Nat.pos_of_mul_of_pos_left b (Nat.pos_of_add_of_pos_left q zero_pos))\n  have h_div_ge : b * q ≤ a := by\n    rw [h_div]\n    exact Nat.le_add_of_nonneg_right (Nat.zero_le (Nat.mod a b))\n  have h_div_pos' : b * q > 0 := by\n    rw [h_div]\n    exact Nat.pos_of_mul_of_pos_left b (Nat.pos_of_add_of_pos_left q zero_pos)\n  have h_q_le : q ≤ a / b := by\n    rw [Nat.div_eq_of_mul_le_mul h_div_ge h_div_pos']\n    exact Nat.le_div_of_mul_le_mul_left h_div_pos\n  exact h_q_le\nend Nl2LeanCandidate\n\nexample : @Nl2LeanExpected.final_dev_0046 = @Nl2LeanCandidate.final_dev_0046 := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.final_dev_0046\n"
+}

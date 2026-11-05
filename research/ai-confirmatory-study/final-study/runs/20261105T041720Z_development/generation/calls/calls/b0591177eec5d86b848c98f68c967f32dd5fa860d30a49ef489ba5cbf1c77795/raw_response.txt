@@ -1,0 +1,15 @@
+STATEMENT: For any two finite lists `l1` and `l2` of natural numbers, the length of the list obtained by concatenating `l1` and `l2` is equal to the sum of the lengths of `l1` and `l2`.
+
+LEAN:
+```lean
+theorem final_dev_0129 (l1 l2 : List Nat) : (l1 ++ l2).length = l1.length + l2.length := by
+  induction l1 with
+  | nil => simp [List.append]
+  | cons x xs ih =>
+    induction l2 with
+    | nil => simp [List.append, Nat.add_zero]
+    | cons y ys =>
+      simp [List.append, ih, Nat.add_assoc]
+```
+
+FAMILY: List Length Concatenation

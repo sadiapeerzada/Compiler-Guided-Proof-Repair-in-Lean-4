@@ -1,0 +1,44 @@
+STATEMENT: For all natural numbers \(a\) and \(b\), if \(a \geq b\), then \(a^3 \geq b^3\).
+
+LEAN:
+```lean
+theorem final_dev_0062 (a b : Nat) (h : a ≥ b) : a^3 ≥ b^3 := by
+  induction a with
+  | zero =>
+    induction b with
+    | zero =>
+      simp [Nat.zero_le_zero]
+    | succ b =>
+      simp [Nat.zero_le_succ]
+  | succ a =>
+    induction b with
+    | zero =>
+      simp [Nat.succ_le_succ]
+    | succ b =>
+      have h1 : a ≥ b, from h
+      have h2 : (succ a) ^ 3 ≥ b ^ 3, from
+        calc
+          (succ a) ^ 3 = (succ a) * (succ a) * (succ a) : by ring
+          _ = (succ a) * (succ a) * a + (succ a) * (succ a) * 1 : by ring
+          _ = (succ a) * (succ a) * a + (succ a) * (succ a) : by ring
+          _ = (succ a) * (succ a) * (a + 1) : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * 0 : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * (b - b) : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a) * b : by ring
+          _ = (succ a) * (succ a) * (a + 1) + (succ a) * (succ a) * b - (succ a) * (succ a)

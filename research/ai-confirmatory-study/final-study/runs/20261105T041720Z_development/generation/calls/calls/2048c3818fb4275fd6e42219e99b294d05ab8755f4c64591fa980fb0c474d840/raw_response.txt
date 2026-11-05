@@ -1,0 +1,12 @@
+STATEMENT: For any finite sequence of real numbers \(a_1, a_2, \ldots, a_n\), the sum of the sequence can be expressed as the sum of the first \(k\) terms plus the sum of the remaining terms, where \(1 \leq k < n\).
+
+LEAN:
+```lean
+theorem final_dev_0199 (a : ℕ → ℝ) (n : ℕ) (k : ℕ) (hkn : k < n) : 
+  ∑ i in finset.range n, a i = ∑ i in finset.range k, a i + ∑ i in finset.range (n - k), a (i + k) := by
+  have h1 : ∑ i in finset.range n, a i = ∑ i in finset.range k, a i + ∑ i in finset.range (n - k), a (i + k) := by
+    rw [finset.sum_range_add_range hkn]
+  exact h1
+```
+
+FAMILY: Sum Decomposition

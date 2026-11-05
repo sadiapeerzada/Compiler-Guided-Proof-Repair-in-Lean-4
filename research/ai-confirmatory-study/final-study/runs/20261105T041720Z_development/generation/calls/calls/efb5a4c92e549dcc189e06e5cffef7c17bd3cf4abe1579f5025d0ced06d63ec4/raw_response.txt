@@ -1,0 +1,45 @@
+STATEMENT: For all natural numbers \(a\) and \(b\), if \(a \geq b\), then \(a^3 \geq b^3\).
+
+LEAN:
+```lean
+theorem final_dev_0206 (a b : Nat) (h : a ≥ b) : a^3 ≥ b^3 := by
+  induction a with
+  | zero =>
+    induction b with
+    | zero => rfl
+    | succ b =>
+      have h0 : 0^3 ≥ b^3 := by
+        apply le_refl
+      have h1 : (succ 0)^3 ≥ b^3 := by
+        rw [Nat.succ_mul_succ_eq_succ_mul_succ, Nat.succ_mul_succ_eq_succ_mul_succ, Nat.succ_mul_succ_eq_succ_mul_succ]
+        apply le_trans h0 (Nat.le_add_right _ _)
+        apply le_refl
+      exact le_trans h1 (Nat.le_add_left _ _)
+  | succ a =>
+    induction b with
+    | zero =>
+      have ha : a^3 ≥ 0^3 := by
+        apply le_refl
+      have h : (succ a)^3 ≥ 0^3 := by
+          rw [Nat.succ_mul_succ_eq_succ_mul_succ, Nat.succ_mul_succ_eq_succ_mul_succ, Nat.succ_mul_succ_eq_succ_mul_succ]
+          apply le_trans ha (Nat.le_add_right _ _)
+          apply le_refl
+      exact le_trans h (Nat.le_add_left _ _)
+    | succ b =>
+      have h0 : a^3 ≥ b^3 := by
+        induction h with
+        | zero =>
+          exact le_refl
+        | succ h =>
+          apply le_trans (Nat.le_add_right _ _)
+          apply le_add_left
+          apply h
+      have h1 : (succ a)^3 ≥ b^3 := by
+        rw [Nat.succ_mul_succ_eq_succ_mul_succ, Nat.succ_mul_succ_eq_succ_mul_succ, Nat.succ_mul_succ_eq_succ_mul_succ]
+        apply le_trans h0 (Nat.le_add_right _ _)
+        apply le_add_left
+        apply h
+      exact le_trans h1 (Nat.le_add_left _ _)
+```
+
+FAMILY: Cubic Inequality Relation

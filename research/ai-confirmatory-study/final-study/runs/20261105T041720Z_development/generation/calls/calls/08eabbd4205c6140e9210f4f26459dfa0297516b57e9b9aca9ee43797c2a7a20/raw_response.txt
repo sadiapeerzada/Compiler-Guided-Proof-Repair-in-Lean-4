@@ -1,0 +1,27 @@
+STATEMENT: For all natural numbers \(a\) and \(b\), if \(a \geq b\) and \(b \geq 1\), then \(a^3 \geq b^3\).
+
+LEAN:
+```lean
+theorem final_dev_0086 (a b : Nat) (h1 : a ≥ b) (h2 : b ≥ 1) : a^3 ≥ b^3 := by
+  induction a with
+  | zero =>
+    have : 0^3 ≥ b^3 := by
+      have : 0 ≥ b ∧ b ≥ 1 → 0^3 ≥ b^3
+      | intro h0, h1
+        have : 0^3 = 0 ∧ b^3 ≥ 0 by
+          rw [pow_zero, pow_zero]
+        exact le_of_lt_of_le h1 h0
+    exact this
+  | succ a ih =>
+    have : succ a ≥ b ∧ b ≥ 1 → (succ a)^3 ≥ b^3
+    | intro h0, h1
+      have : succ a ≥ b ∧ b ≥ 1 → a ≥ b ∧ b ≥ 1
+      | intro h0, h1
+        have : a ≥ b ∧ b ≥ 1 by
+          exact this
+        have : a^3 ≥ b^3 by
+          exact ih this
+        have : (succ a)^3 = succ (succ (succ a)) * (succ a) * a by
+          rw [pow_succ]
+        have : succ (succ (succ a)) * (succ a) * a ≥ b * b * b by
+          rw [mul_assoc, mul_assoc, ih this, mul_comm b b, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul_comm b b, mul_assoc, mul

@@ -1,0 +1,22 @@
+STATEMENT: For any integers \(a\) and \(b\), if \(a^4 - b^4 = 16\), then \(a = \pm 2\) and \(b = 0\).
+
+LEAN:
+```lean
+theorem final_dev_0121 (a b : Int) : a^4 - b^4 = 16 → a = 2 ∨ a = -2 ∧ b = 0 := by
+  intro h
+  have h1 : (a^4 - b^4) % 16 = 0 := by
+    rw [h]
+  have h2 : (a^4) % 16 = (b^4) % 16 := by
+    rw [h1]
+  have h3 : a^4 ∈ {0, 16} := by
+    rw [h2]
+    cases a with
+    | zero =>
+      rw [zero_pow_four, zero_pow_four]
+      exact by
+        rw [h3]
+        exact by
+          simp [Int.mod_zero]
+    | succ a' =>
+      have h4 : (succ a')^4 % 16 = 1 := by
+        rw [Int.pow_succ, Int.pow_succ, Int.pow_succ, Int.pow_succ, Int.pow_one, Int.mul_one, Int.add_zero, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add_comm, Int.add_assoc, Int.add

@@ -1,0 +1,17 @@
+STATEMENT: For any finite sets \(A\) and \(B\), and any functions \(f : A \times B \to \mathbb{Z}\) and \(g : B \times A \to \mathbb{Z}\), if \(f(a, b) = g(b, a)\) for all \(a \in A\) and \(b \in B\), then \(\sum_{(a, b) \in A \times B} f(a, b) = \sum_{(b, a) \in B \times A} g(b, a)\).
+
+LEAN:
+```lean
+theorem final_dev_0116 {A B : Type*} {f : A × B → ℤ} {g : B × A → ℤ} (h : ∀ a b, f (a, b) = g (b, a)) :
+  ∑ (a, b) in A × B, f (a, b) = ∑ (b, a) in B × A, g (b, a) :=
+by
+  have h_sum : ∑ (a, b) in A × B, f (a, b) = ∑ (a, b) in A × B, g (b, a) := by
+    rw [finset.sum_congr (prod.mk_injective_left _ _)]
+    exact h
+  have h_sum2 : ∑ (a, b) in A × B, g (b, a) = ∑ (b, a) in B × A, g (b, a) := by
+    rw [finset.sum_congr (prod.mk_injective_right _ _)]
+    exact finset.sum_comm
+  rw [h_sum, h_sum2]
+```
+
+FAMILY: Finite Product Relations Under Reindexing

@@ -1,0 +1,20 @@
+STATEMENT: For any positive real numbers \(a\), \(b\), and \(c\) such that \(a > 0\), \(b > 0\), \(c > 0\), and the quadratic polynomial \(ax^2 + bx + c\) has a negative discriminant (\(b^2 - 4ac < 0\)), the polynomial has no real roots.
+
+LEAN:
+```lean
+theorem final_dev_0065 (a b c : ℝ) (h_pos_a : a > 0) (h_pos_b : b > 0) (h_pos_c : c > 0) (h_neg_disc : b^2 - 4 * a * c < 0) : ¬(∃ x : ℝ, a * x^2 + b * x + c = 0) := by
+  intro x
+  have h_disc : b^2 - 4 * a * c < 0 := h_neg_disc
+  have h_pos : a * x^2 + b * x + c > 0 := by
+    rw [mul_add] at h_pos
+    have h_pos_a_x2 : a * x^2 > 0 := by
+      rw [mul_pos h_pos_a h_pos_a]
+    have h_pos_b_x : b * x > 0 := by
+      rw [mul_pos h_pos_b h_pos_b]
+    have h_pos_c : c > 0 := by
+      rw [h_pos_c]
+    exact le_of_add_le_add_right (add_pos h_pos_a_x2 h_pos_b_x) h_pos_c
+  exact absurd h_disc h_pos
+```
+
+FAMILY: Quadratic Polynomials with Negative Discriminant

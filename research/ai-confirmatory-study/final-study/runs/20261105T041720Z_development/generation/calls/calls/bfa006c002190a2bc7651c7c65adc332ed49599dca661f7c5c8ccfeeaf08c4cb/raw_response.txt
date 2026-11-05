@@ -1,0 +1,43 @@
+STATEMENT: For all natural numbers \(a\) and \(b\) where \(a \geq b \geq 1\), it holds that \(a^b \geq b^a\).
+
+LEAN:
+```lean
+theorem final_dev_0110 (a b : Nat) (h : a ≥ b ∧ b ≥ 1) : a ^ b ≥ b ^ a := by
+  induction' b with b ih
+  · have h1 : 1 ^ 1 ≥ 1 ^ 1 := by simp
+    exact h1
+  · have h2 : b ^ (b + 1) ≥ (b + 1) ^ b := by
+      have h3 : b ≥ 1 := by exact h.1
+      have h4 : b ^ (b + 1) = b * (b ^ b) := by simp
+      have h5 : (b + 1) ^ b = (b + 1) * ((b + 1) ^ (b - 1)) := by simp
+      have h6 : (b + 1) ^ (b - 1) ≤ b ^ (b - 1) := by
+        have h7 : b - 1 ≥ 1 := by exact Nat.sub_pos h3 h.2
+        induction' b with b ih
+        · exact Nat.le_refl 1
+        · have h8 : b - 1 ≥ 1 := by exact Nat.sub_pos h3 h.2
+          have h9 : (b - 1) ^ (b - 1) ≤ b ^ (b - 1) := by exact ih h8
+          have h10 : (b + 1) ^ (b - 1) ≤ b ^ (b - 1) := by
+            have h11 : (b + 1) ^ (b - 1) = (b + 1) * ((b + 1) ^ (b - 2)) := by simp
+            have h12 : (b + 1) ^ (b - 2) ≤ b ^ (b - 2) := by exact ih h11
+            exact Nat.mul_le_mul_right h12 1
+          exact h10
+      have h13 : (b + 1) ^ b ≤ b ^ b * (b + 1) := by
+        have h14 : (b + 1) ^ b = (b + 1) * ((b + 1) ^ (b - 1)) := by simp
+        have h15 : (b + 1) ^ (b - 1) ≤ b ^ (b - 1) := by exact h6
+        exact Nat.mul_le_mul_right h15 (b + 1)
+      have h16 : b ^ b * (b + 1) ≤ b ^ b * b := by
+        have h17 : b ^ b * (b + 1) = b ^ b * (b + 1) := by simp
+        have h18 : b + 1 ≤ b * b := by
+          have h19 : b * b = b * b := by simp
+          have h20 : b * b = b ^ 2 := by simp
+          have h21 : b ^ 2 ≥ b * b := by
+            have h22 : b ≥ 1 := by exact h.1
+            exact Nat.mul_self_le_mul_self h22 h22
+          exact h21
+        exact h18
+      have h23 : b ^ b * b ≤ b ^ b * b := by simp
+      exact h13.trans h16.trans h23
+    exact h2
+```
+
+FAMILY: Inequality Relations

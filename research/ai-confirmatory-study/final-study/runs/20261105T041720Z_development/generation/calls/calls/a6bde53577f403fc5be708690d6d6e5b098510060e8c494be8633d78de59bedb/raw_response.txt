@@ -1,0 +1,26 @@
+STATEMENT: For all integers \(a\) and \(b\), if \(a^2 + b^2\) is divisible by 5, then at least one of \(a\) or \(b\) must be divisible by 5.
+
+LEAN:
+```lean
+theorem final_dev_0063 (a b : ℤ) (h : 5 ∣ a^2 + b^2) : ∃ x : ℤ, x ∣ a ∨ x ∣ b := by
+  obtain ⟨k, hk⟩ := h
+  have hka2 : 5 ∣ a^2 := by rw [hk]; simp
+  have hkb2 : 5 ∣ b^2 := by rw [hk]; simp
+  have hka : ∃ x : ℤ, x ∣ a := by
+    obtain ⟨m, hm⟩ := hka2
+    have hma2 : 5 ∣ (a - 5*m) * (a + 5*m) := by rw [int.mul_sub_left_distrib, hm, int.mul_one]
+    have hma : 5 ∣ a - 5*m ∨ 5 ∣ a + 5*m := by
+      rw [int.mk_eq_zero_of_mul_eq_zero_left hma2]
+      exact int.mk_eq_zero_of_add_eq_zero_left
+    exact hma
+  have hkb : ∃ x : ℤ, x ∣ b := by
+    obtain ⟨n, hn⟩ := hkb2
+    have hnb2 : 5 ∣ (b - 5*n) * (b + 5*n) := by rw [int.mul_sub_left_distrib, hn, int.mul_one]
+    have hnb : 5 ∣ b - 5*n ∨ 5 ∣ b + 5*n := by
+      rw [int.mk_eq_zero_of_mul_eq_zero_left hnb2]
+      exact int.mk_eq_zero_of_add_eq_zero_left
+    exact hnb
+  exact or.elim (or.inr hkb) (or.elr hka)
+```
+
+FAMILY: Divisibility by Prime Numbers

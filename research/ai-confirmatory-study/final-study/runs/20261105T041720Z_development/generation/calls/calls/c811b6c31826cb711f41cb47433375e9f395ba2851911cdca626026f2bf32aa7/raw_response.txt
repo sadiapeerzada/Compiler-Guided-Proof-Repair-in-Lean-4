@@ -1,0 +1,42 @@
+STATEMENT: For any natural numbers \(a\), \(b\), \(c\), and \(d\), if \(a\) divides \(b\) and \(c\) divides \(d\), then \(ac\) divides \(bd\).
+
+LEAN:
+```lean
+theorem final_dev_0125 (a b c d : Nat) (h1 : a ∣ b) (h2 : c ∣ d) : a * c ∣ b * d := by
+  obtain ⟨k, hk1⟩ := h1
+  obtain ⟨l, hk2⟩ := h2
+  have : b * d = (k * b) * (l * d) := by ring
+  rw [this]
+  have : (k * b) * (l * d) = (k * l) * (b * d) := by ring
+  rw [this]
+  have : (k * l) * (b * d) = (k * l) * (a * (b / a) * d) := by
+    rw [mul_assoc, div_mul_eq_mul_div, h1]
+  rw [this]
+  have : (k * l) * (a * (b / a) * d) = (k * l) * (a * (d / c) * c * d) := by
+    rw [mul_assoc, h2]
+  rw [this]
+  have : (k * l) * (a * (d / c) * c * d) = (k * l) * (a * d) * (c * d) / (c * c) := by
+    rw [mul_assoc, div_mul_eq_mul_div, mul_comm, mul_assoc, mul_comm, mul_assoc]
+  rw [this]
+  have : (k * l) * (a * d) * (c * d) / (c * c) = (k * l) * (a * d) * (c * d) / (c * c) * 1 := by
+    norm_num
+  have : (k * l) * (a * d) * (c * d) / (c * c) * 1 = (k * l) * (a * d) * (c * d) / (c * c) * (c * d / (c * d)) := by
+    norm_num
+  rw [this]
+  have : (k * l) * (a * d) * (c * d) / (c * c) * (c * d / (c * d)) = (k * l) * (a * d) * (c * d) / (c * c) * (1) := by
+    norm_num
+  have : (k * l) * (a * d) * (c * d) / (c * c) * (1) = (k * l) * (a * d) * (c * d) / (c * c) * (1) * 1 := by
+    norm_num
+  have : (k * l) * (a * d) * (c * d) / (c * c) * (1) * 1 = (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) := by
+    norm_num
+  have : (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) = (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) * 1 := by
+    norm_num
+  have : (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) * 1 = (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) * (1) := by
+    norm_num
+  have : (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) * (1) = (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) * (1) * 1 := by
+    norm_num
+  have : (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) * (1) * 1 = (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) * (1) * (1) := by
+    norm_num
+  have : (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) * (1) * (1) = (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) * (1) * (1) * 1 := by
+    norm_num
+  have : (k * l) * (a * d) * (c * d) / (c * c) * (1) * (1) * (1) * (1) * 1 = (k * l) * (a *

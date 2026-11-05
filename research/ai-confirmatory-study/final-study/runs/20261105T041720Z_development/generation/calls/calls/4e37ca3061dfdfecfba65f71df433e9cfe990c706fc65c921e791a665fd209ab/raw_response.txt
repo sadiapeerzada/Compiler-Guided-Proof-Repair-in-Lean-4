@@ -1,0 +1,19 @@
+STATEMENT: For all integers \(a\) and \(b\), if \(a^2\) is divisible by 4 and \(b^2\) is divisible by 4, then \((a + b)^2\) is divisible by 4.
+
+LEAN:
+```lean
+theorem final_dev_0135 (a b : ℤ) (h1 : 4 ∣ a^2) (h2 : 4 ∣ b^2) : 4 ∣ (a + b)^2 := by
+  obtain ⟨k, hk1⟩ := h1
+  obtain ⟨l, hk2⟩ := h2
+  have : (a + b)^2 = a^2 + 2 * a * b + b^2 := by ring
+  rw [this]
+  have : 2 * a * b = 0 := by
+    rw [mul_zero, zero_mul]
+    exact congr_arg (λ x, x + x) (by linarith)
+  have : 4 ∣ (a^2 + b^2) := by
+    rw [hk1, hk2]
+    exact dvd_add_of_dvd_of_dvd 4 4
+  exact dvd_add_of_dvd_of_dvd 4 4 this
+```
+
+FAMILY: Divisibility by 4

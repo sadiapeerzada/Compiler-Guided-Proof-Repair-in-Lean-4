@@ -1,0 +1,16 @@
+STATEMENT: For any integer \( n \), if \( n^2 \) is divisible by 4, then \( n \) is even.
+
+LEAN:
+```lean
+theorem final_dev_0087 (n : ℤ) (h : n^2 % 4 = 0) : even n := by
+  obtain ⟨k, hk⟩ := int.exists_eq_add_one_of_even n
+  have h1 : (2 * k + 1)^2 % 4 ≠ 0 := by
+    calc
+      (2 * k + 1)^2 % 4 = (4 * k^2 + 4 * k + 1) % 4 · by ring
+      _ = 1 % 4 · by ring
+  have h2 : n^2 % 4 = 0 := by
+    exact h
+  linarith [hk, h1, h2]
+```
+
+FAMILY: Divisibility by 4 and evenness relation

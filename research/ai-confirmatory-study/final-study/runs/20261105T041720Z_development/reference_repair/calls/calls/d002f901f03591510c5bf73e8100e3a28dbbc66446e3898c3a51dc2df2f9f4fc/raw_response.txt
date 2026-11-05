@@ -1,0 +1,10 @@
+```lean
+sorry final_dev_0197 (a b c d : Nat) (h1 : a ∣ b) (h2 : c ∣ d) : a * c ∣ b * d := begin
+  obtain ⟨k, hk1⟩ := h1,
+  obtain ⟨l, hk2⟩ := h2,
+  have : b * d = (k * d) * (l * c) := by
+    rw [hk1, hk2],
+    ring,
+  exact Nat.mul_div_mul_left (Nat.mul_comm d k) (Nat.mul_comm c l)
+end.
+```

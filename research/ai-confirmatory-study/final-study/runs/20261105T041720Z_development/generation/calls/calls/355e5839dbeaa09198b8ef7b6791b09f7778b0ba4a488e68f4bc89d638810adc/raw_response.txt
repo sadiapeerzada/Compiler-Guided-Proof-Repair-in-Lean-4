@@ -1,0 +1,18 @@
+STATEMENT: For any integers \(a\) and \(b\), the absolute value of their sum is less than or equal to the sum of their absolute values, i.e., \(|a + b| \leq |a| + |b|\).
+
+LEAN:
+```lean
+theorem final_dev_0124 (a b : Int) : |a + b| ≤ |a| + |b| := by
+  have h1 : |a + b| = (a + b).abs := by
+    rw [abs_eq, Int.abs_eq, Int.coe_abs, Int.coe_add]
+  have h2 : |a| = a.abs := by
+    rw [abs_eq, Int.abs_eq, Int.coe_abs]
+  have h3 : |b| = b.abs := by
+    rw [abs_eq, Int.abs_eq, Int.coe_abs]
+  have h4 : (a + b).abs ≤ a.abs + b.abs := by
+    apply Int.abs_add_le
+  rw [h1, h2, h3] at h4
+  exact h4
+```
+
+FAMILY: Absolute Value Inequality

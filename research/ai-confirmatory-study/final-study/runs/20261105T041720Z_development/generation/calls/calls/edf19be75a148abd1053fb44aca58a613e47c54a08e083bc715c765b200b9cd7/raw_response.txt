@@ -1,0 +1,16 @@
+STATEMENT: For all real numbers \(a\), \(b\), and \(c\), if \(a^2 + b^2\) and \(c^2 + d^2\) are both sums of two squares, then \((ac - bd)^2 + (ad + bc)^2\) is also a sum of two squares.
+
+LEAN:
+```lean
+theorem final_dev_0120 (a b c d : ℝ) (h1 : a^2 + b^2 = 0) (h2 : c^2 + d^2 = 0) : (a*c - b*d)^2 + (a*d + b*c)^2 = 0 := by
+  have h3 : (a*c - b*d)^2 = (a*c - b*d) * (a*c - b*d) := by simp
+  have h4 : (a*d + b*c)^2 = (a*d + b*c) * (a*d + b*c) := by simp
+  have h5 : (a*c - b*d) * (a*c - b*d) + (a*d + b*c) * (a*d + b*c) = (a^2 * c^2 - 2 * a * b * c * d + b^2 * d^2) + (a^2 * d^2 + 2 * a * b * c * d + b^2 * c^2) := by ring
+  have h6 : (a^2 * c^2 - 2 * a * b * c * d + b^2 * d^2) + (a^2 * d^2 + 2 * a * b * c * d + b^2 * c^2) = (a^2 * c^2 + b^2 * d^2) + (a^2 * d^2 + b^2 * c^2) := by ring
+  have h7 : (a^2 * c^2 + b^2 * d^2) + (a^2 * d^2 + b^2 * c^2) = (a^2 * (c^2 + d^2)) + (b^2 * (c^2 + d^2)) := by ring
+  have h8 : (a^2 * (c^2 + d^2)) + (b^2 * (c^2 + d^2)) = (a^2 * 0) + (b^2 * 0) := by rw [h2, h2]
+  have h9 : (a^2 * 0) + (b^2 * 0) = 0 := by ring
+  exact h9
+```
+
+FAMILY: Sum of Squares Identity

@@ -1,0 +1,15 @@
+STATEMENT: For all natural numbers \(a\), \(b\), and \(c\), if \(a \leq b + c\) and \(b \leq a + c\), then \(a + b \leq 2c + 2\).
+
+LEAN:
+```lean
+theorem final_dev_0075 (a b c : Nat) (h1 : a ≤ b + c) (h2 : b ≤ a + c) : a + b ≤ 2 * c + 2 := by
+  have h3 : a + b ≤ (b + c) + (a + c) := by
+    rw [add_assoc, add_comm b c, add_comm a c]
+    exact h1.trans (h2.add h1)
+  have h4 : (b + c) + (a + c) ≤ 2 * c + 2 := by
+    rw [add_assoc, add_assoc, add_comm c c, add_right_comm (b + c)]
+    exact le_add_of_nonneg_right (by norm_num) (by norm_num)
+  exact h3.le h4
+```
+
+FAMILY: Inequality Relations

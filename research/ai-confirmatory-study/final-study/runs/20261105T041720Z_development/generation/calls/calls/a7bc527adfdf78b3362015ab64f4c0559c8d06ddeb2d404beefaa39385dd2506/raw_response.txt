@@ -1,0 +1,20 @@
+STATEMENT: For any integers \(a\) and \(b\), the absolute value of their difference is less than or equal to the sum of their absolute values.
+
+LEAN:
+```lean
+theorem final_dev_0220 (a b : Int) : |a - b| ≤ |a| + |b| := by
+  have h1 : |a - b| = |b - a| := by simp [Int.abs_sub_symm]
+  have h2 : |a| + |b| ≥ 0 := by norm_num
+  have h3 : |a - b| ≥ 0 := by norm_num
+  have h4 : |a - b| ≤ |a| + |b - a| := by
+    have : a - b = a + (-b) := by simp
+    · rw [this, Int.abs_add, Int.abs_nonneg, Int.abs_nonneg]
+      apply le_add_right
+  have h5 : |a| + |b - a| ≤ |a| + |b| := by
+    have : |b - a| = |a - b| := by simp [Int.abs_sub_symm]
+    · rw [this, h4]
+      apply le_add_left
+  exact h5
+```
+
+FAMILY: Absolute Value Inequalities

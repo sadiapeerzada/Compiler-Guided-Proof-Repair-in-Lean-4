@@ -1,0 +1,21 @@
+STATEMENT: For any positive real numbers \(a\), \(b\), and \(c\) such that \(b^2 - 4ac < 0\), the quadratic polynomial \(ax^2 + bx + c\) has no real roots.
+
+LEAN:
+```lean
+theorem final_dev_0161 (a b c : ℝ) (h_pos_a : a > 0) (h_neg_disc : b^2 - 4 * a * c < 0) : ¬(∃ x : ℝ, a * x^2 + b * x + c = 0) := by
+  intro x
+  have h_pos_quad : a * x^2 > 0 := by
+    rw [mul_pos] at h_pos_a
+    exact h_pos_a
+  have h_pos_bx : b * x ≤ b * x := by
+    exact le_refl _
+  have h_pos_c : c ≤ c := by
+    exact le_refl _
+  have h_quad_sum : a * x^2 + b * x + c > 0 := by
+    rw [add_le_add h_pos_quad h_pos_bx]
+    rw [add_le_add h_pos_quad h_pos_c]
+    exact h_neg_disc
+  contradiction
+```
+
+FAMILY: Quadratic Equations and Discriminants

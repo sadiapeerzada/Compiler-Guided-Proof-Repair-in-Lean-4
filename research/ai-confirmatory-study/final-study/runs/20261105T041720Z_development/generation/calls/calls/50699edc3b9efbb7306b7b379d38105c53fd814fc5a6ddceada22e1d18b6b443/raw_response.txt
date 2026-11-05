@@ -1,0 +1,15 @@
+STATEMENT: For any two lists \(a\) and \(b\) of natural numbers, if the concatenation of \(a\) and \(b\) has the same length as \(b\) and \(a\) concatenated with the empty list, then \(a\) must be the empty list.
+
+LEAN:
+```lean
+theorem final_dev_0057 (a b : List Nat) (h : (a ++ b).length = b.length + a.length) : a = [] := by
+  induction a with
+  | nil => 
+    simp [h]
+  | cons a_head a_tail ih =>
+    have h' : (a_tail ++ b).length = b.length + a_tail.length := by
+      rw [h, List.length_cons_add]
+    contradiction
+```
+
+FAMILY: List Length Preservation

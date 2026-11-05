@@ -1,0 +1,19 @@
+STATEMENT: For any natural number \( n \) and any real number \( a \) where \( a \neq 1 \), the sum of the geometric series \( 1 + a + a^2 + \cdots + a^{n-1} \) is given by \( \frac{1-a^n}{1-a} \).
+
+LEAN:
+```lean
+theorem final_dev_0079 (n : Nat) (a : Real) (h : a ≠ 1) : ∑ i in Finset.range n, a ^ i = (1 - a ^ n) / (1 - a) := by
+  induction n with
+  | zero =>
+    simp [Finset.range_zero, a ^ 0, one_div]
+  | succ n ih =>
+    have h1 : a ^ n * (1 - a) = a ^ n - a ^ (n + 1) := by
+      ring
+    have h2 : (1 - a ^ n) + (a ^ n - a ^ (n + 1)) = 1 - a ^ (n + 1) := by
+      ring
+    have h3 : ∑ i in Finset.range (succ n), a ^ i = ∑ i in Finset.range n, a ^ i + a ^ (n) := by
+      simp [Finset.range_succ, Finset.sum_insert, a ^ (n + 1)]
+    rw [h3, ih, h1, h2]
+```
+
+FAMILY: Geometric Series Sum Formula

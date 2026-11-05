@@ -1,0 +1,21 @@
+STATEMENT: For any positive real quadratic polynomial \(f(x) = ax^2 + bx + c\) with \(a > 0\) and negative discriminant \(\Delta = b^2 - 4ac < 0\), the polynomial has no real roots.
+
+LEAN:
+```lean
+theorem final_dev_0233 (a b c : ℝ) (h_a_pos : a > 0) (h_disc_neg : b^2 - 4 * a * c < 0) : ¬(∃ x : ℝ, a * x^2 + b * x + c = 0) := by
+  intro x
+  have h_disc_pos : b^2 - 4 * a * c > 0 := by
+    linarith [h_disc_neg]
+  have h_bx : b * x > 0 := by
+    linarith [h_a_pos]
+  have h_cx : c * x > 0 := by
+    linarith [h_a_pos]
+  have h_quad_pos : a * x^2 + b * x + c > 0 := by
+    calc
+      a * x^2 + b * x + c = a * x^2 + b * x + c : by simp
+    ≤ a * x^2 + b * x + c : by linarith [h_bx, h_cx]
+    < a * x^2 + b * x + c : by linarith [h_disc_pos]
+  exact h_quad_pos
+```
+
+FAMILY: Quadratic Equations and Discriminants

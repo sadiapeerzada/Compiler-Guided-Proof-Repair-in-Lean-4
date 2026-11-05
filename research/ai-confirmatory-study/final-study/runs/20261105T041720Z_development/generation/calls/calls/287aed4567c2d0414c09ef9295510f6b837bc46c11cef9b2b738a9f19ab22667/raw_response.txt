@@ -1,0 +1,22 @@
+STATEMENT: For any natural numbers \(a\), \(b\), and \(c\) where \(b > 0\), if \(a = bq + r\) for some quotient \(q\) and remainder \(r\) with \(0 \leq r < b\), then \(q \leq \frac{a}{b}\).
+
+LEAN:
+```lean
+theorem final_dev_0190 (a b q r : Nat) (h1 : b > 0) (h2 : a = b * q + r) (h3 : 0 ≤ r) (h4 : r < b) : q ≤ a / b := by
+  have h5 : a - b * q = r := by rw [h2]
+  have h6 : a - b * q < b := by linarith [h4]
+  have h7 : a < b * (q + 1) := by
+    rw [h5]
+    linarith
+  have h8 : a / b ≤ q + 1 := by
+    linarith [h7]
+  have h9 : a / b = q + (a % b) / b := by
+    rw [Nat.div_add_mod]
+  have h10 : a / b ≤ q + 1 := by
+    linarith [h8]
+  have h11 : a / b ≤ q := by
+    linarith [h10]
+  exact h11
+```
+
+FAMILY: Division and Remainder Properties

@@ -1,0 +1,25 @@
+STATEMENT: For any natural numbers \(a\), \(b\), and \(q\), if \(a = bq + r\) where \(0 \leq r < b\), then \(q \leq \frac{a}{b}\).
+
+LEAN:
+```lean
+theorem final_dev_0094 (a b : Nat) (q : Nat) (h : a = b * q + Nat.mod a b) : q ≤ a / b := by
+  have h_mod : Nat.mod a b < b := by
+    apply Nat.mod_lt
+    assumption
+  have h_div : a / b = q := by
+    rw [Nat.div_eq_of_mod]
+    assumption
+  have h_bq : b * q = a - Nat.mod a b := by
+    rw [h, Nat.sub_add_cancel]
+    assumption
+  have h_bq_pos : b * q ≤ a := by
+    rw [h_bq]
+    apply Nat.le_sub_of_pos_mod
+    assumption
+  have h_q_le : q ≤ a / b := by
+    rw [h_div]
+    exact Nat.le_div_of_le_mul h_bq_pos
+  exact h_q_le
+```
+
+FAMILY: Division and Modulo Relations

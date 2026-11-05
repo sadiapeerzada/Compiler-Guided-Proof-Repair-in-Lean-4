@@ -1,0 +1,15 @@
+STATEMENT: For all real numbers \(x\) and \(y\), the composition of the sine and cosine functions satisfies the identity \(\sin(\cos(x) + \cos(y)) = \cos(\sin(x) + \sin(y))\).
+
+LEAN:
+```lean
+theorem final_dev_0061 (x y : ℝ) : sin (cos x + cos y) = cos (sin x + sin y) := by
+  have h1 : sin (cos x + cos y) = cos (π/2 - (cos x + cos y)) := by
+    rw [sin_sub, cos_add, pi_half_sub]
+  have h2 : cos (sin x + sin y) = sin (π/2 - (sin x + sin y)) := by
+    rw [cos_sub, sin_add, pi_half_sub]
+  have h3 : π/2 - (cos x + cos y) = π/2 - (sin x + sin y) := by
+    rw [pi_half_sub, cos_add, sin_add]
+  exact h2.trans h3.trans h1
+```
+
+FAMILY: Trigonometric Identities

@@ -1,0 +1,24 @@
+STATEMENT: For all real numbers \(x\), the composition of the sine and cosine functions satisfies the identity \(\sin(\cos(x)) = \cos(\sin(x))\) if and only if \(x = 0\).
+
+LEAN:
+```lean
+theorem final_dev_0133 (x : ℝ) : sin(cos(x)) = cos(sin(x)) ↔ x = 0 := by
+  constructor
+  · intro h
+    have h0 : sin(cos(x)) = cos(sin(x)) := h
+    have h1 : sin(cos(0)) = cos(sin(0)) := by simp
+    have h2 : sin(1) = cos(0) := by simp
+    have h3 : sin(1) = 1 := by norm_num
+    have h4 : cos(0) = 1 := by simp
+    have h5 : 1 = 1 := by simp
+    exact h5
+    · intro h
+      have h6 : sin(cos(x)) = cos(sin(x)) := h
+      have h7 : sin(0) = cos(0) := by simp
+      have h8 : sin(0) = 0 := by norm_num
+      have h9 : cos(0) = 1 := by simp
+      have h10 : 0 = 1 := by linarith [h6, h7, h8, h9]
+      contradiction
+```
+
+FAMILY: Trigonometric Identities

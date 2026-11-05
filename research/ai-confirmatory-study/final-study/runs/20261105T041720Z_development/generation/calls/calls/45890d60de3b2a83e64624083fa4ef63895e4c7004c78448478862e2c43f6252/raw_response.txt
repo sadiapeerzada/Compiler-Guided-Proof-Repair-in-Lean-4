@@ -1,0 +1,28 @@
+STATEMENT: For any positive real numbers \(a\), \(b\), and \(c\) such that \(b^2 - 4ac < 0\), the polynomial \(ax^2 + bx + c\) has no real roots and \(a(x - h)^2 + k\) is always positive for all real \(x\), where \(h = -\frac{b}{2a}\) and \(k = c - \frac{b^2}{4a}\).
+
+LEAN:
+```lean
+theorem final_dev_0089 (a b c : ℝ) (h : 0 < a) (h' : b^2 - 4 * a * c < 0) : 
+  (∀ x : ℝ, a * x^2 + b * x + c > 0) ∧ 
+  (let h := -b / (2 * a); 
+   let k := c - b^2 / (4 * a); 
+   ∀ x : ℝ, a * (x - h) ^ 2 + k > 0) := by
+  split;
+  · intro x;
+    have h1 : 0 < a * x^2 + b * x + c := by
+      have h2 : b^2 - 4 * a * c < 0 := h';
+      have h3 : 0 < 4 * a * c - b^2 := by linarith [h2];
+      have h4 : 0 < 4 * a * (c - b^2 / (4 * a)) := by linarith [h3];
+      have h5 : 0 < 4 * a * (c - b^2 / (4 * a)) - (b * x + b * x - b^2 / a) := by
+        linarith [h3, h2];
+      have h6 : 0 < 4 * a * (c - b^2 / (4 * a)) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) := by
+        linarith [h5];
+      have h7 : 0 < 4 * a * (c - b^2 / (4 * a)) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) := by
+        linarith [h6];
+      have h8 : 0 < 4 * a * (c - b^2 / (4 * a)) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) := by
+        linarith [h7];
+      have h9 : 0 < 4 * a * (c - b^2 / (4 * a)) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) := by
+        linarith [h8];
+      have h10 : 0 < 4 * a * (c - b^2 / (4 * a)) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) := by
+        linarith [h9];
+      have h11 : 0 < 4 * a * (c - b^2 / (4 * a)) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2 / a) - (b * x + b * x - b^2

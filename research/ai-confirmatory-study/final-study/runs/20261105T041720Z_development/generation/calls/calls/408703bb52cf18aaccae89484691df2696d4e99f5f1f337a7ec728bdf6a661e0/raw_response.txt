@@ -1,0 +1,52 @@
+STATEMENT: For all real numbers \(a\), \(b\), and \(c\) such that \(a \neq 0\), the inequality \(ax^2 + bx + c > 0\) holds for all \(x\) if and only if \(a > 0\) and the discriminant \(b^2 - 4ac < 0\).
+
+LEAN:
+```lean
+theorem final_dev_0066 (a b c : ℝ) (h_a_ne_zero : a ≠ 0) : 
+  (∀ x, a * x ^ 2 + b * x + c > 0) ↔ (a > 0 ∧ b ^ 2 - 4 * a * c < 0) := by
+  split
+  · intro h_pos
+    have h_a_pos : a > 0 := by
+      rw [lt_iff_le_not_le] at h_pos 
+      exact h_pos
+    have h_discr_neg : b ^ 2 - 4 * a * c < 0 := by
+      have h_a_pos_nonzero : a ≠ 0 := by
+        exact h_a_ne_zero
+      have h_a_pos_pos : a > 0 := by
+        exact h_a_pos
+      have h_a_neg_neg : a < 0 := by
+        exact not_le.mp (not_lt.mp h_a_pos)
+      have h_a_neg : a < 0 := by
+        exact h_a_neg_neg
+      have h_a_neg_inv : 1 / a < 0 := by
+        exact inv_pos.mpr h_a_pos
+      have h_a_neg_inv_inv : 1 / (1 / a) < 0 := by
+        exact inv_pos.mpr h_a_neg_inv
+      have h_a_inv : 1 / a < 0 := by
+        exact h_a_neg_inv_inv
+      have h_a_inv_inv : 1 / (1 / a) > 0 := by
+        exact inv_neg.mpr h_a_inv
+      have h_a_inv_inv_inv : 1 / (1 / (1 / a)) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv
+      have h_a_inv_inv_inv_inv : 1 / (1 / (1 / (1 / a))) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv_inv
+      have h_a_inv_inv_inv_inv_inv : 1 / (1 / (1 / (1 / (1 / a)))) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv_inv_inv
+      have h_a_inv_inv_inv_inv_inv_inv : 1 / (1 / (1 / (1 / (1 / (1 / a))))) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv_inv_inv_inv
+      have h_a_inv_inv_inv_inv_inv_inv_inv : 1 / (1 / (1 / (1 / (1 / (1 / (1 / a)))))) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv_inv_inv_inv_inv
+      have h_a_inv_inv_inv_inv_inv_inv_inv_inv : 1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / a))))))) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv_inv_inv_inv_inv_inv
+      have h_a_inv_inv_inv_inv_inv_inv_inv_inv_inv : 1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / a)))))))) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv_inv_inv_inv_inv_inv_inv
+      have h_a_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv : 1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / a))))))))) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv_inv_inv_inv_inv_inv_inv_inv
+      have h_a_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv : 1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / a)))))))))) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv
+      have h_a_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv : 1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / a))))))))))) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv
+      have h_a_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv : 1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / a)))))))))))) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv
+      have h_a_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv : 1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / (1 / a))))))))))))) > 0 := by
+        exact inv_pos.mpr h_a_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv_inv

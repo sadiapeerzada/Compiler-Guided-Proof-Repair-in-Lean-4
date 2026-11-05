@@ -1,0 +1,22 @@
+STATEMENT: For all natural numbers \(a\), \(b\), and \(c\), if \(a\) divides \(b\) and \(b\) divides \(c\), then \(a\) divides any linear combination of \(b\) and \(c\) of the form \(kb + lc\), where \(k\) and \(l\) are natural numbers.
+
+LEAN:
+```lean
+theorem final_dev_0077 (a b c : Nat) (h1 : a ∣ b) (h2 : b ∣ c) : ∀ (k l : Nat), a ∣ (k * b + l * c) := by
+  intro k l
+  have h3 : ∃ (m : Nat), b = m * a := by
+    from h1.exists
+  have h4 : ∃ (n : Nat), c = n * b := by
+    from h2.exists
+  obtain m : Nat, m * a = b := by
+    from h3.1
+  obtain n : Nat, n * b = c := by
+    from h4.1
+  have h5 : k * b + l * c = k * (m * a) + l * (n * b) := by
+    rw [this, this]
+  have h6 : k * b + l * c = (k * m + l * n) * a := by
+    ring
+  exact h6
+```
+
+FAMILY: Divisibility of Linear Combinations

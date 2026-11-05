@@ -1,0 +1,22 @@
+STATEMENT: If \(A\) and \(B\) are finite sets and \(f: A \to B\) is a function, then the image of the union of any two subsets of \(A\) is a subset of the union of their images under \(f\).
+
+LEAN:
+```lean
+theorem final_dev_0180 {α β : Type*} {f : α → β} {A B C : Set α} (hA : fintype A) (hB : fintype B) : 
+  f '' (A ∪ B) ⊆ f '' A ∪ f '' B := by
+  ext y
+  have : ∃ x, x ∈ A ∪ B ∧ f x = y := by
+    use if y ∈ f '' A then classical.some this else classical.some (mem_of_mem_image_of_mem B (mem_of_mem_image_of_mem A this))
+  obtain ⟨x, hxA_or_hxB, hx_fy⟩ := this
+  have hxA_or_hxB : x ∈ A ∨ x ∈ B := by
+    cases hxA_or_hxB with hxA hxB
+    · exact hxA
+    · exact hxB
+  have : y ∈ f '' A ∨ y ∈ f '' B := by
+    cases hxA_or_hxB with hxA hxB
+    · exact mem_image_of_mem hxA hx_fy
+    · exact mem_image_of_mem hxB hx_fy
+  exact this
+```
+
+FAMILY: Image of Union Under Function

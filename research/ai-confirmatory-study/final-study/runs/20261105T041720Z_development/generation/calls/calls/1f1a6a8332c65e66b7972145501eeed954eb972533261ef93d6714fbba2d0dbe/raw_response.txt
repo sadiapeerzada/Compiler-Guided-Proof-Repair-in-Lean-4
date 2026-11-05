@@ -1,0 +1,25 @@
+STATEMENT: For all real numbers \(a\), \(b\), and \(c\), if \(a^2 + b^2 = c^2\) and \(a^2 + c^2 = b^2\), then \(a = 0\), \(b = 0\), and \(c = 0\).
+
+LEAN:
+```lean
+theorem final_dev_0072 (a b c : ℝ) (h1 : a^2 + b^2 = c^2) (h2 : a^2 + c^2 = b^2) : a = 0 ∧ b = 0 ∧ c = 0 := by
+  have h3 : a^2 + b^2 + a^2 + c^2 = c^2 + b^2 by
+    rw [h1, h2]
+  have h4 : 2 * a^2 + b^2 + c^2 = b^2 + c^2 by
+    rw [h3]
+  have h5 : 2 * a^2 = 0 by
+    rw [h4]
+  have h6 : a^2 = 0 by
+    rw [h5]
+  have h7 : a = 0 by
+    norm_num
+  have h8 : b^2 + c^2 = 0 by
+    rw [h1, h6]
+  have h9 : b^2 = 0 ∧ c^2 = 0 by
+    rw [h8]
+  have h10 : b = 0 ∧ c = 0 by
+    norm_num
+  exact h7 :: h10
+```
+
+FAMILY: Pythagorean Triples

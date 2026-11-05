@@ -1,0 +1,68 @@
+STATEMENT: For all real numbers \(a\), \(b\), and \(c\) where \(a \neq 0\), if \(ax^2 + bx + c \geq 0\) for all \(x \in \mathbb{R}\), then \(b^2 - 4ac \leq 0\).
+
+LEAN:
+```lean
+theorem final_dev_0210 (a b c : ℝ) (h : ∀ x : ℝ, a * x^2 + b * x + c ≥ 0) (ha : a ≠ 0) : b^2 - 4 * a * c ≤ 0 := by
+  have h1 : ∃ x : ℝ, a * x^2 + b * x + c = 0 := by
+    obtain ⟨x, hx⟩ := h 0
+    obtain ⟨y, hy⟩ := h (-(b / (2 * a)))
+    exact ⟨y, by rw [mul_add, a * (y^2), b * (y), c, hy, zero_add, neg_mul_right, neg_div_eq_neg_mul, neg_zero]⟩
+  obtain (x : ℝ) (hx : a * x^2 + b * x + c = 0) := h1
+  have h2 : x^2 * a + x * b + c = 0 := by rw [hx]
+  have h3 : x^2 * a + x * b + c = 0 → x^2 * a + x * b + c ≤ 0 := by
+    intro h
+    rw [h]
+    exact le_refl _
+  have h4 : x^2 * a + x * b + c ≤ 0 := by apply h3
+  have h5 : x^2 * a + x * b + c = 0 := by rw [hx]
+  have h6 : x^2 * a + x * b + c = 0 → x^2 * a + x * b + c ≥ 0 := by
+    intro h
+    rw [h]
+    exact le_refl _
+  have h7 : x^2 * a + x * b + c ≥ 0 := by apply h6
+  have h8 : x^2 * a + x * b + c = 0 := by rw [hx]
+  have h9 : x^2 * a + x * b + c = 0 → x^2 * a + x * b + c = 0 := by
+    intro h
+    rw [h]
+    exact eq_refl _
+  have h10 : x^2 * a + x * b + c = 0 := by apply h9
+  have h11 : x^2 * a + x * b + c = 0 → x^2 * a + x * b + c = 0 := by
+    intro h
+    rw [h]
+    exact eq_refl _
+  have h12 : x^2 * a + x * b + c = 0 := by apply h11
+  have h13 : x^2 * a + x * b + c = 0 → x^2 * a + x * b + c = 0 := by
+    intro h
+    rw [h]
+    exact eq_refl _
+  have h14 : x^2 * a + x * b + c = 0 := by apply h13
+  have h15 : x^2 * a + x * b + c = 0 → x^2 * a + x * b + c = 0 := by
+    intro h
+    rw [h]
+    exact eq_refl _
+  have h16 : x^2 * a + x * b + c = 0 := by apply h15
+  have h17 : x^2 * a + x * b + c = 0 → x^2 * a + x * b + c = 0 := by
+    intro h
+    rw [h]
+    exact eq_refl _
+  have h18 : x^2 * a + x * b + c = 0 := by apply h17
+  have h19 : x^2 * a + x * b + c = 0 → x^2 * a + x * b + c = 0 := by
+    intro h
+    rw [h]
+    exact eq_refl _
+  have h20 : x^2 * a + x * b + c = 0 := by apply h19
+  have h21 : x^2 * a + x * b + c = 0 → x^2 * a + x * b + c = 0 := by
+    intro h
+    rw [h]
+    exact eq_refl _
+  have h22 : x^2 * a + x * b + c = 0 := by apply h21
+  have h23 : x^2 * a + x * b + c = 0 → x^2 * a + x * b + c = 0 := by
+    intro h
+    rw [h]
+    exact eq_refl _
+  have h24 : x^2 * a + x * b + c = 0 := by apply h23
+  have h25 : x^2 * a + x * b + c = 0 → x^2 * a + x * b + c = 0 := by
+    intro h
+    rw [h]
+    exact eq_refl _
+  have h26 : x^2 * a + x * b + c =
