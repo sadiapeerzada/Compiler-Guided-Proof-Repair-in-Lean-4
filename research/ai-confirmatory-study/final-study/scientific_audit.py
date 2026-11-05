@@ -80,6 +80,13 @@ def audit():
             checked.add(used[stage])
         completed=0;input_sum=0;output_sum=0
         for event in ledger:
+            extra=event['key'].get('key',{}).get('additional_source_freeze_sha256')
+            if extra:
+                check(extra==sha(HERE/'freezes/reference_prompt_v4.json'),'new_repair_prompt_intent_additional_freeze_binding')
+                if 'reference_prompt_v4.json' not in checked:
+                    try:frozen('reference_prompt_v4.json');check(True,'used_source_and_input_freezes_unchanged')
+                    except (ValueError,FileNotFoundError):check(False,'used_source_and_input_freezes_unchanged:reference_prompt_v4.json')
+                    checked.add('reference_prompt_v4.json')
             call=folder/'calls/calls'/content_hash(event['key'])
             if not (call/'intent.json').exists():
                 warnings.append('Charged reservation without durable intent: '+str(call.relative_to(HERE)));continue
@@ -113,6 +120,11 @@ def audit():
         if stage in ('development_initial','development_repairs'):status_path=run_root()/'development_experiment/status.json'
         stages[stage]=dict(charged=len(ledger),completed=completed,unknown_or_unavailable=len(ledger)-completed,input_tokens_observed=input_sum,output_tokens_observed=output_sum,max_calls=spec['max_calls'],phase_status=read(status_path)['status'] if status_path.exists() else 'NOT_STARTED' if not ledger else 'IN_PROGRESS_OR_INTERRUPTED')
     check(total<=1084,'consolidated_development_call_cap')
+    transition=run_root()/'reference_repair/prompt_v4_transition.json'
+    if transition.exists():
+        t=read(transition);current=rows(run_root()/'reference_repair/calls/budget.jsonl')
+        check(current[:len(t['original_charged_events'])]==t['original_charged_events'],'old_repair_ledger_prefix_preserved_across_prompt_change')
+        check(read(run_root()/'reference_repair/phase_clock.json')==t['original_phase_clock'],'repair_prompt_change_did_not_reset_deadline')
     check(sum(stages[s]['charged'] for s in ('v3_review_1','development_review_1'))<=242 and sum(stages[s]['charged'] for s in ('v3_review_2','development_review_2'))<=242,'separate_reviewer_aggregate_caps')
     for stage in ('confirmatory_generation','confirmatory_review_1','confirmatory_review_2','confirmatory_initial','confirmatory_repairs','test'):
         check(not (run_root()/stage).exists(),'no_unauthorized_confirmatory_phase')

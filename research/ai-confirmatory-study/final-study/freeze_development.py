@@ -20,6 +20,8 @@ def main():
         if path.exists():lock[str(path.relative_to(ROOT))]=sha(path)
     concerns=run_root()/'assistant_audit_concerns.json'
     if concerns.exists():lock[str(concerns.relative_to(ROOT))]=sha(concerns)
+    for p in (HERE/'reference_repair_v4.py',HERE/'freezes/reference_prompt_v4.json',run_root()/'reference_prompt_exposure.json',run_root()/'reference_repair/records.jsonl'):
+        if p.exists():lock[str(p.relative_to(ROOT))]=sha(p)
     dump(HERE/'freezes/development_CDE_v1.json',dict(status='FROZEN_BEFORE_ANY_DEVELOPMENT_INITIAL_INFERENCE',files=lock,confirmatory=False,required_acceptance='AI_SCREENED_FORMALLY_VERIFIED',resource_approval='Actual consolidated phases1–6 user authorization'),exclusive=True)
     print('Development protocol and actual cohort frozen:',len(dataset))
 
