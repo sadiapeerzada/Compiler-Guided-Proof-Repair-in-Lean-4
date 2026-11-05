@@ -7,6 +7,7 @@ from fresh_review import parse_review
 from overlap import fingerprint
 
 def evidence(scope,c):
+    if text_hash(c['reference_proof'])!=c['proof_sha256'] or text_hash(c['expected_lean_statement'])!=c['statement_sha256']:return False
     if c.get('reused_qualified_development'):
         ensure(scope=='development','Exposed old subject cannot enter test')
         old=read(OLD/'runs/20261105T041720Z_development/development_ai_accepted_candidates.json');match=next(r for r in old if r['id']==c['id']);ensure(subject_hash(c)==subject_hash(match) and match['status']=='AI_SCREENED_FORMALLY_VERIFIED','Old acceptance changed');return True
@@ -21,7 +22,8 @@ def prepare(scope):
         seen.add(key);c=dict(c,generated_family_label=c['family'],family=c['canonical_family']);kept.append(c)
     old=next(c for c in read(OLD/'runs/20261105T041720Z_development/development_ai_accepted_candidates.json') if c['id']=='final_dev_0146')
     dump(out/'fresh_verified.json',kept,exclusive=True);dump(out/'v3_input.json',[old] if scope=='development' else [],exclusive=True);dump(out/'exclusions.json',excluded,exclusive=True)
-    paths=[HERE/x for x in ('sprint_common.py','reviews.py','resource_authorization.json','proposal_options.json','COMPUTE_PROPOSAL.md')]+[OLD/'fresh_review.py',OLD/'review_protocol.py',OLD/'study_common.py',ROOT/'src/local_llm_client.py',LEGACY/'checkpoint.py',LEGACY/'common.py',out/'fresh_verified.json',out/'v3_input.json',out/'exclusions.json',HERE/('exposure_index.json' if scope=='development' else 'test_exposure_index.json'),RUN/(scope+'_verified.json'),RUN/'formal_checks.jsonl']
+    dump(out/'formal_checks_snapshot.json',[r for r in rows(RUN/'formal_checks.jsonl') if r['id'] in {c['id'] for c in kept}],exclusive=True)
+    paths=[HERE/x for x in ('sprint_common.py','reviews.py','resource_authorization.json','proposal_options.json','COMPUTE_PROPOSAL.md')]+[OLD/'fresh_review.py',OLD/'review_protocol.py',OLD/'study_common.py',ROOT/'src/local_llm_client.py',LEGACY/'checkpoint.py',LEGACY/'common.py',out/'fresh_verified.json',out/'v3_input.json',out/'exclusions.json',HERE/('exposure_index.json' if scope=='development' else 'test_exposure_index.json'),RUN/(scope+'_verified.json'),out/'formal_checks_snapshot.json']
     view=OLD/'model_views/ac1c269cb4222a4e136a3d09edad301056c1f36a.json'
     paths.append(view)
     freeze(scope+'_reviews.json',paths,status='FROZEN_BEFORE_BOTH_REVIEWERS',policy='Unchanged prospective Boolean schema; two valid blinded acceptances, no critical concerns',subjects=len(kept));print(scope,'review subjects',len(kept),flush=True)
