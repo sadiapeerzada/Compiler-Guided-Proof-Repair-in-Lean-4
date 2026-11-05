@@ -1,0 +1,18 @@
+STATEMENT: For all real numbers \(a\), \(b\), and \(c\) where \(a > 0\) and \(b^2 - 4ac < 0\), the expression \(ax^2 + bx + c > 0\) holds for all real numbers \(x\).
+
+LEAN:
+```lean
+theorem v3_gen_006 (a b c : ℝ) (h1 : a > 0) (h2 : b^2 - 4 * a * c < 0) : ∀ x : ℝ, a * x^2 + b * x + c > 0 := by
+  intro x
+  have h3 : a * x^2 + b * x + c = a * (x + b / (2 * a))^2 + c - b^2 / (4 * a) := by
+    rw [mul_add, add_assoc, mul_div_cancel_left]
+  have h4 : a * (x + b / (2 * a))^2 ≥ 0 := by
+    rw [h1, zero_lt_one]
+    exact mul_pos h1 (by linarith)
+  have h5 : c - b^2 / (4 * a) > 0 := by
+    rw [h2, zero_lt_sub]
+    exact div_pos h1 (by linarith)
+  exact add_pos h4 h5
+```
+
+FAMILY: Quadratic Inequalities
