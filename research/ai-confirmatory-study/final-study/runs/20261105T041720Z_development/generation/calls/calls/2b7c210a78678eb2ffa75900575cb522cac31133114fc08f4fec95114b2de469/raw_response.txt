@@ -1,0 +1,21 @@
+STATEMENT: For any positive real numbers \(a\), \(b\), and \(c\) such that \(b^2 - 4ac < 0\), the polynomial \(ax^2 + bx + c\) has no real roots and \(a(x - h)^2 + k\) is always positive for any real number \(x\), where \(h = -\frac{b}{2a}\) and \(k = c - \frac{b^2}{4a}\).
+
+LEAN:
+```lean
+theorem final_dev_0041 (a b c : ℝ) (h : 0 < a) (h1 : b^2 - 4 * a * c < 0) : 
+  (∀ x : ℝ, a * x^2 + b * x + c > 0) ∧ 
+  (let h := -b / (2 * a); let k := c - (b^2 / (4 * a)); a * (x - h)^2 + k > 0) := by
+  have h2 : b^2 < 4 * a * c, from lt_of_sub_pos h1 zero_lt_four,
+  have h3 : 0 < -b / (2 * a), from by linarith [h, h2],
+  have h4 : 0 < c - (b^2 / (4 * a)), from by linarith [h, h2],
+  have h5 : a * (x - h)^2 + k > 0, from by
+    rw [h, h3]; 
+    have h6 : 0 < x^2 - 2 * (b / (2 * a)) * x + (b / (2 * a))^2, from by linarith;
+    have h7 : 0 < (x - (b / (2 * a)))^2, from by linarith [h6];
+    have h8 : 0 < a * (x - (b / (2 * a)))^2, from by linarith [h, h7];
+    have h9 : 0 < a * (x - (b / (2 * a)))^2 + (c - (b^2 / (4 * a))), from by linarith [h8, h4];
+    exact h9,
+  exact ⟨by assume x, linarith [h, h2]; h5⟩
+```
+
+FAMILY: Quadratic Polynomials and Their Roots

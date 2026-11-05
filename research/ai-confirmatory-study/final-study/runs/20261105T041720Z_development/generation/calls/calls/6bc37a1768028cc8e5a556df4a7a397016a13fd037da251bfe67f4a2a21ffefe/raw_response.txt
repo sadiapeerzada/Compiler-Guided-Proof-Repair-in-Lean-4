@@ -1,0 +1,11 @@
+STATEMENT: For any integers \(a\), \(b\), and \(c\), if \(d = \gcd(a, b)\), then there exist integers \(x\) and \(y\) such that \(d = ax + by\).
+
+LEAN:
+```lean
+theorem final_dev_0016 (a b : ℤ) (d : ℤ) (h : d = gcd a b) : ∃ x y : ℤ, d = a*x + b*y := by
+  classical
+  obtain ⟨x, y, hy⟩ := exists_integer_combination a b d h
+  exact ⟨x, y, hy⟩
+```
+
+FAMILY: Linear Combination of GCD

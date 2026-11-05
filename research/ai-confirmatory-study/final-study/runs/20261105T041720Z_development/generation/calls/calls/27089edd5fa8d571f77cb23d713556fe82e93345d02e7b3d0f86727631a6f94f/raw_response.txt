@@ -1,0 +1,20 @@
+STATEMENT: For any real numbers \(a\), \(b\), and \(c\) such that \(a > 0\) and \(b^2 - 4ac < 0\), the quadratic polynomial \(ax^2 + bx + c\) is always positive.
+
+LEAN:
+```lean
+theorem final_dev_0018 (a b c : ℝ) (h_a_pos : a > 0) (h_discr_neg : b^2 - 4 * a * c < 0) : ∀ x : ℝ, a * x^2 + b * x + c > 0 := by
+  intro x
+  have h1 : a * x^2 + b * x + c = a * (x + b / (2 * a))^2 + c - b^2 / (4 * a) := by
+    rw [mul_add, add_assoc, mul_div_cancel_left (ne_of_gt h_a_pos)]
+  have h2 : a * (x + b / (2 * a))^2 ≥ 0 := by
+    rw [h1]
+    apply mul_nonneg
+    exact h_a_pos
+    apply sq_nonneg
+  have h3 : c - b^2 / (4 * a) > 0 := by
+    rw [h1]
+    linarith [h_discr_neg, h_a_pos]
+  exact add_pos h2 h3
+```
+
+FAMILY: Quadratic Inequalities

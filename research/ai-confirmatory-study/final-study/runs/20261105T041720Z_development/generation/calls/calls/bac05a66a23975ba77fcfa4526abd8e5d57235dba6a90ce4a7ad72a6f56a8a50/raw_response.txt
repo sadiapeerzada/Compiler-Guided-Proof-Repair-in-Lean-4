@@ -1,0 +1,18 @@
+STATEMENT: For all natural numbers \(a\) and \(b\) where \(b > 0\), the remainder \(r\) when \(a\) is divided by \(b\) satisfies \(0 \leq r < b\).
+
+LEAN:
+```lean
+theorem final_dev_0022 (a b : Nat) (h : b > 0) : a % b ≤ a / b * b ∧ a % b < b := by
+  classical
+  have h1 : a = (a / b) * b + a % b := by
+    rw [Nat.div_mod_eq]
+  have h2 : 0 ≤ a % b := by
+    rw [h1]
+    exact Nat.mod_nonneg h
+  have h3 : a % b < b := by
+    rw [h1]
+    exact Nat.mod_lt h
+  exact ⟨h2, h3⟩
+```
+
+FAMILY: Division with Remainder

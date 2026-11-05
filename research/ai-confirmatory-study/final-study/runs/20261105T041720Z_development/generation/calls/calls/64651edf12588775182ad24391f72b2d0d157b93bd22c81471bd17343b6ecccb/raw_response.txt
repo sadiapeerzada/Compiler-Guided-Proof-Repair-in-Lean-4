@@ -1,0 +1,49 @@
+STATEMENT: For all integers \(a\) and \(b\), the absolute value of their difference is less than or equal to the maximum of their absolute values.
+
+LEAN:
+```lean
+theorem final_dev_0028 (a b : Int) : |a - b| ≤ max (|a|) (|b|) := by
+  have h1 : |a - b| = |b - a| := by simp [Int.abs_sub_symm]
+  have h2 : |a - b| ≤ |a| + |b| := by
+    have h2a : |a - b| ≤ |a| + |b - a| := by
+      have h2b : |b - a| = |a - b| := by simp [Int.abs_sub_symm]
+      have h2c : |a - b| ≤ |a| + |b| := by
+        have h2d : |a| + |b - a| ≤ |a| + |b| := by
+          have h2e : |b - a| ≤ |b| := by
+            by_cases h2f : a ≤ b
+            · have h2g : b - a ≤ b - a := by norm_num
+              have h2h : |b - a| ≤ b - a := by
+                by_cases h2i : b - a < 0
+                · have h2j : b - a < 0 → false := by norm_num
+                  have h2k : b - a ≥ 0 := by norm_num
+                  have h2l : |b - a| = b - a := by norm_num
+                  exact h2l
+            have h2m : |b - a| ≤ |b| := by
+              by_cases h2n : b - a < 0
+              · have h2o : b - a < 0 → false := by norm_num
+                have h2p : b - a ≥ 0 := by norm_num
+                have h2q : |b - a| = b - a := by norm_num
+                exact h2q
+            exact h2m
+          exact h2d
+        exact h2c
+      exact h2b
+    exact h2a
+  have h3 : max (|a|) (|b|) ≥ |a| := by norm_num
+  have h4 : max (|a|) (|b|) ≥ |b| := by norm_num
+  have h5 : max (|a|) (|b|) ≥ |a| + |b| := by
+    by_cases h6 : |a| ≥ |b|
+    · exact h3
+    · exact h4
+  have h6 : max (|a|) (|b|) ≥ |a| + |b| → |a| + |b| ≤ max (|a|) (|b|) := by norm_num
+  have h7 : |a| + |b| ≤ max (|a|) (|b|) := by
+    by_cases h8 : |a| ≥ |b|
+    · exact h3
+    · exact h4
+  have h9 : |a| + |b| ≤ max (|a|) (|b|) → |a - b| ≤ |a| + |b| → |a - b| ≤ max (|a|) (|b|) := by
+    intro h9a h9b
+    exact h9b
+  exact h9 h7 h2
+```
+
+FAMILY: Absolute Value Inequalities

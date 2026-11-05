@@ -1,0 +1,19 @@
+STATEMENT: For any integers \(a\), \(b\), and \(c\), if \(\gcd(a, b) = 1\) and \(c\) divides both \(a\) and \(b\), then \(c\) must be 1.
+
+LEAN:
+```lean
+theorem final_dev_0040 (a b c : ℤ) (h1 : gcd a b = 1) (h2 : c ∣ a) (h3 : c ∣ b) : c = 1 := by
+  have h4 : ∃ x y : ℤ, a = x * b + y * a := by
+    rw [h1] at h1 
+    exact int.linear_combination_exists_of_gcd_one h1
+  obtain ⟨x, y, h5⟩ := h4
+  have h6 : c ∣ (x * b + y * a) := by
+    rw [h5]
+    exact int.dvd_add (int.dvd_mul_left h2 _) (int.dvd_mul_left h3 _)
+  have h7 : c ∣ 1 := by
+    rw [h6, int.dvd_add, int.dvd_mul_left, int.dvd_mul_right, int.dvd_one]
+    exact int.dvd_add (int.dvd_mul_left h2 _) (int.dvd_mul_left h3 _)
+  exact int.one_dvd_of_dvd_one h7
+```
+
+FAMILY: GCD and Linear Combination Relations

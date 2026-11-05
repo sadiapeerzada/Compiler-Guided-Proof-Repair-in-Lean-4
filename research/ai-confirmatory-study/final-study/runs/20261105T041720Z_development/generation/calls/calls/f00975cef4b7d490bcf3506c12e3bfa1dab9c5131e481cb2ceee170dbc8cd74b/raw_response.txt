@@ -1,0 +1,15 @@
+STATEMENT: For any natural numbers \(a\), \(b\), \(c\), and \(d\), if \(a\) divides \(b\) and \(c\) divides \(d\), then \(ac\) divides \(b + d\).
+
+LEAN:
+```lean
+theorem final_dev_0005 (a b c d : Nat) (h1 : a ∣ b) (h2 : c ∣ d) : a * c ∣ b + d := by
+  obtain ⟨k, hk1⟩ := h1
+  obtain ⟨l, hk2⟩ := h2
+  have : a * c ∣ a * (b - k * a) + c * (d - l * c) := by
+    rw [mul_add, add_mul]
+    simp
+  rw [hk1, hk2] at this
+  exact this
+```
+
+FAMILY: Divisibility

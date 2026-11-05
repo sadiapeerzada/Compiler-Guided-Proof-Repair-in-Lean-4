@@ -4,7 +4,8 @@ This does not reparse or change the original four V3 review outcomes.
 """
 import json,re
 from study_common import *
-from review_protocol import CHECKS,neighbors
+from review_protocol import CHECKS
+from overlap import nearest as neighbors
 from runtime_v2 import PhaseModelV2
 
 POSITIVE=('mathematical_correctness','English_Lean_fidelity','quantifiers','domains','assumptions','boundaries','family_independence')

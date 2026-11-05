@@ -1,0 +1,74 @@
+{
+  "axiom_dependencies": null,
+  "candidate_sha256": "8a6fb154d6d7fab43d68b8174278946653c76dc66c886cbaeb7dc3c1aa0bc267",
+  "compiler_stderr": "",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":4},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_32e833adb38073963ddd209d56f4b14c7bcc9e8e5e8f5478a5beba36a92dd065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":4},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Unknown identifier `fun_pow_succ`\",\"endPos\":{\"column\":30,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_32e833adb38073963ddd209d56f4b14c7bcc9e8e5e8f5478a5beba36a92dd065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.unknownIdentifier._namedError\",\"pos\":{\"column\":18,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.final_dev_0037' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_32e833adb38073963ddd209d56f4b14c7bcc9e8e5e8f5478a5beba36a92dd065.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":16},\"severity\":\"information\"}\n",
+  "diagnostic_state": "available",
+  "diagnostic_text": "line 11: Unknown identifier `fun_pow_succ`",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 4
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_32e833adb38073963ddd209d56f4b14c7bcc9e8e5e8f5478a5beba36a92dd065.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 4
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Unknown identifier `fun_pow_succ`",
+      "endPos": {
+        "column": 30,
+        "line": 11
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_32e833adb38073963ddd209d56f4b14c7bcc9e8e5e8f5478a5beba36a92dd065.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "lean.unknownIdentifier._namedError",
+      "pos": {
+        "column": 18,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.final_dev_0037' depends on axioms: [propext, sorryAx]",
+      "endPos": {
+        "column": 6,
+        "line": 16
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_32e833adb38073963ddd209d56f4b14c7bcc9e8e5e8f5478a5beba36a92dd065.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 16
+      },
+      "severity": "information"
+    }
+  ],
+  "diagnostics_parsed": 3,
+  "elapsed_seconds": 44.646,
+  "errors": [
+    "line 11: Unknown identifier `fun_pow_succ`"
+  ],
+  "exit_code": 1,
+  "failure_kind": "compiler_error",
+  "harness_variant": "explicit_all_arguments_v1",
+  "malformed_diagnostics": [],
+  "success": false,
+  "variant_source_sha256": "8ad8ab76d7d2c0a19cb2c598c70932519188b1098c02eb808db58ec2a2df88e7",
+  "verification_source_sha256": "99e1efd4b393744e5ab82aadac9e37b585845d5f5e43280026ec76be61c3e6b2",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\ntheorem final_dev_0037 (a b : ℤ) (n : ℕ) : (fun x => x + 1)^[n] a = a + n := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem final_dev_0037 (a b : ℤ) (n : ℕ) : (fun x => x + 1)^[n] a = a + n := by\n  induction n with\n  | zero => simp\n  | succ n => rw [fun_pow_succ, add_assoc]\nend Nl2LeanCandidate\n\nexample : @Nl2LeanExpected.final_dev_0037 = @Nl2LeanCandidate.final_dev_0037 := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.final_dev_0037\n"
+}

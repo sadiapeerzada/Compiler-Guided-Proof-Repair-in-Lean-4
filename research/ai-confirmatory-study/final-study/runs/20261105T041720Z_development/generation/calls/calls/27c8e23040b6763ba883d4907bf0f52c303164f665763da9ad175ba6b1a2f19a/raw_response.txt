@@ -1,0 +1,19 @@
+STATEMENT: If \(A\) and \(B\) are finite sets, and \(f: A \to B\) is a function, then the image of the union of any two subsets of \(A\) is a subset of the union of their images. That is, for any \(X, Y \subseteq A\), \(f(X \cup Y) \subseteq f(X) \cup f(Y)\).
+
+LEAN:
+```lean
+import Mathlib.Algebra.GroupWithOne.Basic
+import Mathlib.Data.Finset.Basic
+
+theorem final_dev_0012 {α β : Type*} [fintype α] [fintype β] {f : α → β} {X Y : Finset α} : f '' (X ∪ Y) ⊆ f '' X ∪ f '' Y := by
+  intro b hb
+  obtain ⟨a, ha⟩ := Finset.mem_image.1 hb
+  obtain ⟨hx, hy⟩ := ha
+  left
+  · exact f a
+    · exact hx
+    · exact Finset.mem_image_of_mem X a hx
+    · exact Finset.mem_image_of_mem Y a hy
+```
+
+FAMILY: Image and Union Relation

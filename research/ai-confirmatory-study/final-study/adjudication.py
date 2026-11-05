@@ -5,7 +5,7 @@ from families import V3_GROUPS
 
 def write_csv(path,rows_,fields):
     with path.open('w',newline='') as f:
-        w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows_)
+        w=csv.DictWriter(f,fieldnames=fields,lineterminator='\n');w.writeheader();w.writerows(rows_)
 
 def adjudicate(stream):
     ensure(stream in ('v3','development'),'No confirmatory review authorization')
@@ -15,6 +15,15 @@ def adjudicate(stream):
     accepted=[];quarantined=[];decisions=[];overlap=[]
     for c,within in zip(candidates,cohort_flags(candidates)):
         check=screen(dict(c,source_url='Local AI generation with preserved provenance',license='Model/upstream source rights unassessed',library_dependencies=[]));reasons=check['automated_flags']+within;evidence=[]
+        if (run_root()/'expanded_historical_exposure.json').exists():
+            from overlap import flags
+            reasons+=flags(c)
+        concerns_path=run_root()/'assistant_audit_concerns.json'
+        if concerns_path.exists():
+            for concern in read(concerns_path):
+                if concern['id']==c['id']:
+                    ensure(concern['raw_response_sha256']==c['generation_provenance']['raw_response_sha256'],'Audit concern bound to different response')
+                    reasons.append('unresolved_assistant_audit_concern: '+concern['reason'])
         for i,mapping in enumerate(reviewers,1):
             r=mapping.get(c['id']);evidence.append(r)
             if not r:reasons.append('review_'+str(i)+'_not_executed');continue
@@ -33,6 +42,9 @@ def adjudicate(stream):
     write_csv(run_root()/(prefix+'_adjudication.csv'),decisions,['id','reviewer_1','reviewer_2','status','reasons']);write_csv(run_root()/(prefix+'_overlap_screen.csv'),overlap,['id','automated_flags','pretraining_contamination'])
     for i,stage in enumerate(stages,1):
         source=run_root()/stage/'reviews.jsonl';(run_root()/(prefix+f'_review_{i}.jsonl')).write_text(source.read_text() if source.exists() else '')
+    if stream=='v3':
+        dump(run_root()/'v3_accepted_candidates.json',accepted);dump(run_root()/'v3_quarantined_candidates.json',quarantined)
+        write_csv(run_root()/'v3_overlap_screen.csv',overlap,['id','automated_flags','pretraining_contamination'])
     dump(run_root()/(prefix+'_agreement.json'),dict(valid_schema_pairs=sum(all(c['id'] in r and not r[c['id']].get('parse_error') and 'review' in r[c['id']] for r in reviewers) for c in candidates),qualified_agreement=sum(c['id'] in reviewers[0] and c['id'] in reviewers[1] and reviewers[0][c['id']]['decision']==reviewers[1][c['id']]['decision'] for c in candidates),interpretation='Schema failures are unresolved, not semantic acceptances; agreement is not truth or independent errors'))
     print(stream,'accepted',len(accepted),'quarantined',len(quarantined))
 

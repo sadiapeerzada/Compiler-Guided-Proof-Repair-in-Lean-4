@@ -1,0 +1,13 @@
+STATEMENT: For any list of natural numbers `l`, if the length of `l` is greater than or equal to 2, then the length of the list after removing the first element is less than the original length.
+
+LEAN:
+```lean
+theorem final_dev_0010 (l : List Nat) (h : l.length ≥ 2) : (l.tail).length < l.length := by
+  have hl1 : l.length > 1 := by
+    exact h.nat_cast
+  have hl2 : (l.tail).length = l.length - 1 := by
+    simp [List.length_tail]
+  exact hl2.trans (by linarith)
+```
+
+FAMILY: List Length Reduction
