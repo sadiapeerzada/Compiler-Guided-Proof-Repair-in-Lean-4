@@ -11,7 +11,7 @@ from runtime_v2 import PhaseModelV2
 from generation_prompts import repair_prompt
 from families import FAMILIES
 from generation import verify
-from strict_verifier import StrictVerifier
+from rigid_verifier import RigidVerifier as StrictVerifier
 from lean_adapter import live_environment
 
 def curate():
@@ -23,6 +23,8 @@ def curate():
         if not chosen or chosen.get('verification',{}).get('success') is not True:continue
         c=dict(item['candidate']);c['reference_proof']=chosen['source'];c['proof_sha256']=text_hash(chosen['source']);c['status']='FORMALLY_VERIFIED_PENDING_AI_REVIEW';c['verification_source_call']=chosen['source_call']
         c['original_generation_intake_status']=item['original_generation_intake_status']
+        ensure(chosen['verification'].get('harness_variant')=='rigid_declaration_type_and_universe_v1','Reference lacks rigid closed-type verification')
+        c['reference_validation_variant']='rigid_declaration_type_and_universe_v1';c['reference_validation_source_sha256']=chosen['verification']['rigid_variant_source_sha256']
         c['construction_path']=('initial' if item['origin']=='original_full_parser' else 'posthoc_header_check_without_repair') if chosen is item else ('one_reference_repair' if item['origin']=='original_full_parser' else 'posthoc_header_recovery_one_reference_repair')
         if chosen is not item:
             prefix=c['expected_lean_statement']+' := ';ensure(chosen['source'].startswith(prefix),'Fixed target changed');c['proof_block']=chosen['source'][len(prefix):]
@@ -30,7 +32,7 @@ def curate():
     dump(run_root()/'fresh_verified_raw_v2.json',verified);dump(run_root()/'fresh_verified_raw.json',verified)
 
 def execute(stage):
-    ensure(stage=='reference_repair','Reference-construction phase only');authorize(stage);frozen('reference_construction_v2.json');out=run_root()/stage;out.mkdir(parents=True,exist_ok=True);dump(out/'environment.json',live_environment(protocol()['environment']))
+    ensure(stage=='reference_repair','Reference-construction phase only');authorize(stage);frozen('reference_construction_v3.json');out=run_root()/stage;out.mkdir(parents=True,exist_ok=True);dump(out/'environment.json',live_environment(protocol()['environment']))
     verifier=StrictVerifier();parser=None;model=None;pool_path=run_root()/'reference_candidate_pool_v2.json'
     try:
         if not pool_path.exists():
@@ -38,7 +40,11 @@ def execute(stage):
             for initial in rows(run_root()/'generation/records.jsonl'):
                 index=initial['index']
                 if initial.get('candidate') and 'verification' in initial:
-                    pool.append(dict(index=index,candidate=initial['candidate'],source=initial['source'],verification=initial['verification'],origin='original_full_parser',original_generation_intake_status=initial['status'],source_call=initial['source_call']));continue
+                    checked=initial['verification']
+                    if checked.get('success') is True:
+                        checked=verify(initial['candidate'],initial['source'],'rigid_initial_recheck',verifier)
+                        if checked.get('success') is None:raise RuntimeError('Unknown rigid reference recheck, stop')
+                    pool.append(dict(index=index,candidate=initial['candidate'],source=initial['source'],verification=checked,origin='original_full_parser',original_generation_verification=initial['verification'],original_generation_intake_status=initial['status'],source_call=initial['source_call']));continue
                 if initial['status']!='STRUCTURE_REJECTED':continue
                 if index in recovered:
                     r=recovered[index]
@@ -69,11 +75,11 @@ def execute(stage):
         for initial in queue:
             index=initial['index']
             if index in done:continue
-            c=initial['candidate'];entry=dict(index=index,stage=stage,version='reference_construction_v2',origin=initial['origin'],status='PENDING')
+            c=initial['candidate'];entry=dict(index=index,stage=stage,version='reference_construction_v3_rigid_types',origin=initial['origin'],status='PENDING')
             try:text=repair_prompt(c,initial['verification'])
             except ValueError as error:entry.update(status='SKIPPED_NO_INFERENCE',reason=str(error));append(out/'records.jsonl',entry);continue
             entry.update(prompt=text,prompt_sha256=text_hash(text))
-            if model is None:model=PhaseModelV2(stage,'reference_construction_v2.json')
+            if model is None:model=PhaseModelV2(stage,'reference_construction_v3.json')
             try:record,folder=model.call(text,dict(index=index,id=c['id']),protocol()['base_seed'])
             except ValueError as error:
                 if str(error)!='PROMPT_OVER_CAP_NO_CALL':raise

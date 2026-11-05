@@ -23,7 +23,7 @@ def gate():
             for key in ('nl_statement','expected_lean_statement','reference_proof','category','generation_provenance'):ensure(c[key]==a[key],'NO_GO_VALIDATION: mathematical subject changed')
             ensure(c['family']==a['canonical_family'],'NO_GO_VALIDATION: canonical donor family changed')
             ensure(text_hash(c['reference_proof'])==c['proof_sha256'],'NO_GO_VALIDATION: reference hash mismatch')
-            check=any(r.get('candidate',{}).get('id')==c['id'] and r.get('verification',{}).get('success') is True and r['verification']['candidate_sha256']==c['proof_sha256'] for r in v3_checks) if c['id'].startswith('v3_') else any(r['id']==c['id'] and r['source_sha256']==c['proof_sha256'] and r['target_sha256']==c['statement_sha256'] and r['result']['success'] is True and r['result']['candidate_sha256']==c['proof_sha256'] for r in formal)
+            check=any(r.get('candidate',{}).get('id')==c['id'] and r.get('verification',{}).get('success') is True and r['verification']['candidate_sha256']==c['proof_sha256'] for r in v3_checks) if c['id'].startswith('v3_') else any(r['id']==c['id'] and r['source_sha256']==c['proof_sha256'] and r['target_sha256']==c['statement_sha256'] and r['result']['success'] is True and r['result']['candidate_sha256']==c['proof_sha256'] and r['result'].get('harness_variant')=='rigid_declaration_type_and_universe_v1' for r in formal)
             ensure(check,'NO_GO_VALIDATION: no actual strict success')
             stages=('v3_review_1','v3_review_2') if c['id'].startswith('v3_') else ('development_review_1','development_review_2');evidence=[all_reviews[s][c['id']] for s in stages]
             ensure(evidence[0]['model']['family']!=evidence[1]['model']['family'],'NO_GO_VALIDATION: review families identical')
@@ -37,6 +37,8 @@ def gate():
                     from fresh_review import parse_review
                 actual=parse_review(r['record']);ensure(actual==r['review'] and actual['decision']=='ACCEPT','NO_GO_VALIDATION: raw review does not substantiate acceptance')
             from dataset_tools import screen
+            from overlap import flags as exposure_flags
+            ensure(not exposure_flags(a),'NO_GO_VALIDATION: expanded historical exposure flag')
             flags=screen(dict(a,source_url='Local AI generation',license='Unassessed upstream rights',library_dependencies=[]))['automated_flags'];ensure(not flags,'NO_GO_VALIDATION: historical overlap flag')
             concerns=run_root()/'assistant_audit_concerns.json'
             if concerns.exists():ensure(not any(x['id']==c['id'] for x in read(concerns)),'NO_GO_VALIDATION: unresolved source-bound audit concern')

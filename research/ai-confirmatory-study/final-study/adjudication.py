@@ -15,6 +15,9 @@ def adjudicate(stream):
     accepted=[];quarantined=[];decisions=[];overlap=[]
     for c,within in zip(candidates,cohort_flags(candidates)):
         check=screen(dict(c,source_url='Local AI generation with preserved provenance',license='Model/upstream source rights unassessed',library_dependencies=[]));reasons=check['automated_flags']+within;evidence=[]
+        if stream=='development':
+            verified=any(r['id']==c['id'] and r['source_sha256']==c['proof_sha256'] and r['target_sha256']==c['statement_sha256'] and r['result'].get('success') is True and r['result'].get('harness_variant')=='rigid_declaration_type_and_universe_v1' for r in rows(run_root()/'strict_reference_verification.jsonl'))
+            if not verified:reasons.append('rigid_strict_reference_verification_not_established')
         if (run_root()/'expanded_historical_exposure.json').exists():
             from overlap import flags
             reasons+=flags(c)

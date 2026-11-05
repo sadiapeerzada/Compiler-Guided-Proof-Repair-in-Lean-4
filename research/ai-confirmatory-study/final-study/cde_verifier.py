@@ -1,7 +1,7 @@
 """Known model declaration-format violations are unverified, not infrastructure failures."""
 import re
 from study_common import *
-from strict_verifier import StrictVerifier
+from rigid_verifier import RigidVerifier as StrictVerifier
 
 class CDEVerifier(StrictVerifier):
     def __call__(self,candidate,target,key):
