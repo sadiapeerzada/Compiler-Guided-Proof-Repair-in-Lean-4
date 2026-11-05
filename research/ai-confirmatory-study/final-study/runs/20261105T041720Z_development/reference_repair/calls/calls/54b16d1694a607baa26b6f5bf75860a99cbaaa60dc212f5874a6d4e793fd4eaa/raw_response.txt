@@ -1,0 +1,18 @@
+```lean
+sorry final_dev_0046 (a b : Nat) (q : Nat) (h : a = b * q + Nat.mod a b) : q ≤ a / b := by
+  have h_mod : Nat.mod a b < b := Nat.mod_lt b h
+  have h_div : a = b * q + Nat.mod a b := by rw [h]
+  have h_div_pos : b * q + Nat.mod a b > 0 := by
+    rw [h_div]
+    exact Nat.pos_of_add_pos_of_pos_left (Nat.pos_of_mul_of_pos_left b (Nat.pos_of_add_of_pos_left q zero_pos))
+  have h_div_ge : b * q ≤ a := by
+    rw [h_div]
+    exact Nat.le_add_of_nonneg_right (Nat.zero_le (Nat.mod a b))
+  have h_div_pos' : b * q > 0 := by
+    rw [h_div]
+    exact Nat.pos_of_mul_of_pos_left b (Nat.pos_of_add_of_pos_left q zero_pos)
+  have h_q_le : q ≤ a / b := by
+    rw [Nat.div_eq_of_mul_le_mul h_div_ge h_div_pos']
+    exact Nat.le_div_of_mul_le_mul_left h_div_pos'
+  exact h_q_le
+```

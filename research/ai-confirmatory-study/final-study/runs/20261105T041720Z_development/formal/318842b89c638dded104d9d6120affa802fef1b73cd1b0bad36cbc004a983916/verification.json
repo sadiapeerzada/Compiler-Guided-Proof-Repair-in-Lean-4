@@ -1,0 +1,76 @@
+{
+  "axiom_dependencies": [
+    "propext",
+    "Quot.sound"
+  ],
+  "candidate_sha256": "cec96a78d35612a577fd3244fcc3669ca271b8ced2612c2dad96f2c77778059e",
+  "compiler_stderr": "",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":4},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_318842b89c638dded104d9d6120affa802fef1b73cd1b0bad36cbc004a983916.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":4},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"This simp argument is unused:\\n  ih\\n\\nHint: Omit it from the simp argument list.\\n  simp [List.sum,̵ ̵i̵h̵]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\",\"endPos\":{\"column\":22,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_318842b89c638dded104d9d6120affa802fef1b73cd1b0bad36cbc004a983916.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedSimpArgs\",\"pos\":{\"column\":20,\"line\":13},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.final_dev_0069' depends on axioms: [propext, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_318842b89c638dded104d9d6120affa802fef1b73cd1b0bad36cbc004a983916.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}\n",
+  "diagnostic_state": "available",
+  "diagnostic_text": null,
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 4
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_318842b89c638dded104d9d6120affa802fef1b73cd1b0bad36cbc004a983916.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 4
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "This simp argument is unused:\n  ih\n\nHint: Omit it from the simp argument list.\n  simp [List.sum,̵ ̵i̵h̵]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+      "endPos": {
+        "column": 22,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_318842b89c638dded104d9d6120affa802fef1b73cd1b0bad36cbc004a983916.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedSimpArgs",
+      "pos": {
+        "column": 20,
+        "line": 13
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.final_dev_0069' depends on axioms: [propext, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 18
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_318842b89c638dded104d9d6120affa802fef1b73cd1b0bad36cbc004a983916.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 18
+      },
+      "severity": "information"
+    }
+  ],
+  "diagnostics_parsed": 3,
+  "elapsed_seconds": 3.186,
+  "errors": [],
+  "exit_code": 0,
+  "failure_kind": null,
+  "harness_variant": "rigid_declaration_type_and_universe_v1",
+  "malformed_diagnostics": [],
+  "rigid_variant_source_sha256": "51f1dd4a3c4352b846e3f651e777da91a893487502d8a9daccbb5a425a7e40ee",
+  "success": true,
+  "variant_source_sha256": "8ad8ab76d7d2c0a19cb2c598c70932519188b1098c02eb808db58ec2a2df88e7",
+  "verification_source_sha256": "ea84d82ea7eec7d21bdeb6435f249ff3fa3974657230507bac7fdf768e92c89e",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\ntheorem final_dev_0069 (l : List Nat) : List.sum (l ++ [0]) = List.sum l + 0 := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem final_dev_0069 (l : List Nat) : List.sum (l ++ [0]) = List.sum l + 0 := by\n  induction l with\n  | nil => \n    simp [List.sum]\n  | cons x xs ih => \n    simp [List.sum, ih]\nend Nl2LeanCandidate\n\nexample : @Nl2LeanExpected.final_dev_0069 = @Nl2LeanCandidate.final_dev_0069 := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.final_dev_0069\n\nrun_cmd do\n  let expectedInfo ← Lean.getConstInfo `Nl2LeanExpected.final_dev_0069\n  let candidateInfo ← Lean.getConstInfo `Nl2LeanCandidate.final_dev_0069\n  unless expectedInfo.levelParams.length == candidateInfo.levelParams.length do\n    throwError \"Fixed theorem universe-parameter arity mismatch\"\n  let candidateType := candidateInfo.type.instantiateLevelParams candidateInfo.levelParams (expectedInfo.levelParams.map Lean.Level.param)\n  Lean.Elab.Command.liftTermElabM do\n    unless (← Lean.Meta.isDefEq expectedInfo.type candidateType) do\n      throwError \"Fixed theorem closed declaration types differ\"\n"
+}

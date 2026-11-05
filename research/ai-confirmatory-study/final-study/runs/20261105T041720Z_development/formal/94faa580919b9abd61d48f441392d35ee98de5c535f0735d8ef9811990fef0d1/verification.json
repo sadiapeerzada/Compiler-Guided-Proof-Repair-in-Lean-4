@@ -1,0 +1,58 @@
+{
+  "axiom_dependencies": [
+    "propext"
+  ],
+  "candidate_sha256": "2dff24a0bc1c3817da3595f5479a637d353b74b853db19eb5485603a0f601689",
+  "compiler_stderr": "",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":22,\"line\":4},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_94faa580919b9abd61d48f441392d35ee98de5c535f0735d8ef9811990fef0d1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":4},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.final_dev_0098' depends on axioms: [propext]\",\"endPos\":{\"column\":6,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_94faa580919b9abd61d48f441392d35ee98de5c535f0735d8ef9811990fef0d1.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":14},\"severity\":\"information\"}\n",
+  "diagnostic_state": "available",
+  "diagnostic_text": null,
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 22,
+        "line": 4
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_94faa580919b9abd61d48f441392d35ee98de5c535f0735d8ef9811990fef0d1.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 4
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.final_dev_0098' depends on axioms: [propext]",
+      "endPos": {
+        "column": 6,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_94faa580919b9abd61d48f441392d35ee98de5c535f0735d8ef9811990fef0d1.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 14
+      },
+      "severity": "information"
+    }
+  ],
+  "diagnostics_parsed": 2,
+  "elapsed_seconds": 3.144,
+  "errors": [],
+  "exit_code": 0,
+  "failure_kind": null,
+  "harness_variant": "rigid_declaration_type_and_universe_v1",
+  "malformed_diagnostics": [],
+  "rigid_variant_source_sha256": "51f1dd4a3c4352b846e3f651e777da91a893487502d8a9daccbb5a425a7e40ee",
+  "success": true,
+  "variant_source_sha256": "8ad8ab76d7d2c0a19cb2c598c70932519188b1098c02eb808db58ec2a2df88e7",
+  "verification_source_sha256": "15b4cea421ce1c2b708abdc6874245cb612f2ca71459eb135f6ac7bec6e61083",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\ntheorem final_dev_0098 (a b c : Int) : (a + b + c) ^ 2 = a ^ 2 + b ^ 2 + c ^ 2 + 2 * a * b + 2 * a * c + 2 * b * c := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem final_dev_0098 (a b c : Int) : (a + b + c) ^ 2 = a ^ 2 + b ^ 2 + c ^ 2 + 2 * a * b + 2 * a * c + 2 * b * c := by\n  ring\nend Nl2LeanCandidate\n\nexample : @Nl2LeanExpected.final_dev_0098 = @Nl2LeanCandidate.final_dev_0098 := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.final_dev_0098\n\nrun_cmd do\n  let expectedInfo ← Lean.getConstInfo `Nl2LeanExpected.final_dev_0098\n  let candidateInfo ← Lean.getConstInfo `Nl2LeanCandidate.final_dev_0098\n  unless expectedInfo.levelParams.length == candidateInfo.levelParams.length do\n    throwError \"Fixed theorem universe-parameter arity mismatch\"\n  let candidateType := candidateInfo.type.instantiateLevelParams candidateInfo.levelParams (expectedInfo.levelParams.map Lean.Level.param)\n  Lean.Elab.Command.liftTermElabM do\n    unless (← Lean.Meta.isDefEq expectedInfo.type candidateType) do\n      throwError \"Fixed theorem closed declaration types differ\"\n"
+}
