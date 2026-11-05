@@ -1,0 +1,399 @@
+{
+  "development": [
+    {
+      "api_facts": [
+        "AddCommGroup.modEq_iff_natModEq {a b n : ℕ} : a ≡ b [PMOD n] ↔ a ≡ b [MOD n]",
+        "AddCommGroup.ModEq.natCast.{u_1} {M : Type u_1} [AddCommMonoidWithOne M] {a b n : ℕ} (h : a ≡ b [MOD n]) :\n  ↑a ≡ ↑b [PMOD ↑n]",
+        "AddCommGroup.natCast_modEq_natCast.{u_1} {M : Type u_1} [AddCommMonoidWithOne M] [CharZero M] {a b n : ℕ} :\n  ↑a ≡ ↑b [PMOD ↑n] ↔ a ≡ b [MOD n]",
+        "Nat.ModEq.refl {n : ℕ} (a : ℕ) : a ≡ a [MOD n]",
+        "Nat.ModEq.rfl {n a : ℕ} : a ≡ a [MOD n]",
+        "Nat.ModEq.symm {n a b : ℕ} : a ≡ b [MOD n] → b ≡ a [MOD n]"
+      ],
+      "description": "natural congruences under addition/multiplication",
+      "family": "nat_modular_congruence",
+      "module": "Data/Nat/ModEq.lean",
+      "query_names": [
+        "AddCommGroup.modEq_iff_natModEq",
+        "AddCommGroup.ModEq.natCast",
+        "AddCommGroup.natCast_modEq_natCast",
+        "Nat.ModEq.refl",
+        "Nat.ModEq.rfl",
+        "Nat.ModEq.symm",
+        "Nat.ModEq.trans",
+        "Nat.ModEq.comm"
+      ],
+      "source_sha256": "678c7d5030c056efb633aaab3a1b44ceec599332b9f70f694b08f4cce27d1fea"
+    },
+    {
+      "api_facts": [
+        "Int.mul_ediv_le_mul_ediv_assoc {a : ℤ} (ha : 0 ≤ a) (b : ℤ) {c : ℤ} (hc : 0 ≤ c) : a * (b / c) ≤ a * b / c",
+        "Int.fdiv_fdiv_eq_fdiv_mul (m : ℤ) {n k : ℤ} (hn : 0 ≤ n) (hk : 0 ≤ k) : (m.fdiv n).fdiv k = m.fdiv (n * k)",
+        "Int.emod_eq_sub_self_emod {a b : ℤ} : a % b = (a - b) % b"
+      ],
+      "description": "integer quotient/remainder constraints",
+      "family": "integer_quotient_remainder",
+      "module": "Data/Int/DivMod.lean",
+      "query_names": [
+        "Int.mul_ediv_le_mul_ediv_assoc",
+        "Int.fdiv_fdiv_eq_fdiv_mul",
+        "Int.emod_eq_sub_self_emod"
+      ],
+      "source_sha256": "94f3083fc110eeae5034314151641ecb93ed6bebd2efc4ff119f603fe51b17ec"
+    },
+    {
+      "api_facts": [
+        "List.take_one_drop_eq_of_lt_length.{u} {α : Type u} {l : List α} {n : ℕ} (h : n < l.length) :\n  List.take 1 (List.drop n l) = [l.get ⟨n, h⟩]",
+        "List.take_eq_self_iff.{u} {α : Type u} (x : List α) {n : ℕ} : List.take n x = x ↔ x.length ≤ n",
+        "List.take_self_eq_iff.{u} {α : Type u} (x : List α) {n : ℕ} : x = List.take n x ↔ x.length ≤ n",
+        "List.take_eq_left_iff.{u} {α : Type u} {x y : List α} {n : ℕ} :\n  List.take n (x ++ y) = List.take n x ↔ y = [] ∨ n ≤ x.length",
+        "List.left_eq_take_iff.{u} {α : Type u} {x y : List α} {n : ℕ} :\n  List.take n x = List.take n (x ++ y) ↔ y = [] ∨ n ≤ x.length",
+        "List.drop_take_append_drop.{u} {α : Type u} (x : List α) (m n : ℕ) :\n  List.take n (List.drop m x) ++ List.drop (m + n) x = List.drop m x"
+      ],
+      "description": "composed take/drop identities with genuine index conditions",
+      "family": "list_take_drop",
+      "module": "Data/List/TakeDrop.lean",
+      "query_names": [
+        "List.take_one_drop_eq_of_lt_length",
+        "List.take_eq_self_iff",
+        "List.take_self_eq_iff",
+        "List.take_eq_left_iff",
+        "List.left_eq_take_iff",
+        "List.drop_take_append_drop",
+        "List.drop_take_append_drop'",
+        "List.take_concat_get'"
+      ],
+      "source_sha256": "53f2af436e83214711222bef6cff70a36cca1ccb14581bc7978ecc487afbdc3a"
+    },
+    {
+      "api_facts": [
+        "List.rightInverse_unzip_zip.{u, u_1} {α : Type u} {β : Type u_1} :\n  Function.RightInverse List.unzip (Function.uncurry List.zip)",
+        "List.zip_swap.{u, u_1} {α : Type u} {β : Type u_1} (l₁ : List α) (l₂ : List β) :\n  List.map Prod.swap (l₁.zip l₂) = l₂.zip l₁",
+        "List.forall_zipWith.{u, u_1, u_2} {α : Type u} {β : Type u_1} {γ : Type u_2} {f : α → β → γ} {p : γ → Prop}\n  {l₁ : List α} {l₂ : List β} :\n  l₁.length = l₂.length → (List.Forall p (List.zipWith f l₁ l₂) ↔ List.Forall₂ (fun x y => p (f x y)) l₁ l₂)",
+        "List.unzip_swap.{u, u_1} {α : Type u} {β : Type u_1} (l : List (α × β)) : (List.map Prod.swap l).unzip = l.unzip.swap",
+        "List.zipWith_congr.{u, u_1, u_2} {α : Type u} {β : Type u_1} {γ : Type u_2} (f g : α → β → γ) (la : List α)\n  (lb : List β) (h : List.Forall₂ (fun a b => f a b = g a b) la lb) : List.zipWith f la lb = List.zipWith g la lb",
+        "List.zipWith_zipWith_left.{u, u_1, u_2, u_3, u_4} {α : Type u} {β : Type u_1} {γ : Type u_2} {δ : Type u_3}\n  {ε : Type u_4} (f : δ → γ → ε) (g : α → β → δ) (la : List α) (lb : List β) (lc : List γ) :\n  List.zipWith f (List.zipWith g la lb) lc = List.zipWith3 (fun a b c => f (g a b) c) la lb lc"
+      ],
+      "description": "list zip and projections/truncation",
+      "family": "list_zip_relations",
+      "module": "Data/List/Zip.lean",
+      "query_names": [
+        "List.rightInverse_unzip_zip",
+        "List.zip_swap",
+        "List.forall_zipWith",
+        "List.unzip_swap",
+        "List.zipWith_congr",
+        "List.zipWith_zipWith_left",
+        "List.zipWith_zipWith_right",
+        "List.zipWith3_same_left"
+      ],
+      "source_sha256": "86c0b8a55e93608a76007a214da563e311a45acca8278d5700915842e2382358"
+    },
+    {
+      "api_facts": [
+        "List.pairwise_iff_forall_infix.{u_3} {α : Type u_3} {l : List α} {R : α → α → Prop} :\n  List.Pairwise R l ↔ ∀ (l' : List α) (h : 1 < l'.length), l' <:+: l → R (l'.head ⋯) (l'.getLast ⋯)",
+        "List.Pairwise.forall_of_forall.{u_1} {α : Type u_1} {R : α → α → Prop} {l : List α} [Std.Symm R] (H₁ : ∀ x ∈ l, R x x)\n  (H₂ : List.Pairwise R l) ⦃x : α⦄ : x ∈ l → ∀ ⦃y : α⦄, y ∈ l → R x y",
+        "List.Pairwise.forall.{u_1} {α : Type u_1} {R : α → α → Prop} {l : List α} [Std.Symm R] (hl : List.Pairwise R l)\n  ⦃a : α⦄ : a ∈ l → ∀ ⦃b : α⦄, b ∈ l → a ≠ b → R a b",
+        "List.Pairwise.set_pairwise.{u_1} {α : Type u_1} {R : α → α → Prop} {l : List α} (hl : List.Pairwise R l) [Std.Symm R] :\n  {x | x ∈ l}.Pairwise R",
+        "List.pairwise_of_reflexive_of_forall_ne.{u_1} {α : Type u_1} {R : α → α → Prop} {l : List α} [Std.Refl R]\n  (h : ∀ a ∈ l, ∀ b ∈ l, a ≠ b → R a b) : List.Pairwise R l",
+        "List.Pairwise.rel_head_tail.{u_1} {α : Type u_1} {R : α → α → Prop} {l : List α} {a : α} (h₁ : List.Pairwise R l)\n  (ha : a ∈ l.tail) : R (l.head ⋯) a"
+      ],
+      "description": "pairwise list relations under transformations",
+      "family": "list_pairwise",
+      "module": "Data/List/Pairwise.lean",
+      "query_names": [
+        "List.pairwise_iff_forall_infix",
+        "List.Pairwise.forall_of_forall",
+        "List.Pairwise.forall",
+        "List.Pairwise.set_pairwise",
+        "List.pairwise_of_reflexive_of_forall_ne",
+        "List.Pairwise.rel_head_tail",
+        "List.Pairwise.rel_head_of_rel_head_head",
+        "List.Pairwise.rel_head"
+      ],
+      "source_sha256": "0b110f80add05b7d54dd74f27d89a472ca7ea1b7eb4963788e07335d310f4312"
+    },
+    {
+      "api_facts": [
+        "List.Pairwise.nodup.{u} {α : Type u} {l : List α} {r : α → α → Prop} [Std.Irrefl r] (h : List.Pairwise r l) : l.Nodup",
+        "List.rel_nodup.{u, v} {α : Type u} {β : Type v} {r : α → β → Prop} (hr : Relator.BiUnique r) :\n  Relator.LiftFun (List.Forall₂ r) (fun x1 x2 => x1 ↔ x2) List.Nodup List.Nodup",
+        "List.Nodup.cons.{u} {α : Type u} {l : List α} {a : α} (ha : a ∉ l) (hl : l.Nodup) : (a :: l).Nodup",
+        "List.nodup_singleton.{u} {α : Type u} (a : α) : [a].Nodup",
+        "List.Nodup.of_cons.{u} {α : Type u} {l : List α} {a : α} (h : (a :: l).Nodup) : l.Nodup",
+        "List.Nodup.notMem.{u} {α : Type u} {l : List α} {a : α} (h : (a :: l).Nodup) : a ∉ l"
+      ],
+      "description": "nonduplication under list transformations",
+      "family": "list_nodup",
+      "module": "Data/List/Nodup.lean",
+      "query_names": [
+        "List.Pairwise.nodup",
+        "List.rel_nodup",
+        "List.Nodup.cons",
+        "List.nodup_singleton",
+        "List.Nodup.of_cons",
+        "List.Nodup.notMem",
+        "List.not_nodup_cons_of_mem",
+        "List.not_nodup_pair"
+      ],
+      "source_sha256": "efd297ec0dd67d93d4f588fee9796a09ba58d45c50fe349a8f381b4602ca0232"
+    },
+    {
+      "api_facts": [
+        "List.subperm_iff_count.{u_1} {α : Type u_1} {l₁ l₂ : List α} [DecidableEq α] :\n  l₁.Subperm l₂ ↔ ∀ (a : α), List.count a l₁ ≤ List.count a l₂",
+        "List.subperm_iff.{u_1} {α : Type u_1} {l₁ l₂ : List α} : l₁.Subperm l₂ ↔ ∃ l, l.Perm l₂ ∧ l₁.Sublist l",
+        "List.subperm_singleton_iff.{u_1} {α : Type u_1} {l : List α} {a : α} : l.Subperm [a] ↔ l = [] ∨ l = [a]",
+        "List.subperm_cons_self.{u_1} {α : Type u_1} {l : List α} {a : α} : l.Subperm (a :: l)",
+        "List.Subperm.append.{u_1} {α : Type u_1} {l₁ l₂ r₁ r₂ : List α} :\n  l₁.Subperm l₂ → r₁.Subperm r₂ → (l₁ ++ r₁).Subperm (l₂ ++ r₂)",
+        "List.map_subperm_map_iff.{u_2, u_3} {α : Type u_2} {β : Type u_3} {l₁ l₂ : List α} {f : α → β}\n  (hf : Function.Injective f) : (List.map f l₁).Subperm (List.map f l₂) ↔ l₁.Subperm l₂"
+      ],
+      "description": "subpermutation of lists",
+      "family": "list_subperm",
+      "module": "Data/List/Perm/Subperm.lean",
+      "query_names": [
+        "List.subperm_iff_count",
+        "List.subperm_iff",
+        "List.subperm_singleton_iff",
+        "List.subperm_cons_self",
+        "List.Subperm.append",
+        "List.map_subperm_map_iff",
+        "List.Nodup.subperm"
+      ],
+      "source_sha256": "73c40b98c1637cff3565e50e8a3818a9a7d9f6675e88c91112d378a0d070652c"
+    },
+    {
+      "api_facts": [
+        "Finset.card_def.{u_1} {α : Type u_1} (s : Finset α) : s.card = s.val.card",
+        "Finset.card_val.{u_1} {α : Type u_1} (s : Finset α) : s.val.card = s.card",
+        "Finset.card_mk.{u_1} {α : Type u_1} {m : Multiset α} {nodup : m.Nodup} : { val := m, nodup := nodup }.card = m.card",
+        "Finset.card_empty.{u_1} {α : Type u_1} : ∅.card = 0",
+        "Finset.card_le_card.{u_1} {α : Type u_1} {s t : Finset α} : s ⊆ t → s.card ≤ t.card",
+        "Finset.card_mono.{u_1} {α : Type u_1} : Monotone Finset.card"
+      ],
+      "description": "finite-set erasure and cardinality",
+      "family": "finset_erase_card",
+      "module": "Data/Finset/Card.lean",
+      "query_names": [
+        "Finset.card_def",
+        "Finset.card_val",
+        "Finset.card_mk",
+        "Finset.card_empty",
+        "Finset.card_le_card",
+        "Finset.card_mono",
+        "Finset.card_eq_zero",
+        "Finset.card_ne_zero"
+      ],
+      "source_sha256": "87c674ba5464c7868fb3e253e58a695821bf8841bb4e076bac5d570236dc6229"
+    },
+    {
+      "api_facts": [
+        "Finset.map_val.{u_1, u_2} {α : Type u_1} {β : Type u_2} (f : α ↪ β) (s : Finset α) :\n  (Finset.map f s).val = Multiset.map (⇑f) s.val",
+        "Finset.map_empty.{u_1, u_2} {α : Type u_1} {β : Type u_2} (f : α ↪ β) : Finset.map f ∅ = ∅",
+        "Finset.mem_map.{u_1, u_2} {α : Type u_1} {β : Type u_2} {f : α ↪ β} {s : Finset α} {b : β} :\n  b ∈ Finset.map f s ↔ ∃ a ∈ s, f a = b",
+        "Finset.mem_map_equiv.{u_1, u_2} {α : Type u_1} {β : Type u_2} {s : Finset α} {f : α ≃ β} {b : β} :\n  b ∈ Finset.map f.toEmbedding s ↔ f.symm b ∈ s",
+        "Finset.mem_map'.{u_1, u_2} {α : Type u_1} {β : Type u_2} (f : α ↪ β) {a : α} {s : Finset α} :\n  f a ∈ Finset.map f s ↔ a ∈ s",
+        "Finset.mem_map_mk.{u_1, u_2} {α : Type u_1} {β : Type u_2} (f : α → β) {a : α} {s : Finset α}\n  (hf : Function.Injective f) : f a ∈ Finset.map { toFun := f, inj' := hf } s ↔ a ∈ s"
+      ],
+      "description": "finite-set images under injectivity",
+      "family": "finset_image_injective",
+      "module": "Data/Finset/Image.lean",
+      "query_names": [
+        "Finset.map_val",
+        "Finset.map_empty",
+        "Finset.mem_map",
+        "Finset.mem_map_equiv",
+        "Finset.mem_map'",
+        "Finset.mem_map_mk",
+        "Finset.mem_map_of_mem",
+        "Finset.forall_mem_map"
+      ],
+      "source_sha256": "fbb8c87acb75dd13ef3de01d27d29c2ab1fd989ccf26916f829d2b049ce1ef02"
+    },
+    {
+      "api_facts": [
+        "Finset.disjiUnion_val.{u_1, u_2} {α : Type u_1} {β : Type u_2} (s : Finset α) (t : α → Finset β)\n  (h : (↑s).PairwiseDisjoint t) : (s.disjiUnion t h).val = s.val.bind fun a => (t a).val",
+        "Finset.disjiUnion_empty.{u_1, u_2} {α : Type u_1} {β : Type u_2} (t : α → Finset β) : ∅.disjiUnion t ⋯ = ∅",
+        "Finset.mem_disjiUnion.{u_1, u_2} {α : Type u_1} {β : Type u_2} {s : Finset α} {t : α → Finset β} {b : β}\n  {h : (↑s).PairwiseDisjoint t} : b ∈ s.disjiUnion t h ↔ ∃ a ∈ s, b ∈ t a",
+        "Finset.coe_disjiUnion.{u_1, u_2} {α : Type u_1} {β : Type u_2} {s : Finset α} {t : α → Finset β}\n  {h : (↑s).PairwiseDisjoint t} : ↑(s.disjiUnion t h) = ⋃ x ∈ ↑s, ↑(t x)",
+        "Finset.disjiUnion_cons.{u_1, u_2} {α : Type u_1} {β : Type u_2} (a : α) (s : Finset α) (ha : a ∉ s) (f : α → Finset β)\n  (H : (↑(Finset.cons a s ha)).PairwiseDisjoint f) :\n  (Finset.cons a s ha).disjiUnion f H = (f a).disjUnion (s.disjiUnion f ⋯) ⋯",
+        "Finset.singleton_disjiUnion.{u_1, u_2} {α : Type u_1} {β : Type u_2} {t : α → Finset β} (a : α)\n  {h : (↑{a}).PairwiseDisjoint t} : {a}.disjiUnion t h = t a"
+      ],
+      "description": "finite-set union/disjointness implications",
+      "family": "finset_union_membership",
+      "module": "Data/Finset/Union.lean",
+      "query_names": [
+        "Finset.disjiUnion_val",
+        "Finset.disjiUnion_empty",
+        "Finset.mem_disjiUnion",
+        "Finset.coe_disjiUnion",
+        "Finset.disjiUnion_cons",
+        "Finset.singleton_disjiUnion",
+        "Finset.disjiUnion_disjiUnion",
+        "Finset.sUnion_disjiUnion"
+      ],
+      "source_sha256": "31707f78424195ca764bb916b92c094acadd5130cd69d53dbb429350e929eedd"
+    },
+    {
+      "api_facts": [
+        "Nat.xgcd_zero_left {s t : ℤ} {r' : ℕ} {s' t' : ℤ} : Nat.xgcdAux 0 s t r' s' t' = (r', s', t')",
+        "Nat.xgcdAux_rec {r : ℕ} {s t : ℤ} {r' : ℕ} {s' t' : ℤ} (h : 0 < r) :\n  r.xgcdAux s t r' s' t' = (r' % r).xgcdAux (s' - ↑r' / ↑r * s) (t' - ↑r' / ↑r * t) r s t",
+        "Nat.gcdA_zero_left {s : ℕ} : Nat.gcdA 0 s = 0",
+        "Nat.gcdB_zero_left {s : ℕ} : Nat.gcdB 0 s = 1",
+        "Nat.gcdA_zero_right {s : ℕ} (h : s ≠ 0) : s.gcdA 0 = 1",
+        "Nat.gcdB_zero_right {s : ℕ} (h : s ≠ 0) : s.gcdB 0 = 0"
+      ],
+      "description": "integer gcd and divisibility combinations, not plain transitivity",
+      "family": "integer_gcd_combination",
+      "module": "Data/Int/GCD.lean",
+      "query_names": [
+        "Nat.xgcd_zero_left",
+        "Nat.xgcdAux_rec",
+        "Nat.gcdA_zero_left",
+        "Nat.gcdB_zero_left",
+        "Nat.gcdA_zero_right",
+        "Nat.gcdB_zero_right",
+        "Nat.xgcdAux_fst",
+        "Nat.xgcdAux_val"
+      ],
+      "source_sha256": "13cf17d1beed6c6a24bd471065f461a2449f6eb55101ff5a6e6828d7be28b568"
+    },
+    {
+      "api_facts": [
+        "Set.Subsingleton.prod.{u_1, u_2} {α : Type u_1} {β : Type u_2} {s : Set α} {t : Set β} (hs : s.Subsingleton)\n  (ht : t.Subsingleton) : (s ×ˢ t).Subsingleton",
+        "Set.prod_mono.{u_1, u_2} {α : Type u_1} {β : Type u_2} {s₁ s₂ : Set α} {t₁ t₂ : Set β} (hs : s₁ ⊆ s₂) (ht : t₁ ⊆ t₂) :\n  s₁ ×ˢ t₁ ⊆ s₂ ×ˢ t₂",
+        "Set.prod_mono_left.{u_1, u_2} {α : Type u_1} {β : Type u_2} {s₁ s₂ : Set α} {t : Set β} (hs : s₁ ⊆ s₂) :\n  s₁ ×ˢ t ⊆ s₂ ×ˢ t",
+        "Set.prod_mono_right.{u_1, u_2} {α : Type u_1} {β : Type u_2} {s : Set α} {t₁ t₂ : Set β} (ht : t₁ ⊆ t₂) :\n  s ×ˢ t₁ ⊆ s ×ˢ t₂",
+        "Set.prod_self_subset_prod_self.{u_1} {α : Type u_1} {s₁ s₂ : Set α} : s₁ ×ˢ s₁ ⊆ s₂ ×ˢ s₂ ↔ s₁ ⊆ s₂",
+        "Set.prod_self_ssubset_prod_self.{u_1} {α : Type u_1} {s₁ s₂ : Set α} : s₁ ×ˢ s₁ ⊂ s₂ ×ˢ s₂ ↔ s₁ ⊂ s₂"
+      ],
+      "description": "membership/inclusions of Cartesian products of sets",
+      "family": "set_cartesian_products",
+      "module": "Data/Set/Prod.lean",
+      "query_names": [
+        "Set.Subsingleton.prod",
+        "Set.prod_mono",
+        "Set.prod_mono_left",
+        "Set.prod_mono_right",
+        "Set.prod_self_subset_prod_self",
+        "Set.prod_self_ssubset_prod_self",
+        "Set.prod_subset_iff",
+        "Set.forall_prod_set"
+      ],
+      "source_sha256": "80b85ff6e467de704141b30cd30e461873bbc796f8b0c77f594deb39e1c1e179"
+    },
+    {
+      "api_facts": [
+        "Function.iterate_zero.{u} {α : Type u} (f : α → α) : f^[0] = id",
+        "Function.iterate_zero_apply.{u} {α : Type u} (f : α → α) (x : α) : f^[0] x = x",
+        "Function.iterate_succ.{u} {α : Type u} (f : α → α) (n : ℕ) : f^[n.succ] = f^[n] ∘ f",
+        "Function.iterate_succ_apply.{u} {α : Type u} (f : α → α) (n : ℕ) (x : α) : f^[n.succ] x = f^[n] (f x)",
+        "Function.iterate_id.{u} {α : Type u} (n : ℕ) : id^[n] = id",
+        "Function.iterate_add.{u} {α : Type u} (f : α → α) (m n : ℕ) : f^[m + n] = f^[m] ∘ f^[n]"
+      ],
+      "description": "iteration and fixed-point implications",
+      "family": "iteration_composition_fixedpoint",
+      "module": "Logic/Function/Iterate.lean",
+      "query_names": [
+        "Function.iterate_zero",
+        "Function.iterate_zero_apply",
+        "Function.iterate_succ",
+        "Function.iterate_succ_apply",
+        "Function.iterate_id",
+        "Function.iterate_add",
+        "Function.iterate_add_apply",
+        "Function.iterate_one"
+      ],
+      "source_sha256": "bf42e948bbf3fae276cd05b8e53d1d143feec96f95d81675bee103010e210339"
+    },
+    {
+      "api_facts": [
+        "eq_comm_eq.{u_1} {α : Sort u_1} (a b : α) : (a = b) = (b = a)",
+        "iff_comm_eq (a b : Prop) : (a ↔ b) = (b ↔ a)",
+        "congr_heq.{u_2, u_3} {α β : Sort u_2} {γ : Sort u_3} {f : α → γ} {g : β → γ} {x : α} {y : β} (h₁ : f ≍ g) (h₂ : x ≍ y) :\n  f x = g y",
+        "congr_arg_heq.{u_1, u_2} {α : Sort u_1} {β : α → Sort u_2} (f : (a : α) → β a) {a₁ a₂ : α} : a₁ = a₂ → f a₁ ≍ f a₂",
+        "eq_iff_eq_cancel_left.{u_1} {α : Sort u_1} {b c : α} : (∀ {a : α}, a = b ↔ a = c) ↔ b = c",
+        "eq_iff_eq_cancel_right.{u_1} {α : Sort u_1} {a b : α} : (∀ {c : α}, a = c ↔ b = c) ↔ a = b"
+      ],
+      "description": "nontrivial quantified logical equivalences",
+      "family": "logical_quantifier_relations",
+      "module": "Logic/Basic.lean",
+      "query_names": [
+        "eq_comm_eq",
+        "iff_comm_eq",
+        "congr_heq",
+        "congr_arg_heq",
+        "dcongr_heq.",
+        "eq_iff_eq_cancel_left",
+        "eq_iff_eq_cancel_right",
+        "ne_and_eq_iff_right"
+      ],
+      "source_sha256": "3273872fe0b76d4d4b60f55514e79330db78e9f7914c7183127317a08575447f"
+    },
+    {
+      "api_facts": [
+        "Finset.prod_Ico_add'.{u_1, u_3} {α : Type u_1} {M : Type u_3} [CommMonoid M] [AddCommMonoid α] [PartialOrder α]\n  [IsOrderedCancelAddMonoid α] [ExistsAddOfLE α] [LocallyFiniteOrder α] (f : α → M) (a b c : α) :\n  ∏ x ∈ Finset.Ico a b, f (x + c) = ∏ x ∈ Finset.Ico (a + c) (b + c), f x",
+        "Finset.prod_Ico_add.{u_1, u_3} {α : Type u_1} {M : Type u_3} [CommMonoid M] [AddCommMonoid α] [PartialOrder α]\n  [IsOrderedCancelAddMonoid α] [ExistsAddOfLE α] [LocallyFiniteOrder α] (f : α → M) (a b c : α) :\n  ∏ x ∈ Finset.Ico a b, f (c + x) = ∏ x ∈ Finset.Ico (a + c) (b + c), f x",
+        "Finset.prod_Ico_add_right_sub_eq.{u_1, u_3} {α : Type u_1} {M : Type u_3} [CommMonoid M] {f : α → M} [AddCommMonoid α]\n  [PartialOrder α] [IsOrderedCancelAddMonoid α] [ExistsAddOfLE α] [LocallyFiniteOrder α] [Sub α] [OrderedSub α]\n  (a b c : α) : ∏ x ∈ Finset.Ico (a + c) (b + c), f (x - c) = ∏ x ∈ Finset.Ico a b, f x",
+        "Finset.prod_Ico_succ_top.{u_3} {M : Type u_3} [CommMonoid M] {a b : ℕ} (hab : a ≤ b) (f : ℕ → M) :\n  ∏ k ∈ Finset.Ico a (b + 1), f k = (∏ k ∈ Finset.Ico a b, f k) * f b",
+        "Finset.prod_Ico_consecutive.{u_3} {M : Type u_3} [CommMonoid M] (f : ℕ → M) {m n k : ℕ} (hmn : m ≤ n) (hnk : n ≤ k) :\n  (∏ i ∈ Finset.Ico m n, f i) * ∏ i ∈ Finset.Ico n k, f i = ∏ i ∈ Finset.Ico m k, f i",
+        "Finset.prod_Ioc_consecutive.{u_3} {M : Type u_3} [CommMonoid M] (f : ℕ → M) {m n k : ℕ} (hmn : m ≤ n) (hnk : n ≤ k) :\n  (∏ i ∈ Finset.Ioc m n, f i) * ∏ i ∈ Finset.Ioc n k, f i = ∏ i ∈ Finset.Ioc m k, f i"
+      ],
+      "description": "finite interval sums and splitting",
+      "family": "finite_interval_sums",
+      "module": "Algebra/BigOperators/Intervals.lean",
+      "query_names": [
+        "Finset.prod_Ico_add'",
+        "Finset.prod_Ico_add",
+        "Finset.prod_Ico_add_right_sub_eq",
+        "Finset.prod_Ico_succ_top",
+        "Finset.prod_Ico_consecutive",
+        "Finset.prod_Ioc_consecutive",
+        "Finset.prod_Ioc_succ_top",
+        "Finset.prod_Icc_succ_top"
+      ],
+      "source_sha256": "c969bea5adca8855d8dd38d6cc80523edb8ee2fd41dcda77a7b47b09fa710570"
+    },
+    {
+      "api_facts": [
+        "Rat.floor_def' {q : ℚ} : ⌊q⌋ = q.num / ↑q.den",
+        "Rat.ceil_def' (q : ℚ) : ⌈q⌉ = -(-q.num / ↑q.den)",
+        "Rat.floor_intCast_div_natCast (n : ℤ) (d : ℕ) : ⌊↑n / ↑d⌋ = n / ↑d",
+        "Rat.ceil_intCast_div_natCast (n : ℤ) (d : ℕ) : ⌈↑n / ↑d⌉ = -(-n / ↑d)",
+        "Rat.floor_natCast_div_natCast (n d : ℕ) : ⌊↑n / ↑d⌋ = ↑n / ↑d",
+        "Rat.ceil_natCast_div_natCast (n d : ℕ) : ⌈↑n / ↑d⌉ = -(-↑n / ↑d)"
+      ],
+      "description": "rational floor/ceiling inequalities",
+      "family": "rational_floor_bounds",
+      "module": "Data/Rat/Floor.lean",
+      "query_names": [
+        "Rat.floor_def'",
+        "Rat.ceil_def'",
+        "Rat.floor_intCast_div_natCast",
+        "Rat.ceil_intCast_div_natCast",
+        "Rat.floor_natCast_div_natCast",
+        "Rat.ceil_natCast_div_natCast",
+        "Rat.natFloor_natCast_div_natCast",
+        "Rat.floor_cast"
+      ],
+      "source_sha256": "e7ab2c6f3ed60c163295da29afc133d82041a8f1a7d50ecf65eda2a61a3617ac"
+    }
+  ],
+  "development_jobs": 128,
+  "development_target": 16,
+  "max_no_usable_success_attempts": 4,
+  "round_robin": true,
+  "seeds": {
+    "development_eval": [
+      31037,
+      31038,
+      31039
+    ],
+    "development_generation": 2026110511,
+    "test_eval": [
+      41037,
+      41038,
+      41039
+    ],
+    "test_generation": 2026110611
+  },
+  "test_jobs": 256,
+  "test_target": 32
+}
