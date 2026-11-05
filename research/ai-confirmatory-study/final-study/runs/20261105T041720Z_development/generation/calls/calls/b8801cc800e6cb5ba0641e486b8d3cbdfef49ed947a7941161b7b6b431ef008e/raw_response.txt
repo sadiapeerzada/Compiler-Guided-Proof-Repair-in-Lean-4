@@ -1,0 +1,17 @@
+STATEMENT: For any two finite lists \(a\) and \(b\) of natural numbers, the length of the concatenation of \(a\) and \(b\) is equal to the sum of the lengths of \(a\) and \(b\).
+
+LEAN:
+```lean
+theorem final_dev_0033 (a b : List Nat) : (a ++ b).length = a.length + b.length := by
+  induction a with
+  | nil => 
+    simp [List.length, List.append]
+  | cons x xs ih =>
+    induction b with
+    | nil => 
+      simp [List.length, List.append, ih]
+    | cons y ys ihb =>
+      simp [List.length, List.append, ih, ihb]
+```
+
+FAMILY: List Length Preservation under Concatenation

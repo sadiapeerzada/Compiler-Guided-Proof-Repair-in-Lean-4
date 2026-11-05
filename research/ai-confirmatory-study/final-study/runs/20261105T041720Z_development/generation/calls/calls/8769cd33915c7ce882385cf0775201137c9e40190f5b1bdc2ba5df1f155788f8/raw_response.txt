@@ -1,0 +1,15 @@
+STATEMENT: For all natural numbers \(m\) and \(n\) where \(m \geq n\), \(m^n \leq (m+1)^n\).
+
+LEAN:
+```lean
+theorem final_dev_0014 (m n : Nat) (h : m ≥ n) : m^n ≤ (m+1)^n := by
+  induction n with i hi
+  · have : m^0 ≤ (m+1)^0 := by simp [pow_zero]
+    exact this
+  · have : (m+1)^i ≤ (m+2)^i := by
+      have : m^i ≤ (m+1)^i := hi h
+      rw [pow_add, pow_add, mul_le_mul_left (m+1)^i this]
+      simp [mul_le_mul_of_nonneg_right (m+1)^i (by norm_num : (m+1) + (m+1) ≥ 0)]
+```
+
+FAMILY: Power Inequality

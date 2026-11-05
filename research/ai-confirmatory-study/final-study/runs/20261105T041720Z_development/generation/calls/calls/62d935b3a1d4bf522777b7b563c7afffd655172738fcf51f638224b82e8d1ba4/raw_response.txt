@@ -1,0 +1,13 @@
+STATEMENT: For any list of natural numbers `l`, the sum of the list obtained by recursively appending the number 1 to the end of `l` is one more than the sum of `l`.
+
+LEAN:
+```lean
+theorem final_dev_0021 (l : List Nat) : List.sum (l ++ [1]) = List.sum l + 1 := by
+  induction l with
+  | nil => 
+    simp [List.append, List.sum]
+  | cons x xs ih => 
+    simp [List.append, List.sum, ih]
+```
+
+FAMILY: List Sum and Append Relation

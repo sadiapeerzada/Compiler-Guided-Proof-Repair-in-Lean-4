@@ -1,0 +1,18 @@
+STATEMENT: For any finite sets \(A\) and \(B\), and any functions \(f: A \to \mathbb{Z}\) and \(g: B \to \mathbb{Z}\), the product of the sums of the values of \(f\) and \(g\) over their respective domains is equal to the sum of the products of the values of \(f\) and \(g\) over the Cartesian product of \(A\) and \(B\).
+
+LEAN:
+```lean
+theorem final_dev_0020 {A B : Type} [Fintype A] [Fintype B] (f : A → ℤ) (g : B → ℤ) : 
+  (∑ a in A, f a) * (∑ b in B, g b) = ∑ (a : A) (b : B), f a * g b := by
+  have h1 : ∑ a in A, f a = ∑ a in A, ∑ b in B, f a := by
+    rw [Finset.sum_mul_right]
+  have h2 : ∑ b in B, g b = ∑ b in B, ∑ a in A, g b := by
+    rw [Finset.mul_sum_left]
+  have h3 : ∑ (a : A) (b : B), f a * g b = ∑ a in A, ∑ b in B, f a * g b := by
+    simp only [Finset.mul_sum_right]
+  have h4 : ∑ a in A, ∑ b in B, f a * g b = (∑ a in A, f a) * (∑ b in B, g b) := by
+    rw [h1, h2, Finset.mul_sum]
+  exact h4
+```
+
+FAMILY: Sum and Product of Functions Over Finite Sets

@@ -1,0 +1,74 @@
+{
+  "axiom_dependencies": null,
+  "candidate_sha256": "552a4fdc4f995b6543ea6a52d5c5c06f580b116eba1c4b94999e7bdfce2fb481",
+  "compiler_stderr": "",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":15,\"line\":4},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_final_fixture_monomorphic_specialization.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":4},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Type mismatch\\n  Nl2LeanCandidate.fixture\\nhas type\\n  ∀ (l : List ℕ), l.reverse.reverse = l\\nbut is expected to have type\\n  ∀ {α : Type ?u.3} (l : List α), l.reverse.reverse = l\",\"endPos\":{\"column\":62,\"line\":11},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_final_fixture_monomorphic_specialization.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":37,\"line\":11},\"severity\":\"error\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.fixture' depends on axioms: [propext]\",\"endPos\":{\"column\":6,\"line\":13},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_final_fixture_monomorphic_specialization.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":13},\"severity\":\"information\"}\n",
+  "diagnostic_state": "available",
+  "diagnostic_text": "line 11: Type mismatch\n  Nl2LeanCandidate.fixture\nhas type\n  ∀ (l : List ℕ), l.reverse.reverse = l\nbut is expected to have type\n  ∀ {α : Type ?u.3} (l : List α), l.reverse.reverse = l",
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 15,
+        "line": 4
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_final_fixture_monomorphic_specialization.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 4
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Type mismatch\n  Nl2LeanCandidate.fixture\nhas type\n  ∀ (l : List ℕ), l.reverse.reverse = l\nbut is expected to have type\n  ∀ {α : Type ?u.3} (l : List α), l.reverse.reverse = l",
+      "endPos": {
+        "column": 62,
+        "line": 11
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_final_fixture_monomorphic_specialization.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 37,
+        "line": 11
+      },
+      "severity": "error"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.fixture' depends on axioms: [propext]",
+      "endPos": {
+        "column": 6,
+        "line": 13
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_final_fixture_monomorphic_specialization.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 13
+      },
+      "severity": "information"
+    }
+  ],
+  "diagnostics_parsed": 3,
+  "elapsed_seconds": 4.406,
+  "errors": [
+    "line 11: Type mismatch\n  Nl2LeanCandidate.fixture\nhas type\n  ∀ (l : List ℕ), l.reverse.reverse = l\nbut is expected to have type\n  ∀ {α : Type ?u.3} (l : List α), l.reverse.reverse = l"
+  ],
+  "exit_code": 1,
+  "failure_kind": "compiler_error",
+  "harness_variant": "explicit_all_arguments_v1",
+  "malformed_diagnostics": [],
+  "success": false,
+  "variant_source_sha256": "8ad8ab76d7d2c0a19cb2c598c70932519188b1098c02eb808db58ec2a2df88e7",
+  "verification_source_sha256": "4b7427e3b1bf4d10494d15522ccd440a677b30c8c61c7ded3609c946ec608f16",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\ntheorem fixture {α : Type*} (l : List α) : l.reverse.reverse = l := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem fixture (l : List Nat) : l.reverse.reverse = l := by simp\nend Nl2LeanCandidate\n\nexample : @Nl2LeanExpected.fixture = @Nl2LeanCandidate.fixture := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.fixture\n"
+}

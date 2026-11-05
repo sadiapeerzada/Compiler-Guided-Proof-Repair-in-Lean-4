@@ -1,0 +1,12 @@
+STATEMENT: For any finite sets \(A\) and \(B\), the cardinality of the set difference \(A \setminus B\) is equal to the cardinality of \(A\) minus the cardinality of the intersection of \(A\) and \(B\).
+
+LEAN:
+```lean
+theorem final_dev_0011 {α : Type _} (A B : Set α) : card (A \ B) = card A - card (A ∩ B) := by
+  have h1 : card (A \ B) = card A - card (A ∩ B) := by
+    rw [Set.card_diff, Set.card_inter, Set.card_union, Set.card_eq, Set.card_empty, Set.card_eq_zero]
+    simp only [Set.empty, Set.empty_inter, Set.empty_union, Set.empty_diff, Set.card_empty, Set.card_eq_zero]
+  exact h1
+```
+
+FAMILY: Set Cardinality Relations

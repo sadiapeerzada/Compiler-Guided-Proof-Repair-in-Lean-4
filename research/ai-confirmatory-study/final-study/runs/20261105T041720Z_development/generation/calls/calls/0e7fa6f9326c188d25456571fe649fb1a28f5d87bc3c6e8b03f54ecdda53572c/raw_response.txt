@@ -1,0 +1,11 @@
+STATEMENT: For any lists \(a\), \(b\), and \(c\), the concatenation of \(a\) with the reversed concatenation of \(b\) and \(c\) is equal to the reversed concatenation of the reversed \(a\) with \(b\), i.e., \(a \cdot (b \cdot c)^R = ((a \cdot b)^R \cdot c)^R\).
+
+LEAN:
+```lean
+theorem final_dev_0032 (a b c : List α) : a · (b · c).reverse = ((a · b).reverse · c).reverse := by
+  induction a with x xs ih
+  · simp [List.reverse_nil, List.append_nil, List.append_reverse_nil]
+  · simp [List.append, List.reverse, ih, List.append_reverse, List.reverse_append]
+```
+
+FAMILY: List Reversal and Concatenation Properties

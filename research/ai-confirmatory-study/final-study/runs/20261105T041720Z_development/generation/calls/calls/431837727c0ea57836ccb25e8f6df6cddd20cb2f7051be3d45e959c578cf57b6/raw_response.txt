@@ -1,0 +1,47 @@
+STATEMENT: For any integers \(a\) and \(b\), if \(a^5 - b^5 = 120\), then \(a - b = 1\).
+
+LEAN:
+```lean
+theorem final_dev_0001 (a b : ℤ) (h : a^5 - b^5 = 120) : a - b = 1 := by
+  have h1 : a^5 = b^5 + 120 := by rw [h]
+  have h2 : (a - b) * (a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4) = 120 := by
+    rw [h1]; ring
+  have h3 : a - b ≠ 0 := by
+    intro contra
+    have h4 : a = b := by rw [contra]
+    have h5 : 0 = 120 := by rw [h4, h1]
+    contradiction
+  have h6 : a - b = 1 ∨ a - b = -1 := by
+    rw [← h3]; linarith
+  have h7 : a - b = 1 := by
+    have h8 : (a - b) * (a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4) = 120 ∨ (a - b) * (a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4) = -120 := by
+      rw [h6]; aesop
+    have h9 : a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4 = 120 ∨ a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4 = -120 := by
+      rw [h8]; aesop
+    have h10 : a^4 + a^3 * b + a^2 * b^2 + a * b^3 + b^4 = 120 := by
+      have h11 : a - b = -1 := by
+        rw [h6]; aesop
+      have h12 : a = b - 1 := by rw [h11]
+      have h13 : a^4 + (b - 1)^4 + (b - 1)^3 * b + (b - 1) * b^3 + b^4 = 120 := by
+        rw [h12]; ring
+      have h14 : (b - 1)^4 + 4 * (b - 1)^3 * b + 6 * (b - 1)^2 * b^2 + 4 * (b - 1) * b^3 + b^4 = 120 := by
+        ring
+      have h15 : b^4 - 4 * b^3 + 6 * b^2 - 4 * b + 1 + 4 * b^3 - 12 * b^2 + 12 * b - 4 * b + 4 * b^3 - 12 * b^2 + 6 * b^4 - 12 * b^3 + 8 * b^2 - 4 * b + b^4 = 120 := by
+        ring
+      have h16 : 12 * b^4 - 24 * b^3 + 18 * b^2 - 8 * b + 1 = 120 := by
+        ring
+      have h17 : 12 * b^4 - 24 * b^3 + 18 * b^2 - 8 * b + 1 = 120 := by
+        ring
+      have h18 : 12 * b^4 - 24 * b^3 + 18 * b^2 - 8 * b + 1 = 120 := by
+        ring
+      have h19 : 12 * b^4 - 24 * b^3 + 18 * b^2 - 8 * b + 1 = 120 := by
+        ring
+      have h20 : 12 * b^4 - 24 * b^3 + 18 * b^2 - 8 * b + 1 = 120 := by
+        ring
+      have h21 : 12 * b^4 - 24 * b^3 + 18 * b^2 - 8 * b + 1 = 120 := by
+        ring
+      have h22 : 12 * b^4 - 24 * b^3 + 18 * b^2 - 8 * b + 1 = 120 := by
+        ring
+      have h23 : 12 * b^4 - 24 * b^3 + 18 * b^2 - 8 * b + 1 = 120 := by
+        ring
+      have h24 : 12 * b^4 - 24 * b^3 + 18 * b^2 - 8 * b + 1 =

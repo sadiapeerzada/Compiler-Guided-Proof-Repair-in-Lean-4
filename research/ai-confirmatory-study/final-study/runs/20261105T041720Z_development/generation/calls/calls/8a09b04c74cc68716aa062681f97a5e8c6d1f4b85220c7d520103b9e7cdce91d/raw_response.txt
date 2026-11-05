@@ -1,0 +1,30 @@
+STATEMENT: For any finite sequence of arithmetic progressions \(a_1, a_2, \ldots, a_n\) with common differences \(d_1, d_2, \ldots, d_n\) and initial terms \(a_{1,1}, a_{2,1}, \ldots, a_{n,1}\), the sum of the \(k\)-th terms of these progressions is equal to the \(k\)-th term of the arithmetic progression with initial term \(a_{1,1} + a_{2,1} + \ldots + a_{n,1}\) and common difference \(d_1 + d_2 + \ldots + d_n\).
+
+LEAN:
+```lean
+theorem final_dev_0006 (n : Nat) (k : Nat) (a : Nat → Nat → Nat) (d : Nat → Nat) (h : ∀ i, 0 < d i) : 
+  ∑ i in Fin n, a i (k + d i) = a (Fin.sum (Fin n)) (k + Fin.sum (Fin.map d (Fin n))) := by
+  induction' n with i ih
+  · simp [Fin.sum_zero, Fin.map_zero, Fin.zero_add]
+  · simp [Fin.sum_succ, Fin.map_succ, Fin.succ_add, ih, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum]
+    rw [Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum_range, Fin.map_sum, Fin.sum

@@ -1,0 +1,18 @@
+STATEMENT: For any positive real numbers \(a\), \(b\), and \(c\) such that \(b^2 - 4ac < 0\), the expression \(ax^2 + bx + c\) is always positive for all real numbers \(x\).
+
+LEAN:
+```lean
+theorem final_dev_0017 (a b c : ℝ) (h : b^2 - 4 * a * c < 0) (x : ℝ) : a * x^2 + b * x + c > 0 := by
+  have h1 : 2 * a * x * x + 2 * b * x + b^2 - 4 * a * c > b^2 - 4 * a * c := by
+    calc
+      2 * a * x * x + 2 * b * x + b^2 - 4 * a * c = (2 * a * x + b) * (x - (b / (2 * a))) + b^2 - 4 * a * c : by ring
+      _ > b^2 - 4 * a * c : by linarith [h]
+  have h2 : (2 * a * x + b) * (x - (b / (2 * a))) > 0 := by
+    have : 2 * a * x + b ≠ 0 := by
+      rwa [ne.def, not_and_distrib, not_or_distrib, not_not] at h1
+    · linarith [h1]
+    · linarith [h1]
+  exact h2
+```
+
+FAMILY: Quadratic Inequalities

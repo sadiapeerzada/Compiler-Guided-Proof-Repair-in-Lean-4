@@ -1,0 +1,140 @@
+{
+  "AI_only": true,
+  "base_seed": 3051001,
+  "baseline": "83f1d564",
+  "confirmatory_authorized": false,
+  "confirmatory_planning_target": 60,
+  "development_target": 20,
+  "environment": {
+    "lean": {
+      "imports": [
+        "Mathlib"
+      ],
+      "mathlib_revision": "81a5d257c8e410db227a6665ed08f64fea08e997",
+      "timeout_seconds": 45,
+      "verification_policy": "src/verify.py exact-type harness, no proof escapes/new axioms; generated imports/commands additionally prohibited",
+      "version_prefix": "Lean (version 4.32.0,"
+    }
+  },
+  "generation_pool": 240,
+  "legacy_CDE_protocol": {
+    "arms": [
+      "C",
+      "D",
+      "E"
+    ],
+    "budget": {
+      "calibration_accounting": "Shared ledger: development consumes the same allocation. Full 240x3 test worst-case needs all2880 calls. Separately authorized prior budget amendment or revised sample/precision is required if calibration uses it.",
+      "input_tokens_per_call": 4096,
+      "max_initial_calls": 12,
+      "max_repair_calls": 36,
+      "max_runtime_seconds": 1800,
+      "max_total_calls": 48,
+      "output_tokens_per_call": 1200
+    },
+    "decoding": {
+      "max_context_tokens": 8192,
+      "temperature": 0.2,
+      "top_p": 1.0
+    },
+    "forbidden_donor_pairs": [],
+    "lean": {
+      "imports": [
+        "Mathlib"
+      ],
+      "mathlib_revision": "81a5d257c8e410db227a6665ed08f64fea08e997",
+      "timeout_seconds": 45,
+      "verification_policy": "src/verify.py exact-type harness, no proof escapes/new axioms; generated imports/commands additionally prohibited",
+      "version_prefix": "Lean (version 4.32.0,"
+    },
+    "model": {
+      "chat_template_sha256": "2e2d2512cfe46af53dc1eed45368ecaab26ac4461c480e6b69fe571cf0ceaa75",
+      "inventory_path": "data/local_model/20261027/model_inventory.json",
+      "inventory_sha256": "24d68abbe5e1434e5263ad123cca517c2c1799c7465e104e83f6cb02baeac4f9",
+      "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+      "revision": "c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed",
+      "tokenizer_revision": "c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed"
+    },
+    "order_seed": 2037000,
+    "primary_contrast": "C-D",
+    "primary_endpoint": "Strict fixed-type first-repair verification among known initial failures; incomplete comparisons remain unknown",
+    "repairs_per_arm": 1,
+    "runtime_packages": {
+      "mlx": "0.32.4",
+      "mlx-lm": "0.32.2",
+      "transformers": "5.21.0"
+    },
+    "sample_size": {
+      "development": 40,
+      "test": 240
+    },
+    "schema_version": 1,
+    "secondary_contrast": "C-E",
+    "seeds": [
+      2037,
+      2038,
+      2039
+    ],
+    "statistics": {
+      "bootstrap_seed": 2037001,
+      "missingness": "Known initial failures remain in bounds even if repair comparison invalid. Unknown initial eligibility reported separately; never recode missing as false.",
+      "multiplicity": "Two simultaneous nominal97.5% percentile CIs by Bonferroni; descriptive95% also reported; no new p-values",
+      "replicates": 20000,
+      "resampling": "Whole theorem clusters with all available seeds; row-weighted unequal-family sensitivity",
+      "sample_precision": "240 independent theorem means: worst-case normal-approximation95% half-width12.7pp; no guaranteed power. Reassess actual independent count before freeze."
+    },
+    "status": "IMPLEMENTATION_CANDIDATE_NOT_PREREGISTERED",
+    "stopping": "Stop on first newly unavailable generation/verifier infrastructure outcome, allocation/runtime exhaustion or nonconforming backend; checkpoint and complete-grid unknown export retained. Explicit resume skips consumed unknown calls without replay and may attempt only remaining samples. Nonconforming backend remains blocked. No efficacy-based stopping.",
+    "study": "New isolated first-repair C/D/E experiment; not historical replay",
+    "token_matching": {
+      "donor": "Frozen hashed ranking, first eligible initial-failure diagnostic from another ID/family, excluding prohibited pairs and byte-identical payloads; assignment sealed before any repair",
+      "policy": "Preserve all structured error message data/kind/positions; exact rendered4096 tokens using deterministic neutral suffix search; invalidate comparison if full payload cannot fit or exact matching is unreachable",
+      "truncation": "none; never silently truncate",
+      "wrapper": "Same single-user chat template for all arms"
+    },
+    "validation_gate": "Separate AI-only gate; no human benchmark approval is claimed or synthesized"
+  },
+  "models": {
+    "G": {
+      "cache_name": "models--mlx-community--Qwen2.5-7B-Instruct-4bit",
+      "family": "Qwen",
+      "id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+      "revision": "c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed"
+    },
+    "P": {
+      "cache_name": "models--mlx-community--Phi-4-mini-instruct-4bit",
+      "family": "Phi",
+      "id": "mlx-community/Phi-4-mini-instruct-4bit",
+      "revision": "ac1c269cb4222a4e136a3d09edad301056c1f36a"
+    },
+    "R1": {
+      "cache_name": "models--mlx-community--Phi-4-mini-instruct-4bit",
+      "family": "Phi",
+      "id": "mlx-community/Phi-4-mini-instruct-4bit",
+      "revision": "ac1c269cb4222a4e136a3d09edad301056c1f36a"
+    },
+    "R2": {
+      "cache_name": "models--mlx-community--Qwen2.5-Coder-7B-Instruct-4bit",
+      "family": "Qwen",
+      "id": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+      "revision": "019cc73c45c770444708a6dd8690c66243cc5c80"
+    },
+    "X": {
+      "cache_name": "models--mlx-community--Qwen2.5-7B-Instruct-4bit",
+      "family": "Qwen",
+      "id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+      "revision": "c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed"
+    }
+  },
+  "reference_repairs_per_candidate": 1,
+  "reference_timeout_seconds": 180,
+  "review_process_independence": "Blinded separate processes; model errors not statistically independent, generator shares Qwen with R2, proof-repair shares Phi with R1",
+  "run_id": "20261105T041720Z_development",
+  "seeds": [
+    2037,
+    2038,
+    2039
+  ],
+  "temperature": 0.2,
+  "version": "final-development-study-v1"
+}
