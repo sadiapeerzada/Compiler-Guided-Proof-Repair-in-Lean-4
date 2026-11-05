@@ -60,3 +60,32 @@ or C/D/E evaluation. Even successful proofs remain
 All archived V2 replay is post-hoc diagnosis only. Original V1/V2 outcomes, ledgers,
 models and source locks remain unchanged. The final report distinguishes initial
 proofs, repaired proofs, structural failures, compiler failures and unknown outcomes.
+
+If a generation worker was interrupted and its phase window has expired,
+`reconcile_generation.py` can finish deterministic parsing/checking of saved durable
+responses. It cannot initialize a model, issue inference, replay verification
+intents, or reset a deadline. It records reconciliation explicitly. For this run:
+
+```sh
+.venv/bin/python research/ai-confirmatory-study/v3/reconcile_generation.py
+```
+
+Reconciliation is a one-time audit command; its initial audit record should be
+preserved. Inspect the saved record on subsequent checkouts rather than overwriting
+that original interruption audit.
+
+For this run, the initial repair prompt exceeded the input cap on three candidates
+before any call was reserved. A separately frozen diagnostic-projection amendment
+retains every complete compiler error while omitting redundant verifier metadata.
+It is limited to previously unattempted candidates and shares the original repair
+ledger and deadline. Its preparation and execution commands were:
+
+```sh
+.venv/bin/python research/ai-confirmatory-study/v3/repair_prompt_amendment.py prepare
+.venv/bin/python research/ai-confirmatory-study/v3/repair_prompt_amendment.py run
+```
+
+Preparation is exclusive and refuses to overwrite an existing amendment. Do not
+reset or recreate it after expiration. `report_v3.py` merges its canonical outcomes
+with the original prompt variant, while preserving that variant's separate summary.
+Run the report after `pipeline_v3.py summarize` to restore the complete merged view.
