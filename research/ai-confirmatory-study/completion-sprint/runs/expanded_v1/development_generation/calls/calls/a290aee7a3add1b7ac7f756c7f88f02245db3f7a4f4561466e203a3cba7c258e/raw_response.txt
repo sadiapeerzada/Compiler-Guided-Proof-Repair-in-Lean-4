@@ -1,0 +1,8 @@
+STATEMENT: If two lists are subpermutations of each other, then the count of any element in the first list is less than or equal to the count of the same element in the second list.
+
+LEAN:
+```lean
+theorem sprint_development_0022 {α : Type} {l₁ l₂ : List α} [DecidableEq α] : l₁.Subperm l₂ → ∀ (a : α), List.count a l₁ ≤ List.count a l₂ := by
+  intro h
+  simp [List.subperm_iff_count]
+```

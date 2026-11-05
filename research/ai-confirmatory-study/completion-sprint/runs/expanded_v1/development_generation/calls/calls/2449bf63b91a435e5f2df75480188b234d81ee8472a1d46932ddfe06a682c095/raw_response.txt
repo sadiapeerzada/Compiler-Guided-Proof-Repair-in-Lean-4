@@ -1,0 +1,12 @@
+STATEMENT: For any sets \( s \) and \( t \), if \( s \) is a subset of \( t \), then the Cartesian product \( s \times s \) is a subset of \( t \times t \).
+
+LEAN:
+```lean
+theorem sprint_development_0075 {α : Type u_1} {s t : Set α} (hs : s ⊆ t) : s ×ˢ s ⊆ t ×ˢ t := by
+  intros x y
+  have : (x, y) ∈ s ×ˢ s := by assumption
+  rw [prod.mem]
+  exact prod_mono hs hs this
+```
+
+FAMILY: subset relation

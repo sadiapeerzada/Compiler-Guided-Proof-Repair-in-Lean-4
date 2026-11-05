@@ -1,0 +1,13 @@
+STATEMENT: For any integers \(a\), \(b\), and \(c\) where \(b > 0\) and \(c > 0\), the remainder of \(a\) divided by \(b\) is less than or equal to the remainder of \(a\) divided by \(c\).
+
+LEAN:
+```lean
+theorem sprint_development_0065 (a b c : ℤ) (hb : b > 0) (hc : c > 0) : a % b ≤ a % c := by
+  rw [Int.emod_eq_sub_self_emod]
+  rw [Int.emod_eq_sub_self_emod]
+  apply le_trans
+  · apply Int.mul_le_mul_left hb
+  · apply Int.mul_le_mul_left hc
+```
+
+FAMILY: Modulo operation

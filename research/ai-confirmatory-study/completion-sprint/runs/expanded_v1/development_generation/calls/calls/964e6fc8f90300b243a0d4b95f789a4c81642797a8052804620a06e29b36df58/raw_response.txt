@@ -1,0 +1,13 @@
+STATEMENT: For any sets \( A \) and \( B \), if \( A \) is a subset of \( B \), then the Cartesian product \( A \times A \) is a subset of the Cartesian product \( B \times B \).
+
+LEAN:
+```lean
+theorem sprint_development_0011 {A B : Set α} (hAB : A ⊆ B) : A × A ⊆ B × B :=
+  by
+  intros x y
+  have hxA : x ∈ A := hAB x
+  have hyA : y ∈ A := hAB y
+  have hxB : x ∈ B := hxA
+  have hyB : y ∈ B := hyA
+  exact prod.intro hxB hyB
+```

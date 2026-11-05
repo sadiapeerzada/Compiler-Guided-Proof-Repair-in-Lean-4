@@ -1,0 +1,11 @@
+STATEMENT: For all sets A and B, the statement "A is a subset of B and B is a subset of A" is logically equivalent to "A is equal to B".
+
+LEAN:
+```lean
+theorem sprint_development_0125 (A B : Set α) : (A ⊆ B ∧ B ⊆ A) ↔ A = B := by
+  split
+  · intro h; split; intro x; exact h.1 x; intro x; exact h.2 x
+  · intro h; apply subset. intros x; exact h x
+```
+
+FAMILY: subset relation

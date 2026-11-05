@@ -1,0 +1,14 @@
+STATEMENT: For any rational number q and any integer n, if q is greater than or equal to n, then the floor of q is greater than or equal to n.
+
+LEAN:
+```lean
+theorem sprint_development_0079 (q : ℚ) (n : ℤ) (h : q ≥ n) : ⌊q⌋ ≥ n := by
+  cases q with (num : ℤ) (den : ℕ) (hden : den ≠ 0)
+  have : q = num / ↑den by norm_num
+  rw [this]
+  have : num / ↑den ≥ n by linarith
+  rw [Rat.floor_def']
+  exact this
+```
+
+FAMILY: floor function inequality

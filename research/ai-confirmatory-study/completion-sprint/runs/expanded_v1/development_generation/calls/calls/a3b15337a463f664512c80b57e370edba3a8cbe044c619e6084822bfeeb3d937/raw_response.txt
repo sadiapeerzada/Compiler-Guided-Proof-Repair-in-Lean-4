@@ -1,0 +1,14 @@
+STATEMENT: For any integers \(a, b, c, d\) such that \(a \mid b\) and \(c \mid d\), it follows that \(ac \mid bd\).
+
+LEAN:
+```lean
+theorem sprint_development_0074 (a b c d : ℤ) (ha : a ∣ b) (hc : c ∣ d) : ac ∣ bd :=
+  by
+  cases ha with k hk
+  cases hc with l hl
+  have : bd = (a * k) * (c * l) := by rw [hk, hl]
+  rw [this]
+  exact mul_div_cancel_left (a * k) (c * l)
+```
+
+FAMILY: Divisibility relation

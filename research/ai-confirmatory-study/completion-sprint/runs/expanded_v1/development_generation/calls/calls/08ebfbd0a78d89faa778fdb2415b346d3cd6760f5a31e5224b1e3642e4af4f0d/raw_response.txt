@@ -1,0 +1,10 @@
+STATEMENT: For any list `l` of natural numbers and any natural number `n`, if `n` is not in `l`, then the list obtained by appending `n` to `l` is nonduplication-preserving under the relation `r` defined by `r x y := x = y`.
+
+LEAN:
+```lean
+theorem sprint_development_0037 {α : Type u} [hα : Fintype α] {l : List α} {n : α} (hn : n ∉ l) : (n :: l).Nodup := by
+  rw [List.Nodup.cons]
+  exact List.Nodup.notMem hn
+```
+
+FAMILY: Nonduplication under list transformations

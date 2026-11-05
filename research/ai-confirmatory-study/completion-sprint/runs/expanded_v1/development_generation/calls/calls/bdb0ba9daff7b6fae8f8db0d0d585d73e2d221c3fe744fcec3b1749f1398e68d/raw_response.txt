@@ -1,0 +1,14 @@
+STATEMENT: For any rational number q and integer n, if q > n, then ⌊q⌋ ≥ n.
+
+LEAN:
+```lean
+theorem sprint_development_0111 (q : ℚ) (n : ℤ) (h : q > n) : ⌊q⌋ ≥ n := by
+  rw Rat.floor_def'
+  cases q with (num : ℤ) (den : ℕ) (hden : den ≠ 0)
+  have hq : q = num / ↑den := by rw [hden, Rat.of_rat]
+  have hnum : num > n * den := by linarith [h]
+  have hfloor : ⌊q⌋ = num / ↑den := by rw [Rat.floor_def']
+  linarith [hfloor, hnum]
+```
+
+FAMILY: floor function inequality

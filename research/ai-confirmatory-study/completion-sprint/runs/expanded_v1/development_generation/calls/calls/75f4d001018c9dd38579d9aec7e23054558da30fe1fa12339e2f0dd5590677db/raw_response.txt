@@ -1,0 +1,12 @@
+STATEMENT: For any list `l` and natural numbers `n` and `m`, if `n + m < l.length`, then `List.take n (List.drop m l) ++ List.drop (n + m) l = l`.
+
+LEAN:
+```lean
+theorem sprint_development_0082 {u} {α : Type u} {l : List α} {n : ℕ} {m : ℕ} (h : n + m < l.length) :
+  List.take n (List.drop m l) ++ List.drop (n + m) l = l :=
+  by
+    rw [List.drop_take_append_drop]
+    exact h
+```
+
+FAMILY: List concatenation and dropping relation

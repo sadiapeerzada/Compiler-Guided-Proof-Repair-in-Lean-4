@@ -1,0 +1,10 @@
+STATEMENT: For any lists `l₁` and `l₂` of equal length, the `zipWith` function with a constant function returns a list where each element is the constant value.
+
+LEAN:
+```lean
+theorem sprint_development_0019 {α : Type} {β : Type} (c : β) (l₁ : List α) (l₂ : List α) (h : l₁.length = l₂.length) :
+  List.zipWith (fun _ _ => c) l₁ l₂ = List.replicate (l₁.length) c :=
+by
+  rw [List.zipWith]
+  simp [h, List.replicate]
+```

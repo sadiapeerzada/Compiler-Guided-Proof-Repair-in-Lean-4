@@ -1,0 +1,13 @@
+STATEMENT: For any rational number q and any integer n, if q ≥ n, then ⌊q⌋ ≥ n.
+
+LEAN:
+```lean
+theorem sprint_development_0047 (q : ℚ) (n : ℤ) (h : q ≥ n) : ⌊q⌋ ≥ n := by
+  rw [Rat.floor_def']
+  cases q with (num : ℤ) (den : ℕ) (hden : den ≠ 0)
+  have : q = num / ↑den := by norm_num
+  rw this
+  have : num / ↑den ≥ n := by linarith
+  rw [←Nat.cast_le]
+  exact Nat.cast_nonneg (Nat.cast_div_nonneg num hden)
+```

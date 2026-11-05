@@ -1,0 +1,10 @@
+STATEMENT: For any lists `l₁` and `l₂` of equal length, the projection of the elements of their zipped list is equal to the zipping of the projections of the lists.
+
+LEAN:
+```lean
+theorem sprint_development_0003 {α : Type} {β : Type} (l₁ : List α) (l₂ : List β) (h : l₁.length = l₂.length) :
+  List.map Prod.fst (l₁.zip l₂) = l₁ ∧ List.map Prod.snd (l₁.zip l₂) = l₂ :=
+by
+  rw [List.zipWith_zipWith_left (fun x y => (x, y)) (fun x => x) (fun y => y) l₁ l₂ l₂]
+  simp [List.map, List.zipWith, h]
+```

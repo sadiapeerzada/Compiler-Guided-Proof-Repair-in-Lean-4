@@ -1,0 +1,9 @@
+STATEMENT: For any finite set `s` and any element `a` not in `s`, the cardinality of the set `s ∪ {a}` is one more than the cardinality of `s`.
+
+LEAN:
+```lean
+theorem sprint_development_0039 {α : Type} {s : Finset α} {a : α} (h : a ∉ s) : (s ∪ {a}).card = s.card + 1 :=
+by
+  rw [Finset.card_union_of_disjoint (Finset.disjoint_insert_of_not_mem h)]
+  simp
+```

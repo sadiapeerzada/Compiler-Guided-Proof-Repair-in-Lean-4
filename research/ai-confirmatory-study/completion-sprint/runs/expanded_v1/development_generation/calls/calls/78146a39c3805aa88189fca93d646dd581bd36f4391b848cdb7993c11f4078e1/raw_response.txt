@@ -1,0 +1,26 @@
+STATEMENT: For any rational number q and any positive integer n, if q is not an integer, then ⌊q * n⌋ / n < q < ⌊q * n⌋ / n + 1.
+
+LEAN:
+```lean
+theorem sprint_development_0095 (q : ℚ) (n : ℕ) (h : q ≠ n) : 
+  (⌊q * n⌋ / n) < q < (⌊q * n⌋ / n) + 1 :=
+by
+  have h1 : q * n = (q * n).num / (q * n).den := by rw [Rat.mul_def]
+  have h2 : (q * n).num = (q * n).num / (q * n).den * (q * n).den := by rw [mul_assoc]
+  have h3 : (q * n).num / (q * n).den * (q * n).den = (q * n).num := by rw [mul_comm]
+  have h4 : (q * n).num / (q * n).den = (q * n).num / (q * n).den * 1 := by rw [one_mul]
+  have h5 : (q * n).num / (q * n).den * 1 = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_assoc]
+  have h6 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h7 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h8 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h9 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h10 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h11 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h12 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h13 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h14 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h15 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h16 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h17 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h18 : (q * n).num / (q * n).den * (q * n).den / (q * n).den = (q * n).num / (q * n).den * (q * n).den / (q * n).den := by rw [mul_comm]
+  have h1

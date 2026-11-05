@@ -1,0 +1,16 @@
+STATEMENT: For any rational number \( q \) and integer \( n \), the inequality \( \lfloor q \rfloor \leq n \) holds if and only if \( q \leq n \).
+
+LEAN:
+```lean
+theorem sprint_development_0015 (q : ℚ) (n : ℤ) : (⌊q⌋ ≤ n) ↔ (q ≤ n) :=
+  by
+    split
+    · assume h : ⌊q⌋ ≤ n
+      have : q - n < 1 := by linarith [h, Rat.floor_def']
+      have : q < n + 1 := by linarith [this]
+      exact this
+    · assume h : q ≤ n
+      have : q - n < 1 := by linarith [h]
+      have : ⌊q⌋ ≤ n := by linarith [Rat.floor_def', this]
+      exact this
+```

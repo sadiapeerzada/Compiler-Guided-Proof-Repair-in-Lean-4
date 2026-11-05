@@ -1,0 +1,13 @@
+STATEMENT: For any integers \(a\), \(b\), and \(c\), if \(a\) divides \(b\) and \(b\) divides \(c\), then \(a\) divides \(c\).
+
+LEAN:
+```lean
+theorem sprint_development_0058 {a b c : ℤ} (h1 : a ∣ b) (h2 : b ∣ c) : a ∣ c :=
+  by
+  cases h1 with k hk1
+  cases h2 with l hk2
+  have : c = b * l := hk2
+  subst this
+  have : c = a * k * l := hk1
+  exact dvd.intro (k * l)
+```

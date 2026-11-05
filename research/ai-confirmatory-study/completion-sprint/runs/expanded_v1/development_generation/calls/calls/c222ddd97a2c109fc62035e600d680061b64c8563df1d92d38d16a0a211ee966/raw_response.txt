@@ -1,0 +1,18 @@
+STATEMENT: For any list `l` and natural numbers `m` and `n`, if `m + n ≤ l.length`, then `List.drop m (List.take n l) = List.take n (List.drop m l)`.
+
+LEAN:
+```lean
+theorem sprint_development_0098 {α : Type u} (l : List α) (m n : ℕ) (h : m + n ≤ l.length) :
+  List.drop m (List.take n l) = List.take n (List.drop m l) :=
+by
+  rw [List.take_eq_self_iff, List.drop_eq_self_iff]
+  split
+  - intros h1
+    have : n ≤ l.length := by linarith [h1, h]
+    rw [List.take_eq_self_of_le, List.drop_eq_self_of_le]
+  - intros h2
+    have : m ≤ l.length := by linarith [h2, h]
+    rw [List.take_eq_self_of_le, List.drop_eq_self_of_le]
+```
+
+FAMILY: List operations and their interactions with indices and lengths.

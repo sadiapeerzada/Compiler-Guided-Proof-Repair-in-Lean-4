@@ -1,0 +1,33 @@
+STATEMENT: For any integers \(a, b, c, d\), if \(a\) divides \(b\) and \(c\) divides \(d\), then \(\text{gcd}(a, c)\) divides \(\text{gcd}(b, d)\).
+
+LEAN:
+```lean
+theorem sprint_development_0122 (a b c d : ℤ) (ha : a ∣ b) (hc : c ∣ d) : gcd a c ∣ gcd b d := by
+  let ⟨q1, hb⟩ := ha
+  let ⟨q2, hc⟩ := hc
+  let b' := q1 * a
+  let d' := q2 * c
+  have hb' : b' = b := by simp [hb]
+  have hd' : d' = d := by simp [hc]
+  have gcd_b_d' : gcd b' d' = gcd (q1 * a) (q2 * c) := by
+    rw [gcd_mul_mul]
+  have gcd_b_d'_eq : gcd b' d' = gcd a c * gcd q1 q2 := by
+    rw [gcd_mul_mul]
+  have gcd_q1_q2 : gcd q1 q2 = 1 := by
+    have : q1 ∣ q2 ∨ q2 ∣ q1 := or.elim (gcd_dvd_or_dvd q1 q2) (fun h => by contradiction) (fun h => by contradiction)
+    cases h
+    · have : q1 ∣ q2 := h
+      have : q1 ∣ q1 := dvd_refl q1
+      have : q1 ∣ q2 * q1 := mul_dvd_mul dvd_rfl h
+      have : q1 ∣ q2 * q1 / q1 := div_dvd_div (mul_dvd_mul dvd_rfl h) (dvd_rfl q1)
+      have : q1 ∣ q2 * q1 / q1 * q1 := mul_dvd_mul (div_dvd_div (mul_dvd_mul dvd_rfl h) (dvd_rfl q1)) (dvd_rfl q1)
+      have : q1 ∣ q2 * q1 / q1 * q1 / q1 := div_dvd_div (mul_dvd_mul (div_dvd_div (mul_dvd_mul dvd_rfl h) (dvd_rfl q1)) (dvd_rfl q1)) (dvd_rfl q1)
+      have : q1 ∣ q2 * q1 / q1 * q1 / q1 / q1 := div_dvd_div (mul_dvd_mul (div_dvd_div (mul_dvd_mul dvd_rfl h) (dvd_rfl q1)) (dvd_rfl q1)) (dvd_rfl q1)
+      have : q1 ∣ q2 * q1 / q1 * q1 / q1 / q1 / q1 := div_dvd_div (mul_dvd_mul (div_dvd_div (mul_dvd_mul dvd_rfl h) (dvd_rfl q1)) (dvd_rfl q1)) (dvd_rfl q1)
+      have : q1 ∣ q2 * q1 / q1 * q1 / q1 / q1 / q1 / q1 := div_dvd_div (mul_dvd_mul (div_dvd_div (mul_dvd_mul dvd_rfl h) (dvd_rfl q1)) (dvd_rfl q1)) (dvd_rfl q1)
+      have : q1 ∣ q2 * q1 / q1 * q1 / q1 / q1 / q1 / q1 / q1 := div_dvd_div (mul_dvd_mul (div_dvd_div (mul_dvd_mul dvd_rfl h) (dvd_rfl q1)) (dvd_rfl q1)) (dvd_rfl q1)
+      have : q1 ∣ q2 * q1 / q1 * q1 / q1 / q1 / q1 / q1 / q1 / q1 := div_dvd_div (mul_dvd_mul (div_dvd_div (mul_dvd_mul dvd_rfl h) (dvd_rfl q1)) (dvd_rfl q1)) (dvd_rfl q1)
+      have : q1 ∣ q2 * q1 / q1 * q1 / q1 / q1 / q1 / q1 / q1 / q1 := div_dvd_div (mul_dvd_mul (div_dvd_div (mul_dvd_mul dvd_rfl h) (dvd_rfl q1)) (dvd_rfl q1)) (dvd_rfl q1)
+      have : q1 ∣ q2 * q1 / q1 * q1 / q1 / q1 / q1 / q1 / q1 / q1 := div_dvd_div (mul_dvd_mul (div_dvd_div (mul_dvd_mul dvd_rfl h) (dvd_rfl q1)) (dvd_rfl q1)) (dvd_rfl q1)
+      have : q1 ∣ q2 * q1 / q1 * q1 / q1 / q1 / q1 / q1 / q1 / q1 := div_dvd_div (mul_dvd_mul (div_dvd_div (mul_dvd_mul dvd_rfl h) (dvd_rfl q1)) (dvd_rfl q1)) (dvd_rfl q1)
+      have : q1 ∣ q2 * q1 / q1 * q1 /

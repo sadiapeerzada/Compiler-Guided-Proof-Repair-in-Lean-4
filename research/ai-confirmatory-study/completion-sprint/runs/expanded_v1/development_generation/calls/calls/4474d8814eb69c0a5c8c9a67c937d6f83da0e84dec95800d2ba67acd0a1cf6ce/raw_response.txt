@@ -1,0 +1,10 @@
+STATEMENT: For any natural numbers \(a\), \(b\), and \(n\), if \(a \equiv b \pmod{n}\), then \(a + c \equiv b + c \pmod{n}\) for any natural number \(c\).
+
+LEAN:
+```lean
+theorem sprint_development_0048 {a b c n : ℕ} (h : a ≡ b [MOD n]) : a + c ≡ b + c [MOD n] := by
+  rw [AddCommGroup.modEq_iff_natModEq]
+  rw [Nat.ModEq.refl]
+  rw [Nat.ModEq.symm h]
+  rw [Nat.ModEq.refl]
+```

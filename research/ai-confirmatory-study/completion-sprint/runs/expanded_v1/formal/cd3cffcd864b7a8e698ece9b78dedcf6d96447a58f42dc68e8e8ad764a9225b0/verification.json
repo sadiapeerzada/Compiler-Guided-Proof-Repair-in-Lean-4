@@ -1,0 +1,77 @@
+{
+  "axiom_dependencies": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "candidate_sha256": "41c7488b7833ee75b3c5e3b1ee79b5799793e7223846c7dbfa0c092e02418fac",
+  "compiler_stderr": "",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":4},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_cd3cffcd864b7a8e698ece9b78dedcf6d96447a58f42dc68e8e8ad764a9225b0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":4},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"Variable name `c` is not explicitly referenced.\\n\\nThe binding can be removed (if unused) or named `_` (if used implicitly).\\n\\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\",\"endPos\":{\"column\":65,\"line\":9},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_cd3cffcd864b7a8e698ece9b78dedcf6d96447a58f42dc68e8e8ad764a9225b0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"linter.unusedVariables\",\"pos\":{\"column\":64,\"line\":9},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.sprint_development_0078' depends on axioms: [propext, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":17},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_cd3cffcd864b7a8e698ece9b78dedcf6d96447a58f42dc68e8e8ad764a9225b0.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":17},\"severity\":\"information\"}\n",
+  "diagnostic_state": "available",
+  "diagnostic_text": null,
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 4
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_cd3cffcd864b7a8e698ece9b78dedcf6d96447a58f42dc68e8e8ad764a9225b0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 4
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "Variable name `c` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+      "endPos": {
+        "column": 65,
+        "line": 9
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_cd3cffcd864b7a8e698ece9b78dedcf6d96447a58f42dc68e8e8ad764a9225b0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "linter.unusedVariables",
+      "pos": {
+        "column": 64,
+        "line": 9
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.sprint_development_0078' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 17
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_cd3cffcd864b7a8e698ece9b78dedcf6d96447a58f42dc68e8e8ad764a9225b0.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 17
+      },
+      "severity": "information"
+    }
+  ],
+  "diagnostics_parsed": 3,
+  "elapsed_seconds": 24.215,
+  "errors": [],
+  "exit_code": 0,
+  "failure_kind": null,
+  "harness_variant": "rigid_declaration_type_and_universe_v1",
+  "malformed_diagnostics": [],
+  "rigid_variant_source_sha256": "51f1dd4a3c4352b846e3f651e777da91a893487502d8a9daccbb5a425a7e40ee",
+  "success": true,
+  "variant_source_sha256": "8ad8ab76d7d2c0a19cb2c598c70932519188b1098c02eb808db58ec2a2df88e7",
+  "verification_source_sha256": "74823605138541dbc333337a4f858ff056a486a09aca52a82deacef2235cac3b",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\ntheorem sprint_development_0078 {M : Type*} [CommMonoid M] {a b c : ℕ} (hab : a ≤ b) (f : ℕ → M) :\n  ∏ k ∈ Finset.Ico a (b + 1), f k = (∏ k ∈ Finset.Ico a b, f k) * f b := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem sprint_development_0078 {M : Type*} [CommMonoid M] {a b c : ℕ} (hab : a ≤ b) (f : ℕ → M) :\n  ∏ k ∈ Finset.Ico a (b + 1), f k = (∏ k ∈ Finset.Ico a b, f k) * f b :=\nby\n  rw [Finset.prod_Ico_succ_top hab f]\nend Nl2LeanCandidate\n\nexample : @Nl2LeanExpected.sprint_development_0078 = @Nl2LeanCandidate.sprint_development_0078 := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.sprint_development_0078\n\nrun_cmd do\n  let expectedInfo ← Lean.getConstInfo `Nl2LeanExpected.sprint_development_0078\n  let candidateInfo ← Lean.getConstInfo `Nl2LeanCandidate.sprint_development_0078\n  unless expectedInfo.levelParams.length == candidateInfo.levelParams.length do\n    throwError \"Fixed theorem universe-parameter arity mismatch\"\n  let candidateType := candidateInfo.type.instantiateLevelParams candidateInfo.levelParams (expectedInfo.levelParams.map Lean.Level.param)\n  Lean.Elab.Command.liftTermElabM do\n    unless (← Lean.Meta.isDefEq expectedInfo.type candidateType) do\n      throwError \"Fixed theorem closed declaration types differ\"\n"
+}

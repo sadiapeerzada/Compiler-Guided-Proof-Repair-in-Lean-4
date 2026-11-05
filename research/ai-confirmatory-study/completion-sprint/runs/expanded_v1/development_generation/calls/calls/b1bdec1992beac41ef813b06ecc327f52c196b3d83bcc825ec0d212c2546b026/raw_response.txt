@@ -1,0 +1,7 @@
+STATEMENT: For any list `l` of natural numbers and any function `f` that maps natural numbers to natural numbers, if `f` is injective and `l` is a list of distinct natural numbers, then the list `f l` is also a list of distinct natural numbers.
+
+LEAN:
+```lean
+theorem sprint_development_0005 {l : List Nat} {f : Nat → Nat} (hf : Function.Injective f) (hnodup : l.Nodup) : (f '' l).Nodup :=
+  List.Nodup.of_cons (f (l.head?)) (List.Nodup.of_cons (f (l.tail?)) (hf (hnodup (l.tail?))))
+```

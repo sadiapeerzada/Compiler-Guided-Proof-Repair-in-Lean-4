@@ -1,0 +1,60 @@
+{
+  "axiom_dependencies": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "candidate_sha256": "5751bed6c743ef6db43b96d1f8e37abd553303aa5df83493d79595189e1b7f6a",
+  "compiler_stderr": "",
+  "compiler_stdout": "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":31,\"line\":4},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_c82dd696aa52e01828cf98af80ead347442bc664d3ec44cab964e3766dcdd0d4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":4},\"severity\":\"warning\"}\n{\"caption\":\"\",\"data\":\"'Nl2LeanCandidate.sprint_development_0086' depends on axioms: [propext, Classical.choice, Quot.sound]\",\"endPos\":{\"column\":6,\"line\":14},\"fileName\":\"/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_c82dd696aa52e01828cf98af80ead347442bc664d3ec44cab964e3766dcdd0d4.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":14},\"severity\":\"information\"}\n",
+  "diagnostic_state": "available",
+  "diagnostic_text": null,
+  "diagnostics": [
+    {
+      "caption": "",
+      "data": "declaration uses `sorry`",
+      "endPos": {
+        "column": 31,
+        "line": 4
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_c82dd696aa52e01828cf98af80ead347442bc664d3ec44cab964e3766dcdd0d4.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "hasSorry",
+      "pos": {
+        "column": 8,
+        "line": 4
+      },
+      "severity": "warning"
+    },
+    {
+      "caption": "",
+      "data": "'Nl2LeanCandidate.sprint_development_0086' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "endPos": {
+        "column": 6,
+        "line": 14
+      },
+      "fileName": "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/lean_project/generated/_scratch/confirmatory_c82dd696aa52e01828cf98af80ead347442bc664d3ec44cab964e3766dcdd0d4.lean",
+      "isSilent": false,
+      "keepFullRange": false,
+      "kind": "[anonymous]",
+      "pos": {
+        "column": 0,
+        "line": 14
+      },
+      "severity": "information"
+    }
+  ],
+  "diagnostics_parsed": 2,
+  "elapsed_seconds": 25.166,
+  "errors": [],
+  "exit_code": 0,
+  "failure_kind": null,
+  "harness_variant": "rigid_declaration_type_and_universe_v1",
+  "malformed_diagnostics": [],
+  "rigid_variant_source_sha256": "51f1dd4a3c4352b846e3f651e777da91a893487502d8a9daccbb5a425a7e40ee",
+  "success": true,
+  "variant_source_sha256": "8ad8ab76d7d2c0a19cb2c598c70932519188b1098c02eb808db58ec2a2df88e7",
+  "verification_source_sha256": "78a848bfd0284debfe9450e2d6259f3a5349cdbac78b1b1038e1e4c5cc16339c",
+  "verification_source_text": "import Mathlib\n\nnamespace Nl2LeanExpected\ntheorem sprint_development_0086 {α : Type u_1} {l₁ l₂ : List α} [DecidableEq α] : l₁.Subperm l₂ ↔ ∀ (a : α), List.count a l₁ ≤ List.count a l₂ := by sorry\nend Nl2LeanExpected\n\nnamespace Nl2LeanCandidate\ntheorem sprint_development_0086 {α : Type u_1} {l₁ l₂ : List α} [DecidableEq α] : l₁.Subperm l₂ ↔ ∀ (a : α), List.count a l₁ ≤ List.count a l₂ := by\n  rw [List.subperm_iff_count]\nend Nl2LeanCandidate\n\nexample : @Nl2LeanExpected.sprint_development_0086 = @Nl2LeanCandidate.sprint_development_0086 := by\n  exact Subsingleton.elim _ _\n#print axioms Nl2LeanCandidate.sprint_development_0086\n\nrun_cmd do\n  let expectedInfo ← Lean.getConstInfo `Nl2LeanExpected.sprint_development_0086\n  let candidateInfo ← Lean.getConstInfo `Nl2LeanCandidate.sprint_development_0086\n  unless expectedInfo.levelParams.length == candidateInfo.levelParams.length do\n    throwError \"Fixed theorem universe-parameter arity mismatch\"\n  let candidateType := candidateInfo.type.instantiateLevelParams candidateInfo.levelParams (expectedInfo.levelParams.map Lean.Level.param)\n  Lean.Elab.Command.liftTermElabM do\n    unless (← Lean.Meta.isDefEq expectedInfo.type candidateType) do\n      throwError \"Fixed theorem closed declaration types differ\"\n"
+}

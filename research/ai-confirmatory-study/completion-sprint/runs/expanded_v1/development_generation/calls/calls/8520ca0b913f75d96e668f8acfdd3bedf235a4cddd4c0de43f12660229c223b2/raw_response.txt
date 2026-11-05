@@ -1,0 +1,19 @@
+STATEMENT: For any injective function \( f : \mathbb{N} \to \mathbb{N} \) and any finite set \( s \subseteq \mathbb{N} \), the image \( f(s) \) is a subset of \( s \).
+
+LEAN:
+```lean
+theorem sprint_development_0104 (f : ℕ → ℕ) (s : Finset ℕ) (hf : Function.Injective f) : f(s) ⊆ s :=
+  by
+    intros x hx
+    have : x ∈ s := hx
+    have : f x ∈ Finset.map f s := Finset.mem_map'.mp this hf
+    rw [Finset.map_val] at this
+    have : f x ∈ Multiset.map (⇑f) s.val := this
+    have : ∃ a ∈ s, f a = f x := Finset.mem_map.mp this
+    rcases this with ⟨a, ha, hf'⟩
+    have : a = x := hf hf' ha
+    rw [hf'] at ha
+    exact ha
+```
+
+FAMILY: Subset relation

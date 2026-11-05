@@ -1,0 +1,15 @@
+STATEMENT: For any injective function f : α → β and any finite set s : Finset α, the image of s under f is a subset of the image of the range of f.
+
+LEAN:
+```lean
+theorem sprint_development_0072 {α : Type*} {β : Type*} (f : α → β) (s : Finset α) (hf : Function.Injective f) :
+  Finset.image f s ⊆ Finset.image f (Finset.range f) :=
+by
+  intros x hx
+  rw [Finset.mem_image]
+  use Finset.mem_range_of_mem f s hx
+  rw [Finset.mem_image]
+  exact hf hx
+```
+
+FAMILY: Subset relation
