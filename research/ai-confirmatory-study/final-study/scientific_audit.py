@@ -122,6 +122,9 @@ def audit():
             if stage=='development_repairs':check(m['prompt_tokens']==4096,'actual_CDE_inputs_exactly_4096_tokens')
             check(m['logical_generations']==1 and not m['retry_events'],'one_actual_generation_per_charged_completion')
             started=read(call/'call_started.json');ended=read(call/'call_finished.json');clock_record=read(folder/'phase_clock.json')
+            if resource:
+                release=read(call/'resource_release_before_compiler.json')
+                check(release['source_freeze_sha256']==resource and release['model_client_closed'] is True and release['MLX_allocator_cache_cleared'] is True and release['epoch']>=ended['epoch'],'actual_resource_release_receipt_after_durable_response')
             check(started['phase_clock']==clock_record,'original_phase_clock_preserved')
             check(clock_record['started_epoch']<=started['epoch']<=ended['epoch']<=clock_record['started_epoch']+clock_record['max_runtime_seconds'],'actual_call_times_within_phase_deadline')
             streams=list((call/'stream').glob('*.jsonl'));check(len(streams)==1,'one_stream_per_actual_completion')
