@@ -68,6 +68,12 @@ def audit():
         check(len(ledger)<=spec['max_calls'],'per_phase_call_caps')
         check(len({content_hash(r['key']) for r in ledger})==len(ledger),'no_duplicate_charged_keys')
         if stage=='reference_repair':check(len({r['key']['key']['id'] for r in ledger})==len(ledger),'at_most_one_reference_repair_per_candidate')
+        tokenizer=None
+        if ledger:
+            from transformers import AutoTokenizer
+            model=protocol()['models'][spec['model_key']];view=HERE/'model_views'/(model['revision']+'.json')
+            snapshot=HERE/read(view)['view_path'] if view.exists() else Path.home()/'.cache/huggingface/hub'/model['cache_name']/'snapshots'/model['revision']
+            tokenizer=AutoTokenizer.from_pretrained(str(snapshot),local_files_only=True,trust_remote_code=False)
         if ledger and used[stage] not in checked:
             try:frozen(used[stage]);check(True,'used_source_and_input_freezes_unchanged')
             except (ValueError,FileNotFoundError):check(False,'used_source_and_input_freezes_unchanged:'+used[stage])
@@ -77,6 +83,8 @@ def audit():
             call=folder/'calls/calls'/content_hash(event['key']);intent=read(call/'intent.json');prompt=actual_prompt(stage,event['key'])
             check(content_hash(intent)==event['intent_sha256'],'durable_intent_hashes')
             check(text_hash(prompt)==intent['prompt_sha256'],'exact_prompt_hashes')
+            rendered=tokenizer.apply_chat_template([{'role':'user','content':prompt}],tokenize=False,add_generation_prompt=True)
+            check(len(tokenizer.encode(rendered,add_special_tokens=False))==intent['prompt_tokens_reserved'],'independently_recounted_rendered_input_tokens')
             check(intent['prompt_tokens_reserved']<=4096 and intent['output_tokens_reserved']==1200,'reserved_token_caps')
             check(intent['key']==event['key'],'intent_key_binding')
             cp=call/'completion.json'
@@ -86,6 +94,7 @@ def audit():
             completed+=1;m=c['metadata'];input_sum+=m['prompt_tokens'];output_sum+=m['completion_tokens'];model=protocol()['models'][spec['model_key']]
             check((call/'raw_response.txt').read_bytes()==c['content'].encode(),'raw_response_bytes_match_completion')
             check(m['prompt_sha256']==text_hash(prompt),'model_prompt_hash_binding')
+            check(m['rendered_chat_text']==rendered and m['rendered_chat_sha256']==text_hash(rendered),'actual_rendered_chat_matches_pinned_tokenizer')
             check(m['model']==model['id'] and m['snapshot_revision']==model['revision'],'actual_model_identity')
             check(m['prompt_tokens']<=4096 and m['completion_tokens']<=1200 and m['max_completion_tokens']==1200,'actual_token_caps')
             if stage=='development_repairs':check(m['prompt_tokens']==4096,'actual_CDE_inputs_exactly_4096_tokens')

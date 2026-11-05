@@ -44,6 +44,7 @@ def main():
     for r in audit_rows:r['scope']='Bounded automated/AI screening; nonexhaustive equivalence and pretraining exposure'
     csv_(out/'historical_overlap_audit.csv',audit_rows,['id','automated_flags','pretraining_contamination','scope'])
     dump(out/'development_resource_usage.json',usage(('development_initial','development_repairs')))
+    dump(out/'consolidated_resource_usage.json',usage(tuple(read(HERE/'resource_authorization.json')['stages'])))
     from scientific_audit import recorded_analysis,permit,load_core
     data=[];analysis={'status':'NO_EXECUTED_DATA'}
     if (out/'development_gate_status.json').exists() and read(out/'development_gate_status.json')['status']=='READY_FOR_DEVELOPMENT':
