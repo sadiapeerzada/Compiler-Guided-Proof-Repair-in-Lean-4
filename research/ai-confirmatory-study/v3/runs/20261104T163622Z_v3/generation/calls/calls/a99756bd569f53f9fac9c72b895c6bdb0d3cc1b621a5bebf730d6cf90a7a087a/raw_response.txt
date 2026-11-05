@@ -1,0 +1,13 @@
+STATEMENT: For any two finite lists `l1` and `l2`, the concatenation of `l1` reversed with `l2` reversed is equal to the reverse of the concatenation of `l1` and `l2`.
+
+LEAN:
+```lean
+theorem v3_gen_005 {α : Type _} (l1 l2 : List α) : (l1.reverse ++ l2.reverse).reverse = (l1 ++ l2).reverse := by
+  induction l1 with
+  | nil =>
+    simp [List.reverse, List.append]
+  | cons x xs ih =>
+    simp [List.reverse, List.append, ih]
+```
+
+FAMILY: List Reversal and Concatenation

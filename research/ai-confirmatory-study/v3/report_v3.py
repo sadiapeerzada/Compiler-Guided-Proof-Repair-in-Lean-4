@@ -34,7 +34,7 @@ actual failed repair, three other indices were skipped before inference because
 that record exceeded the input cap. A separately frozen development-only prompt
 amendment projected complete structured error messages (data, kind, severity and
 positions), omitting duplicated stdout, verifier harness source and warnings.
-No error message was truncated. Offline token checks were854/909/908 for the three
+No error message was truncated. Offline token checks were 854/909/908 for the three
 prompts, with exact preservation of every error message. This was an explicitly
 recorded technical change after original outcomes, not a prospective unchanged
 prompt comparison. Original source locks and skip records remain untouched.
@@ -45,6 +45,15 @@ Merged outcome views include amended records; original_prompt_variant_summary.js
 preserves the separate original prompt variant summary. Rebuild using this report
 script after pipeline summarization, not the original summarizer alone.
 '''
+    initial_by_index={r['index']:r for r in records['generation']}
+    change_audit=[]
+    for r in records['reference_repair']:
+        if r.get('evaluated_source'):
+            c=initial_by_index[r['index']]['candidate'];prefix=c['expected_lean_statement']+' := '
+            ensure(r['evaluated_source'].startswith(prefix),'Repair target changed')
+            proof=r['evaluated_source'][len(prefix):]
+            change_audit.append(dict(index=r['index'],target_sha256=c['statement_sha256'],initial_source_sha256=c['proof_sha256'],repair_source_sha256=text_hash(r['evaluated_source']),identical_proof_block=proof.strip()==c['proof_block'].strip(),strict_success=r.get('verification',{}).get('success')))
+    dump(out/'repair_change_audit.json',dict(records=change_audit,scope='Byte equality of trimmed proof blocks, not mathematical-equivalence analysis'))
     screens=[]
     for c,within in zip(verified,cohort_flags(verified)):
         r=screen(dict(c,source_url='Locally AI generated in V3; upstream sources unassessed',license='Model/upstream rights unassessed',library_dependencies=[]))
@@ -108,8 +117,8 @@ ran. Formal success alone is not semantic fidelity, novelty or benchmark eligibi
 
 Starting commit: `14e9a450`; pre-inference implementation commit: `1b3b85c8`.
 Run: `{p['run_id']}`. The user explicitly authorized “10 generation calls and up
-to 10 reference-proof repair calls,” each at most4,096 input/1,200 output tokens,
-with a30-minute generation phase and a separate30-minute repair phase. At most one
+to 10 reference-proof repair calls,” each at most 4,096 input/1,200 output tokens,
+with a 30-minute generation phase and a separate 30-minute repair phase. At most one
 repair is allowed per candidate. No V1/V2 budget or expired deadline was reused.
 {interruption_note}
 Protocol SHA-256: `{sha(HERE/'protocol_v3.json')}`.
@@ -161,11 +170,16 @@ substituted, and no assumption or theorem target is weakened.
 Initial structure/verification rejections: `{g['rejection_reasons']}`.
 Repair rejections: `{r['rejection_reasons']}`.
 
+Of {len(change_audit)} structurally valid repair responses,
+{sum(c['identical_proof_block'] for c in change_audit)} repeat the original proof
+block exactly after boundary-whitespace removal. See repair_change_audit.json.
+An additional response is not counted as an improvement without strict verification.
+
 {amendment_note}
 
 Strict verification uses pinned Lean4.32.0/Mathlib
 `{p['environment']['lean']['mathlib_revision']}`, import Mathlib, the unchanged
-exact-type harness and axiom policy, and a180-second check timeout. Syntax acceptance
+exact-type harness and axiom policy, and a 180-second check timeout. Syntax acceptance
 alone is not kernel acceptance. Every exported proof is labelled
 FORMALLY_VERIFIED_PENDING_AI_REVIEW; repaired proofs retain their construction path.
 
@@ -199,9 +213,11 @@ C/D/E needs accepted subjects, eligible diagnostics from distinct families, a
 frozen execution protocol and separate authorization. Its calls, paired outcomes,
 effects and confidence intervals are absent, not fabricated as zero benefit. A
 future untouched test needs a fresh separately frozen stream and authorization;
-no inspected V1, V2 or V3 output may be promoted to it. If zero proofs verify, the
-immediate mathematical-evidence objective remains unmet; failed/truncated responses
-and exact compiler records define the next version rather than an unlimited loop.
+no inspected V1, V2 or V3 output may be promoted to it. The immediate formal-proof
+objective is met for {len(verified)} development candidates; the larger benchmark
+and C/D/E study remain incomplete. Reference repair added no verified proofs in
+this run. Failed/truncated responses and exact compiler records define any next
+version rather than an unlimited generation or repair loop.
 
 ## Reproducibility and preservation
 

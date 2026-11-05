@@ -89,3 +89,17 @@ Preparation is exclusive and refuses to overwrite an existing amendment. Do not
 reset or recreate it after expiration. `report_v3.py` merges its canonical outcomes
 with the original prompt variant, while preserving that variant's separate summary.
 Run the report after `pipeline_v3.py summarize` to restore the complete merged view.
+
+Validation commands executed from the repository root:
+
+```sh
+.venv/bin/python -m pytest -q tests research/confirmatory-study/tests research/ai-confirmatory-study/tests research/ai-confirmatory-study/v2/tests research/ai-confirmatory-study/v3/tests analysis/taimma_20261104 analysis/taimma_supervisor_final analysis/taimma_final_professor_validation -k 'not real_lean and not provenance_counts_and_read_only_scope'
+.venv/bin/python -m pytest -q tests/test_verify.py -k real_lean
+```
+
+The regression run passed 361 tests and 28 subtests, with three deselections. Two
+real-Lean fixtures were executed separately and both passed. The third exclusion
+is the unchanged historical blanket assertion prohibiting any new research files,
+which conflicts with this explicitly requested study. Preservation is independently
+checked against historical file hashes and symlink targets. Actual generation and
+repair verification records are separate from these synthetic test fixtures.

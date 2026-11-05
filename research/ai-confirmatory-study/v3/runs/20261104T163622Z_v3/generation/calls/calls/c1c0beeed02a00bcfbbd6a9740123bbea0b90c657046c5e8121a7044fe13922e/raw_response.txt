@@ -1,0 +1,19 @@
+STATEMENT: For any natural numbers \(a\), \(b\), and \(c\), if \(a \geq b\) and \(a \geq c\), then \(a \geq b + c\).
+
+LEAN:
+```lean
+theorem v3_gen_003 (a b c : Nat) (h1 : a ≥ b) (h2 : a ≥ c) : a ≥ b + c := by
+  have h3 : a - b ≥ 0 := by
+    linarith [h1]
+  have h4 : a - c ≥ 0 := by
+    linarith [h2]
+  have h5 : (a - b) + (a - c) ≥ a := by
+    linarith [h3, h4]
+  have h6 : a + (a - b - c) ≥ a := by
+    linarith [h5]
+  have h7 : a ≥ b + c := by
+    linarith [h6]
+  exact h7
+```
+
+FAMILY: Inequality Preservation
