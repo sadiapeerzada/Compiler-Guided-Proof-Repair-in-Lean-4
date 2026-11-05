@@ -15,8 +15,12 @@ def fresh_review_input():
     ensure(all(c.get('reference_validation_variant')=='rigid_declaration_type_and_universe_v1' for c in verified),'NO_GO_VALIDATION: every fresh reference needs rigid type/universe validation before review')
     from overlap import fingerprint
     seen={fingerprint(c['expected_lean_statement']):c['id'] for c in exposed};kept=[];excluded=[]
+    concerns={r['id']:r for r in read(run_root()/'assistant_audit_concerns.json')} if (run_root()/'assistant_audit_concerns.json').exists() else {}
     for c in sorted(verified,key=lambda r:content_hash(['prospective-duplicate-representative',r['id']])):
         from overlap import flags,fingerprint
+        if c['id'] in concerns:
+            ensure(concerns[c['id']]['raw_response_sha256']==c['generation_provenance']['raw_response_sha256'],'Concern belongs to different raw response')
+            excluded.append(dict(id=c['id'],reason='unresolved_assistant_source_audit: '+concerns[c['id']]['reason'],not_AI_reviewer_decision=True));continue
         exposure_flags=flags(c)
         if exposure_flags:excluded.append(dict(id=c['id'],reason='; '.join(exposure_flags)));continue
         normalized=fingerprint(c['expected_lean_statement'])

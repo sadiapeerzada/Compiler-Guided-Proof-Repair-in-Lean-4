@@ -24,9 +24,9 @@ def main():
     out=run_root();g=rows(out/'generation/records.jsonl');repairs=rows(out/'reference_repair/records.jsonl');verified=read(out/'fresh_verified_raw_v2.json') if (out/'fresh_verified_raw_v2.json').exists() else []
     exclusions=[]
     for r in g:
-        if r.get('verification',{}).get('success') is not True:exclusions.append(dict(id=f"final_dev_{r['index']:04d}",stage='original_generation_intake',reason=r.get('reason',r['status']),historical_outcome_unchanged=True))
+        if r.get('verification',{}).get('success') is not True:exclusions.append(dict(id=f"final_dev_{r['index']:04d}",stage='original_generation_intake',reason=r.get('reason') or ('reference_verification_'+str(r['verification'].get('failure_kind')) if 'verification' in r else r['status']),verification_errors=r.get('verification',{}).get('errors'),historical_outcome_unchanged=True))
     for r in repairs:
-        if r.get('verification',{}).get('success') is not True:exclusions.append(dict(id=f"final_dev_{r['index']:04d}",stage='reference_repair',reason=r.get('reason',r['status'])))
+        if r.get('verification',{}).get('success') is not True:exclusions.append(dict(id=f"final_dev_{r['index']:04d}",stage='reference_repair',reason=r.get('reason') or ('reference_verification_'+str(r['verification'].get('failure_kind')) if 'verification' in r else r['status']),verification_errors=r.get('verification',{}).get('errors')))
     for name,stage in (('pre_review_exclusions.json','prereview_exposure'),('development_ai_quarantined_candidates.json','fresh_AI_adjudication'),('v3_ai_quarantined_candidates.json','V3_AI_adjudication')):
         for r in read(out/name) if (out/name).exists() else []:exclusions.append(dict(id=r.get('id',r.get('candidate',{}).get('id')),stage=stage,reason=r.get('reason','; '.join(r.get('reasons',[])))))
     jsonl(out/'candidate_exclusions.jsonl',exclusions);csv_(out/'candidate_exclusion_registry.csv',[{k:r[k] for k in ('id','stage','reason')} for r in exclusions],['id','stage','reason'])
@@ -41,6 +41,7 @@ def main():
         if path.exists():
             import csv
             audit_rows.extend(csv.DictReader(path.open()))
+    for r in read(out/'pre_review_exclusions.json') if (out/'pre_review_exclusions.json').exists() else []:audit_rows.append(dict(id=r['id'],automated_flags=r['reason'],pretraining_contamination='UNASSESSED'))
     for r in audit_rows:r['scope']='Bounded automated/AI screening; nonexhaustive equivalence and pretraining exposure'
     csv_(out/'historical_overlap_audit.csv',audit_rows,['id','automated_flags','pretraining_contamination','scope'])
     dump(out/'development_resource_usage.json',usage(('development_initial','development_repairs')))
