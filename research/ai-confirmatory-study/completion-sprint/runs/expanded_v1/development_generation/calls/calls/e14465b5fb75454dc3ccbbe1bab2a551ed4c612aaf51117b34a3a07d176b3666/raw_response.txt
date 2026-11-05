@@ -1,0 +1,20 @@
+STATEMENT: For any lists `l₁` and `l₂` of elements of type `α`, if `l₁` is a subpermutation of `l₂` and `l₂` is a subpermutation of `l₁`, then `l₁` is equal to `l₂`.
+
+LEAN:
+```lean
+theorem sprint_development_0118 {α : Type*} {l₁ l₂ : List α} : l₁.Subperm l₂ → l₂.Subperm l₁ → l₁ = l₂ :=
+  by
+  intro h1 h2
+  have h3 : ∀ (a : α), List.count a l₁ ≤ List.count a l₂ := by
+    apply List.subperm_iff_count.1 h1
+  have h4 : ∀ (a : α), List.count a l₂ ≤ List.count a l₁ := by
+    apply List.subperm_iff_count.1 h2
+  have h5 : ∀ (a : α), List.count a l₁ = List.count a l₂ := by
+    intro a
+    exact le_antisymm h3 h4
+  have h6 : l₁ = l₂ := by
+    apply List.count_eq_count.1 h5
+  exact h6
+```
+
+FAMILY: Subpermutation relation

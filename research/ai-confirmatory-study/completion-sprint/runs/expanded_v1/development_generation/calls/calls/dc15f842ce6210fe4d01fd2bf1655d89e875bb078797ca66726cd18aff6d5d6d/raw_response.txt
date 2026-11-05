@@ -1,0 +1,9 @@
+STATEMENT: For any finite interval [a, b] and any function f from natural numbers to a commutative monoid M, the sum of f over the interval [a, b] is equal to the sum of f over the interval [a + 1, b + 1] minus f(a).
+
+LEAN:
+```lean
+theorem sprint_development_0030 {M : Type*} [CommMonoid M] (f : ℕ → M) (a b : ℕ) (hab : a ≤ b) : 
+  ∏ k ∈ Finset.Ico a (b + 1), f k = (∏ k ∈ Finset.Ico a b, f k) * f b :=
+by
+  rw [Finset.prod_Ico_succ_top hab]
+```

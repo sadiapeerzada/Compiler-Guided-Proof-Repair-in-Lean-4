@@ -1,7 +1,7 @@
-# Completion sprint — authorized expanded exploratory run
+# Completion sprint — construction completed; data gate blocked
 
 Started from fetched `main` at9be2360b on
-`research/final-cde-confirmatory-completion`. Fresh inference is running under the
+`research/final-cde-confirmatory-completion`. The authorized construction and reviews completed under the
 explicit expanded allocation recorded in `resource_authorization.json`.
 The previous development run is permanently closed; its files, clocks, ledgers,
 rejections and qualified decisions are preserved.
@@ -64,3 +64,13 @@ Read-only source/data audit (does not run model inference):
 unchanged strict Boolean review policy and invokes C/D/E only if eligible
 distinct families exist. Held-out inference remains gated on actual paired
 development results and a prospectively frozen, disjoint test stream.
+
+Final recorded outcome: 120 generation calls, 42 structurally valid responses,
+three strict reference proofs, six review calls, one raw qualified dual-AI
+acceptance and zero fresh eligible subjects after unresolved statement concerns.
+Only the unchanged prior development family remained. The two-family gate
+blocked all initial/C/D/E and test inference. Total fresh calls:126, no unknowns.
+See [the results report](../FINAL_CDE_CONFIRMATORY_RESULTS.md),
+`final_recorded_consistency_audit.json` and `review_outcomes.json`. The scientific
+objective remains blocked; passing infrastructure checks is not completion of
+the requested C/D/E and untouched-test experiments.

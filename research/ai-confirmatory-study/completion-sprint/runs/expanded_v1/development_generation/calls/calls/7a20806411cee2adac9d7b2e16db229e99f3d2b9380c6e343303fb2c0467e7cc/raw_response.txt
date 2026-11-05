@@ -1,0 +1,8 @@
+STATEMENT: For any list `l` of natural numbers and a relation `R` that is symmetric and reflexive, if `l` is pairwise related under `R`, then for any two distinct elements `x` and `y` in `l`, `R x y` holds.
+
+LEAN:
+```lean
+theorem sprint_development_0004 {α : Type u_3} [hRefl : Std.Refl α] [hSymm : Std.Symm α] (l : List α) (R : α → α → Prop) (hPairwise : List.Pairwise R l) (x y : α) (hx : x ∈ l) (hy : y ∈ l) (hxy : x ≠ y) : R x y := by
+  have hxy' : y ≠ x := by rw [hSymm] at hxy; assumption
+  exact List.Pairwise.forall hPairwise hx hy hxy'
+```

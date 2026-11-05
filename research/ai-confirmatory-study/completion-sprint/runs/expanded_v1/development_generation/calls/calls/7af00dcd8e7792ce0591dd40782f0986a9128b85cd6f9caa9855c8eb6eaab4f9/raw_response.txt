@@ -1,0 +1,7 @@
+STATEMENT: For any list `l` of natural numbers and a relation `R` that is symmetric and transitive, if `l` is pairwise related under `R`, then for any two distinct elements `x` and `y` in `l`, `R x y` holds.
+
+LEAN:
+```lean
+theorem sprint_development_0020 {α : Type u_3} [hα : ∀ x : α, x = x] [htrans : ∀ x y z : α, R x y → R y z → R x z] {l : List α} [hpairwise : List.Pairwise R l] {x y : α} (hx : x ∈ l) (hy : y ∈ l) (hne : x ≠ y) : R x y :=
+  htrans (hpairwise hx hy hne) (hpairwise hy hx hne)
+```

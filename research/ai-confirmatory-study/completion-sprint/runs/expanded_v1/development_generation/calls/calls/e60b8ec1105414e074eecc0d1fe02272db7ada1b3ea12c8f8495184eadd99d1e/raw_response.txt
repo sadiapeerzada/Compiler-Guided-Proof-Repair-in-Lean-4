@@ -1,0 +1,20 @@
+STATEMENT: For any integers \(a\), \(b\), and \(c\), if \(a\) divides \(b\) and \(b\) divides \(c\), then \(a\) divides \(c\).
+
+LEAN:
+```lean
+theorem sprint_development_0106 (a b c : ℤ) (h1 : a ∣ b) (h2 : b ∣ c) : a ∣ c :=
+  by
+    have h3 : ∃ k, b = a * k := by
+      cases h1 with k' hk'
+      exact exists.intro k' hk'
+    have h4 : ∃ l, c = b * l := by
+      cases h2 with l' hl'
+      exact exists.intro l' hl'
+    obtain (k : ℤ) (hk : b = a * k) from h3
+    obtain (l : ℤ) (hl : c = b * l) from h4
+    have h5 : c = a * (k * l) := by
+      rw [hl, hk]
+    exact dvd.intro (k * l) h5
+```
+
+FAMILY: Divisibility relation

@@ -1,0 +1,12 @@
+STATEMENT: For any lists `l₁` and `l₂` of equal length, the projection of the zip of `l₁` and `l₂` onto the first component is equal to `l₁`.
+
+LEAN:
+```lean
+theorem sprint_development_0099 {α : Type} {β : Type} (l₁ : List α) (l₂ : List β) (h : l₁.length = l₂.length) :
+  List.map Prod.fst (l₁.zip l₂) = l₁ :=
+  by
+    rw [List.zipWith_zipWith_left (fun _ _ => Prod.fst) (fun x => x) l₁ l₂ (List.map Prod.fst l₂) h]
+    simp
+```
+
+FAMILY: Projection of zipped lists

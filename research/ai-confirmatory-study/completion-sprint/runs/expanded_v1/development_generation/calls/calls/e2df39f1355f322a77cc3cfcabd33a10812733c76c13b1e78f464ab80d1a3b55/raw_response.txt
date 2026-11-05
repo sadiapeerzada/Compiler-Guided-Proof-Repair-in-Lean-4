@@ -1,0 +1,18 @@
+STATEMENT: For any non-empty finite set of integers \( S \) and any integer \( c \), the sum of the elements in \( S \) is equal to the sum of the elements in \( S \) shifted by \( c \) plus \( c \) times the number of elements in \( S \).
+
+LEAN:
+```lean
+theorem sprint_development_0062 {S : Finset ℤ} (hS : S ≠ ∅) (c : ℤ) : ∑ x in S, x = ∑ x in S, x + c + c * Finset.card S := by
+  let n := Finset.card S
+  have hne : n ≠ 0 := by
+    rw [Finset.card_eq_zero]
+    exact hS
+  have hsum : ∑ x in S, x = ∑ x in S, x + c := by
+    rw [Finset.sum_add_distrib]
+    simp only [Finset.sum_const, Finset.sum_add_distrib, Finset.sum_const, Finset.card_eq_zero.1 hne]
+  have hsum' : ∑ x in S, x + c = ∑ x in S, x + c + c * n := by
+    rw [Finset.sum_add_distrib]
+    simp only [Finset.sum_const, Finset.sum_add_distrib, Finset.sum_const, Finset.card_eq_zero.1 hne]
+  rw [hsum, hsum']
+  simp only [Finset.sum_const, Finset.card_eq_zero.1 hne]
+```

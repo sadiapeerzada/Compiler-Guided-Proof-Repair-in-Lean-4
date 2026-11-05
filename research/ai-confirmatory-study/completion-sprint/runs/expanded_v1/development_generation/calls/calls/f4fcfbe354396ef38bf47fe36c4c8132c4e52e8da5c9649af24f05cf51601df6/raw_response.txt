@@ -1,0 +1,17 @@
+STATEMENT: For any integers \(a, b, c, d\) such that \(a \mid b\) and \(c \mid d\), then \((a \cdot c) \mid (b \cdot d)\).
+
+LEAN:
+```lean
+theorem sprint_development_0010 (a b c d : ℤ) (ha : a ∣ b) (hc : c ∣ d) : (a * c) ∣ (b * d) :=
+  by
+    rw [ha, hc]
+    cases ha
+    cases hc
+    have h1 : ∃ k : ℤ, b = a * k by linarith
+    have h2 : ∃ l : ℤ, d = c * l by linarith
+    cases h1
+    cases h2
+    have h3 : b * d = (a * k) * (c * l) by rw [h3]
+    have h4 : (a * c) ∣ (a * k * c * l) by rw [h4]
+    exact h4
+```

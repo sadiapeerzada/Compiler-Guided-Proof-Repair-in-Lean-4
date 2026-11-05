@@ -1,0 +1,12 @@
+STATEMENT: If the union of two finite sets is disjoint from a third set, then the union of the first two sets is disjoint from the third set.
+
+LEAN:
+```lean
+theorem sprint_development_0073 {α : Type*} {β : Type*} {γ : Type*} (s : Finset α) (t : Finset β) (u : Finset γ) (h : s.disjoint u) (h' : t.disjoint u) : (s ∪ t).disjoint u := by
+  intros x hx
+  cases hx
+  case Or.inl hx => contradiction from h hx
+  case Or.inr hx => contradiction from h' hx
+```
+
+FAMILY: disjointness relation

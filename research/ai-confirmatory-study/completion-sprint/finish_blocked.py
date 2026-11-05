@@ -17,15 +17,20 @@ def main():
     structural=[r for r in records if r['status']=='STRUCTURALLY_VALID']
     verified=[r for r in structural if r['verification'].get('success') is True]
     accepted=read(RUN/'development_ai_accepted.json');selected=read(RUN/'development_selected.json')
+    review_maps=[{r['id']:r for r in rows(RUN/f'development_review_{i}/reviews.jsonl')} for i in (1,2)]
+    both_ai_accept=sum(all(m.get(c['id'],{}).get('decision')=='ACCEPT' and not m.get(c['id'],{}).get('parse_error') for m in review_maps) for c in read(RUN/'development_review_input/fresh_verified.json'))
+    dump(HERE/'review_outcomes.json',dict(raw_valid_dual_ai_acceptances=both_ai_accept,eligible_after_critical_concerns=len(accepted),quarantined=read(RUN/'development_ai_quarantined.json'),reviewers=[list(m.values()) for m in review_maps]))
     rejected=Counter(r.get('reason','unspecified') for r in records if r['status']=='STRUCTURE_REJECTED')
     inventory=[]
     for r in records:
         inventory.append(dict(id=r['id'],prompt_version=r.get('prompt_version','v1'),family=r['canonical_family'],structure=r['status'],strict_verified=r.get('verification',{}).get('success'),reason=r.get('reason',''),pre_review_flags=json.dumps(r.get('pre_review_flags',[])),source_call=r.get('source_call','')))
     with (HERE/'generation_outcomes.csv').open('w',newline='') as f:
-        writer=csv.DictWriter(f,fieldnames=list(inventory[0]));writer.writeheader();writer.writerows(inventory)
+        writer=csv.DictWriter(f,fieldnames=list(inventory[0]),lineterminator="\n");writer.writeheader();writer.writerows(inventory)
     stages=result['stages'];calls=result['actual_charged_calls'];inputs=sum(s['input_tokens_observed'] for s in stages.values());outputs=sum(s['output_tokens_observed'] for s in stages.values())
     table='\n'.join(f"| {k} | {v['charged']} | {v['completed']} | {v['unknown']} | {v['max_calls']} |" for k,v in stages.items())
+    review_table='\n'.join(f"| {c['id']} | {review_maps[0][c['id']]['decision']} | {review_maps[1][c['id']]['decision']} | Excluded: source-bound statement concern |" for c in read(RUN/'development_review_input/fresh_verified.json'))
     families=len({c['canonical_family'] for c in selected})
+    runtime_table='\n'.join(f"| {k} | {v['observed_call_span_seconds']:.1f} | {v['observed_call_latency_seconds']:.1f} | {v['reported_max_mlx_peak_memory_gb']:.3f} |" for k,v in stages.items() if v['charged'])
     latency=sum(v['observed_call_latency_seconds'] for v in stages.values());peaks=[v['reported_max_mlx_peak_memory_gb'] for v in stages.values() if v['reported_max_mlx_peak_memory_gb'] is not None];peak=max(peaks) if peaks else None
     model_lines='\n'.join(f"- {k}: `{m['id']}` at `{m['revision']}`." for k,m in read(HERE/'resource_authorization.json')['models'].items())
     report=f'''# Final C/D/E completion sprint: PARTIAL, data gate BLOCKED
@@ -38,8 +43,9 @@ This is a negative construction result, not evidence of a repair treatment effec
 
 - Fresh generation calls: {len(records)}; structurally valid: {len(structural)};
   strictly kernel-verified reference proofs: {len(verified)}.
-- Fresh dual-AI-qualified candidates: {len(accepted)}. Frozen development cohort:
-  {len(selected)} types in {families} families, including unchanged old development
+- Raw valid dual-AI acceptances: {both_ai_accept}; eligible fresh candidates after
+  unresolved critical concerns: {len(accepted)}. Frozen development cohort:
+  {len(selected)} {'subject' if len(selected)==1 else 'subjects'} in {families} independent {'family' if families==1 else 'families'}, including unchanged old development
   evidence where explicitly marked. No new human mathematical approval is claimed.
 - Actual gate reason: `{chain['reason']}`.
 - Initial-solve and C/D/E attempts: zero. Paired cases, repair rates, differences,
@@ -69,6 +75,14 @@ Original phase clocks, actual per-phase call spans, and call start/finish
 timestamps are retained in the audit and run; no deadline was restarted. Summed
 model-call latency is not wall-clock phase duration and excludes Lean checks.
 
+| Executed phase | First-to-last call span, seconds | Summed call latency, seconds | Reported MLX peak, GB |
+| --- | ---: | ---: | ---: |
+{runtime_table}
+
+The generation span includes the interval between prompt versions. Eight of the
+128 scheduled positions remained unconsumed under recorded family retirement;
+they were not replayed or replaced to pursue a favorable outcome.
+
 ## Scientific interpretation and rejection evidence
 
 The first 60 responses failed the mandatory three-section format. Their raw bytes,
@@ -89,8 +103,23 @@ See the raw review records for substantive rejection reasons rather than
 interpreting all review failures as the same mathematical defect.
 `completion-sprint/mathematical_concerns.json` records exact-subject assistant
 concerns: two verified interval-product references describe shifted intervals
-in English but prove an endpoint splitting identity. They remain ineligible
-even if an AI reviewer accepts; this is an exclusion, not human approval.
+in English but prove an endpoint splitting identity; a third reference states
+only a forward implication in English while Lean asserts an iff. All three
+remain ineligible even if both reviewers accept. These are source-bound assistant
+exclusions, not human approval. `completion-sprint/review_outcomes.json` preserves
+actual raw qualified decisions separately from final eligibility.
+
+| Strictly verified reference | Phi decision | Qwen decision | Final status |
+| --- | --- | --- | --- |
+{review_table}
+
+The two UNCERTAIN Phi results omitted the mandatory `historical_explanation`
+field; they were not retroactively reinterpreted or retried. Both reviewers gave
+a schema-valid ACCEPT to `sprint_development_0078`, even though the English
+describes a shift involving c and the Lean declaration proves endpoint splitting
+without using c. Thus actual dual-model agreement failed to establish statement
+alignment on this subject. This is an observed screening limitation, not a
+C/D/E treatment result or an estimate of the reviewers' general error rate.
 
 Models used or reserved by the approved proposal:
 
@@ -110,7 +139,9 @@ powered confirmatory result, human validation or external replication is claimed
 - `completion-sprint/final_recorded_consistency_audit.json`: separate-process
   consistency audit, **{result['status']}**, {len(result['failures'])} failures;
   all 9,734 starting-main files and four symlink targets preserved.
-- `completion-sprint/regression_validation.json`: actual offline regression run.
+- `completion-sprint/regression_validation.json`: actual offline regression runs;
+  **62 parser, review, overlap and policy tests passed** in the broader run.
+  The 42 actual Lean reference checks above are separate from offline tests.
 - `completion-sprint/previous_31_audit.csv`: prior references and exclusion rules;
   27 excluded, four already reviewed, two qualified in one family and zero
   eligible unreviewed subjects. None were silently rescued or rereviewed.

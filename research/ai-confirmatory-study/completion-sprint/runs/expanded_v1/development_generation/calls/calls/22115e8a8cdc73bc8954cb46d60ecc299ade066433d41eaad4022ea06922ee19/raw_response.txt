@@ -1,0 +1,34 @@
+STATEMENT: For any list `l` and any element `a`, if `l` is a subpermutation of `[a]`, then `l` is either empty or `[a]`.
+
+LEAN:
+```lean
+theorem sprint_development_0070 (l : List α) (a : α) : l.Subperm [a] ↔ l = [] ∨ l = [a] :=
+  by
+    split
+    · intro h
+      cases h
+      · cases l
+        · exact Or.inr rfl
+        · cases l
+          · cases h
+            · exact Or.inl (by simp)
+            · contradiction
+      · cases l
+        · cases h
+          · exact Or.inl (by simp)
+          · contradiction
+    · intro h
+      cases h
+      · cases l
+        · exact Or.inr rfl
+        · cases l
+          · cases h
+            · exact Or.inl (by simp)
+            · contradiction
+      · cases l
+        · cases h
+          · exact Or.inl (by simp)
+          · contradiction
+```
+
+FAMILY: Subpermutation relation

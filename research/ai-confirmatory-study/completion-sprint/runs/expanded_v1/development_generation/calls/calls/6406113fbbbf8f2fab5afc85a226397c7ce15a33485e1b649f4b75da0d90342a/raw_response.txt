@@ -1,0 +1,12 @@
+STATEMENT: For any rational number \( q \) and integer \( n \), if \( q \geq n \), then \( \lceil q \rceil \geq n \).
+
+LEAN:
+```lean
+theorem sprint_development_0127 (q : ℚ) (n : ℤ) (hq : q ≥ n) : ⌈q⌉ ≥ n := by
+  rw [Rat.ceil_def']
+  have hnegq : -q ≤ -n := by linarith
+  have hnegceil : -(-q.num / ↑q.den) ≤ -(-n) := by linarith
+  linarith
+```
+
+FAMILY: Ceiling function inequality

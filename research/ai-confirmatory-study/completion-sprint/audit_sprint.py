@@ -51,6 +51,10 @@ def audit():
         t=read(transition);now=rows(RUN/'development_generation/calls/budget.jsonl');check(now[:len(t['old_events'])]==t['old_events'],'old_generation_ledger_prefix_preserved');check(t['original_clock']==read(RUN/'development_generation/phase_clock.json'),'prompt_revision_did_not_reset_clock')
         lines=(RUN/'development_generation/records.jsonl').read_text().splitlines(keepends=True);check(text_hash(''.join(lines[:60]))==t['old_records_sha256'],'old_generation_outcomes_preserved')
     concerns=read(HERE/'mathematical_concerns.json')['items']
+    source_audit=RUN/'development_pre_review_source_audit.json'
+    if source_audit.exists():
+        d=read(source_audit);check(d['dataset_sha256']==sha(RUN/'development_verified.json') and d['critical_concerns_sha256']==sha(HERE/'mathematical_concerns.json') and set(d['inspected_ids'])=={c['id'] for c in read(RUN/'development_verified.json')} and d['actor_kind']=='assistant_source_audit_not_human_validation','pre_review_source_inspection_exact_final_dataset')
+    if (RUN/'development_ai_accepted.json').exists():check(not any(c['id']==x['id'] for c in read(RUN/'development_ai_accepted.json') for x in concerns),'no_critical_concern_in_eligible_acceptances')
     candidates={r['id']:r['candidate'] for r in rows(RUN/'development_generation/records.jsonl') if r.get('candidate')}
     for concern in concerns:
         c=candidates[concern['id']];c=dict(c,generated_family_label=c['family'],family=c['canonical_family'])

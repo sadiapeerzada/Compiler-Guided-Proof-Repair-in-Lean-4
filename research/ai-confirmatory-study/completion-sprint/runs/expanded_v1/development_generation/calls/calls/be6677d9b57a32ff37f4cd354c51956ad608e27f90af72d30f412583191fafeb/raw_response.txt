@@ -1,0 +1,13 @@
+STATEMENT: For any integers \(a, b, c, d\), if \(a\) divides \(b\) and \(c\) divides \(d\), then \(ac\) divides \(bd\).
+
+LEAN:
+```lean
+theorem sprint_development_0090 (a b c d : ℤ) (h1 : a ∣ b) (h2 : c ∣ d) : ac ∣ bd := by
+  cases h1 with k hk1
+  cases h2 with l hk2
+  have : bd = (a * k) * (c * l) := by ring
+  rw [this]
+  exact mul_div_cancel_left (a * c) (b * d)
+```
+
+FAMILY: Divisibility Relation

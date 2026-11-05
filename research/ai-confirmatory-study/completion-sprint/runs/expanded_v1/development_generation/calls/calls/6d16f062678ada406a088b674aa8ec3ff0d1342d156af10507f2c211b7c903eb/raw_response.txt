@@ -1,0 +1,16 @@
+STATEMENT: For any list `l` and a symmetric relation `R`, if `l` is pairwise related under `R`, then for any permutation `p` of `l`, the list `p l` is also pairwise related under `R`.
+
+LEAN:
+```lean
+theorem sprint_development_0052 {α : Type*} {R : α → α → Prop} {l : List α} (h : List.Pairwise R l) (p : List α) (hp : p = l.permute (List.range l.length)) : List.Pairwise R p :=
+  by
+  rw [hp]
+  apply List.Pairwise.permute_of_pairwise h
+  intros x y hx hy
+  rw [List.permute_nth]
+  apply h
+  exact hx
+  exact hy
+```
+
+FAMILY: Pairwise relation under permutations

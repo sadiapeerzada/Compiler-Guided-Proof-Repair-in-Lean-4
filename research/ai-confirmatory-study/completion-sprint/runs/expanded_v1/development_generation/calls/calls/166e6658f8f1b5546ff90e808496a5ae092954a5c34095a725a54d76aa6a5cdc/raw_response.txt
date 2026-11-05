@@ -1,0 +1,9 @@
+STATEMENT: For any list `l` and any relation `r`, if `l` is pairwise related under `r` and `r` is irreflexive, then `l` is nonduplication under `r`.
+
+LEAN:
+```lean
+theorem sprint_development_0021 {u} {α : Type u} {l : List α} {r : α → α → Prop} [Std.Irrefl r] (h : List.Pairwise r l) : l.Nodup := by
+  intros a ha
+  have : a ∉ l := List.nodup.notMem ha
+  exact h a a this
+```

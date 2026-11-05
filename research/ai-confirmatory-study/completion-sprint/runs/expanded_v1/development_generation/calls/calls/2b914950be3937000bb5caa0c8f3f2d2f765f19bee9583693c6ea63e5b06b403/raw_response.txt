@@ -1,0 +1,9 @@
+STATEMENT: For any lists `l₁` and `l₂` of equal length, the projection of the zipped list onto the first component is equal to the first list.
+
+LEAN:
+```lean
+theorem sprint_development_0051 {α : Type} {β : Type} (l₁ : List α) (l₂ : List β) (h : l₁.length = l₂.length) :
+  List.map Prod.fst (l₁.zip l₂) = l₁ :=
+  by
+    rw [List.map_zipWith, List.zipWith_fst, List.zipWith_congr, h, List.map_id]
+```

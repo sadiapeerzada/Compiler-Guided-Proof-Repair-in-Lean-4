@@ -1,0 +1,16 @@
+STATEMENT: For any integers \(a\), \(b\), and \(c\) where \(b > 0\) and \(c > 0\), if \(a \mod b = 0\), then \(a \div c \mod b = 0\).
+
+LEAN:
+```lean
+theorem sprint_development_0033 (a b c : ℤ) (hb : b > 0) (hc : c > 0) (ha : a % b = 0) : a / c % b = 0 := by
+  rw [Int.emod_eq_sub_self_emod]
+  have : a = b * (a / b) := Int.mul_ediv_cancel_of_pos a b hb
+  rw [this]
+  have : a / c = (b * (a / b)) / c := by ring
+  rw [this]
+  have : (b * (a / b)) / c % b = (b * (a / b) - b * (a / b)) / b := Int.emod_eq_sub_self_emod
+  rw [this]
+  have : b * (a / b) - b * (a / b) = 0 := by ring
+  rw [this]
+  exact Int.emod_zero
+```

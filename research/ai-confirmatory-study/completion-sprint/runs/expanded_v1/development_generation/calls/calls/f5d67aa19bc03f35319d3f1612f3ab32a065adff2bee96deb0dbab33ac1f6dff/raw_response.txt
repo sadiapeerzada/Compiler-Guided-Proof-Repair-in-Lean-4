@@ -1,0 +1,21 @@
+STATEMENT: For any integers \(a, b, c, d\), if \(a\) divides \(b\) and \(c\) divides \(d\), then the greatest common divisor of \(a\) and \(c\) divides the greatest common divisor of \(b\) and \(d\).
+
+LEAN:
+```lean
+theorem sprint_development_0026 {a b c d : ℤ} (ha : a ∣ b) (hc : c ∣ d) : gcd a c ∣ gcd b d := by
+  let ⟨k, hk⟩ := ha
+  let ⟨m, hm⟩ := hc
+  have hb : b = a * k := by linarith
+  have hd : d = c * m := by linarith
+  have hb' : gcd b d = gcd (a * k) (c * m) := by rw [gcd_mul_left, gcd_mul_right]
+  have hb'' : gcd (a * k) (c * m) = gcd a c * gcd k m := by rw [gcd_mul_left, gcd_mul_right]
+  have hb''' : gcd k m = 1 := by
+    have : gcd k m ∣ k := gcd_dvd_left k m
+    have : gcd k m ∣ m := gcd_dvd_right k m
+    have : gcd k m ∣ gcd k m := gcd_self k m
+    exact gcd_dvd_of_dvd_of_dvd (gcd_dvd_left k m) (gcd_dvd_right k m) (gcd_self k m)
+  have hb'''' : gcd a c * gcd k m = gcd a c * 1 := by rw hb'''
+  have hb''''' : gcd a c * 1 = gcd a c := by rw mul_one
+  have hb'''''' : gcd a c ∣ gcd b d := by rw hb''''''; exact gcd_dvd_mul (gcd_dvd_left a c) (gcd_dvd_right a c)
+  exact hb'''''' 
+```

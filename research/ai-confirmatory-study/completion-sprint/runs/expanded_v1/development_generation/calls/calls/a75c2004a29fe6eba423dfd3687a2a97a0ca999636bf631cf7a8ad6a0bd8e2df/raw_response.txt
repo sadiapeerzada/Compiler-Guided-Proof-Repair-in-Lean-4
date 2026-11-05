@@ -1,0 +1,11 @@
+STATEMENT: For any finite interval [a, b] of natural numbers and any function f : ℕ → M where M is a commutative monoid, the product of f over the interval [a, b] is equal to the product of f over the interval [a + c, b + c] shifted by c.
+
+LEAN:
+```lean
+theorem sprint_development_0078 {M : Type*} [CommMonoid M] {a b c : ℕ} (hab : a ≤ b) (f : ℕ → M) :
+  ∏ k ∈ Finset.Ico a (b + 1), f k = (∏ k ∈ Finset.Ico a b, f k) * f b :=
+by
+  rw [Finset.prod_Ico_succ_top hab f]
+```
+
+FAMILY: commutative monoid

@@ -1,0 +1,17 @@
+STATEMENT: For any integers \(a, b, c, d\), if \(a\) divides \(c\) and \(b\) divides \(d\), then \(\gcd(a, b)\) divides \(\gcd(c, d)\).
+
+LEAN:
+```lean
+theorem sprint_development_0042 (a b c d : ℤ) (ha : a ∣ c) (hb : b ∣ d) : gcd a b ∣ gcd c d := by
+  let ⟨q1, hq1⟩ := ha
+  let ⟨q2, hq2⟩ := hb
+  let c' := q1 * a
+  let d' := q2 * b
+  have hc' : c' = c := by rw [hq1]
+  have hd' : d' = d := by rw [hq2]
+  have hgc' : gcd a b ∣ c' := gcd_dvd_mul_left a b c'
+  have hgd' : gcd a b ∣ d' := gcd_dvd_mul_left a b d'
+  have hgcd' : gcd a b ∣ gcd c' d' := gcd_dvd_of_dvd_left a b c' d' hgc' hgd'
+  rw [hc', hd'] at hgcd'
+  exact hgcd'
+```

@@ -1,0 +1,9 @@
+STATEMENT: For any function \( f : \mathbb{N} \to \mathbb{N} \) and any natural number \( n \), the function \( f \) applied \( n \) times to \( n \) is equal to \( f(n) \).
+
+LEAN:
+```lean
+theorem sprint_development_0060 (f : ℕ → ℕ) (n : ℕ) : f^[n] n = f n := by
+  induction n with
+  | zero => simp [Function.iterate_zero]
+  | succ n' => simp [Function.iterate_succ, Function.iterate_succ_apply, Function.iterate_zero]
+```
