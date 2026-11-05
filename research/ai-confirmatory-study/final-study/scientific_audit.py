@@ -83,6 +83,13 @@ def audit():
             checked.add(used[stage])
         completed=0;input_sum=0;output_sum=0
         for event in ledger:
+            resource=event['key'].get('key',{}).get('resource_source_freeze_sha256')
+            if resource:
+                check(resource==sha(HERE/'freezes/reference_resource_v5.json'),'repair_resource_version_additional_freeze_binding')
+                if 'reference_resource_v5.json' not in checked:
+                    try:frozen('reference_resource_v5.json');check(True,'used_source_and_input_freezes_unchanged')
+                    except (ValueError,FileNotFoundError):check(False,'used_source_and_input_freezes_unchanged:reference_resource_v5.json')
+                    checked.add('reference_resource_v5.json')
             extra=event['key'].get('key',{}).get('additional_source_freeze_sha256')
             if extra:
                 check(extra==sha(HERE/'freezes/reference_prompt_v4.json'),'new_repair_prompt_intent_additional_freeze_binding')
@@ -131,6 +138,10 @@ def audit():
         t=read(transition);current=rows(run_root()/'reference_repair/calls/budget.jsonl')
         check(current[:len(t['original_charged_events'])]==t['original_charged_events'],'old_repair_ledger_prefix_preserved_across_prompt_change')
         check(read(run_root()/'reference_repair/phase_clock.json')==t['original_phase_clock'],'repair_prompt_change_did_not_reset_deadline')
+    quiesce=run_root()/'reference_repair/resource_v5_quiesce.json'
+    if quiesce.exists():
+        q=read(quiesce);check(rows(run_root()/'reference_repair/calls/budget.jsonl')[:q['charged_calls']]==q['charged_events_before_transition'],'resource_change_preserves_old_repair_ledger_prefix')
+        check(q['all_charged_candidates_recorded'] and q['new_unknown_intents_created']==0,'resource_transition_at_fully_recorded_boundary')
     check(sum(stages[s]['charged'] for s in ('v3_review_1','development_review_1'))<=242 and sum(stages[s]['charged'] for s in ('v3_review_2','development_review_2'))<=242,'separate_reviewer_aggregate_caps')
     for stage in ('confirmatory_generation','confirmatory_review_1','confirmatory_review_2','confirmatory_initial','confirmatory_repairs','test'):
         check(not (run_root()/stage).exists(),'no_unauthorized_confirmatory_phase')
