@@ -69,6 +69,8 @@ class Backend:
             self.clients[stage]=PhaseModelV2(stage,'development_CDE_v1.json')
         dump(run_root()/'development_active_stage.json',dict(stage=stage))
         record,inner=self.clients[stage].call(prompt,dict(outer_key=key,context=context),base_seed)
+        # Uniform across initial/C/D/E calls; release model memory before Lean.
+        self.clients[stage].close()
         dump(folder/'inner_call_binding.json',dict(stage=stage,inner_call=str(inner.relative_to(HERE)),model_generations=1 if record['status']=='completed' else None))
         ensure(record['status']=='completed','New unavailable model completion')
         return dict(content=record['content'],metadata=record['metadata'])

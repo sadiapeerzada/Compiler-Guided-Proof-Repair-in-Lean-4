@@ -33,7 +33,7 @@ def fresh_review_input():
     for p in (path,run_root()/'pre_review_exclusions.json',run_root()/'fresh_verified_raw.json',run_root()/'expanded_historical_exposure.json'):lock[str(p.relative_to(ROOT))]=sha(p)
     concerns=run_root()/'assistant_audit_concerns.json'
     if concerns.exists():lock[str(concerns.relative_to(ROOT))]=sha(concerns)
-    for p in (HERE/'reference_repair_v4.py',HERE/'freezes/reference_prompt_v4.json',run_root()/'reference_prompt_exposure.json',run_root()/'reference_repair/records.jsonl',run_root()/'strict_reference_verification.jsonl'):
+    for p in (HERE/'reference_repair_v4.py',HERE/'freezes/reference_prompt_v4.json',HERE/'reference_resource_v5.py',HERE/'freezes/reference_resource_v5.json',run_root()/'reference_prompt_exposure.json',run_root()/'reference_repair/records.jsonl',run_root()/'strict_reference_verification.jsonl'):
         if p.exists():lock[str(p.relative_to(ROOT))]=sha(p)
     dump(HERE/'freezes/fresh_review_v1.json',dict(status='FROZEN_BEFORE_FRESH_AI_REVIEWS',files=lock,old_V3_review_outcomes_not_reparsed=True,schema='explicit boolean check polarity, explicit relation enums, full rationale, confidence heuristic0.8, two blinded acceptances required'),exclusive=True)
     print('Fresh verified review subjects:',len(kept),'; prereview exclusions:',len(excluded))

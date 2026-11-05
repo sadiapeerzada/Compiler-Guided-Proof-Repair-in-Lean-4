@@ -20,11 +20,13 @@ def verification_taxonomy(result):
 def usage(stages):
     result={}
     for stage in stages:
-        out=run_root()/stage;events=rows(out/'calls/budget.jsonl');complete=[]
+        out=run_root()/stage;events=rows(out/'calls/budget.jsonl');complete=[];controller_seconds=0.0
         for event in events:
             call=out/'calls/calls'/content_hash(event['key']);path=call/'completion.json'
-            if path.exists() and read(path)['status']=='completed':complete.append(read(path)['metadata'])
-        result[stage]=dict(charged=len(events),completed=len(complete),unknown_or_unavailable=len(events)-len(complete),actual_input_tokens_observed=sum(r['prompt_tokens'] for r in complete),actual_output_tokens_observed=sum(r['completion_tokens'] for r in complete),actual_generation_seconds_observed=sum(r['latency_seconds'] for r in complete),maximum_reported_MLX_peak_memory_gb=max((r['peak_memory_gb'] for r in complete if 'peak_memory_gb' in r),default=None),memory_caveat='Maximum model-runtime MLX report, not measured whole-process or system peak; unknown cost not estimated')
+            if path.exists() and read(path)['status']=='completed':
+                complete.append(read(path)['metadata'])
+                if (call/'call_started.json').exists() and (call/'call_finished.json').exists():controller_seconds+=read(call/'call_finished.json')['epoch']-read(call/'call_started.json')['epoch']
+        result[stage]=dict(charged=len(events),completed=len(complete),unknown_or_unavailable=len(events)-len(complete),actual_input_tokens_observed=sum(r['prompt_tokens'] for r in complete),actual_output_tokens_observed=sum(r['completion_tokens'] for r in complete),actual_generation_seconds_observed=sum(r['latency_seconds'] for r in complete),actual_controller_call_seconds_observed=controller_seconds,maximum_reported_MLX_peak_memory_gb=max((r['peak_memory_gb'] for r in complete if 'peak_memory_gb' in r),default=None),memory_caveat='MLX generation latency excludes model loading; controller call duration includes loading inside the invocation. Maximum MLX memory is not whole-process/system peak; unknown cost not estimated')
     return dict(stages=result,total_charged=sum(v['charged'] for v in result.values()),unknown_cost_not_estimated=True,outer_CDE_checkpoint_ledger_not_double_counted=True)
 
 def main():
@@ -44,6 +46,8 @@ def main():
     if not (out/'reference_repair_attempts.jsonl').exists():jsonl(out/'reference_repair_attempts.jsonl',[])
     dump(out/'generation_manifest.json',dict(status='RECORDED_DEVELOPMENT_ONLY',run_id=protocol()['run_id'],baseline=protocol()['baseline'],planning_target=20,generation_pool_cap=240,recorded_generation_responses=len(g),original_structural_parse_passes=sum('candidate' in r for r in g),rigid_verified_references=len(verified),original_generation_freeze_sha256=sha(HERE/'freezes/generation_v1.json'),reference_construction_freeze_sha256=sha(HERE/'freezes/reference_construction_v3.json'),authorization_sha256=sha(HERE/'resource_authorization.json'),models=protocol()['models'],source_raw='generation/records.jsonl plus phase-local calls/streams',no_confirmatory_generation=True))
     if (HERE/'freezes/reference_prompt_v4.json').exists():dump(out/'reference_prompt_versions.json',dict(base_freeze_sha256=sha(HERE/'freezes/reference_construction_v3.json'),additional_v4_freeze_sha256=sha(HERE/'freezes/reference_prompt_v4.json'),actual_charged_calls=dict(Counter(e['key']['key'].get('prompt_version','v3') for e in rows(out/'reference_repair/calls/budget.jsonl'))),original_clock_unchanged=read(out/'reference_repair/phase_clock.json')==read(out/'reference_repair/prompt_v4_transition.json')['original_phase_clock'],same_phase_cap=120,interrupted_intent_not_replayed=True))
+    if (HERE/'freezes/reference_resource_v5.json').exists():dump(out/'reference_resource_versions.json',dict(source_freeze_sha256=sha(HERE/'freezes/reference_resource_v5.json'),actual_charged_calls=dict(Counter(e['key']['key'].get('resource_version','resident_model') for e in rows(out/'reference_repair/calls/budget.jsonl'))),same_prompt_after_resource_change='reference_prompt_v4',no_new_unknown_at_resource_transition=True,total_original_phase_cap=120,seed_policy_caveat='Additional version keys participate in the fixed derived seed/context hash; candidates were not resampled'))
+    checks=rows(out/'strict_reference_verification.jsonl');dump(out/'formal_verification_resource_usage.json',dict(by_variant={v:dict(recorded_checks=sum(r['variant']==v for r in checks),verification_seconds_observed=sum((r['result'].get('elapsed_seconds') or 0) for r in checks if r['variant']==v),unknown_checks=sum(r['variant']==v and r['result'].get('success') is None for r in checks)) for v in sorted({r['variant'] for r in checks})},cost_caveat='Saved verifier elapsed times include prechecks/compilation and are separate from inference. Safety-rejected records need not invoke Lean. Missing durations are not estimated'))
     dump(out/'generation_resource_usage.json',usage(('generation','reference_repair','v3_review_1','v3_review_2','development_review_1','development_review_2')))
     audit_rows=[]
     for name in ('v3_ai_overlap_screen.csv','development_ai_overlap_screen.csv'):
@@ -74,7 +78,9 @@ def main():
         for arm,records in arms.items():jsonl(out/f'development_{arm}_results.jsonl',records)
         csv_(out/'development_compiler_failures.csv',failures,['id','seed','arm','success','failure_kind','errors'])
     else:
-        dump(out/'development_execution_not_started.json',dict(status='BLOCKED',reason=read(out/'development_gate_status.json') if (out/'development_gate_status.json').exists() else 'Pending actual candidate gates',fabricated_or_synthetic_evaluation_rows=0))
+        dump(out/'development_execution_not_started.json',dict(status='BLOCKED',reason=read(out/'development_gate_status.json') if (out/'development_gate_status.json').exists() else 'Pending actual candidate gates',actual_initial_calls=0,actual_repair_calls=0,fabricated_or_synthetic_evaluation_rows=0,empty_exports_mean_not_started_not_zero_successes=True))
+        for name in ('development_initial_candidates.jsonl','development_diagnostics.jsonl','development_C_results.jsonl','development_D_results.jsonl','development_E_results.jsonl'):jsonl(out/name,[])
+        csv_(out/'development_compiler_failures.csv',[],['id','seed','arm','success','failure_kind','errors'])
     csv_(out/'development_paired_results.csv',data,list(data[0]) if data else ['id','family','seed','initial_success','C','D','E'])
     per_family=[]
     for family in sorted({r['family'] for r in data}):

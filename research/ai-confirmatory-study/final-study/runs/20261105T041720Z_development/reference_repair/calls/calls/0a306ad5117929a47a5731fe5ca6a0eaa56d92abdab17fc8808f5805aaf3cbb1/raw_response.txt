@@ -1,0 +1,7 @@
+by
+  intro x
+  have h1 : a * x^2 + b * x + c = a * (x + b / (2 * a))^2 + c - b^2 / (4 * a) := (by rw [mul_add, add_assoc, mul_div_cancel_left (ne_of_gt h_a_pos)])
+  have h2 : a * (x + b / (2 * a))^2 ≥ 0 := (by (apply mul_nonneg (h_a_pos) (sq_nonneg (x + b / (2 * a))))
+  have h3 : c - b^2 / (4 * a) > 0 := (by (linarith (h_discr_neg (x + b / (2 * a)) (h_a_pos (x + b / (2 * a)))) (x + b / (2 * a) > -b / (2 * a) (h_a_pos (x + b / (2 * a)))))
+  exact (add_pos (h2) (h3))
+END FORMAT EXAMPLE.

@@ -1,0 +1,12 @@
+by
+  intro x
+  have h1 : a * x^2 + b * x + c = a * (x + b / (2 * a))^2 + c - b^2 / (4 * a) := by
+    rw [mul_add, add_assoc, mul_div_cancel_left (ne_of_gt h_a_pos)]
+  have h2 : c - b^2 / (4 * a) > 0 := by
+    rw [h_discr_neg]
+    exact neg_lt_of_lt h_discr_neg (ne_of_gt h_a_pos)
+  have h3 : a * (x + b / (2 * a))^2 ≥ 0 := by
+    rw [mul_self_nonneg]
+    exact h_a_pos
+  exact le_add_of_nonneg_right h3 h2
+END FORMAT EXAMPLE.

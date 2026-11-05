@@ -24,6 +24,14 @@ that intent without inference before continuing unconsumed work. The generation
 freeze remains unchanged; all31 preliminary passes subsequently passed rigid
 revalidation, which still does not constitute AI acceptance.
 
+`reference_resource_v5.json` adds cache release before compilation after a clean
+inference-lock checkpoint at40 charged/recorded calls. It adds no calls, no new
+deadline and no new unknown intent. The unchanged V4 prompt is used for remaining
+candidates, with the additional resource/source hash in their intent keys. Those
+keys participate in the already declared seed/context hash; no candidate is
+resampled. Each affected call records its cache-release receipt. Runtime
+comparisons across these development versions are descriptive, not randomized.
+
 The working run is `runs/20261105T041720Z_development/`. Never reset its phase
 clocks, delete reservations or replay a consumed intent. `progress.py` is
 read-only. Every model call is reserved in its phase-local `calls/budget.jsonl`;
@@ -66,9 +74,10 @@ are individual phase launch commands, not a command to restart the whole study.
 .venv/bin/python research/ai-confirmatory-study/final-study/continue_development.py --wait-generation
 ```
 
-For the recorded V4 repair-prompt transition, use `reference_repair_v4.py run`
-only when that worker is not active and unconsumed work remains within its
-original deadline. After it finishes, `continue_development.py` skips the finished
+For the current resource-version5 continuation, use `reference_resource_v5.py run`
+only when no worker is active, every previous charged intent has been reconciled,
+and unconsumed work remains within the original deadline. After it finishes,
+`continue_development.py` skips the finished
 repair phase and advances to the separately authorized reviews/data gate. The
 transition is not permission to reset clocks or repeat unknown calls.
 

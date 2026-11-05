@@ -83,6 +83,13 @@ def audit():
             checked.add(used[stage])
         completed=0;input_sum=0;output_sum=0
         for event in ledger:
+            resource=event['key'].get('key',{}).get('resource_source_freeze_sha256')
+            if resource:
+                check(resource==sha(HERE/'freezes/reference_resource_v5.json'),'repair_resource_version_additional_freeze_binding')
+                if 'reference_resource_v5.json' not in checked:
+                    try:frozen('reference_resource_v5.json');check(True,'used_source_and_input_freezes_unchanged')
+                    except (ValueError,FileNotFoundError):check(False,'used_source_and_input_freezes_unchanged:reference_resource_v5.json')
+                    checked.add('reference_resource_v5.json')
             extra=event['key'].get('key',{}).get('additional_source_freeze_sha256')
             if extra:
                 check(extra==sha(HERE/'freezes/reference_prompt_v4.json'),'new_repair_prompt_intent_additional_freeze_binding')
@@ -115,6 +122,9 @@ def audit():
             if stage=='development_repairs':check(m['prompt_tokens']==4096,'actual_CDE_inputs_exactly_4096_tokens')
             check(m['logical_generations']==1 and not m['retry_events'],'one_actual_generation_per_charged_completion')
             started=read(call/'call_started.json');ended=read(call/'call_finished.json');clock_record=read(folder/'phase_clock.json')
+            if resource:
+                release=read(call/'resource_release_before_compiler.json')
+                check(release['source_freeze_sha256']==resource and release['model_client_closed'] is True and release['MLX_allocator_cache_cleared'] is True and release['epoch']>=ended['epoch'],'actual_resource_release_receipt_after_durable_response')
             check(started['phase_clock']==clock_record,'original_phase_clock_preserved')
             check(clock_record['started_epoch']<=started['epoch']<=ended['epoch']<=clock_record['started_epoch']+clock_record['max_runtime_seconds'],'actual_call_times_within_phase_deadline')
             streams=list((call/'stream').glob('*.jsonl'));check(len(streams)==1,'one_stream_per_actual_completion')
@@ -124,6 +134,23 @@ def audit():
         status_path=folder/('status_v2.json' if stage.startswith('v3_review') else 'status.json')
         if stage in ('development_initial','development_repairs'):status_path=run_root()/'development_experiment/status.json'
         stages[stage]=dict(charged=len(ledger),completed=completed,unknown_or_unavailable=len(ledger)-completed,input_tokens_observed=input_sum,output_tokens_observed=output_sum,max_calls=spec['max_calls'],phase_status=read(status_path)['status'] if status_path.exists() else 'NOT_STARTED' if not ledger else 'IN_PROGRESS_OR_INTERRUPTED')
+        if 'review' in stage:
+            v3=stage.startswith('v3_');subject_path=run_root()/('v3_input.json' if v3 else 'fresh_verified.json');subjects={c['id']:c for c in read(subject_path)} if subject_path.exists() else {}
+            for review in rows(folder/'reviews.jsonl'):
+                c=subjects.get(review['id']);check(c is not None and review['subject_sha256']==subject_hash(c),'all_review_rows_bind_frozen_mathematical_subjects')
+                if 'record' not in review:
+                    check(review['decision']=='UNCERTAIN' and bool(review.get('parse_error')),'unissued_review_never_becomes_acceptance');continue
+                call=HERE/review['source_call'];intent=read(call/'intent.json');check(intent['key']['stage']==stage and intent['key']['key']['id']==review['id'] and intent['key']['key']['subject_sha256']==review['subject_sha256'],'review_intent_real_stage_and_subject_binding')
+                record=review['record'];check(review['model']==protocol()['models'][spec['model_key']],'review_row_actual_approved_model_identity')
+                if record['status']!='completed':check(review['decision']=='UNCERTAIN','unavailable_review_never_accepted');continue
+                check(read(call/'completion.json')==record and review['response_sha256']==text_hash(record['content']),'all_review_rows_backed_by_exact_actual_completions')
+                if v3:
+                    from review_protocol import parse_review
+                else:
+                    from fresh_review import parse_review
+                try:
+                    parsed=parse_review(record);check(review.get('review')==parsed and review['decision']==parsed['decision'] and not review.get('parse_error'),'qualified_review_reproduces_original_frozen_schema')
+                except (ValueError,KeyError,TypeError):check(review['decision']=='UNCERTAIN' and bool(review.get('parse_error')),'invalid_original_review_contract_remains_unresolved')
     check(total<=1084,'consolidated_development_call_cap')
     check(len(cde_configs)<=1,'same_CDE_model_decoding_runtime_and_chat_template')
     transition=run_root()/'reference_repair/prompt_v4_transition.json'
@@ -131,6 +158,10 @@ def audit():
         t=read(transition);current=rows(run_root()/'reference_repair/calls/budget.jsonl')
         check(current[:len(t['original_charged_events'])]==t['original_charged_events'],'old_repair_ledger_prefix_preserved_across_prompt_change')
         check(read(run_root()/'reference_repair/phase_clock.json')==t['original_phase_clock'],'repair_prompt_change_did_not_reset_deadline')
+    quiesce=run_root()/'reference_repair/resource_v5_quiesce.json'
+    if quiesce.exists():
+        q=read(quiesce);check(rows(run_root()/'reference_repair/calls/budget.jsonl')[:q['charged_calls']]==q['charged_events_before_transition'],'resource_change_preserves_old_repair_ledger_prefix')
+        check(q['all_charged_candidates_recorded'] and q['new_unknown_intents_created']==0,'resource_transition_at_fully_recorded_boundary')
     check(sum(stages[s]['charged'] for s in ('v3_review_1','development_review_1'))<=242 and sum(stages[s]['charged'] for s in ('v3_review_2','development_review_2'))<=242,'separate_reviewer_aggregate_caps')
     for stage in ('confirmatory_generation','confirmatory_review_1','confirmatory_review_2','confirmatory_initial','confirmatory_repairs','test'):
         check(not (run_root()/stage).exists(),'no_unauthorized_confirmatory_phase')
@@ -151,6 +182,7 @@ def audit():
     for prefix,review_stages in (('v3_ai',('v3_review_1','v3_review_2')),('development_ai',('development_review_1','development_review_2'))):
         path=run_root()/(prefix+'_accepted_candidates.json')
         for c in read(path) if path.exists() else []:
+            check(c['status']=='AI_SCREENED_FORMALLY_VERIFIED','accepted_subject_status_explicitly_AI_only')
             for stage in review_stages:
                 record=next((r for r in rows(run_root()/stage/'reviews.jsonl') if r['id']==c['id']),None)
                 check(record is not None,'accepted_subject_has_both_real_reviews')

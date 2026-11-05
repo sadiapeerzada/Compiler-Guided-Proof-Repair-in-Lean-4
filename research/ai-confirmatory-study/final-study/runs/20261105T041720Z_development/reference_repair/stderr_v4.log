@@ -1,0 +1,21 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] This model config has set a `rope_parameters['original_max_position_embeddings']` field, to be used together with `max_position_embeddings` to determine a scaling factor. Please set the `factor` field of `rope_parameters`with this ratio instead -- we recommend the use of this field over `original_max_position_embeddings`, as it is compatible with most model architectures.
+Traceback (most recent call last):
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/research/ai-confirmatory-study/final-study/reference_repair_v4.py", line 91, in <module>
+    p=argparse.ArgumentParser();p.add_argument('mode',choices=['run','worker']);a=p.parse_args();run() if a.mode=='run' else worker()
+                                                                                                                             ~~~~~~^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/research/ai-confirmatory-study/final-study/reference_repair_v4.py", line 66, in worker
+    try:record,folder=model.call(text,key,protocol()['base_seed'])
+                      ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/research/ai-confirmatory-study/final-study/local_runtime.py", line 34, in call
+    record,folder=self.store.call_once(call_key,prompt,count,1200,'initial',invoke)
+                  ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/research/confirmatory-study/checkpoint.py", line 50, in call_once
+    with self.lock():
+         ~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/sadiapeerzada/NLP-to-Formal-Language-Proof/research/confirmatory-study/checkpoint.py", line 22, in lock
+    fcntl.flock(f,fcntl.LOCK_EX)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

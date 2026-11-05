@@ -4,25 +4,30 @@ These checks validate infrastructure and strict verification; they are not
 generated benchmark subjects or C/D/E model outcomes. They spend zero inference
 calls. Actual experiment counts remain in run-local ledgers and final reports.
 
-The explicitly scoped regression command passed **365 tests and28 subtests**,
-with three deselections, in28.94s:
+The expanded working-suite command passed **388 tests and28 subtests**,
+with four deselections, in11.43s:
 
 ```sh
-.venv/bin/python -m pytest tests research/confirmatory-study/tests research/ai-confirmatory-study/tests research/ai-confirmatory-study/v2/tests research/ai-confirmatory-study/v3/tests research/ai-confirmatory-study/final-study/tests -q -k 'not real_lean and not no_real_research_rows_manufactured'
+.venv/bin/python -m pytest tests research/confirmatory-study/tests research/ai-confirmatory-study/tests research/ai-confirmatory-study/v2/tests research/ai-confirmatory-study/v3/tests research/ai-confirmatory-study/final-study/tests analysis/taimma_supervisor_final/test_supplement.py analysis/taimma_final_professor_validation/test_validation.py submission_20261031/tests -q -k 'not real_lean and not no_real_research_rows_manufactured and not provenance_counts_and_read_only_scope'
 ```
 
-The legacy `no_real_research_rows_manufactured` test rejects any new research
-files, conflicting with the explicitly requested versioned research directory;
-it was not changed. All historical file hashes and four symlink targets are
-checked independently. The two actual Lean tests were run separately:
+Two unchanged legacy assertions are incompatible with this requested extension:
+`no_real_research_rows_manufactured` rejects new research files;
+`test_provenance_counts_and_read_only_scope` requires an empty research-tree Git
+diff against an older analysis baseline. The latter failed solely on that scope
+assertion when the historical-analysis tests were first included; its preceding
+frozen-data/provenance assertions passed. The other17 historical-analysis tests
+and all four public-release tests pass in the command above. Neither test was
+weakened to accept changed historical data. All6,279 baseline file hashes and four
+symlink targets are checked independently. The two actual Lean tests were run
+separately:
 
 ```sh
 .venv/bin/python -m pytest tests/test_verify.py -q -k real_lean
 ```
 
-Result: **2 passed,29 deselected in252.74s**. After adding the unknown-donor
-controls, the same scoped regression command passed **367 tests and28 subtests**,
-with three deselections, in11.66s; final-study tests alone passed **24 tests**.
+Result: **2 passed,29 deselected in252.74s**. Final-study tests alone passed
+**24 tests**, already included in the388-test count.
 A mistakenly unscoped pytest invocation also collected archived
 publication snapshots and failed collection with missing snapshot dependencies
 and duplicate module names. The explicit working-suite command above avoids
