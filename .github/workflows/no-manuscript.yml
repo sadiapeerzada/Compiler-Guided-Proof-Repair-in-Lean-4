@@ -1,0 +1,15 @@
+name: Keep manuscript files out of research repository
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  no-manuscript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject tracked TeX, BibTeX, and manuscript artifacts
+        run: python3 scripts/check_no_manuscript.py

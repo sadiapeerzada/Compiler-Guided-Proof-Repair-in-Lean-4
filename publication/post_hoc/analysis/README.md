@@ -45,7 +45,7 @@ B's own preceding diagnostics are analyst-only chance baseline; they were never
 fed to B. New hallucinated substitution requires a different name newly present
 in the next source and reported unknown by its actual compilation.
 
-`latex/` contains booktabs tables and figure snippets; `figures/` contains
+Previously generated LaTeX tables have been removed from Git; `figures/` contains
 grayscale-safe PDFs. `POST_HOC_PROSE.md` and `SUMMARY.md` state observed numbers,
 denominators and limitations. Context-failed/header-only C intents never become
 completed repairs or observed failures. Synthetic tests are isolated under
@@ -62,18 +62,13 @@ After the approved dev worker reaches its durable end marker, run:
 .venv/bin/python -m analysis.dev_placebo
 .venv/bin/python -m analysis.dev_figures
 .venv/bin/python -m analysis.check_public_dev
-.venv/bin/python -m analysis.paper_additions
-.venv/bin/python -m analysis.update_paper
-.venv/bin/python -m analysis.restore_build_assets
-.venv/bin/python -m analysis.compile_paper
 ```
 
 The dev analyzer writes explicit completed-repair denominators, category/index
 repetition groups, transitions, donor ancestry, physical-call resources and
 descriptive success intervals. Its nominal Wilson intervals treat problems as
 independent and are labeled accordingly; only five dev families exist. It makes
-no hypothesis-test claim. The new manuscript goes to
-`outputs/post_hoc/manuscript/post_hoc_pilot.pdf`; existing PDFs are retained.
+no hypothesis-test claim. Manuscript generation and manuscript PDFs are excluded from the current repository.
 These commands do not regenerate model responses. Do not rerun an analyzer into
 an existing output path; preserve its first outputs and use a fresh location for
 any subsequent reproduction.

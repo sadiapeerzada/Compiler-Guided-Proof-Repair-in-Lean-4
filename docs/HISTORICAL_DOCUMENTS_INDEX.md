@@ -11,7 +11,7 @@ The root README and its [manuscript evidence index](MANUSCRIPT_EVIDENCE_INDEX.md
 | [Final paper readiness](FINAL_PAPER_READINESS.md) | Earlier pre-results manuscript | Do not apply its zero-run state to V7/V8 |
 | [Remaining human actions](REMAINING_HUMAN_ACTIONS.md) | Earlier revision and reviewer handoff | Evidence for those decisions is separate from an authentic sign-off |
 | [Semantic review status](SEMANTIC_REVIEW_STATUS.md) | Earlier dataset/96-candidate review | Do not treat as completed independent benchmark adjudication |
-| [Prior paper drafts](../paper/) | Earlier manuscript versions | Not the authoritative current two-study results |
+| Prior paper drafts (removed from current tree) | Earlier manuscript versions | Consult separately retained copies; Git history still contains old commits |
 | [Earlier release snapshots](../publication/) | Versioned Study 1 and post-hoc artifacts | Preserve version identity and third-party notices |
 | [Early demonstration](../RUN_REPORT.md) | Hand-authored/partly simulated demonstration | Not held-out model evidence |
 | [Experimental input templates](../prompts/) | Real methodology and reproduction inputs | Preserve exact bytes and archived identities |

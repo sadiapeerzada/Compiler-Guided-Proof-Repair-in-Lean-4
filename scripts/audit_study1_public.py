@@ -1,6 +1,6 @@
 """Read-only, public-aggregate consistency audit for the fixed-theorem Lean pilot.
 
-Usage: python -B submission_20261031/public_audit.py
+Usage: python -B scripts/audit_study1_public.py
 Does not run inference, Lean, private-byte replay, or amend any experimental record.
 """
 import csv

@@ -24,8 +24,8 @@ The [root README](../README.md) is the paper-facing overview. [MANUSCRIPT_EVIDEN
 | [analysis/taimma_supervisor_final/](../analysis/taimma_supervisor_final/) | Supervisor-integrity supplement | **Yes, with provenance qualification** | Cases, tokens, input-context analysis and case excerpts |
 | [analysis/taimma_final_professor_validation/](../analysis/taimma_final_professor_validation/) | Scoped mathematical and control-integrity validation | **Yes, with limitations** | Certificates do not independently adjudicate benchmarks |
 | [publication/](../publication/) | Historical Study 1 public payload | **Yes for Study 1; historical documentation** | Contains frozen/redacted records and prior submission snapshots |
-| [submission_20261103/](../submission_20261103/) | Dated manuscript source snapshot | **Only with exact version identification** | Do not assume it is identical to the separately shared 14-page PDF |
-| [paper/](../paper/) | Earlier manuscript/prototype outputs | **Historical** | May refer to pre-results or older designs |
+| Dated submission manuscripts (removed) | Not distributed in current checkout | **No** | Paper source and PDFs are maintained outside this repository |
+| Previous paper drafts (removed) | Not distributed in current checkout | **No** | Older Git history may retain copies |
 | [docs/reproducibility.md](reproducibility.md) | Original pre-freeze planning instructions | **Historical, not current experiment status** | Opening statement about zero eligible records does not describe current V7/V8 evidence |
 | [docs/architecture.md](architecture.md) | Historical prototype figures/notes | **Historical** | Early prototype plots and instructions are not final experiment findings |
 | [RUN_REPORT.md](../RUN_REPORT.md) | Early Lean demonstration | **No** | Hand-authored/partly simulated demonstration, not held-out LLM evidence |
@@ -58,7 +58,7 @@ If an error is found, document it in a **new**, clearly named erratum or indepen
 
 The repository contains early, anonymous, reviewed and dated manuscript candidates. Some READMEs still say *Study 2 deferred* or link to an older repository name. Those phrases describe their original **historical snapshot**; they should not be adopted in the current top-level README as up-to-date research status.
 
-The supplied manuscript titled *Compiler Feedback Versus Retry Controls in Lean 4 Proof Repair: Two Local-Model Studies* is the current paper-facing reference for this documentation change. **An identical source/PDF is not automatically established** by any earlier `paper/`, `publication/paper/` or `submission_20261103/` filename. Check document title, version, author order and compiled text before calling a file canonical.
+The supplied manuscript titled *Compiler Feedback Versus Retry Controls in Lean 4 Proof Repair: Two Local-Model Studies* is the current paper-facing reference for this documentation change. The manuscript source and compiled PDFs are no longer in this checkout; old Git history and external copies need separate handling. Check document title, version, author order and compiled text before calling a file canonical.
 
 ## Reviewer tour: six steps
 
@@ -93,7 +93,7 @@ Consider these changes **only in a separate reviewable PR**, after inspecting ho
 - An archive-specific index for older pre-freeze planning docs, without moving hashed artifacts.
 - Separate dependency setup guides for optional MLX vs historical Groq code, with no hidden provider calls.
 - Narrow tests for crosslinks, manuscript-to-evidence table consistency and archive metadata.
-- A versioned paper build directory after confirming the exact current LaTeX source and license situation.
+- The no-manuscript guard (`python3 scripts/check_no_manuscript.py`) to prevent tracking new `.tex`, `.bib`, or manuscript PDFs.
 
 **Avoid** history rewriting, deleting duplicate-looking frozen artifacts, changing seed/denominator labels, moving ZIP files, mass-formatting JSON/CSV, auto-redacting already-published research files without preserving the referenced versions, and replacing a missing original with reconstructed or fabricated data.
 
