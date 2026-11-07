@@ -121,7 +121,7 @@ flowchart TD
     XV --> O
 ```
 
-**Interpretation:** Repair arms begin from the **same initial proof within an evaluation**, not from identical later trajectories. Each repair arm can then change its candidate and prompt context independently. The original theorem statement stays fixed.
+**Interpretation:** Repair arms begin from the **same initial proof within an evaluation**, not from identical later trajectories. Each repair arm can then change its candidate and subsequent input context independently. The original theorem statement stays fixed.
 
 ### 2. Which controls answer which question?
 
@@ -131,8 +131,8 @@ flowchart TD
 | B | Previous candidate plus neutral retry instruction | Maximum calls matched to C, **not** total tokens |
 | C | Previous candidate plus genuine preceding Lean diagnostics | Diagnostic content is mixed with evolving candidate history |
 | D | Different-family diagnostics selected by a fixed hash rule | Not category-matched or semantics-free; may contain generic syntax clues |
-| E | Neutral padding approximating C-format prompt length | First-repair prompt length is closely matched, not full compute or later trajectories |
-| R | Fresh generation without showing failed predecessor | Changes predecessor display and sampling as well as the prompt |
+| E | Neutral padding approximating C-format input length | First-repair prompt length is closely matched, not full compute or later trajectories |
+| R | Fresh generation without showing failed predecessor | Changes predecessor display and sampling as well as the input context |
 
 **Frozen primary comparison in V7:** C vs B. **Post-hoc interpretive comparison:** C vs D. All B–E repair policies allow at most three repairs; A allows zero. This is a comparison of **repair policies**, not an experiment that isolates pure diagnostic semantics. See the manuscript's Table 3 and [protocol guide](research/study2-v7/README.md).
 
@@ -263,7 +263,7 @@ The repository retains some older pilot and pre-freeze documents. They are **not
 
 ## Interpretation and limitations
 
-1. **No feedback-specific causal effect established.** C–B controls maximum attempts but not later histories, prompt content, realized token budgets, order in Study 1 or sampling streams. D may supply useful generic syntax cues.
+1. **No feedback-specific causal effect established.** C–B controls maximum attempts but not later histories, input content, realized token budgets, order in Study 1 or sampling streams. D may supply useful generic syntax cues.
 2. **Power and dependence.** Study 1 has a floor effect with one solved theorem; Study 2 has 24 nominal types reused across three seeds and eight overlapping/related families. The reported uncertainty includes zero and is not an equivalence test.
 3. **Known construction overlap.** Some formal theorem statements are related across split boundaries or within test. Lean relationship certificates are scoped checks, not human adjudication, proof of benchmark independence or a remedy for leakage.
 4. **Strict target verification is not English-to-Lean translation.** English annotations in Study 2 are placeholders; the task is to synthesize proof text for supplied fixed Lean types.

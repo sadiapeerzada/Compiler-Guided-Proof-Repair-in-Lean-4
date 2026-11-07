@@ -21,7 +21,7 @@ The [root README](../README.md) is the paper-facing overview. [MANUSCRIPT_EVIDEN
 | [research/study2-v7/test/](../research/study2-v7/test/) | Frozen Study 2 base-model evidence | **Yes** | Plan, outcomes, calls, transitions and report |
 | [research/study2-raw-v8-v9/](../research/study2-raw-v8-v9/) | Archived exploratory V8 and development V9 records | **Yes, with scope qualification** | V8 held-out vs V9 dev-only; indexed ZIP and privacy warnings |
 | [analysis/taimma_20261104/](../analysis/taimma_20261104/) | Derived post-hoc statistical analysis | **Yes** | Paired/cluster comparisons, coverage, costs, overlap sensitivities |
-| [analysis/taimma_supervisor_final/](../analysis/taimma_supervisor_final/) | Supervisor-integrity supplement | **Yes, with provenance qualification** | Cases, tokens, prompt/context analysis and case excerpts |
+| [analysis/taimma_supervisor_final/](../analysis/taimma_supervisor_final/) | Supervisor-integrity supplement | **Yes, with provenance qualification** | Cases, tokens, input-context analysis and case excerpts |
 | [analysis/taimma_final_professor_validation/](../analysis/taimma_final_professor_validation/) | Scoped mathematical and control-integrity validation | **Yes, with limitations** | Certificates do not independently adjudicate benchmarks |
 | [publication/](../publication/) | Historical Study 1 public payload | **Yes for Study 1; historical documentation** | Contains frozen/redacted records and prior submission snapshots |
 | [submission_20261103/](../submission_20261103/) | Dated manuscript source snapshot | **Only with exact version identification** | Do not assume it is identical to the separately shared 14-page PDF |
