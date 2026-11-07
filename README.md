@@ -276,7 +276,7 @@ The repository retains some older pilot and pre-freeze documents. They are **not
 
 ## Authors, citation and reuse
 
-**Research:** Faraz Masood and Sadia Peerzada · Aligarh Muslim University, Aligarh, India.
+**Research:** Sadia Peerzada and Faraz Masood · Aligarh Muslim University, Aligarh, India.
 
 **Manuscript:** *Compiler Feedback Versus Retry Controls in Lean 4 Proof Repair: Two Local-Model Studies* (TAIMMA 2027 research submission/review version; do not infer acceptance or publication). The actual reviewed manuscript should be cited by its **verified version and venue status**; no DOI or acceptance is asserted here.
 
