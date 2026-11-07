@@ -1,11 +1,12 @@
-# Architecture & required figures
+# Architecture and figures — historical prototype
 
-> The figures and pass@1 labels below are historical prototype artifacts.
-> `RUN_REPORT.md` states that proofs were manually authored and then checked
-> with Lean; they are not autonomous model pass@1 or paired A/B/C results.
-> The current paired-study figure is unavailable because the dataset has zero
-> eligible records and no paired API run manifests exist. See
-> [`paper/claims_to_evidence.md`](../paper/claims_to_evidence.md).
+> **Historical stage document.** The four PNGs at [docs/figures/](figures/README.md)
+> came from an early manually authored Lean example; they are not LLM pass@1,
+> controlled-repair results or the three figures in the current paper. The old
+> `RUN_REPORT.md` is excluded from the current checkout; its historical
+> content is [available at the pre-cleanup commit](https://github.com/sadiapeerzada/Compiler-Guided-Proof-Repair-in-Lean-4/blob/a201fbd38ff730eacaf0025b874192285debd9ca/RUN_REPORT.md). Old statements
+> about missing study results below describe that prototype phase only; use
+> the [current manuscript evidence index](MANUSCRIPT_EVIDENCE_INDEX.md).
 
 ## Pipeline diagram
 Already in the main README as a Mermaid diagram. For a paper/slide deck,

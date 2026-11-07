@@ -1,6 +1,6 @@
 # Repository guide and safe cleanup policy
 
-[Main README](../README.md) · [Manuscript evidence index](MANUSCRIPT_EVIDENCE_INDEX.md) · [Release readiness](RELEASE_READINESS.md) · [Historical documents](HISTORICAL_DOCUMENTS_INDEX.md) · [Diagrams](RESEARCH_DIAGRAMS.md)
+[Main README](../README.md) · [Clean-release archive scope](ARCHIVE_SCOPE.md) · [Manuscript evidence index](MANUSCRIPT_EVIDENCE_INDEX.md) · [Release readiness](RELEASE_READINESS.md) · [Historical documents](HISTORICAL_DOCUMENTS_INDEX.md) · [Diagrams](RESEARCH_DIAGRAMS.md)
 
 ## Purpose
 
@@ -27,13 +27,20 @@ The [root README](../README.md) is the paper-facing overview. [MANUSCRIPT_EVIDEN
 | Dated submission manuscripts (removed) | Not distributed in current checkout | **No** | Paper source and PDFs are maintained outside this repository |
 | Previous paper drafts (removed) | Not distributed in current checkout | **No** | Older Git history may retain copies |
 | [docs/reproducibility.md](reproducibility.md) | Original pre-freeze planning instructions | **Historical, not current experiment status** | Opening statement about zero eligible records does not describe current V7/V8 evidence |
-| [docs/architecture.md](architecture.md) | Historical prototype figures/notes | **Historical** | Early prototype plots and instructions are not final experiment findings |
-| [RUN_REPORT.md](../RUN_REPORT.md) | Early Lean demonstration | **No** | Hand-authored/partly simulated demonstration, not held-out LLM evidence |
+| [docs/architecture.md](architecture.md) and [prototype figures](figures/README.md) | Archived in place | **No** | Four old prototype plots, not manuscript figures |
+| [RUN_REPORT.md (Git history)](https://github.com/sadiapeerzada/Compiler-Guided-Proof-Repair-in-Lean-4/blob/a201fbd38ff730eacaf0025b874192285debd9ca/RUN_REPORT.md) | Excluded early demonstration | **No** | Manual/simulated, not held-out model performance |
 | [src/](../src/), [eval/](../eval/), [scripts/](../scripts/), [tests/](../tests/) | Implementation and testing | **With command-specific scope** | Do not assume every historical entry point matches the current study |
 | [data/](../data/), [configs/](../configs/), [prompts/](../prompts/) | Multiple snapshots and protocol inputs | **Only with matched manifest/version** | Avoid modifying frozen bytes |
+| [data/review_packets/](../data/review_packets/) | [Historical versioned review packets](../data/review_packets/ARCHIVE_STATUS.md) | **Archive — not a current result** | Original paths/decisions remain unchanged |
+| [data/analysis/](../data/analysis/) | [Historical intermediate analyses](../data/analysis/ARCHIVE_STATUS.md) | **Archive — not current V7/V8 analysis** | Preserve frozen paths/hashes |
+| [research/ai-confirmatory-study/](../research/ai-confirmatory-study/) | [Separate historical research stream](../research/ai-confirmatory-study/ARCHIVE_NOTICE.md) | **No** | Not evidence for the current two-study manuscript |
 | [lean_project/](../lean_project/) | Lean / Mathlib project | **With pinned toolchain** | Build is distinct from independent experiment replication |
 
-### What was actually cleaned
+### Supervisor clean-release follow-up (7 November 2026)
+
+Root `RUN_REPORT.md` is excluded from the current checkout. The four prototype PNGs and the versioned review packets/intermediate analyses and separate AI confirmatory-study stream have been **archived in place** with explicit scope notices. Existing bytes and hashed evidence paths remain unchanged; see [archive decisions](ARCHIVE_SCOPE.md). The five manuscript folders were already removed in PR #37.
+
+### Earlier documentation cleanup
 
 - Replaced the obsolete pilot-first root README with an accurate **two-study** entry point, verified results tables, current evidence links and two compact Mermaid figures.
 - Added [a dedicated Table 10 index](MANUSCRIPT_EVIDENCE_INDEX.md) and [editable diagrams](RESEARCH_DIAGRAMS.md).
