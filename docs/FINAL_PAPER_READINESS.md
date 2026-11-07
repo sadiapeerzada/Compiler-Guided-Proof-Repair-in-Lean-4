@@ -1,5 +1,8 @@
 # Final paper readiness
 
+> **Historical phase document.** This page records an earlier experiment or review stage and is preserved for provenance. For the current two-study research, consult the [evidence index](MANUSCRIPT_EVIDENCE_INDEX.md), [historical classification](HISTORICAL_DOCUMENTS_INDEX.md) and [release readiness](RELEASE_READINESS.md). This note does not imply that any outstanding human decision has been completed.
+
+
 Status: PARTIAL — a compiled pre-results draft, not submission-ready.
 
 `paper/main.tex` now documents the current candidate inventory, source/proof preparation, independent review workflow, shared A/B/C design, proposed local Qwen/MLX model configuration, exact model identity and decoding/seed policy, statistics, compiler-error taxonomy, semantic faithfulness, qualitative evidence limitations, threats and reproducibility. The original Groq protocol is described as historical/proposed, not silently replaced by an approved local study.
