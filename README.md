@@ -21,6 +21,7 @@
 | Inspect control-integrity and Lean-overlap checks | [Professor validation evidence](analysis/taimma_final_professor_validation/README.md) |
 | Inspect privacy / provenance limitations | [Reproducibility scope](analysis/taimma_final_professor_validation/REPRODUCIBILITY_FINAL_VERIFICATION.md) and [archive warnings](research/study2-raw-v8-v9/PRIVACY_SCAN_WARNINGS.json) |
 | Check Table 10 paths without inference | Run `python3 scripts/check_manuscript_evidence.py` at the repository root |
+| Check publication hygiene and release gates | [Release readiness](docs/RELEASE_READINESS.md) · [Historical documents](docs/HISTORICAL_DOCUMENTS_INDEX.md) |
 
 ## Research question
 
@@ -131,7 +132,7 @@ flowchart TD
 | B | Previous candidate plus neutral retry instruction | Maximum calls matched to C, **not** total tokens |
 | C | Previous candidate plus genuine preceding Lean diagnostics | Diagnostic content is mixed with evolving candidate history |
 | D | Different-family diagnostics selected by a fixed hash rule | Not category-matched or semantics-free; may contain generic syntax clues |
-| E | Neutral padding approximating C-format input length | First-repair prompt length is closely matched, not full compute or later trajectories |
+| E | Neutral padding approximating C-format input length | First-repair input length is closely matched, not full compute or later trajectories |
 | R | Fresh generation without showing failed predecessor | Changes predecessor display and sampling as well as the input context |
 
 **Frozen primary comparison in V7:** C vs B. **Post-hoc interpretive comparison:** C vs D. All B–E repair policies allow at most three repairs; A allows zero. This is a comparison of **repair policies**, not an experiment that isolates pure diagnostic semantics. See the manuscript's Table 3 and [protocol guide](research/study2-v7/README.md).
@@ -254,7 +255,7 @@ For check commands and exact limits, consult [professor validation](analysis/tai
 ├── paper/                              # Earlier paper material (historical)
 ├── data/                               # Legacy and frozen data; inspect scope
 ├── lean_project/                       # Lean toolchain, Mathlib and project
-├── src/  eval/  prompts/  configs/     # Code, evaluation and protocol components
+├── src/  eval/  configs/             # Code, evaluation and protocol components
 ├── scripts/                            # Utility scripts; read-only path check
 └── tests/                              # Existing tests
 ```
@@ -271,7 +272,7 @@ The repository retains some older pilot and pre-freeze documents. They are **not
 6. **Computational cost matters.** Input and output tokens vary by policy, even with the same maximum retry allowance. Recorded timers include setup/journaling and cannot simply be summed into wall time.
 7. **Research and publication rights remain bounded.** Automated screening is not full privacy, attribution, license or consent review; private original data/model weights are not implicitly released.
 
-**Overall takeaway:** More verified theorem–seed evaluations under compiler-guided prompting do **not by themselves** establish that correctly matched compiler diagnostics caused the improvement. Report **verified success**, **distinct theorem coverage**, **rescued-after-initial successes**, **paired uncertainty**, and **token expenditure** separately.
+**Overall takeaway:** More verified theorem–seed evaluations under compiler-guided repair do **not by themselves** establish that correctly matched compiler diagnostics caused the improvement. Report **verified success**, **distinct theorem coverage**, **rescued-after-initial successes**, **paired uncertainty**, and **token expenditure** separately.
 
 ## Authors, citation and reuse
 

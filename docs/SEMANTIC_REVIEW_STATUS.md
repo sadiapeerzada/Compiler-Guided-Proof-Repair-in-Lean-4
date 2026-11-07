@@ -1,5 +1,8 @@
 # Semantic review status
 
+> **Historical phase document.** This page records an earlier experiment or review stage and is preserved for provenance. For the current two-study research, consult the [evidence index](MANUSCRIPT_EVIDENCE_INDEX.md), [historical classification](HISTORICAL_DOCUMENTS_INDEX.md) and [release readiness](RELEASE_READINESS.md). This note does not imply that any outstanding human decision has been completed.
+
+
 Status: BLOCKED for review outcomes; workflow implementation is available.
 
 All 96 candidates remain pending independent semantic review. No reviewer ID, date, decision, signature, source permission or supervisor approval has been invented.

@@ -42,6 +42,8 @@ DOCUMENTATION = (
     "docs/MANUSCRIPT_EVIDENCE_INDEX.md",
     "docs/REPOSITORY_GUIDE.md",
     "docs/RESEARCH_DIAGRAMS.md",
+    "docs/RELEASE_READINESS.md",
+    "docs/HISTORICAL_DOCUMENTS_INDEX.md",
 )
 
 LINK_PATTERN = re.compile(r"\[[^\]\n]+\]\(([^\s)]+)(?:\s+[^)]*)?\)")
