@@ -60,11 +60,24 @@ def audit(scope):
         if SENSITIVE.search(value):
             private.append(p)
     missing = [PREFIX + p for p in EXPECTED if not (ROOT / PREFIX / p).is_file()]
+    input_named = sorted(p for p in all_paths if "prompt" in p.lower())
+    classes = Counter()
+    for p in input_named:
+        if p.startswith("prompts/") or "/prompts/" in p or "/prompts_" in p or p.endswith("/prompts.py"):
+            classes["experimental_input_template"] += 1
+        elif "prompt_length" in p.lower() or "prompt_tokens" in p.lower():
+            classes["input_length_or_cost_analysis"] += 1
+        elif "/runs/" in p or "transition" in p.lower():
+            classes["run_metadata_or_transition"] += 1
+        else:
+            classes["other_requires_context_review"] += 1
     return {"scope": scope, "tracked_in_scope": len(paths),
             "text_files_scanned": scanned, "skipped_binary_large_or_unreadable": skipped,
             "matched_files_count": len(terms), "matched_files_sample": terms[:20],
             "possible_private_files_count": len(private), "possible_private_files_sample": private[:20],
-            "repository_prompt_named_paths": sum("prompt" in p.lower() for p in all_paths),
+            "repository_prompt_named_paths": len(input_named),
+            "repository_prompt_path_classes": dict(sorted(classes.items())),
+            "repository_prompt_paths": input_named,
             "missing_curated_files": missing, "privacy_archive": privacy(),
             "rights_notice_exists": (ROOT / "publication/third_party/RIGHTS_AND_ATTRIBUTION.md").is_file(),
             "review_notice_exists": (ROOT / "analysis/taimma_final_professor_validation/HUMAN_ADJUDICATION_REQUIRED.md").is_file(),
