@@ -1,12 +1,14 @@
 # Compiler Feedback Versus Retry Controls in Lean 4 Proof Repair
 
-### Two local-model studies · Research code, frozen evidence, and manuscript companion
+### Two local-model studies · Research code, frozen protocols, and experimental evidence
 
 [**Read the results**](#results-at-a-glance) · [**Study protocol**](#experimental-design) · [**Find the evidence**](#manuscript-to-evidence-map) · [**Reproduce the analyses**](#reproducibility-and-verification) · [**Limitations**](#interpretation-and-limitations)
 
 > **Scientific status (November 2026).** This repository supports *Compiler Feedback Versus Retry Controls in Lean 4 Proof Repair: Two Local-Model Studies* by Faraz Masood and Sadia Peerzada. It contains two **separately constructed** studies of proof synthesis for **fixed Lean theorem statements**, not natural-language-to-Lean translation. **Neither study establishes a feedback-specific advantage or equivalence** between guided repair and retry controls. Study 1 has two unavailable guided outcomes. Study 2 has a small, partly overlapping constructed theorem cohort and exploratory analyses. The evidence archive has qualified provenance and privacy limits; an indexed ZIP is **not** proof of independent experimental replay.
 >
-> **Non-destructive documentation update.** This landing page and its companion guides describe existing frozen records. They do not replace, rerun, fabricate, or retrospectively modify experiments. Historical documents and manuscript snapshots elsewhere in the repository may describe *earlier stages of the project* and must not be mistaken for the current two-study manuscript.
+> **Non-destructive documentation update.** This landing page and its companion guides describe existing frozen records. They do not replace, rerun, fabricate, or retrospectively modify experiments. Historical research documents may describe *earlier stages of the project*. Manuscript sources and compiled paper PDFs have been removed from the current repository tree.
+
+> **Manuscript-free repository.** The paper, LaTeX source, bibliography, dated submission drafts and compiled manuscript PDFs are maintained outside this repository. This cleanup does not erase those files from older Git commits. Research data, code and supporting analyses remain available here.
 
 ## Start here
 
@@ -180,7 +182,7 @@ The companion manuscript's **Table 10** lists six sources. **All six paths exist
 | Scientific integrity audit | [analysis/taimma_supervisor_final/](analysis/taimma_supervisor_final/) | Cases, token/context analysis and provenance qualifications |
 | Lean overlap certificates | [analysis/taimma_final_professor_validation/](analysis/taimma_final_professor_validation/) | Scoped mathematical certificates and control-integrity checks |
 
-Other significant artifacts are [publication/](publication/) (historical release bundle and Study 1 redacted public views), [research/study2-v7/test/summary.json](research/study2-v7/test/summary.json), and the [Study 2 analysis README](analysis/taimma_20261104/README.md). Archived reports, older LaTeX manuscripts and earlier planning documents may be historically correct for their own snapshots while **not** describing the present manuscript.
+Other significant artifacts are [publication/](publication/) (historical release bundle and Study 1 redacted public views), [research/study2-v7/test/summary.json](research/study2-v7/test/summary.json), and the [Study 2 analysis README](analysis/taimma_20261104/README.md). Historical research reports and plans may refer to earlier stages; manuscript source files and compiled paper PDFs are not included in the current checkout.
 
 ### Research integrity and snapshot boundaries
 
@@ -251,8 +253,6 @@ For check commands and exact limits, consult [professor validation](analysis/tai
 │   ├── taimma_supervisor_final/        # Case studies, integrity supplement
 │   └── taimma_final_professor_validation/ # Certificate/control checks
 ├── publication/                       # Historical Study 1 public release
-├── submission_20261103/               # Dated manuscript-source snapshot
-├── paper/                              # Earlier paper material (historical)
 ├── data/                               # Legacy and frozen data; inspect scope
 ├── lean_project/                       # Lean toolchain, Mathlib and project
 ├── src/  eval/  configs/             # Code, evaluation and protocol components

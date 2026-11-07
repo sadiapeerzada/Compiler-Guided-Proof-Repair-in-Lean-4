@@ -1,5 +1,8 @@
 # Compiler-Guided Proof Repair in Lean 4: A Controlled Local-Model Pilot on Fixed Theorem Types
 
+> **Manuscript removal notice (7 November 2026).** This document describes an older public release. Manuscript sources, the bibliography, build files and compiled manuscript PDFs have been removed from the current Git tree at the supervisor's request. Historical paths below are archival descriptions, **not** working links. `PUBLIC_PAYLOAD_MANIFEST.json` and its exact-inventory verifier describe the *pre-removal snapshot*, not the current checkout; do not claim they validate the reduced checkout. Research datasets, numerical evidence and their original hashes have not been regenerated.
+
+
 The latest [post-hoc manuscript](paper/post_hoc_pilot.pdf)
 and [exploratory results](post_hoc/outputs/post_hoc/SUMMARY.md) extend the original
 fixed-theorem study with process analyses, calibrated uncertainty and a separately
