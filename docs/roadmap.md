@@ -1,5 +1,8 @@
 # Research roadmap
 
+> **Historical phase document.** This page records an earlier experiment or review stage and is preserved for provenance. For the current two-study research, consult the [evidence index](MANUSCRIPT_EVIDENCE_INDEX.md), [historical classification](HISTORICAL_DOCUMENTS_INDEX.md) and [release readiness](RELEASE_READINESS.md). This note does not imply that any outstanding human decision has been completed.
+
+
 This roadmap reflects the repository state on 21 October 2026. It supersedes
 the original prototype timeline; no deadline or experiment is assumed to have
 passed merely because an earlier roadmap listed it.
