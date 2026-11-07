@@ -52,8 +52,10 @@ passed merely because an earlier roadmap listed it.
 
 ## Historical artifacts
 
-`RUN_REPORT.md`, `data/results/run1_core_lean.jsonl`, and the legacy figures
-are retained for historical context. The report identifies the proof writing
+`RUN_REPORT.md` was part of this October-era snapshot but is now excluded
+from the current checkout; see its [historical Git copy](https://github.com/sadiapeerzada/Compiler-Guided-Proof-Repair-in-Lean-4/blob/a201fbd38ff730eacaf0025b874192285debd9ca/RUN_REPORT.md).
+`data/results/run1_core_lean.jsonl` and the legacy figures remain as historical
+context only. The report identifies the proof writing
 as manual and distinguishes genuine Lean compiler checks from API execution.
 Those demonstrations are not autonomous model pass@1 and do not answer the
 paired A/B/C research question.

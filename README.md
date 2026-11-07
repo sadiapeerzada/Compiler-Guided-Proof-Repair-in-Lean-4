@@ -16,7 +16,7 @@
 |---|---|
 | Understand the research question and findings | [Results at a glance](#results-at-a-glance), then [Interpretation](#interpretation-and-limitations) |
 | Find every item in the manuscript's Table 10 | [Manuscript evidence index](docs/MANUSCRIPT_EVIDENCE_INDEX.md) |
-| Understand which directories are current versus historical | [Repository and archival guide](docs/REPOSITORY_GUIDE.md) |
+| Understand which directories are current versus historical | [Repository guide](docs/REPOSITORY_GUIDE.md) · [Clean-release archive scope](docs/ARCHIVE_SCOPE.md) |
 | See the full protocol and evidence provenance diagrams | [Protocol and evidence diagrams](docs/RESEARCH_DIAGRAMS.md) |
 | Read the frozen Study 2 base-model report | [V7 test report](research/study2-v7/test/REPORT.md) |
 | Inspect paired contrasts, coverage and cost | [Post-hoc analysis findings](analysis/taimma_20261104/FINDINGS.md) |
@@ -260,7 +260,7 @@ For check commands and exact limits, consult [professor validation](analysis/tai
 └── tests/                              # Existing tests
 ```
 
-The repository retains some older pilot and pre-freeze documents. They are **not all current instructions**. Rather than deleting them or silently rewriting evidence history, [REPOSITORY_GUIDE.md](docs/REPOSITORY_GUIDE.md) labels their role and gives maintainers a safe review process. Root [RUN_REPORT.md](RUN_REPORT.md) is a historical hand-authored/partly simulated run and **must not** be presented as final-model verified success.
+The repository retains some older pilot and pre-freeze documents. They are **not all current instructions**. Rather than deleting them or silently rewriting evidence history, [REPOSITORY_GUIDE.md](docs/REPOSITORY_GUIDE.md) labels their role and gives maintainers a safe review process. The obsolete root demonstration report was excluded and is now accessible only at the [historical Git commit](https://github.com/sadiapeerzada/Compiler-Guided-Proof-Repair-in-Lean-4/blob/a201fbd38ff730eacaf0025b874192285debd9ca/RUN_REPORT.md); it was hand-authored/partly simulated, **not** final-model verified success. See the [clean-release archive scope](docs/ARCHIVE_SCOPE.md).
 
 ## Interpretation and limitations
 
