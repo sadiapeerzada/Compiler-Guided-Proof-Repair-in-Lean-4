@@ -1,6 +1,6 @@
 # Repository guide and safe cleanup policy
 
-[Main README](../README.md) · [Manuscript evidence index](MANUSCRIPT_EVIDENCE_INDEX.md) · [Diagrams](RESEARCH_DIAGRAMS.md)
+[Main README](../README.md) · [Manuscript evidence index](MANUSCRIPT_EVIDENCE_INDEX.md) · [Release readiness](RELEASE_READINESS.md) · [Historical documents](HISTORICAL_DOCUMENTS_INDEX.md) · [Diagrams](RESEARCH_DIAGRAMS.md)
 
 ## Purpose
 
@@ -110,3 +110,7 @@ Consider these changes **only in a separate reviewable PR**, after inspecting ho
 - [ ] Any CI/check commands actually run are reported with their outcome; do not infer success from a checklist.
 
 *Keep the evidence immutable; make it easier to understand.*
+
+## Presentation hygiene and historical records (November 2026)
+
+The [compact curated release](../publication/curated-release-20261107/) is the reader-facing selection, whereas this full repository also retains original model-input templates, historical development records and independently reviewable experimental provenance. See the [historical document index](HISTORICAL_DOCUMENTS_INDEX.md) for stage-specific instructions and [release readiness](RELEASE_READINESS.md) for the independent review, archive privacy, attribution and supervisor gates that are **not** closed by documentation work. The read-only [audit script](../scripts/audit_publication_surface.py) checks the curated surface separately from the full historical source tree. Do not remove exact experimental inputs or change unresolved outcomes to make a keyword scan pass.
