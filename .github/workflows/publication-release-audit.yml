@@ -36,3 +36,9 @@ jobs:
         run: python3 publication/curated-release-20261107/verify_release.py
       - name: Inventory historical repository (informational only)
         run: python3 scripts/audit_publication_surface.py --scope full --report-json /tmp/lean4-publication-inventory.json
+      - name: Publish read-only archive inventory for reviewer inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: tracked-repository-hygiene-inventory
+          path: /tmp/lean4-publication-inventory.json
+          retention-days: 7
